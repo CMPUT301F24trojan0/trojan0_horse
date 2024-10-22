@@ -1,0 +1,111 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#f7f7f7"
+    tools:context=".CreateEventActivity">
+
+    <!-- App Logo and Title -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo" <!-- Add your app logo in res/drawable -->
+    android:layout_gravity="center"
+    android:contentDescription="Logo" />
+
+    <TextView
+        android:id="@+id/create_event_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Event"
+        android:textSize="32sp"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp" />
+
+    <!-- Event Name Input -->
+    <EditText
+        android:id="@+id/event_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Event Name"
+        android:textColor="#000000"
+        android:layout_marginTop="24dp"
+        android:inputType="text"
+        android:backgroundTint="#000000" />
+
+    <!-- Geolocation Toggle -->
+    <TextView
+        android:id="@+id/geolocation_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Geolocation"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp" />
+
+    <Switch
+        android:id="@+id/switch_geolocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#000000"
+        android:layout_gravity="start" />
+
+    <!-- Add Poster Button -->
+
+    <!-- Bottom Navigation -->
+
+    <Button
+        android:id="@+id/add_poster_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#b391f8"
+        android:text="Add Poster"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="48dp">
+
+        <!-- Home Button -->
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home" <!-- Add your home icon in res/drawable -->
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Home"
+        android:tint="#9A75E9" />
+
+        <!-- Add Event Button -->
+        <ImageButton
+            android:id="@+id/add_event_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_event" <!-- Add your add icon in res/drawable -->
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Add Event"
+        android:tint="#000000" />
+
+        <!-- People Button -->
+        <ImageButton
+            android:id="@+id/people_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_people" <!-- Add your people icon in res/drawable -->
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="People"
+        android:tint="#9A75E9" />
+    </LinearLayout>
+
+</LinearLayout>

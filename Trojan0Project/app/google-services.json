@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "908424985593",
+    "project_id": "cmput301f24trojan0horse",
+    "storage_bucket": "cmput301f24trojan0horse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908424985593:android:2f0423e6c32a72bea81b28",
+        "android_client_info": {
+          "package_name": "com.example.trojan0project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOFX_MpuEUR4kVKMLGhxLA9fkYM-f7BTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,27 +1,30 @@
-package com.example.trojan0project;
+package com.example.trojan0project; // Replace with your package name
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.trojan0project.CreateEventActivity;
 import com.example.trojan0project.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ImageButton addEventButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); // Ensure this matches your XML file name
 
-        Button createEventButton = findViewById(R.id.button_create_event);
-        createEventButton.setOnClickListener(new View.OnClickListener() {
+        // Initialize the "Add Event" button
+        addEventButton = findViewById(R.id.add_event_button);
+
+        // Set click listener to navigate to CreateEventActivity
+        addEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to CreateEventActivity
-                Intent intent = new Intent(MainActivity.this, CreateEventActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.example.trojan0project.CreateEventActivity.class);
                 startActivity(intent);
             }
         });

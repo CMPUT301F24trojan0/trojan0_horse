@@ -1,4 +1,4 @@
-package com.example.admin_project_part3;
+package com.example.trojan0project;
 
 import android.os.Bundle;
 import android.view.View;

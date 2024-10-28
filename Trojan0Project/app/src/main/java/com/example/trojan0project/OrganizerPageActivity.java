@@ -23,7 +23,11 @@ public class OrganizerPageActivity extends AppCompatActivity {
         editFacilityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Code to edit facility
+                // Open EditFacilityFragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new EditFacilityFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -35,3 +39,4 @@ public class OrganizerPageActivity extends AppCompatActivity {
         });
     }
 }
+

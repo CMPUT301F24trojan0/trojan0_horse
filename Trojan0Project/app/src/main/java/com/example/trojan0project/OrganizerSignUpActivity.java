@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.trojan0project.R;
-
 public class OrganizerSignUpActivity extends AppCompatActivity {
 
     private EditText facilityInput;
@@ -30,10 +28,9 @@ public class OrganizerSignUpActivity extends AppCompatActivity {
                 String facility = facilityInput.getText().toString().trim();
 
                 if (!facility.isEmpty()) {
-                    // Save the facility data here (you can use SharedPreferences, SQLite, or Firestore)
-
-                    // Navigate to OrganizerPageActivity
+                    // Pass the facility name to OrganizerPageActivity
                     Intent intent = new Intent(OrganizerSignUpActivity.this, OrganizerPageActivity.class);
+                    intent.putExtra("facility_name", facility);
                     startActivity(intent);
                 } else {
                     Toast.makeText(OrganizerSignUpActivity.this, "Please enter facility name", Toast.LENGTH_SHORT).show();

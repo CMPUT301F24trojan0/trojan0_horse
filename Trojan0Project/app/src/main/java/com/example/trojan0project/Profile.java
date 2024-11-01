@@ -23,6 +23,4 @@ public class Profile {
         this.profileImage = profileImage;
     }
 
-
-
 }

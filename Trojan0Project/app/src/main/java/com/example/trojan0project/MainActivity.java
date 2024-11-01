@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
 
-        //for each role we can use a if statement and for each role the base activity main will be different
+        //for each role we can use a if statement and for each role the base activity_main will be different
         setContentView(R.layout.activity_main_admin);
         ImageButton homeButton = findViewById(R.id.home_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Profile Button Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, BrowseProfileAdmin.class);
                 startActivity(intent);
 
@@ -45,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Camera Button Clicked", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(MainActivity.this, BrowseImagesAdmin.class);
+                startActivity(intent);
             }
         });
 

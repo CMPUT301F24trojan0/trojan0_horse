@@ -3,7 +3,7 @@
 build/
 
 # Local configuration file (sdk path, etc)
-local.properties
+Trojan0Project/local.properties
 
 # Log/OS Files
 *.log

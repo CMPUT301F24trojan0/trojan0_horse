@@ -137,4 +137,8 @@
     <string name="searchview_navigation_content_description">Wstecz</string>
     <string name="side_sheet_accessibility_pane_title">Arkusz boczny</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="zxing_app_name">Barcode Scanner</string>
+    <string name="zxing_button_ok">OK</string>
+    <string name="zxing_msg_camera_framework_bug">Przepraszamy, aparat Android napotkał problem. Może wystąpić potrzeba ponownego uruchomienia urządzenia.</string>
+    <string name="zxing_msg_default_status">Umieść kod paskowy w prostokącie wizjera aby zeskanować.</string>
 </resources>

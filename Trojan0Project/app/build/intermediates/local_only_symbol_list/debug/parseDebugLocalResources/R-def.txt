@@ -30,6 +30,7 @@ id browseProfileAdmin
 id camera_button
 id createEventTitle
 id eventNameInput
+id eventNameTextView
 id events_button
 id fragment_container
 id geolocationLabel
@@ -47,12 +48,14 @@ id profile_image
 id profile_list
 id profile_name
 id profiles_title
+id qrCodeImageView
 id removeProfileFragment
 id remove_profile_message
 id saveButton
 id yes_remove_profile
 layout activity_browse_profile_admin
 layout activity_create_event
+layout activity_event_detail
 layout activity_main
 layout activity_main_admin
 layout fragment_remove_profile

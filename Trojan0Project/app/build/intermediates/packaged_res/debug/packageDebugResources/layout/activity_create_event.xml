@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,17 +8,6 @@
     android:background="@color/white">
 
     <!-- App Logo -->
-
-    <!-- Screen Title -->
-
-    <!-- Event Name Input -->
-
-    <!-- Geolocation Switch -->
-
-    <!-- Add Poster Button -->
-
-    <!-- Bottom Navigation -->
-
     <TextView
         android:id="@+id/appLogo"
         android:layout_width="wrap_content"
@@ -26,66 +16,113 @@
         android:text="TROJANO"
         android:textColor="#b391f8"
         android:textSize="24sp"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Screen Title -->
     <TextView
         android:id="@+id/createEventTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="16dp"
         android:text="Create Event"
         android:textColor="@color/black"
         android:textSize="32sp"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appLogo" />
 
+    <!-- Event Name Input -->
     <EditText
         android:id="@+id/eventNameInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#b391f8"
         android:hint="Event Name"
         android:textColorHint="#b391f8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/createEventTitle"
         app:layout_constraintWidth_percent="0.8" />
 
+    <!-- Geolocation Label -->
+
+    <!-- Geolocation Switch -->
+
+    <!-- Add Poster Button -->
+
+    <!-- Save Button -->
     <TextView
         android:id="@+id/geolocationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="40dp"
         android:text="Geolocation"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/eventNameInput" />
 
     <Switch
         android:id="@+id/geolocationSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="76dp"
-        app:layout_constraintLeft_toRightOf="@id/geolocationLabel"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toEndOf="@id/geolocationLabel"
         app:layout_constraintTop_toBottomOf="@id/eventNameInput" />
+
+    <Button
+        android:id="@+id/addPosterButton"
+        android:layout_width="151dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#b391f8"
+        android:text="Add Poster"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/geolocationSwitch"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <!-- QR Code Display -->
+
+    <!-- Bottom Navigation -->
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="130dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="#b391f8"
+        android:text="Save Event"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toEndOf="@id/addPosterButton"
+        app:layout_constraintTop_toTopOf="@id/addPosterButton" />
+
+    <ImageView
+        android:id="@+id/qrCodeImageView"
+        android:layout_width="148dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="56dp"
+        android:contentDescription="QR Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/saveButton" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:background="@color/white"
         android:orientation="horizontal"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/homeIcon"
@@ -93,7 +130,7 @@
             android:layout_height="75dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
-            android:tint="#b391f8" />
+            app:tint="#b391f8" />
 
         <ImageView
             android:id="@+id/addIcon"
@@ -101,7 +138,7 @@
             android:layout_height="71dp"
             android:layout_weight="1"
             android:src="@drawable/ic_add"
-            android:tint="@color/black" />
+            app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/groupIcon"
@@ -109,35 +146,8 @@
             android:layout_height="76dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
-            android:tint="#b391f8" />
+            app:tint="#b391f8" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/addPosterButton"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:backgroundTint="#b391f8"
-        android:text="Add Poster"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764"
-        app:layout_constraintWidth_percent="0.5" />
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#b391f8"
-        android:text="Save Event"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.677"
-        app:layout_constraintStart_toEndOf="@+id/addPosterButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

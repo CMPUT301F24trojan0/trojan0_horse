@@ -1,483 +1,597 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
-INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
-MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:2:1-26:12
-MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/09e9b8add34a2884c51dae28ae519c3c/transformed/play-services-location-21.0.1/AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/567d148044c8e4e6d5a275c554760302/transformed/navigation-common-2.8.3/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/a7953234ac086b8fd49696df70816d67/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-fragment:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/5b08132c139a01d2d0851da1fb134828/transformed/navigation-fragment-2.8.3/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/1e738b86b729dc394a95272d2f9fce8b/transformed/navigation-ui-2.8.3/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/fac2d05b95b9b4312b4a8fe142f06b8a/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/b01fb26ffb069a72f1ca341eca8f3514/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/67124a65eb24345dda4a1db09810067f/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/a74ede608632d3efdd4284c64e6a3abd/transformed/appcompat-1.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/441a417f9e36562977a2803bca8e48cb/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:15:1-25:12
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/597d85c2f268a7daebff40512f6be002/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:16:1-24:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/c3a913c8d1b7a0af3daeea72d6554cba/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/f632d0d52da6739f5fdb61eccbb2d427/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/788133c39d413d356ef78e28b124fa58/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:2:1-18:12
-MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:15:1-41:12
-MERGED from [androidx.activity:activity-ktx:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/080e3407016df402da31690081a47633/transformed/activity-ktx-1.9.2/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/1e2026a5c756d7fb81cf1be8d35522b3/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/475bd76ac7dcd165546634aa4bb71685/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/898e27e0c3498e03616a6bed0f1b30ff/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/57e0262231a17a3ce331b45444aab8ec/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.transition:transition:1.5.0] /Users/vivaan/.gradle/caches/8.9/transforms/e410019e0161b75448c243a720ab1f22/transformed/transition-1.5.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/17b69cd6787cead78f5ad03f5d65d637/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/951feec689044f2358e9878e0e443dd5/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/d560c4a6de86831004194bfeb13f472c/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/a95eeb1631f1fb2efa2bd46c2eabe616/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/fe828fb4f33acc9c3482a38a010d3189/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/5b0b115ad2ecccfca9b69ce11af404fa/transformed/lifecycle-livedata-core-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/e8b494cc7373ccdb00a6bf6bfea524ec/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/fb25f7d7d9c33de3f5e57063fe36297f/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d55ef575b6c66009ee42cc01b2b9802b/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core-ktx:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb73c89845cb54a0553ada2da1470a2f/transformed/core-ktx-1.13.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/40abe3dc16e333f269cce21a75b76b04/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/050d719267614ff00016d88ade6c69f1/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d2bbb2a9866cea7ed141de1b8bcf18be/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/401429ea3f999301c1c04bc2fc9fffbb/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/040e6da7d62f88018463ad97c1bebaa1/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ac3dadd9fbe0ffdd63473f3878ad0ee4/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c76b01f50f3fa11132dab65b0fd14d71/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:17:1-30:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/ed78f3e50f20990cba3261745d28af7d/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/4926eaa98f656ca0214418faaffb9e1a/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/0c8f54cddc9a3e47242e15e02ffc2afd/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:2:1-6:12
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:16:1-26:12
-MERGED from [androidx.fragment:fragment:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/6053c454cf6e9dab4a953064b5096614/transformed/fragment-1.6.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/f05be13f90caed25baa4cdeb5941ab09/transformed/activity-1.9.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/1bc03b4accdf8847cf9fbcb45a9cf3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/42b8eb485a332a02d32ca0b804ceadb8/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/9ca662cbe29dadd6316e6a9b1c19d70d/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/86c4edef325027dc0971ac150bf682f4/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.firebase:firebase-components:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/225fb5c37a2d0eda3a1bdfbbeb0601a7/transformed/firebase-components-18.0.0/AndroidManifest.xml:15:1-20:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/95519b3a7ec5275b9a1c034d6e16e1bd/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/5d35802b57ced30cb1752f3ca4ca862f/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/bf9e40f19705ba428e92441f6666e0d9/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/63df543d6ba38e794f5bb13f34f3fc51/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/857145b998814fd2d7e075dccef157bb/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/6860ae131f385bd97212624dc7f40731/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/vivaan/.gradle/caches/8.9/transforms/2a0f4a55ee854a4ea67c4c9fec891a2d/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
-MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/bcff00625457440db18df1a9fd97c87c/transformed/grpc-android-1.62.2/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/01c6d4c9c58ba4931c8aee7c06c18c50/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-32:12
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/f9df84fe5ead0709603decdba86dc5ba/transformed/play-services-location-21.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:17:1-56:12
+MERGED from [com.github.bumptech.glide:glide:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/585c8204a521dc4f7c016ac5dd48c584/transformed/glide-4.15.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/0f0fde9e47f3d0311eea146662d23cfa/transformed/navigation-common-2.8.3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/91766774e3d3f38f6fd12aeb5e751cb9/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-fragment:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/60a4a6aabd7e5ebcbe4eef68e752f100/transformed/navigation-fragment-2.8.3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/1cb019d37c01e1e1625e0804b9690eaa/transformed/navigation-ui-2.8.3/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/c02b8d230f990c2db04870242c6bbf4e/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/aa44feb41e3152e2399af03f4865972f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/8007b12b68d36416bf0d5592d4a3be20/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/f768e08d8b29e8a9de12098abd5d6fbc/transformed/appcompat-1.7.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:15:1-34:12
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/13adf51c161cffcc5d46a2f05176d4d5/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:15:1-23:12
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/60786babc716a602179a5b70bc41e665/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:16:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/03ee850cf90c846d88f6318f0c6c623d/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/9784b3407529b4860ea0996db435f5c0/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/5dbe7acba4fa6091f032d8860ec46b3b/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:2:1-10:12
+MERGED from [androidx.activity:activity-ktx:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/27e8747e3c72fea3c8ca18d60e819b78/transformed/activity-ktx-1.9.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/9248dcdadafb37e94fc21fafcb3e6f52/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/963c444e83b24066c9896f304bbcc84e/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/1855f58d5da6a0c0c19e16502d1f9e98/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/5df4ac4368537f308f5ff9d308f68db2/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.5.0] /Users/vivaan/.gradle/caches/8.9/transforms/be879fc03ec7dc44ac4526869908851e/transformed/transition-1.5.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bd2840ea9da14da5bcb0c84057535bba/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/83b9517797c79b985eccfa3b2d961d56/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/e076a37b512519ad5927ff561ee1162a/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/67eeaf603118bb02d72c629e03f93176/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/f08974d310f297327f8c8984a5fffd4e/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/c1c43330f03eb56993dbd59daa8e2636/transformed/lifecycle-livedata-core-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/b71d92f51e0818cf798f3a89f1ef2c45/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/bf392ba28dd8feea6a5b37ec997cc367/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/a019c23163acfa9369186d36b9ead272/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/4fe001a0817dedbc3186a832af5c0bad/transformed/core-ktx-1.13.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/78900e1d06f33d223ad0f5e34800a14f/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/9841c400e6fe5b103e9fcf32b13da9a6/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d1de8b0022a5e234ba8dae7c2870d14a/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d67ff33bc851ec6ff4bf296f9fa9d024/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/4ff56c6a391ece6d86099e9a1dfd9be3/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/87e4d081e7eb458c1335be44298ecaab/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/7ad4ce70c29b6d74d773f8faeed5f2f7/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/8868c6c54b83f802e1f044d196ea03b0/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/b103220992e01e79aca9d0d61d65afef/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/06281eb8d8f40b057195506c3ffa1a3c/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/90e0594f3982f6c6dda26d1f1c8bc971/transformed/fragment-1.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/2297374f0299f586bc5d6e1461b702cd/transformed/activity-1.9.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/8135e8518f0d20fab1dfffa6c7c3005d/transformed/gifdecoder-4.15.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /Users/vivaan/.gradle/caches/8.9/transforms/a8eb396f7fa46f4c4a7f202796696866/transformed/exifinterface-1.3.3/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/fa464148a41a937cb606a5781063dede/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/e8dc724cc847e10ea8e700182c50bbda/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/33e8d2f9077d681460190788450718db/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/c9878e511f7ee58af67e7716b884eaa5/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/84d664b0fadecbf243c859f0f3e58f4d/transformed/firebase-components-18.0.0/AndroidManifest.xml:15:1-20:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9b503840a331f8ee71c0b4ae13fec2ec/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/64f5592750d63363a2329ee1e4ce7af5/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/6a9a0afe091039d5d9fda75565049a48/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/de153f529f1045e9219960fcfc6ddbc4/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bcf9224bc538f6a48c150c21756222cf/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/f030cbd8c1f8f8999353ad72a45ebafd/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/vivaan/.gradle/caches/8.9/transforms/0e1f32047a0cce021f486b80fa230b20/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
+MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/dcd10dc1d1f268089aae7f50dd6e5181/transformed/grpc-android-1.62.2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/4d40e940f94981ead58f0360b054501f/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
 	package
-		INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:4:5-51
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:4:5-51
 	android:versionCode
-		INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:6:5-28:19
-INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:6:5-28:19
-MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
-MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
-MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/09e9b8add34a2884c51dae28ae519c3c/transformed/play-services-location-21.0.1/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/09e9b8add34a2884c51dae28ae519c3c/transformed/play-services-location-21.0.1/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/fac2d05b95b9b4312b4a8fe142f06b8a/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/fac2d05b95b9b4312b4a8fe142f06b8a/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/b01fb26ffb069a72f1ca341eca8f3514/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/b01fb26ffb069a72f1ca341eca8f3514/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/441a417f9e36562977a2803bca8e48cb/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:23:5-20
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/441a417f9e36562977a2803bca8e48cb/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:23:5-20
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/788133c39d413d356ef78e28b124fa58/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/788133c39d413d356ef78e28b124fa58/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:8:5-16:19
-MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:8:5-16:19
-MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:22:5-39:19
-MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:22:5-39:19
-MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
-MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
-MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:28:5-89
-MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:28:5-89
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/0c8f54cddc9a3e47242e15e02ffc2afd/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/0c8f54cddc9a3e47242e15e02ffc2afd/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/9ca662cbe29dadd6316e6a9b1c19d70d/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/9ca662cbe29dadd6316e6a9b1c19d70d/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/5d35802b57ced30cb1752f3ca4ca862f/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/5d35802b57ced30cb1752f3ca4ca862f/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:6:5-28:19
+INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:6:5-28:19
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
+MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/f9df84fe5ead0709603decdba86dc5ba/transformed/play-services-location-21.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/f9df84fe5ead0709603decdba86dc5ba/transformed/play-services-location-21.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:46:5-54:19
+MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:46:5-54:19
+MERGED from [com.github.bumptech.glide:glide:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/585c8204a521dc4f7c016ac5dd48c584/transformed/glide-4.15.1/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:glide:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/585c8204a521dc4f7c016ac5dd48c584/transformed/glide-4.15.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/c02b8d230f990c2db04870242c6bbf4e/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/c02b8d230f990c2db04870242c6bbf4e/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/aa44feb41e3152e2399af03f4865972f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/aa44feb41e3152e2399af03f4865972f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:26:5-37:19
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:26:5-37:19
+MERGED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:21:5-32:19
+MERGED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:21:5-32:19
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/13adf51c161cffcc5d46a2f05176d4d5/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/13adf51c161cffcc5d46a2f05176d4d5/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:22:5-39:19
+MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:22:5-39:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/5dbe7acba4fa6091f032d8860ec46b3b/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/5dbe7acba4fa6091f032d8860ec46b3b/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:7:5-8:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:28:5-89
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/06281eb8d8f40b057195506c3ffa1a3c/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/06281eb8d8f40b057195506c3ffa1a3c/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/8135e8518f0d20fab1dfffa6c7c3005d/transformed/gifdecoder-4.15.1/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/8135e8518f0d20fab1dfffa6c7c3005d/transformed/gifdecoder-4.15.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/fa464148a41a937cb606a5781063dede/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/fa464148a41a937cb606a5781063dede/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/64f5592750d63363a2329ee1e4ce7af5/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/64f5592750d63363a2329ee1e4ce7af5/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
-		INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
+		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:13:9-35
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:11:9-41
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:11:9-41
 	android:fullBackupContent
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:9:9-54
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:9:9-54
 	android:roundIcon
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:12:9-54
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:12:9-54
 	tools:targetApi
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:15:9-29
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:15:9-29
 	android:icon
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:10:9-43
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:10:9-43
 	android:allowBackup
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:7:9-35
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:7:9-35
 	android:theme
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:14:9-52
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:14:9-52
 	android:dataExtractionRules
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:8:9-65
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:8:9-65
 activity#com.example.trojan0project.MainActivity
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:16:9-24:20
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:16:9-24:20
 	android:exported
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:18:13-36
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:18:13-36
 	android:name
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:17:13-41
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:17:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:19:13-23:29
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:20:17-69
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:20:25-66
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:22:17-77
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:22:27-74
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:22:27-74
 activity#com.example.trojan0project.CreateEventActivity
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:26:9-57
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:26:9-57
 	android:name
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:26:19-54
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:26:19-54
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:5-79
+ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:5-79
 	android:name
-		ADDED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:22-76
+		ADDED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:22-76
 uses-sdk
-INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
-INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
-MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:6:5-44
-MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:6:5-44
-MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/09e9b8add34a2884c51dae28ae519c3c/transformed/play-services-location-21.0.1/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/09e9b8add34a2884c51dae28ae519c3c/transformed/play-services-location-21.0.1/AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/567d148044c8e4e6d5a275c554760302/transformed/navigation-common-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/567d148044c8e4e6d5a275c554760302/transformed/navigation-common-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/a7953234ac086b8fd49696df70816d67/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/a7953234ac086b8fd49696df70816d67/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-fragment:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/5b08132c139a01d2d0851da1fb134828/transformed/navigation-fragment-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-fragment:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/5b08132c139a01d2d0851da1fb134828/transformed/navigation-fragment-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/1e738b86b729dc394a95272d2f9fce8b/transformed/navigation-ui-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/1e738b86b729dc394a95272d2f9fce8b/transformed/navigation-ui-2.8.3/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/fac2d05b95b9b4312b4a8fe142f06b8a/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/fac2d05b95b9b4312b4a8fe142f06b8a/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/b01fb26ffb069a72f1ca341eca8f3514/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/b01fb26ffb069a72f1ca341eca8f3514/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/67124a65eb24345dda4a1db09810067f/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/67124a65eb24345dda4a1db09810067f/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/a74ede608632d3efdd4284c64e6a3abd/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/a74ede608632d3efdd4284c64e6a3abd/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/441a417f9e36562977a2803bca8e48cb/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/441a417f9e36562977a2803bca8e48cb/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/597d85c2f268a7daebff40512f6be002/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/597d85c2f268a7daebff40512f6be002/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/c3a913c8d1b7a0af3daeea72d6554cba/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/c3a913c8d1b7a0af3daeea72d6554cba/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/f632d0d52da6739f5fdb61eccbb2d427/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/f632d0d52da6739f5fdb61eccbb2d427/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/788133c39d413d356ef78e28b124fa58/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/788133c39d413d356ef78e28b124fa58/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
-MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
-MERGED from [androidx.activity:activity-ktx:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/080e3407016df402da31690081a47633/transformed/activity-ktx-1.9.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-ktx:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/080e3407016df402da31690081a47633/transformed/activity-ktx-1.9.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/1e2026a5c756d7fb81cf1be8d35522b3/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/1e2026a5c756d7fb81cf1be8d35522b3/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/475bd76ac7dcd165546634aa4bb71685/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/475bd76ac7dcd165546634aa4bb71685/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/898e27e0c3498e03616a6bed0f1b30ff/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/898e27e0c3498e03616a6bed0f1b30ff/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/57e0262231a17a3ce331b45444aab8ec/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/57e0262231a17a3ce331b45444aab8ec/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.5.0] /Users/vivaan/.gradle/caches/8.9/transforms/e410019e0161b75448c243a720ab1f22/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.transition:transition:1.5.0] /Users/vivaan/.gradle/caches/8.9/transforms/e410019e0161b75448c243a720ab1f22/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/17b69cd6787cead78f5ad03f5d65d637/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/17b69cd6787cead78f5ad03f5d65d637/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/951feec689044f2358e9878e0e443dd5/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/951feec689044f2358e9878e0e443dd5/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/d560c4a6de86831004194bfeb13f472c/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/d560c4a6de86831004194bfeb13f472c/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/a95eeb1631f1fb2efa2bd46c2eabe616/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/a95eeb1631f1fb2efa2bd46c2eabe616/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/fe828fb4f33acc9c3482a38a010d3189/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/fe828fb4f33acc9c3482a38a010d3189/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/5b0b115ad2ecccfca9b69ce11af404fa/transformed/lifecycle-livedata-core-ktx-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/5b0b115ad2ecccfca9b69ce11af404fa/transformed/lifecycle-livedata-core-ktx-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/e8b494cc7373ccdb00a6bf6bfea524ec/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/e8b494cc7373ccdb00a6bf6bfea524ec/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/fb25f7d7d9c33de3f5e57063fe36297f/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/fb25f7d7d9c33de3f5e57063fe36297f/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d55ef575b6c66009ee42cc01b2b9802b/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d55ef575b6c66009ee42cc01b2b9802b/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core-ktx:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb73c89845cb54a0553ada2da1470a2f/transformed/core-ktx-1.13.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core-ktx:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb73c89845cb54a0553ada2da1470a2f/transformed/core-ktx-1.13.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/40abe3dc16e333f269cce21a75b76b04/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/40abe3dc16e333f269cce21a75b76b04/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/050d719267614ff00016d88ade6c69f1/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/050d719267614ff00016d88ade6c69f1/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d2bbb2a9866cea7ed141de1b8bcf18be/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d2bbb2a9866cea7ed141de1b8bcf18be/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/401429ea3f999301c1c04bc2fc9fffbb/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/401429ea3f999301c1c04bc2fc9fffbb/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/040e6da7d62f88018463ad97c1bebaa1/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/040e6da7d62f88018463ad97c1bebaa1/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ac3dadd9fbe0ffdd63473f3878ad0ee4/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ac3dadd9fbe0ffdd63473f3878ad0ee4/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c76b01f50f3fa11132dab65b0fd14d71/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.customview:customview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c76b01f50f3fa11132dab65b0fd14d71/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/ed78f3e50f20990cba3261745d28af7d/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/ed78f3e50f20990cba3261745d28af7d/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/4926eaa98f656ca0214418faaffb9e1a/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/4926eaa98f656ca0214418faaffb9e1a/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/0c8f54cddc9a3e47242e15e02ffc2afd/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/0c8f54cddc9a3e47242e15e02ffc2afd/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
-MERGED from [androidx.fragment:fragment:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/6053c454cf6e9dab4a953064b5096614/transformed/fragment-1.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/6053c454cf6e9dab4a953064b5096614/transformed/fragment-1.6.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/f05be13f90caed25baa4cdeb5941ab09/transformed/activity-1.9.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/f05be13f90caed25baa4cdeb5941ab09/transformed/activity-1.9.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/1bc03b4accdf8847cf9fbcb45a9cf3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/1bc03b4accdf8847cf9fbcb45a9cf3f0/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/42b8eb485a332a02d32ca0b804ceadb8/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/42b8eb485a332a02d32ca0b804ceadb8/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/9ca662cbe29dadd6316e6a9b1c19d70d/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/9ca662cbe29dadd6316e6a9b1c19d70d/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/86c4edef325027dc0971ac150bf682f4/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/86c4edef325027dc0971ac150bf682f4/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-components:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/225fb5c37a2d0eda3a1bdfbbeb0601a7/transformed/firebase-components-18.0.0/AndroidManifest.xml:18:5-44
-MERGED from [com.google.firebase:firebase-components:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/225fb5c37a2d0eda3a1bdfbbeb0601a7/transformed/firebase-components-18.0.0/AndroidManifest.xml:18:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/95519b3a7ec5275b9a1c034d6e16e1bd/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/95519b3a7ec5275b9a1c034d6e16e1bd/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/5d35802b57ced30cb1752f3ca4ca862f/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/5d35802b57ced30cb1752f3ca4ca862f/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/bf9e40f19705ba428e92441f6666e0d9/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/bf9e40f19705ba428e92441f6666e0d9/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/63df543d6ba38e794f5bb13f34f3fc51/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/63df543d6ba38e794f5bb13f34f3fc51/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/857145b998814fd2d7e075dccef157bb/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/857145b998814fd2d7e075dccef157bb/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/6860ae131f385bd97212624dc7f40731/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/6860ae131f385bd97212624dc7f40731/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/vivaan/.gradle/caches/8.9/transforms/2a0f4a55ee854a4ea67c4c9fec891a2d/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/vivaan/.gradle/caches/8.9/transforms/2a0f4a55ee854a4ea67c4c9fec891a2d/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
-MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/bcff00625457440db18df1a9fd97c87c/transformed/grpc-android-1.62.2/AndroidManifest.xml:5:5-44
-MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/bcff00625457440db18df1a9fd97c87c/transformed/grpc-android-1.62.2/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/01c6d4c9c58ba4931c8aee7c06c18c50/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/01c6d4c9c58ba4931c8aee7c06c18c50/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
+INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/f9df84fe5ead0709603decdba86dc5ba/transformed/play-services-location-21.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/f9df84fe5ead0709603decdba86dc5ba/transformed/play-services-location-21.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:20:5-44
+MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:glide:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/585c8204a521dc4f7c016ac5dd48c584/transformed/glide-4.15.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/585c8204a521dc4f7c016ac5dd48c584/transformed/glide-4.15.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/0f0fde9e47f3d0311eea146662d23cfa/transformed/navigation-common-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/0f0fde9e47f3d0311eea146662d23cfa/transformed/navigation-common-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/91766774e3d3f38f6fd12aeb5e751cb9/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/91766774e3d3f38f6fd12aeb5e751cb9/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/60a4a6aabd7e5ebcbe4eef68e752f100/transformed/navigation-fragment-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/60a4a6aabd7e5ebcbe4eef68e752f100/transformed/navigation-fragment-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/1cb019d37c01e1e1625e0804b9690eaa/transformed/navigation-ui-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/vivaan/.gradle/caches/8.9/transforms/1cb019d37c01e1e1625e0804b9690eaa/transformed/navigation-ui-2.8.3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/c02b8d230f990c2db04870242c6bbf4e/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] /Users/vivaan/.gradle/caches/8.9/transforms/c02b8d230f990c2db04870242c6bbf4e/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/aa44feb41e3152e2399af03f4865972f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/vivaan/.gradle/caches/8.9/transforms/aa44feb41e3152e2399af03f4865972f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/8007b12b68d36416bf0d5592d4a3be20/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/8007b12b68d36416bf0d5592d4a3be20/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/f768e08d8b29e8a9de12098abd5d6fbc/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/vivaan/.gradle/caches/8.9/transforms/f768e08d8b29e8a9de12098abd5d6fbc/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/13adf51c161cffcc5d46a2f05176d4d5/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/13adf51c161cffcc5d46a2f05176d4d5/transformed/firebase-appcheck-interop-17.1.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/60786babc716a602179a5b70bc41e665/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/60786babc716a602179a5b70bc41e665/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/03ee850cf90c846d88f6318f0c6c623d/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/03ee850cf90c846d88f6318f0c6c623d/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/9784b3407529b4860ea0996db435f5c0/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/9784b3407529b4860ea0996db435f5c0/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/5dbe7acba4fa6091f032d8860ec46b3b/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /Users/vivaan/.gradle/caches/8.9/transforms/5dbe7acba4fa6091f032d8860ec46b3b/transformed/firebase-auth-interop-19.0.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/27e8747e3c72fea3c8ca18d60e819b78/transformed/activity-ktx-1.9.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/27e8747e3c72fea3c8ca18d60e819b78/transformed/activity-ktx-1.9.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/9248dcdadafb37e94fc21fafcb3e6f52/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/9248dcdadafb37e94fc21fafcb3e6f52/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/963c444e83b24066c9896f304bbcc84e/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/vivaan/.gradle/caches/8.9/transforms/963c444e83b24066c9896f304bbcc84e/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/1855f58d5da6a0c0c19e16502d1f9e98/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/1855f58d5da6a0c0c19e16502d1f9e98/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/5df4ac4368537f308f5ff9d308f68db2/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/5df4ac4368537f308f5ff9d308f68db2/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.5.0] /Users/vivaan/.gradle/caches/8.9/transforms/be879fc03ec7dc44ac4526869908851e/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.5.0] /Users/vivaan/.gradle/caches/8.9/transforms/be879fc03ec7dc44ac4526869908851e/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bd2840ea9da14da5bcb0c84057535bba/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bd2840ea9da14da5bcb0c84057535bba/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/83b9517797c79b985eccfa3b2d961d56/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/83b9517797c79b985eccfa3b2d961d56/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/e076a37b512519ad5927ff561ee1162a/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/e076a37b512519ad5927ff561ee1162a/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/67eeaf603118bb02d72c629e03f93176/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/67eeaf603118bb02d72c629e03f93176/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/f08974d310f297327f8c8984a5fffd4e/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/f08974d310f297327f8c8984a5fffd4e/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/c1c43330f03eb56993dbd59daa8e2636/transformed/lifecycle-livedata-core-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/c1c43330f03eb56993dbd59daa8e2636/transformed/lifecycle-livedata-core-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/b71d92f51e0818cf798f3a89f1ef2c45/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/b71d92f51e0818cf798f3a89f1ef2c45/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/bf392ba28dd8feea6a5b37ec997cc367/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/bf392ba28dd8feea6a5b37ec997cc367/transformed/lifecycle-runtime-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/a019c23163acfa9369186d36b9ead272/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/a019c23163acfa9369186d36b9ead272/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/4fe001a0817dedbc3186a832af5c0bad/transformed/core-ktx-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/4fe001a0817dedbc3186a832af5c0bad/transformed/core-ktx-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/78900e1d06f33d223ad0f5e34800a14f/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/78900e1d06f33d223ad0f5e34800a14f/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/9841c400e6fe5b103e9fcf32b13da9a6/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/9841c400e6fe5b103e9fcf32b13da9a6/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d1de8b0022a5e234ba8dae7c2870d14a/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d1de8b0022a5e234ba8dae7c2870d14a/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d67ff33bc851ec6ff4bf296f9fa9d024/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/d67ff33bc851ec6ff4bf296f9fa9d024/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/4ff56c6a391ece6d86099e9a1dfd9be3/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/4ff56c6a391ece6d86099e9a1dfd9be3/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/87e4d081e7eb458c1335be44298ecaab/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/87e4d081e7eb458c1335be44298ecaab/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/7ad4ce70c29b6d74d773f8faeed5f2f7/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/7ad4ce70c29b6d74d773f8faeed5f2f7/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/8868c6c54b83f802e1f044d196ea03b0/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/8868c6c54b83f802e1f044d196ea03b0/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/b103220992e01e79aca9d0d61d65afef/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/b103220992e01e79aca9d0d61d65afef/transformed/lifecycle-viewmodel-ktx-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/06281eb8d8f40b057195506c3ffa1a3c/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/06281eb8d8f40b057195506c3ffa1a3c/transformed/play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/90e0594f3982f6c6dda26d1f1c8bc971/transformed/fragment-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/90e0594f3982f6c6dda26d1f1c8bc971/transformed/fragment-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/2297374f0299f586bc5d6e1461b702cd/transformed/activity-1.9.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.9.2] /Users/vivaan/.gradle/caches/8.9/transforms/2297374f0299f586bc5d6e1461b702cd/transformed/activity-1.9.2/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/8135e8518f0d20fab1dfffa6c7c3005d/transformed/gifdecoder-4.15.1/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.15.1] /Users/vivaan/.gradle/caches/8.9/transforms/8135e8518f0d20fab1dfffa6c7c3005d/transformed/gifdecoder-4.15.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /Users/vivaan/.gradle/caches/8.9/transforms/a8eb396f7fa46f4c4a7f202796696866/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /Users/vivaan/.gradle/caches/8.9/transforms/a8eb396f7fa46f4c4a7f202796696866/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/fa464148a41a937cb606a5781063dede/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/fa464148a41a937cb606a5781063dede/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/e8dc724cc847e10ea8e700182c50bbda/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/e8dc724cc847e10ea8e700182c50bbda/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/33e8d2f9077d681460190788450718db/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/33e8d2f9077d681460190788450718db/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/c9878e511f7ee58af67e7716b884eaa5/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/c9878e511f7ee58af67e7716b884eaa5/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/84d664b0fadecbf243c859f0f3e58f4d/transformed/firebase-components-18.0.0/AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-components:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/84d664b0fadecbf243c859f0f3e58f4d/transformed/firebase-components-18.0.0/AndroidManifest.xml:18:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9b503840a331f8ee71c0b4ae13fec2ec/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9b503840a331f8ee71c0b4ae13fec2ec/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/64f5592750d63363a2329ee1e4ce7af5/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/64f5592750d63363a2329ee1e4ce7af5/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/6a9a0afe091039d5d9fda75565049a48/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/vivaan/.gradle/caches/8.9/transforms/6a9a0afe091039d5d9fda75565049a48/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/de153f529f1045e9219960fcfc6ddbc4/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/de153f529f1045e9219960fcfc6ddbc4/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bcf9224bc538f6a48c150c21756222cf/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bcf9224bc538f6a48c150c21756222cf/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/f030cbd8c1f8f8999353ad72a45ebafd/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/f030cbd8c1f8f8999353ad72a45ebafd/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/vivaan/.gradle/caches/8.9/transforms/0e1f32047a0cce021f486b80fa230b20/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/vivaan/.gradle/caches/8.9/transforms/0e1f32047a0cce021f486b80fa230b20/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/dcd10dc1d1f268089aae7f50dd6e5181/transformed/grpc-android-1.62.2/AndroidManifest.xml:5:5-44
+MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/dcd10dc1d1f268089aae7f50dd6e5181/transformed/grpc-android-1.62.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/4d40e940f94981ead58f0360b054501f/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/4d40e940f94981ead58f0360b054501f/transformed/protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
-		INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/vivaan/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/vivaan/Desktop/From_Nov_1/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:10:5-79
-MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/bcff00625457440db18df1a9fd97c87c/transformed/grpc-android-1.62.2/AndroidManifest.xml:7:5-79
-MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/bcff00625457440db18df1a9fd97c87c/transformed/grpc-android-1.62.2/AndroidManifest.xml:7:5-79
+ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:23:5-79
+MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/dcd10dc1d1f268089aae7f50dd6e5181/transformed/grpc-android-1.62.2/AndroidManifest.xml:7:5-79
+MERGED from [io.grpc:grpc-android:1.62.2] /Users/vivaan/.gradle/caches/8.9/transforms/dcd10dc1d1f268089aae7f50dd6e5181/transformed/grpc-android-1.62.2/AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:10:22-76
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:10:22-76
 uses-permission#android.permission.INTERNET
-ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:5-67
+ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:24:5-67
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:22-64
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:22-64
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:14:9-23:19
-MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:9:9-15:19
-MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:9:9-15:19
-MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:30:9-38:19
-MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:30:9-38:19
+ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:14:9-23:19
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:27:9-36:19
+MERGED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:27:9-36:19
+MERGED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:22:9-31:19
+MERGED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:22:9-31:19
+MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:30:9-38:19
+MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:30:9-38:19
 	android:exported
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:16:13-37
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:16:13-37
 	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:34:13-32
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:34:13-32
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:32:13-43
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:32:13-43
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:15:13-84
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:15:13-84
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar
-ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:17:13-19:85
+ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:17:13-19:85
 	android:value
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:19:17-82
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:19:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:18:17-122
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:18:17-122
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
-ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:20:13-22:85
+ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:20:13-22:85
 	android:value
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:22:17-82
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:22:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/6e177ee5459bd5e6b9ed40ca9be6a77b/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:21:17-111
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/73ed420919141bb889ad21cd659fe7e5/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:21:17-111
+uses-permission#android.permission.CAMERA
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:22:5-65
+	android:name
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:22:22-62
+uses-feature#android.hardware.camera
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:25:5-27:36
+	android:required
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:27:9-33
+	android:name
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:26:9-47
+uses-feature#android.hardware.camera.front
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:28:5-30:36
+	android:required
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:30:9-33
+	android:name
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:29:9-53
+uses-feature#android.hardware.camera.autofocus
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:33:5-35:36
+	android:required
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:35:9-33
+	android:name
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:34:9-57
+uses-feature#android.hardware.camera.flash
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:36:5-38:36
+	android:required
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:38:9-33
+	android:name
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:37:9-53
+uses-feature#android.hardware.screen.landscape
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:39:5-41:36
+	android:required
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:41:9-33
+	android:name
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:40:9-57
+uses-feature#android.hardware.wifi
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:42:5-44:36
+	android:required
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:44:9-33
+	android:name
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:43:9-45
+activity#com.journeyapps.barcodescanner.CaptureActivity
+ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:47:9-53:63
+	android:screenOrientation
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:50:13-56
+	android:clearTaskOnLaunch
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:49:13-45
+	android:stateNotNeeded
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:51:13-42
+	android:windowSoftInputMode
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:53:13-60
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:52:13-54
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/b6dcbea842e8adfccb0bd64c3ce68454/transformed/zxing-android-embedded-4.3.0/AndroidManifest.xml:48:13-74
+meta-data#com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar
+ADDED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:30:13-32:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:32:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:31:17-118
+meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
+ADDED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:33:13-35:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:35:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:21.0.1] /Users/vivaan/.gradle/caches/8.9/transforms/c376f4be75bf5c845ecf618de79c3f83/transformed/firebase-storage-21.0.1/AndroidManifest.xml:34:17-107
+meta-data#com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar
+ADDED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:25:13-27:85
+	android:value
+		ADDED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:27:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:26:17-120
+meta-data#com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar
+ADDED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:28:13-30:85
+	android:value
+		ADDED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:30:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-appcheck:18.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b023176e9df188cf8a81b9ffc8345849/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:29:17-117
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/vivaan/.gradle/caches/8.9/transforms/c25693db41c9d452b8a7528fe7eb9bdf/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:19-85
 meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar
-ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
 	android:value
-		ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+		ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/bb0ca9e38e35e8db84c0c50f78de6a16/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+		ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/9df64434b7ca137d805bb30c8b85ad0e/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
 provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
 	android:authorities
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
 	android:exported
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
 	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
 	android:name
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
 meta-data#com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar
-ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
 	android:value
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:37:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/ae0397340423c728cce17d65c16bea7f/transformed/firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+		ADDED from [com.google.firebase:firebase-common:21.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/07aba069ae6565d3218fd5cf5216a362/transformed/firebase-common-21.0.0/AndroidManifest.xml:36:17-109
 provider#androidx.startup.InitializationProvider
-ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/9ca662cbe29dadd6316e6a9b1c19d70d/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
-MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/9ca662cbe29dadd6316e6a9b1c19d70d/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/fa464148a41a937cb606a5781063dede/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/vivaan/.gradle/caches/8.9/transforms/fa464148a41a937cb606a5781063dede/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
 	tools:node
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
 	android:authorities
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
 	android:exported
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
 meta-data#androidx.emoji2.text.EmojiCompatInitializer
-ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/ce4e009a7d0c8308284841fa5156e16c/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/8b3f737b4be6ba00d1025b03bb595de8/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
 meta-data#androidx.lifecycle.ProcessLifecycleInitializer
-ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/54c5a41323a61cad20f792b65940ff24/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/vivaan/.gradle/caches/8.9/transforms/d1d62689728e0744a88cc02d24abc2bd/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
 uses-library#androidx.window.extensions
-ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
 	android:required
-		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
 uses-library#androidx.window.sidecar
-ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
 	android:required
-		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
 	android:name
-		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/b16901219cc0f3c27f4eabaefffae9a4/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+		ADDED from [androidx.window:window:1.0.0] /Users/vivaan/.gradle/caches/8.9/transforms/338ac99fe253deb1df02e31eda97deac/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
 permission#com.example.trojan0project.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
 uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
 uses-permission#com.example.trojan0project.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.13.0] /Users/vivaan/.gradle/caches/8.9/transforms/413f985c2150149a6394c598840df5af/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/vivaan/.gradle/caches/8.9/transforms/16915f382b75050c6ffc4e7248dcb57c/transformed/play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
 meta-data#androidx.profileinstaller.ProfileInstallerInitializer
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
 receiver#androidx.profileinstaller.ProfileInstallReceiver
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
 	android:enabled
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
 	android:exported
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
 	android:permission
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
 	android:directBootAware
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
 intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
 action#androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
 intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
 action#androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
 intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
 action#androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
 intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
 action#androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/0b3184db0917c326423c45fd7f463ad1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/vivaan/.gradle/caches/8.9/transforms/c39342f7fe9909dc6d7a0e0bad12ed42/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92

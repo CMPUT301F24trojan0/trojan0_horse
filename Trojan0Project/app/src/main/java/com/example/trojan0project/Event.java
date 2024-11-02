@@ -1,11 +1,17 @@
 package com.example.trojan0project;
 
 public class Event {
+    private String id;           // Unique event ID
     private String name;
     private double latitude;
     private double longitude;
     private String posterPath;
+    private String qrCodeUrl;    // URL for the QR code image
 
+    // Default constructor for Firestore
+    public Event() {}
+
+    // Constructor
     public Event(String name, double latitude, double longitude, String posterPath) {
         this.name = name;
         this.latitude = latitude;
@@ -14,6 +20,14 @@ public class Event {
     }
 
     // Getters and setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -44,5 +58,13 @@ public class Event {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public String getQrCodeUrl() {
+        return qrCodeUrl;
+    }
+
+    public void setQrCodeUrl(String qrCodeUrl) {
+        this.qrCodeUrl = qrCodeUrl;
     }
 }

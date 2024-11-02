@@ -1,3 +1,4 @@
+// CreateEventActivity.java
 package com.example.trojan0project;
 
 import android.Manifest;
@@ -9,23 +10,31 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import com.example.trojan0project.Event;
-import com.example.trojan0project.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.common.BitMatrix;
+import org.json.JSONObject;
+import java.io.ByteArrayOutputStream;
+import android.graphics.Bitmap;
 
 public class CreateEventActivity extends AppCompatActivity {
     private EditText eventNameInput;
     private Switch geolocationSwitch;
     private Button addPosterButton, saveButton;
+    private ImageView qrCodeImageView;
     private FusedLocationProviderClient fusedLocationClient;
     private FirebaseFirestore db;
     private double latitude = 0.0;
@@ -43,6 +52,7 @@ public class CreateEventActivity extends AppCompatActivity {
         geolocationSwitch = findViewById(R.id.geolocationSwitch);
         addPosterButton = findViewById(R.id.addPosterButton);
         saveButton = findViewById(R.id.saveButton);
+        qrCodeImageView = findViewById(R.id.qrCodeImageView);
         progressDialog = new ProgressDialog(this);
 
         // Initialize FusedLocationProviderClient
@@ -127,15 +137,79 @@ public class CreateEventActivity extends AppCompatActivity {
         db.collection("events")
                 .add(event)
                 .addOnSuccessListener(documentReference -> {
-                    progressDialog.dismiss();
-                    Log.d("Firestore", "Event added with ID: " + documentReference.getId());
-                    Toast.makeText(this, "Event saved successfully", Toast.LENGTH_SHORT).show();
-                    refreshActivity(); // Call to refresh the activity
+                    String eventId = documentReference.getId();
+                    event.setId(eventId);  // Set the document ID as the event ID
+
+                    // Update the event with the ID and save it back to Firestore
+                    db.collection("events").document(eventId).set(event)
+                            .addOnSuccessListener(aVoid -> {
+                                String qrContent = createQRContent(event);
+                                Bitmap qrCodeBitmap = generateQRCode(qrContent);
+                                uploadQRCodeToStorage(qrCodeBitmap, eventId);
+                            })
+                            .addOnFailureListener(e -> {
+                                progressDialog.dismiss();
+                                Toast.makeText(this, "Failed to save event", Toast.LENGTH_SHORT).show();
+                            });
                 })
                 .addOnFailureListener(e -> {
                     progressDialog.dismiss();
-                    Log.w("Firestore", "Error adding event", e);
                     Toast.makeText(this, "Failed to save event", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private String createQRContent(Event event) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("id", event.getId());
+            json.put("name", event.getName()); // Use getName() from Event class
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return json.toString();
+    }
+
+    private Bitmap generateQRCode(String content) {
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 500, 500);
+            Bitmap bmp = Bitmap.createBitmap(500, 500, Bitmap.Config.RGB_565);
+            for (int x = 0; x < 500; x++) {
+                for (int y = 0; y < 500; y++) {
+                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? android.graphics.Color.BLACK : android.graphics.Color.WHITE);
+                }
+            }
+            return bmp;
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventId) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] qrCodeData = baos.toByteArray();
+
+        StorageReference qrCodeRef = FirebaseStorage.getInstance().getReference().child("qrcodes/" + eventId + ".png");
+        qrCodeRef.putBytes(qrCodeData)
+                .addOnSuccessListener(taskSnapshot -> qrCodeRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    db.collection("events").document(eventId).update("qrCodeUrl", uri.toString())
+                            .addOnSuccessListener(aVoid -> {
+                                progressDialog.dismiss();
+                                Toast.makeText(this, "Event and QR code saved successfully", Toast.LENGTH_SHORT).show();
+                                qrCodeImageView.setImageBitmap(qrCodeBitmap); // Display QR code
+                                refreshActivity();
+                            })
+                            .addOnFailureListener(e -> {
+                                progressDialog.dismiss();
+                                Toast.makeText(this, "Failed to save QR code URL", Toast.LENGTH_SHORT).show();
+                            });
+                }))
+                .addOnFailureListener(e -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(this, "Failed to upload QR code", Toast.LENGTH_SHORT).show();
+                    refreshActivity();
                 });
     }
 

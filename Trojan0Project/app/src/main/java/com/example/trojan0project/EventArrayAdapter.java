@@ -38,14 +38,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 
         EventName.setText(event.getEventName());
         eventImage.setImageResource(event.getImageResId());
-        //OpenAI, (2024, October 26), "How do I deal with a QR code once ive deleted it/ set it to null?", ChatGPT
-        // Check if the QR code image is null and handle visibility
-        if (event.hasQRCode()) {
-            eventImage.setImageResource(event.getImageResId());
-            eventImage.setVisibility(View.VISIBLE);
-        } else {
-            eventImage.setVisibility(View.GONE);
-        }
+
 
         return view;
     }

@@ -29,7 +29,7 @@ public class DeleteEventFragment extends DialogFragment {
 
     interface DeleteEventDialogListener {
         void deleteEvent(Event event);
-        void deleteQRCode(Event event);
+        void deleteQRCode(Event QR);
 
     }
 
@@ -87,4 +87,5 @@ public class DeleteEventFragment extends DialogFragment {
     public void setSelectedEvent(Event event) {
         this.selectedEvent = event;
     }
+
 }

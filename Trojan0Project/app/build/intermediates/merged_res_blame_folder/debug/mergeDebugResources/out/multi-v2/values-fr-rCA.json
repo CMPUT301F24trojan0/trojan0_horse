@@ -4,7 +4,7 @@
             "outputFile": "com.example.trojan0project.app-mergeDebugResources-45:/values-fr-rCA/values-fr-rCA.xml",
             "map": [
                 {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/fb5c48103f982e6f23bd4cf1363a4d9e/transformed/appcompat-1.7.0/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/a74ede608632d3efdd4284c64e6a3abd/transformed/appcompat-1.7.0/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,41 @@
                     }
                 },
                 {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/f03ce673052ecd6be83a8efbd6489e63/transformed/material-1.12.0/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/1e738b86b729dc394a95272d2f9fce8b/transformed/navigation-ui-2.8.3/res/values-fr-rCA/values-fr-rCA.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,168",
+                        "endColumns": "112,125",
+                        "endOffsets": "163,289"
+                    },
+                    "to": {
+                        "startLines": "129,130",
+                        "startColumns": "4,4",
+                        "startOffsets": "12121,12234",
+                        "endColumns": "112,125",
+                        "endOffsets": "12229,12355"
+                    }
+                },
+                {
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/0d4e833c41b9000daf39a369bb27b79e/transformed/play-services-basement-18.3.0/res/values-fr-rCA/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "199",
+                        "endColumns": "156",
+                        "endOffsets": "355"
+                    },
+                    "to": {
+                        "startLines": "56",
+                        "startColumns": "4",
+                        "startOffsets": "5671",
+                        "endColumns": "160",
+                        "endOffsets": "5827"
+                    }
+                },
+                {
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/fac2d05b95b9b4312b4a8fe142f06b8a/transformed/material-1.12.0/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,41 +74,7 @@
                     }
                 },
                 {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/e9608b39a342fee798679dae8bfdbd34/transformed/navigation-ui-2.8.3/res/values-fr-rCA/values-fr-rCA.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,168",
-                        "endColumns": "112,125",
-                        "endOffsets": "163,289"
-                    },
-                    "to": {
-                        "startLines": "129,130",
-                        "startColumns": "4,4",
-                        "startOffsets": "12121,12234",
-                        "endColumns": "112,125",
-                        "endOffsets": "12229,12355"
-                    }
-                },
-                {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/4cff944564e6fc1b81e0350b3d651e23/transformed/play-services-basement-18.3.0/res/values-fr-rCA/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "199",
-                        "endColumns": "156",
-                        "endOffsets": "355"
-                    },
-                    "to": {
-                        "startLines": "56",
-                        "startColumns": "4",
-                        "startOffsets": "5671",
-                        "endColumns": "160",
-                        "endOffsets": "5827"
-                    }
-                },
-                {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/13efb9f3b8d4ca19e226e3505dbf61d2/transformed/core-1.13.0/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/49a9d9d9530ae6029bcf381a42b7b361/transformed/core-1.13.0/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -91,7 +91,7 @@
                     }
                 },
                 {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/04ff6f4b7ae867beb43b9b9f2db10678/transformed/play-services-base-18.1.0/res/values-fr-rCA/values.xml",
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/cfa9f750499aa56a3e7c6af082e93762/transformed/play-services-base-18.1.0/res/values-fr-rCA/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

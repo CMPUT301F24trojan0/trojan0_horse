@@ -4,26 +4,7 @@
             "outputFile": "com.example.trojan0project.app-mergeDebugResources-45:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/6d2e3e503abcb66d20a5db352bfaada1/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "200"
-                    },
-                    "to": {
-                        "startLines": "50",
-                        "startColumns": "4",
-                        "startOffsets": "3232",
-                        "endLines": "52",
-                        "endColumns": "12",
-                        "endOffsets": "3377"
-                    }
-                },
-                {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/f03ce673052ecd6be83a8efbd6489e63/transformed/material-1.12.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/fac2d05b95b9b4312b4a8fe142f06b8a/transformed/material-1.12.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -42,7 +23,26 @@
                     }
                 },
                 {
-                    "source": "/Users/vivaan/.gradle/caches/transforms-4/fb5c48103f982e6f23bd4cf1363a4d9e/transformed/appcompat-1.7.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/42b8eb485a332a02d32ca0b804ceadb8/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "50",
+                        "startColumns": "4",
+                        "startOffsets": "3232",
+                        "endLines": "52",
+                        "endColumns": "12",
+                        "endOffsets": "3377"
+                    }
+                },
+                {
+                    "source": "/Users/vivaan/.gradle/caches/8.9/transforms/a74ede608632d3efdd4284c64e6a3abd/transformed/appcompat-1.7.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

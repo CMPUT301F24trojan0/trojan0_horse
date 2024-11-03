@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.trojan0project.app-mergeDebugResources-45:/values-pl/values-pl.xml",
+            "outputFile": "com.example.trojan0project.app-mergeDebugResources-46:/values-pl/values-pl.xml",
             "map": [
                 {
                     "source": "/Users/gurleenbamrah/.gradle/caches/transforms-4/4cff944564e6fc1b81e0350b3d651e23/transformed/play-services-basement-18.3.0/res/values-pl/values.xml",

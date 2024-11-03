@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.trojan0project.app-mergeDebugResources-45:/values-pa/values-pa.xml",
+            "outputFile": "com.example.trojan0project.app-mergeDebugResources-46:/values-pa/values-pa.xml",
             "map": [
                 {
                     "source": "/Users/gurleenbamrah/.gradle/caches/transforms-4/e9608b39a342fee798679dae8bfdbd34/transformed/navigation-ui-2.8.3/res/values-pa/values-pa.xml",

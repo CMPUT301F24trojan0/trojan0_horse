@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,7 +36,8 @@ public class ImageAdapter extends ArrayAdapter<Image> {
 
 
         if(image !=null){
-            imageView.setImageResource(image.getImageId());
+            Glide.with(getContext()).load(image.getImageId()).into(imageView);
+
 
         }
 

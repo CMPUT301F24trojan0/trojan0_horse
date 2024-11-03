@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.trojan0project.app-mergeDebugResources-45:/values-es/values-es.xml",
+            "outputFile": "com.example.trojan0project.app-mergeDebugResources-46:/values-es/values-es.xml",
             "map": [
                 {
                     "source": "/Users/gurleenbamrah/.gradle/caches/transforms-4/84d517348237f3ac71092bbe35a3ce2d/transformed/play-services-base-18.0.1/res/values-es/values.xml",

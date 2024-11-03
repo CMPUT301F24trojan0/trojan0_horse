@@ -1,9 +1,5 @@
 [
     {
-        "merged": "com.example.trojan0project.app-debug-47:/layout_events_main.xml.flat",
-        "source": "com.example.trojan0project.app-main-49:/layout/events_main.xml"
-    },
-    {
         "merged": "/Users/Farza2/.gradle/daemon/8.7/com.example.trojan0project.app-debug-47:/layout_fragment_remove_profile.xml.flat",
         "source": "/Users/Farza2/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/fragment_remove_profile.xml"
     },
@@ -66,6 +62,10 @@
     {
         "merged": "/Users/Farza2/.gradle/daemon/8.7/com.example.trojan0project.app-debug-47:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "/Users/Farza2/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-debug-47:/layout_fragment_delete_event.xml.flat",
+        "source": "com.example.trojan0project.app-main-49:/layout/fragment_delete_event.xml"
     },
     {
         "merged": "/Users/Farza2/.gradle/daemon/8.7/com.example.trojan0project.app-debug-47:/drawable_round_home_24.xml.flat",

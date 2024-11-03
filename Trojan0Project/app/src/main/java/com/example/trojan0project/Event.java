@@ -9,6 +9,7 @@ public class Event implements Serializable {
 
 
 
+
     //constructor
 
     public Event(String eventName, int imageId){

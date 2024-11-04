@@ -9,6 +9,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+
 public class OrganizerSignUpActivity extends AppCompatActivity {
 
     private EditText facilityInput;
@@ -28,10 +32,26 @@ public class OrganizerSignUpActivity extends AppCompatActivity {
                 String facility = facilityInput.getText().toString().trim();
 
                 if (!facility.isEmpty()) {
-                    // Pass the facility name to OrganizerPageActivity
-                    Intent intent = new Intent(OrganizerSignUpActivity.this, OrganizerPageActivity.class);
-                    intent.putExtra("facility_name", facility);
-                    startActivity(intent);
+                    // Create an Organizer object with an empty list of events
+                    Organizer organizer = new Organizer(facility, new ArrayList<Event>());
+
+                    // Get Firestore instance and generate a unique document ID
+                    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+                    String organizerId = firestore.collection("organizers").document().getId();
+
+                    // Save the Organizer to Firestore
+                    firestore.collection("organizers").document(organizerId).set(organizer)
+                            .addOnSuccessListener(aVoid -> {
+                                // Pass the organizer ID to OrganizerPageActivity
+                                Intent intent = new Intent(OrganizerSignUpActivity.this, OrganizerPageActivity.class);
+                                intent.putExtra("organizerId", organizerId);
+                                startActivity(intent);
+                                finish();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(OrganizerSignUpActivity.this, "Failed to save organizer", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();  // Print error details in Logcat
+                            });
                 } else {
                     Toast.makeText(OrganizerSignUpActivity.this, "Please enter facility name", Toast.LENGTH_SHORT).show();
                 }

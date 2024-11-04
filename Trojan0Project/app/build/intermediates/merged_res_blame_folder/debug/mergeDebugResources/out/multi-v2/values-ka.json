@@ -57,7 +57,7 @@
                     }
                 },
                 {
-                    "source": "/Users/gurleenbamrah/.gradle/caches/transforms-4/84d517348237f3ac71092bbe35a3ce2d/transformed/play-services-base-18.0.1/res/values-ka/values.xml",
+                    "source": "/Users/gurleenbamrah/.gradle/caches/transforms-4/04ff6f4b7ae867beb43b9b9f2db10678/transformed/play-services-base-18.1.0/res/values-ka/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

@@ -11,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ public class BrowseImagesAdmin extends MainActivity {
     private ImageAdapter imageAdapter;
     private ArrayList<Image> images;
     private FirebaseFirestore db;
+    private FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class BrowseImagesAdmin extends MainActivity {
         setContentView(R.layout.browse_images_admin);
 
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
         images = new ArrayList<>();
         imagesGridView = findViewById(R.id.images_list);
 
@@ -45,15 +49,21 @@ public class BrowseImagesAdmin extends MainActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                        String profileUrl = document.getString("profileUrl");
-                        if (profileUrl != null){
-                            images.add(new Image(profileUrl));
+                        String deviceId = document.getString("deviceId");
+                        if (deviceId != null){
+                            loadImageFromStorage(deviceId);
                         }
                     }
                     imageAdapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e ->
                         Toast.makeText(BrowseImagesAdmin.this, "Error loading user pictures", Toast.LENGTH_SHORT).show());
+    }
+
+    private void loadImageFromStorage(String deviceId){
+        StorageReference imageRef = storage.getReference().child("profilePictures/" + deviceId);
+        images.add(new Image(imageRef.toString()));
+        imageAdapter.notifyDataSetChanged();
     }
 
     private void getEventImages(){

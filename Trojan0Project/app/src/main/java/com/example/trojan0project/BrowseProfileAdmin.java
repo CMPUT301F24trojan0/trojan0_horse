@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * This loads profiles from Firebase and displays them in a list. This way admin can click on any
+ * profile which opens a dialog and chooses to delete it.
+ *
+ * Design Rationale:
+ * This uses a ProfileAdapter to display the profile list and separates the profile, display, and delete functions.
+ * It also uses RemoveProfileFragment to ask to confirm before deleting a profile.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -54,9 +66,13 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     dataList.clear();
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        String username = document.getString("username");
-                        int profileImage = R.drawable.baseline_person_24;
-                        dataList.add(new Profile(username, profileImage));
+                        String userType = document.getString("user_type");
+                        if ("entrant".equals(userType)){
+                            String username = document.getString("username");
+                            String profileImage = document.getString("profile_url");
+                            dataList.add(new Profile(username, profileImage));
+
+                        }
                     }
                     profileAdapter.notifyDataSetChanged();
                 })
@@ -68,7 +84,7 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
     @Override
     public void removeProfile(Profile profile){
         db.collection("users")
-                .whereEqualTo("username", profile.getName())
+                .whereEqualTo("username", profile.getUsername())
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){

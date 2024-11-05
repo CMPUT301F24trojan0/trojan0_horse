@@ -1,12 +1,13 @@
-// CreateEventActivity.java
 package com.example.trojan0project;
 
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,8 +28,11 @@ import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.common.BitMatrix;
 import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
-import android.graphics.Bitmap;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class CreateEventActivity extends AppCompatActivity {
     private EditText eventNameInput;
@@ -107,7 +111,8 @@ public class CreateEventActivity extends AppCompatActivity {
 
     // Retrieve location when requested
     private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         fusedLocationClient.getLastLocation()
@@ -145,16 +150,19 @@ public class CreateEventActivity extends AppCompatActivity {
                             .addOnSuccessListener(aVoid -> {
                                 String qrContent = createQRContent(event);
                                 Bitmap qrCodeBitmap = generateQRCode(qrContent);
-                                uploadQRCodeToStorage(qrCodeBitmap, eventId);
+                                saveQRCodeLocally(qrCodeBitmap, eventId); // Save locally
+                                uploadQRCodeToStorage(qrCodeBitmap, eventId); // Upload to Firebase Storage
                             })
                             .addOnFailureListener(e -> {
                                 progressDialog.dismiss();
-                                Toast.makeText(this, "Failed to save event", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Failed to save event details", Toast.LENGTH_SHORT).show();
+                                Log.e("Firestore Error", "Failed to update event with ID", e);
                             });
                 })
                 .addOnFailureListener(e -> {
                     progressDialog.dismiss();
                     Toast.makeText(this, "Failed to save event", Toast.LENGTH_SHORT).show();
+                    Log.e("Firestore Error", "Error saving initial event to Firestore", e);
                 });
     }
 
@@ -162,7 +170,7 @@ public class CreateEventActivity extends AppCompatActivity {
         JSONObject json = new JSONObject();
         try {
             json.put("id", event.getId());
-            json.put("name", event.getName()); // Use getName() from Event class
+            json.put("name", event.getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -181,9 +189,22 @@ public class CreateEventActivity extends AppCompatActivity {
             }
             return bmp;
         } catch (WriterException e) {
-            e.printStackTrace();
+            Log.e("QRCode Error", "Error generating QR Code", e);
         }
         return null;
+    }
+
+    private void saveQRCodeLocally(Bitmap qrCodeBitmap, String eventId) {
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File qrFile = new File(storageDir, eventId + "_QRCode.png");
+
+        try (FileOutputStream out = new FileOutputStream(qrFile)) {
+            qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            Toast.makeText(this, "QR code saved locally at " + qrFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.e("Local Storage Error", "Failed to save QR code locally", e);
+            Toast.makeText(this, "Failed to save QR code locally", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventId) {
@@ -198,17 +219,19 @@ public class CreateEventActivity extends AppCompatActivity {
                             .addOnSuccessListener(aVoid -> {
                                 progressDialog.dismiss();
                                 Toast.makeText(this, "Event and QR code saved successfully", Toast.LENGTH_SHORT).show();
-                                qrCodeImageView.setImageBitmap(qrCodeBitmap); // Display QR code
+                                qrCodeImageView.setImageBitmap(qrCodeBitmap);
                                 refreshActivity();
                             })
                             .addOnFailureListener(e -> {
                                 progressDialog.dismiss();
-                                Toast.makeText(this, "Failed to save QR code URL", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Failed to save QR code URL to Firestore", Toast.LENGTH_SHORT).show();
+                                Log.e("Firestore Error", "Failed to save QR code URL", e);
                             });
                 }))
                 .addOnFailureListener(e -> {
                     progressDialog.dismiss();
-                    Toast.makeText(this, "Failed to upload QR code", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to upload QR code to Storage", Toast.LENGTH_SHORT).show();
+                    Log.e("Storage Error", "Failed to upload QR code", e);
                     refreshActivity();
                 });
     }

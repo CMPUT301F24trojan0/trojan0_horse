@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#F4F4F4"> <!-- Background color -->
 
-
     <!-- Logo TextView -->
     <TextView
         android:id="@+id/logo"

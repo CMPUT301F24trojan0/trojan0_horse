@@ -1,19 +1,20 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-44:12
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-48:12
+INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-48:12
+INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-48:12
+INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-48:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/yaatheshini/.gradle/caches/transforms-4/62ab856355568109e10fb4e55f73fd2a/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/yaatheshini/.gradle/caches/transforms-4/0b5c446bdc710c39db3538648f800a00/transformed/navigation-common-2.8.3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/yaatheshini/.gradle/caches/transforms-4/b59ca95c112f15290e6d646fc5d0055c/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-fragment:2.8.3] /Users/yaatheshini/.gradle/caches/transforms-4/8b36426cf6fa9518bafeb1665eb2db1a/transformed/navigation-fragment-2.8.3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/yaatheshini/.gradle/caches/transforms-4/aea70a863b5e8a87bcf3858e06cb5f9c/transformed/navigation-ui-2.8.3/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.material:material:1.12.0] /Users/yaatheshini/.gradle/caches/transforms-4/6ff430c3aefe0f48ae4ef27d61f0778a/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/2e9b925fccc5dc1d71a81e974c118fc6/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /Users/yaatheshini/.gradle/caches/transforms-4/b2d341c1a113e4eeadceac72f861c832/transformed/recyclerview-1.2.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/yaatheshini/.gradle/caches/transforms-4/64a8fa5dd00c9a50eb3ef919cd137fd2/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/yaatheshini/.gradle/caches/transforms-4/48e7f7e32bf0b789b502537414f9c1fa/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/yaatheshini/.gradle/caches/transforms-4/4f0f86943404b44d75324dd54290ce9a/transformed/appcompat-1.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/2e9b925fccc5dc1d71a81e974c118fc6/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/yaatheshini/.gradle/caches/transforms-4/d2d8386fbc15c3220ae2faa254ce7cff/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/47d4a644fb430fd4cf0edd7d95360cd9/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] /Users/yaatheshini/.gradle/caches/transforms-4/7db2d4d8db331e329eda3299b4978378/transformed/firebase-database-collection-18.0.1/AndroidManifest.xml:2:1-9:12
@@ -43,7 +44,6 @@ MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/yaatheshini/.gradl
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/33a366db7413caf7f32253a5bcaf2147/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/fa4ad67ecd9956281f4eb1392f61d3f0/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/5b33ac58c4680baf1dae8d348af3c077/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/a8b4ef57f384adf03bedf843ba382c16/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/90bf1007fe602d663924a5af6150d3a8/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/7dd68dfc5bea14dedbfeabcf8c814520/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.window:window:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/f60057f8ecb4ef9fe9568e22248f4384/transformed/window-1.0.0/AndroidManifest.xml:17:1-33:12
@@ -94,8 +94,8 @@ MERGED from [io.grpc:grpc-android:1.62.2] /Users/yaatheshini/.gradle/caches/tran
 	android:name
 		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:7:22-76
 application
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:9:5-42:19
-INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:9:5-42:19
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:9:5-46:19
+INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:9:5-46:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/yaatheshini/.gradle/caches/transforms-4/62ab856355568109e10fb4e55f73fd2a/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/yaatheshini/.gradle/caches/transforms-4/62ab856355568109e10fb4e55f73fd2a/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.android.material:material:1.12.0] /Users/yaatheshini/.gradle/caches/transforms-4/6ff430c3aefe0f48ae4ef27d61f0778a/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
@@ -160,34 +160,50 @@ activity#com.example.trojan0project.ViewProfile
 ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:21:9-49
 	android:name
 		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:21:19-46
+activity#com.example.trojan0project.ViewEvents
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:22:9-48
+	android:name
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:22:19-45
+activity#com.example.trojan0project.Event
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:23:9-43
+	android:name
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:23:19-40
+activity#com.example.trojan0project.EventAdapter
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:24:9-50
+	android:name
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:24:19-47
+activity#com.example.trojan0project.StatusFragment
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:25:9-52
+	android:name
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:25:19-49
 activity#com.example.trojan0project.BrowseProfileAdmin
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:23:9-27:20
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:27:9-31:20
 	android:exported
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:25:13-36
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:13-36
 	android:name
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:24:13-47
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:28:13-47
 activity#com.example.trojan0project.MainActivity
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:28:9-36:20
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:32:9-40:20
 	android:exported
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:30:13-36
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:34:13-36
 	android:name
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:13-41
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:33:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:31:13-35:29
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:35:13-39:29
 action#android.intent.action.MAIN
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:32:17-69
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:36:17-69
 	android:name
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:32:25-66
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:36:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:34:17-77
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:38:17-77
 	android:name
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:34:27-74
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:38:27-74
 meta-data#preloaded_fonts
-ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:38:9-40:57
+ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:42:9-44:57
 	android:resource
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:40:13-54
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:44:13-54
 	android:name
-		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:39:13-43
+		ADDED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:43:13-43
 uses-sdk
 INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/yaatheshini/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
@@ -204,14 +220,16 @@ MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/yaatheshini/.gradle
 MERGED from [androidx.navigation:navigation-ui:2.8.3] /Users/yaatheshini/.gradle/caches/transforms-4/aea70a863b5e8a87bcf3858e06cb5f9c/transformed/navigation-ui-2.8.3/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.12.0] /Users/yaatheshini/.gradle/caches/transforms-4/6ff430c3aefe0f48ae4ef27d61f0778a/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.12.0] /Users/yaatheshini/.gradle/caches/transforms-4/6ff430c3aefe0f48ae4ef27d61f0778a/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/2e9b925fccc5dc1d71a81e974c118fc6/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/2e9b925fccc5dc1d71a81e974c118fc6/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /Users/yaatheshini/.gradle/caches/transforms-4/b2d341c1a113e4eeadceac72f861c832/transformed/recyclerview-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /Users/yaatheshini/.gradle/caches/transforms-4/b2d341c1a113e4eeadceac72f861c832/transformed/recyclerview-1.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/yaatheshini/.gradle/caches/transforms-4/64a8fa5dd00c9a50eb3ef919cd137fd2/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/yaatheshini/.gradle/caches/transforms-4/64a8fa5dd00c9a50eb3ef919cd137fd2/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/yaatheshini/.gradle/caches/transforms-4/48e7f7e32bf0b789b502537414f9c1fa/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/yaatheshini/.gradle/caches/transforms-4/48e7f7e32bf0b789b502537414f9c1fa/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/yaatheshini/.gradle/caches/transforms-4/4f0f86943404b44d75324dd54290ce9a/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.0] /Users/yaatheshini/.gradle/caches/transforms-4/4f0f86943404b44d75324dd54290ce9a/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/2e9b925fccc5dc1d71a81e974c118fc6/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/2e9b925fccc5dc1d71a81e974c118fc6/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/yaatheshini/.gradle/caches/transforms-4/d2d8386fbc15c3220ae2faa254ce7cff/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/yaatheshini/.gradle/caches/transforms-4/d2d8386fbc15c3220ae2faa254ce7cff/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/47d4a644fb430fd4cf0edd7d95360cd9/transformed/firebase-appcheck-interop-17.0.0/AndroidManifest.xml:18:5-20:41
@@ -270,8 +288,6 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/yaath
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/fa4ad67ecd9956281f4eb1392f61d3f0/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/5b33ac58c4680baf1dae8d348af3c077/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/5b33ac58c4680baf1dae8d348af3c077/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/a8b4ef57f384adf03bedf843ba382c16/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/a8b4ef57f384adf03bedf843ba382c16/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/90bf1007fe602d663924a5af6150d3a8/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/yaatheshini/.gradle/caches/transforms-4/90bf1007fe602d663924a5af6150d3a8/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.1.0] /Users/yaatheshini/.gradle/caches/transforms-4/7dd68dfc5bea14dedbfeabcf8c814520/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41

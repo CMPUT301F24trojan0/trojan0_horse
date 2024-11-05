@@ -67,6 +67,11 @@ public class UserSignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Log.d("firestore", "User data saved successfully: " + userData);
                         Toast.makeText(UserSignUpActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
+
+                        // Navigate to ViewProfile page
+                        Intent intent = new Intent(UserSignUpActivity.this, ViewProfile.class);
+                        intent.putExtra("DEVICE_ID", deviceId); // Pass the deviceId if needed in ViewProfile
+                        startActivity(intent);
                     } else {
                         Log.e("firestore", "Registration failed: " + task.getException().getMessage());
                         Toast.makeText(UserSignUpActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

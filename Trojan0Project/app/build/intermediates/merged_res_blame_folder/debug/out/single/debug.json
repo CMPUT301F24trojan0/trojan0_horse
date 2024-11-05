@@ -68,6 +68,10 @@
         "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/activity_main_admin.xml"
     },
     {
+        "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/layout_view_events.xml.flat",
+        "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/view_events.xml"
+    },
+    {
         "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/drawable_home_icon.xml.flat",
         "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/drawable/home_icon.xml"
     },
@@ -92,10 +96,6 @@
         "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.trojan0project.app-merged_res-47:/layout_user_signup.xml.flat",
-        "source": "com.example.trojan0project.app-main-49:/layout/user_signup.xml"
-    },
-    {
         "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/drawable_rounded_button.xml.flat",
         "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/drawable/rounded_button.xml"
     },
@@ -112,12 +112,20 @@
         "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/navigation/admin_nav.xml"
     },
     {
-        "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/layout_profile_view.xml.flat",
-        "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/profile_view.xml"
+        "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/layout_item_event.xml.flat",
+        "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/item_event.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-47:/layout_fragment_status.xml.flat",
+        "source": "com.example.trojan0project.app-main-49:/layout/fragment_status.xml"
     },
     {
         "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/xml_backup_rules.xml.flat",
         "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/layout_profile_view.xml.flat",
+        "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/profile_view.xml"
     },
     {
         "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/drawable_ic_launcher_background.xml.flat",
@@ -126,6 +134,10 @@
     {
         "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/layout_profile_layout.xml.flat",
         "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/profile_layout.xml"
+    },
+    {
+        "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/layout_fragment_status.xml.flat",
+        "source": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-main-49:/layout/fragment_status.xml"
     },
     {
         "merged": "/Users/yaatheshini/.gradle/daemon/8.7/com.example.trojan0project.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",

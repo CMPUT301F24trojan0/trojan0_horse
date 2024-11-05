@@ -33,11 +33,18 @@ android {
     }
 }
 
+buildscript {
+    dependencies {
+        // Add the classpath for the Google services plugin
+        classpath("com.google.gms:google-services:4.3.10")// Check for the latest version
+    }
+}
+
 dependencies {
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.5.0"))
     implementation("com.google.firebase:firebase-firestore")
-    
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

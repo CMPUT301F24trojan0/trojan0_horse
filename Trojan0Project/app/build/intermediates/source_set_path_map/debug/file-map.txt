@@ -24,8 +24,8 @@ com.example.trojan0project.app-emoji2-1.3.0-22 /Users/yaatheshini/.gradle/caches
 com.example.trojan0project.app-activity-ktx-1.9.2-23 /Users/yaatheshini/.gradle/caches/transforms-4/8fb5c3259fa2986327a168baad037484/transformed/activity-ktx-1.9.2/res
 com.example.trojan0project.app-lifecycle-viewmodel-savedstate-2.6.2-24 /Users/yaatheshini/.gradle/caches/transforms-4/99899426f4e11454bf5f1e73a249c75d/transformed/lifecycle-viewmodel-savedstate-2.6.2/res
 com.example.trojan0project.app-firebase-common-21.0.0-25 /Users/yaatheshini/.gradle/caches/transforms-4/9a45b9f1292cf357e50f424b9d287a5c/transformed/firebase-common-21.0.0/res
-com.example.trojan0project.app-recyclerview-1.1.0-26 /Users/yaatheshini/.gradle/caches/transforms-4/a8b4ef57f384adf03bedf843ba382c16/transformed/recyclerview-1.1.0/res
-com.example.trojan0project.app-navigation-ui-2.8.3-27 /Users/yaatheshini/.gradle/caches/transforms-4/aea70a863b5e8a87bcf3858e06cb5f9c/transformed/navigation-ui-2.8.3/res
+com.example.trojan0project.app-navigation-ui-2.8.3-26 /Users/yaatheshini/.gradle/caches/transforms-4/aea70a863b5e8a87bcf3858e06cb5f9c/transformed/navigation-ui-2.8.3/res
+com.example.trojan0project.app-recyclerview-1.2.1-27 /Users/yaatheshini/.gradle/caches/transforms-4/b2d341c1a113e4eeadceac72f861c832/transformed/recyclerview-1.2.1/res
 com.example.trojan0project.app-navigation-runtime-2.8.3-28 /Users/yaatheshini/.gradle/caches/transforms-4/b59ca95c112f15290e6d646fc5d0055c/transformed/navigation-runtime-2.8.3/res
 com.example.trojan0project.app-profileinstaller-1.3.1-29 /Users/yaatheshini/.gradle/caches/transforms-4/ba577638844d86d21b404fa0061ecaba/transformed/profileinstaller-1.3.1/res
 com.example.trojan0project.app-startup-runtime-1.1.1-30 /Users/yaatheshini/.gradle/caches/transforms-4/bb0051e9e8c5d9b92409bd116d6a5625/transformed/startup-runtime-1.1.1/res

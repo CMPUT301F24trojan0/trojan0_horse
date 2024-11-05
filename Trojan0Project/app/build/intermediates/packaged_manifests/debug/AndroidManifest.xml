@@ -33,6 +33,10 @@
         android:theme="@style/Theme.Trojan0Project" >
         <activity android:name="com.example.trojan0project.UserSignUpActivity" />
         <activity android:name="com.example.trojan0project.ViewProfile" />
+        <activity android:name="com.example.trojan0project.ViewEvents" />
+        <activity android:name="com.example.trojan0project.Event" />
+        <activity android:name="com.example.trojan0project.EventAdapter" />
+        <activity android:name="com.example.trojan0project.StatusFragment" />
         <activity
             android:name="com.example.trojan0project.BrowseProfileAdmin"
             android:exported="true" >

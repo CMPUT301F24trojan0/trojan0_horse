@@ -19,6 +19,10 @@
 
         <activity android:name=".UserSignUpActivity" />
         <activity android:name=".ViewProfile" />
+        <activity android:name=".ViewEvents" />
+        <activity android:name=".Event" />
+        <activity android:name=".EventAdapter" />
+        <activity android:name=".StatusFragment" />
 
         <activity
             android:name=".BrowseProfileAdmin"

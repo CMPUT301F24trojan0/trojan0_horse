@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
 
+
+
         //for each role we can use a if statement and for each role the base activity main will be different
         setContentView(R.layout.activity_main_admin);
         ImageButton homeButton = findViewById(R.id.home_button);

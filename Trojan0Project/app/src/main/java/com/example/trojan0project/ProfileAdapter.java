@@ -33,7 +33,7 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
 
 
         if(profile !=null){
-            profileName.setText(profile.getName());
+            profileName.setText(profile.getUsername());
             imageView.setImageResource(profile.getProfileImage());
 
         }

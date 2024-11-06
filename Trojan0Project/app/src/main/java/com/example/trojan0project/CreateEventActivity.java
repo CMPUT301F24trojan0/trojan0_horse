@@ -30,9 +30,6 @@ import com.google.zxing.common.BitMatrix;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class CreateEventActivity extends AppCompatActivity {
     private EditText eventNameInput;
@@ -41,9 +38,10 @@ public class CreateEventActivity extends AppCompatActivity {
     private ImageView qrCodeImageView;
     private FusedLocationProviderClient fusedLocationClient;
     private FirebaseFirestore db;
+    private FirebaseStorage storage;
     private double latitude = 0.0;
     private double longitude = 0.0;
-    private String posterPath = "";
+    private Uri posterUri;
     private ProgressDialog progressDialog;
 
     @Override
@@ -59,11 +57,10 @@ public class CreateEventActivity extends AppCompatActivity {
         qrCodeImageView = findViewById(R.id.qrCodeImageView);
         progressDialog = new ProgressDialog(this);
 
-        // Initialize FusedLocationProviderClient
+        // Initialize Firebase services
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        // Initialize Firestore
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         // Request location permission if not granted
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -89,20 +86,20 @@ public class CreateEventActivity extends AppCompatActivity {
         // Save Event Button Logic
         saveButton.setOnClickListener(v -> {
             String eventName = eventNameInput.getText().toString();
-            if (validateInput(eventName, posterPath)) {
-                Event event = new Event(eventName, latitude, longitude, posterPath);
+            if (validateInput(eventName, posterUri)) {
+                Event event = new Event(eventName, latitude, longitude, ""); // posterPath will be set later
                 saveEvent(event);
             }
         });
     }
 
     // Validate event input
-    private boolean validateInput(String eventName, String posterPath) {
+    private boolean validateInput(String eventName, Uri posterUri) {
         if (eventName.isEmpty()) {
             Toast.makeText(this, "Please enter an event name", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (posterPath.isEmpty()) {
+        if (posterUri == null) {
             Toast.makeText(this, "Please select a poster image", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -129,8 +126,7 @@ public class CreateEventActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri selectedImageUri = data.getData();
-            posterPath = selectedImageUri.toString();
+            posterUri = data.getData();  // Store the selected image URI
         }
     }
 
@@ -144,25 +140,49 @@ public class CreateEventActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     String eventId = documentReference.getId();
                     event.setId(eventId);  // Set the document ID as the event ID
-
-                    // Update the event with the ID and save it back to Firestore
-                    db.collection("events").document(eventId).set(event)
-                            .addOnSuccessListener(aVoid -> {
-                                String qrContent = createQRContent(event);
-                                Bitmap qrCodeBitmap = generateQRCode(qrContent);
-                                saveQRCodeLocally(qrCodeBitmap, eventId); // Save locally
-                                uploadQRCodeToStorage(qrCodeBitmap, eventId); // Upload to Firebase Storage
-                            })
-                            .addOnFailureListener(e -> {
-                                progressDialog.dismiss();
-                                Toast.makeText(this, "Failed to save event details", Toast.LENGTH_SHORT).show();
-                                Log.e("Firestore Error", "Failed to update event with ID", e);
-                            });
+                    String qrContent = createQRContent(event); // Create QR content
+                    uploadPosterToStorage(eventId, event, qrContent);  // Upload poster and save event details
                 })
                 .addOnFailureListener(e -> {
                     progressDialog.dismiss();
                     Toast.makeText(this, "Failed to save event", Toast.LENGTH_SHORT).show();
                     Log.e("Firestore Error", "Error saving initial event to Firestore", e);
+                });
+    }
+
+    // Upload the poster to Firebase Storage
+    private void uploadPosterToStorage(String eventId, Event event, String qrContent) {
+        StorageReference posterRef = storage.getReference().child("posters/" + eventId + "_poster.jpg");
+        posterRef.putFile(posterUri)
+                .addOnSuccessListener(taskSnapshot -> posterRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    event.setPosterPath(uri.toString());  // Set the poster URL in the event object
+
+                    // Save the event and QR content to Firestore
+                    db.collection("events").document(eventId)
+                            .set(event)
+                            .addOnSuccessListener(aVoid -> {
+                                // Update Firestore with the qrContent field
+                                db.collection("events").document(eventId).update("qrContent", qrContent)
+                                        .addOnSuccessListener(aVoid2 -> {
+                                            Bitmap qrCodeBitmap = generateQRCode(qrContent);
+                                            uploadQRCodeToStorage(qrCodeBitmap, eventId);  // Upload QR code
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(this, "Failed to save QR content to Firestore", Toast.LENGTH_SHORT).show();
+                                            Log.e("Firestore Error", "Failed to save QR content", e);
+                                        });
+                            })
+                            .addOnFailureListener(e -> {
+                                progressDialog.dismiss();
+                                Toast.makeText(this, "Failed to update event with poster URL", Toast.LENGTH_SHORT).show();
+                                Log.e("Firestore Error", "Error updating event with poster URL", e);
+                            });
+                }))
+                .addOnFailureListener(e -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(this, "Failed to upload poster to Storage", Toast.LENGTH_SHORT).show();
+                    Log.e("Storage Error", "Error uploading poster", e);
                 });
     }
 
@@ -194,25 +214,12 @@ public class CreateEventActivity extends AppCompatActivity {
         return null;
     }
 
-    private void saveQRCodeLocally(Bitmap qrCodeBitmap, String eventId) {
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File qrFile = new File(storageDir, eventId + "_QRCode.png");
-
-        try (FileOutputStream out = new FileOutputStream(qrFile)) {
-            qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            Toast.makeText(this, "QR code saved locally at " + qrFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Log.e("Local Storage Error", "Failed to save QR code locally", e);
-            Toast.makeText(this, "Failed to save QR code locally", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventId) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] qrCodeData = baos.toByteArray();
 
-        StorageReference qrCodeRef = FirebaseStorage.getInstance().getReference().child("qrcodes/" + eventId + ".png");
+        StorageReference qrCodeRef = storage.getReference().child("qrcodes/" + eventId + ".png");
         qrCodeRef.putBytes(qrCodeData)
                 .addOnSuccessListener(taskSnapshot -> qrCodeRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     db.collection("events").document(eventId).update("qrCodeUrl", uri.toString())

@@ -3586,7 +3586,6 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
-id registration_label
 id removeProfileFragment
 id remove_profile_message
 id report_drawn

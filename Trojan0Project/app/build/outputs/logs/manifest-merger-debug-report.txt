@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-38:12
+ADDED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-41:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/gurleenbamrah/.gradle/caches/transforms-4/c192f72a0e29f5c7153c5e1451e18ecd/transformed/navigation-common-2.8.3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/gurleenbamrah/.gradle/caches/transforms-4/f6934eadacc159caa4bbd3fd17e71bfd/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:17:1-22:12
@@ -172,6 +172,12 @@ ADDED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/mai
 		ADDED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:35:13-54
 	android:name
 		ADDED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:34:13-43
+uses-permission#android.permission.INTERNET
+ADDED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:38:5-67
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:38:22-64
 uses-sdk
 INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml
@@ -316,10 +322,6 @@ MERGED from [io.grpc:grpc-android:1.62.2] /Users/gurleenbamrah/.gradle/caches/tr
 MERGED from [io.grpc:grpc-android:1.62.2] /Users/gurleenbamrah/.gradle/caches/transforms-4/023a2014cab4c827f00a2a64d258ba7d/transformed/grpc-android-1.62.2/AndroidManifest.xml:7:5-79
 	android:name
 		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:10:22-76
-uses-permission#android.permission.INTERNET
-ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:5-67
-	android:name
-		ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:11:22-64
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [com.google.firebase:firebase-firestore:25.1.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/gurleenbamrah/.gradle/caches/transforms-4/ddb0dad8e17ce62f46c482fb8651777d/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:9:9-15:19

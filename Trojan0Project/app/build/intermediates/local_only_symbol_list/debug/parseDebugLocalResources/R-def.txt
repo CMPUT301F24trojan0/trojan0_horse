@@ -42,7 +42,6 @@ id profile_image
 id profile_list
 id profile_name
 id profiles_title
-id registration_label
 id removeProfileFragment
 id remove_profile_message
 id time_label

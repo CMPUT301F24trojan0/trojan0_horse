@@ -10,14 +10,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
-        android:textSize="40sp"
+        android:layout_marginTop="128dp"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center"
         android:text="Do you want to delete the Facility?"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_yes"
@@ -26,6 +27,8 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="72dp"
         android:text="Yes"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/quicksand"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/button_no"
         app:layout_constraintHorizontal_bias="0.156"
@@ -39,6 +42,8 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="60dp"
         android:text="No"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/quicksand"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

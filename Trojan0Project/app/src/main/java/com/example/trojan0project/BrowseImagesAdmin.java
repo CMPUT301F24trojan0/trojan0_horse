@@ -1,6 +1,20 @@
+/**
+ * Purpose:
+ * This retrieves user profile pictures and event poster pictures from Firebase
+ * and then displays in a grid layout
+ *
+ * Design Rationale:
+ * User firebase storage to access the images and then downloads the URL of the images.
+ * Then it stores the images in a list and displays them in a gridview using the ImageAdapter
+ *
+ * Outstanding Issues:
+ * No issues
+ */
+
 package com.example.trojan0project;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -49,9 +63,10 @@ public class BrowseImagesAdmin extends MainActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                        String deviceId = document.getString("deviceId");
+                        String deviceId = document.getString("profile_picture_url");
                         if (deviceId != null){
-                            loadImageFromStorage(deviceId);
+                            images.add(new Image(deviceId));
+
                         }
                     }
                     imageAdapter.notifyDataSetChanged();
@@ -60,11 +75,7 @@ public class BrowseImagesAdmin extends MainActivity {
                         Toast.makeText(BrowseImagesAdmin.this, "Error loading user pictures", Toast.LENGTH_SHORT).show());
     }
 
-    private void loadImageFromStorage(String deviceId){
-        StorageReference imageRef = storage.getReference().child("profilePictures/" + deviceId);
-        images.add(new Image(imageRef.toString()));
-        imageAdapter.notifyDataSetChanged();
-    }
+
 
     private void getEventImages(){
         db.collection("events")

@@ -35,6 +35,7 @@ public class ImageAdapter extends ArrayAdapter<Image> {
         ImageView imageView = view.findViewById(R.id.image_view);
 
 
+
         if(image !=null){
             Glide.with(getContext()).load(image.getImageId()).into(imageView);
 

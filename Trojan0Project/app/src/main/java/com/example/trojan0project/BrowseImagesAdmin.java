@@ -58,7 +58,7 @@ public class BrowseImagesAdmin extends MainActivity {
 
     }
 
-    private void getUserProfilePicture(){
+    public void getUserProfilePicture(){
         db.collection("users")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -77,7 +77,7 @@ public class BrowseImagesAdmin extends MainActivity {
 
 
 
-    private void getEventImages(){
+    public void getEventImages(){
         db.collection("events")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {

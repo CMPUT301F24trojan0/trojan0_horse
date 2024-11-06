@@ -8,11 +8,12 @@
  * It also uses RemoveProfileFragment to ask to confirm before deleting a profile.
  *
  * Outstanding Issues:
- * No issues
+ * If someone has the same username then all will be deleted
  */
 package com.example.trojan0project;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -70,6 +71,7 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
                         if ("entrant".equals(userType)){
                             String username = document.getString("username");
                             String profileImage = document.getString("profile_url");
+                            Log.d("ProfileImageURL", "URL: " + profileImage);
                             dataList.add(new Profile(username, profileImage));
 
                         }

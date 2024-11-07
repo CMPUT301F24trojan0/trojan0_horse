@@ -1,0 +1,5 @@
+com.example.trojan0project.test.app-core-1.6.1-0 /Users/vishalsivakumar/.gradle/caches/transforms-4/0672e989a7cb437cff29078579ff2021/transformed/core-1.6.1/res
+com.example.trojan0project.test.app-androidTest-1 /Users/vishalsivakumar/Desktop/trojan0_horse/Trojan0Project/app/build/generated/res/resValues/androidTest/debug
+com.example.trojan0project.test.app-mergeDebugAndroidTestResources-2 /Users/vishalsivakumar/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.example.trojan0project.test.app-mergeDebugAndroidTestResources-3 /Users/vishalsivakumar/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.example.trojan0project.test.app-merged_res-4 /Users/vishalsivakumar/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/merged_res/debugAndroidTest

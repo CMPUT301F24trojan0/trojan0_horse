@@ -1490,6 +1490,13 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color light_blue
+color light_cyan
+color light_gray
+color light_green
+color light_magenta
+color light_red
+color light_yellow
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -3065,6 +3072,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable circular_ring
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -3134,6 +3142,7 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable minus_icon
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3185,6 +3194,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable plus_icon
 drawable round_home_24
 drawable rounded_button
 drawable selected_icon
@@ -3344,6 +3354,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id deleteImageIcon
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -3373,7 +3384,7 @@ id easeInOut
 id easeOut
 id east
 id edge
-id editProfileIcon
+id editImageIcon
 id edit_query
 id edit_text_id
 id elastic
@@ -3410,6 +3421,7 @@ id frost
 id fullscreen_header
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id gone
 id graph
 id graph_wrap
@@ -3591,6 +3603,7 @@ id profile_image
 id profile_list
 id profile_name
 id profiles_title
+id progressBar
 id progress_circular
 id progress_horizontal
 id radio

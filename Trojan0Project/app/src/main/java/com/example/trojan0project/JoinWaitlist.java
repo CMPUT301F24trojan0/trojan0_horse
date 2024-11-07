@@ -57,7 +57,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
         db = FirebaseFirestore.getInstance();
         deviceId = "c49fcd9f6ec4bc07";
-        eventId = "1brz3fMcdfXJYvYBFKuY";
+        eventId = "ALM32NCNIl4mOEB0rPl8";
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);

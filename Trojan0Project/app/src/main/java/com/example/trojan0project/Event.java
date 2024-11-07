@@ -28,17 +28,7 @@ public class Event implements Serializable {
     public Bitmap getQrCodeBitmap() {
         return qrCodeBitmap;
     }
-  //CITE
-    public String getQrCodeBase64() {
-        if (qrCodeBitmap == null) {
-            return null;
-        }
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
-    }
 
 
 

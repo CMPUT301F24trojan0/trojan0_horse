@@ -21,7 +21,7 @@ public class DisplayEventDetails extends AppCompatActivity {
 
 
 
-        //OpenAI, (2024, November 6 2024), "How do I transfer the city from one activity to another?", ChatGPT
+        //OpenAI, (2024, November 6 2024), "How do I transfer the text from one activity to another?", ChatGPT
         Intent intent = getIntent();
         String selectedEventTitle = intent.getStringExtra("event_title");
 

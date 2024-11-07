@@ -6,6 +6,15 @@
     android:background="#F5F5F5"
     android:padding="20dp">
 
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
     <TextView
         android:id="@+id/logoText"
         android:layout_width="wrap_content"
@@ -27,21 +36,39 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_below="@id/logoText"
+        android:scaleType="centerCrop"
         android:layout_centerHorizontal="true"
         android:contentDescription="Profile Picture"
+        android:background="@drawable/circular_ring"
+        android:clipToOutline="true"
         android:layout_marginBottom="8dp" />
 
+
     <!-- Edit Icon -->
-    <ImageView
-        android:id="@+id/editProfileIcon"
+    <ImageButton
+        android:id="@+id/editImageIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_alignBottom="@id/profileIcon"
         android:layout_alignEnd="@id/profileIcon"
+        android:src="@drawable/plus_icon"
         android:contentDescription="Edit Profile Picture"
         android:layout_marginBottom="8dp" />
 
     <!-- Profile Page Title -->
+
+    <ImageButton
+        android:id="@+id/deleteImageIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignBottom="@id/profileIcon"
+        android:layout_marginEnd="-24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toStartOf="@id/profileIcon"
+        android:contentDescription="Remove Profile Picture"
+        android:src="@drawable/minus_icon"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/profileTitle"
         android:layout_width="wrap_content"
@@ -61,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profileTitle"
         android:hint="First Name"
+        android:textColor="@color/black"
         android:inputType="textPersonName"
         android:layout_marginBottom="12dp" />
 
@@ -71,6 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/firstNameInput"
         android:hint="Last Name"
+        android:textColor="@color/black"
         android:inputType="textPersonName"
         android:layout_marginBottom="12dp" />
 
@@ -81,6 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/lastNameInput"
         android:hint="Username"
+        android:textColor="@color/black"
         android:inputType="textPersonName"
         android:layout_marginBottom="12dp" />
 
@@ -91,6 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/usernameInput"
         android:hint="Email Address"
+        android:textColor="@color/black"
         android:inputType="textEmailAddress"
         android:layout_marginBottom="12dp" />
 
@@ -101,6 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/emailInput"
         android:hint="Phone Number"
+        android:textColor="@color/black"
         android:inputType="phone"
         android:layout_marginBottom="12dp" />
 
@@ -110,6 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/phoneNumberInput"
+        android:textColor="@color/black"
         android:text="Would you like to receive notifications?"
         android:textSize="16sp"
         android:layout_marginTop="8dp" />
@@ -130,7 +163,7 @@
         android:layout_below="@id/notificationsToggle"
         android:layout_centerHorizontal="true"
         android:text="View"
-        android:backgroundTint="#B9A1FF"
+        android:backgroundTint="#B391F8"
         android:textColor="#FFFFFF"
         android:layout_marginTop="16dp" />
 
@@ -139,35 +172,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:layout_marginTop="32dp">
+        android:orientation="horizontal">
 
         <!-- Profile Icon -->
         <ImageView
             android:id="@+id/navProfile"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/baseline_person_24"
-            android:contentDescription="Profile Icon" />
+            android:background="@drawable/home_icon"
+            android:contentDescription="Profile Icon"
+            android:src="@drawable/baseline_person_24" />
 
         <!-- Camera Icon -->
         <ImageView
             android:id="@+id/navCamera"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/baseline_photo_camera_24"
-            android:contentDescription="Camera Icon"
             android:layout_marginStart="48dp"
-            android:layout_marginEnd="48dp" />
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/home_icon"
+            android:contentDescription="Camera Icon"
+            android:src="@drawable/baseline_photo_camera_24" />
 
         <!-- Group Icon -->
         <ImageView
             android:id="@+id/navGroup"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/baseline_people_24"
-            android:contentDescription="Group Icon" />
+            android:background="@drawable/home_icon"
+            android:contentDescription="Group Icon"
+            android:src="@drawable/baseline_people_24" />
     </LinearLayout>
 
 </RelativeLayout>

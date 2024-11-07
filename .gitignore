@@ -7,6 +7,7 @@ Trojan0Project/local.properties
 
 # Log/OS Files
 *.log
+.DS_Store
 
 # Android Studio generated files and folders
 captures/
@@ -14,6 +15,14 @@ captures/
 .cxx/
 Trojan0Project/*.apk
 output.json
+
+# Ignore generated APK, DEX, and JAR files
+Trojan0Project/app/build/**/*.apk
+Trojan0Project/app/build/**/*.dex
+Trojan0Project/app/build/**/*.jar
+
+# Ignore entire app/build folder
+Trojan0Project/app/build/
 
 # IntelliJ
 *.iml

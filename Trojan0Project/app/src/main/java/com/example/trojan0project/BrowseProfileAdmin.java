@@ -33,10 +33,11 @@ import java.util.ArrayList;
 
 public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFragment.RemoveProfileDialogListener {
 
-    private ArrayList<Profile> dataList;
+    public ArrayList<Profile> dataList;
     private ListView profileList;
     private ProfileAdapter profileAdapter;
     private FirebaseFirestore db;
+    private String deviceId;
 
 
     @Override
@@ -50,6 +51,8 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
         dataList = new ArrayList<>();
         profileAdapter = new ProfileAdapter(this, dataList);
         profileList.setAdapter(profileAdapter);
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
+
         getProfile();
 
         profileList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,17 +64,17 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
         });
 
     }
-    private void getProfile(){
+
+    private void getProfile() {
         db.collection("users")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     dataList.clear();
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         String userType = document.getString("user_type");
-                        if ("entrant".equals(userType)){
+                        if ("entrant".equals(userType)) {
                             String username = document.getString("username");
                             String profileImage = document.getString("profile_url");
-                            Log.d("ProfileImageURL", "URL: " + profileImage);
                             dataList.add(new Profile(username, profileImage));
 
                         }
@@ -84,29 +87,23 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
     }
 
     @Override
-    public void removeProfile(Profile profile){
+    public void removeProfile(Profile profile) {
         db.collection("users")
-                .whereEqualTo("username", profile.getUsername())
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                        db.collection("users").document(document.getId()).delete()
-                                .addOnSuccessListener(Void ->{
-                                    dataList.remove(profile);
-                                    profileAdapter.notifyDataSetChanged();
-                                    Toast.makeText(this, "Profile is deleted", Toast.LENGTH_SHORT).show();
-                                })
-                                .addOnFailureListener(e ->
-                                        Toast.makeText(this, "Profile not deleted", Toast.LENGTH_SHORT).show());
-
-                    }
+                .document(deviceId)
+                .delete()
+                .addOnSuccessListener(Void -> {
+                    dataList.remove(profile);
+                    profileAdapter.notifyDataSetChanged();
+                    Toast.makeText(this, "Profile is deleted", Toast.LENGTH_SHORT).show();
                 })
-                .addOnFailureListener(e ->{
+                .addOnFailureListener(e -> {
                     Toast.makeText(this, "Profile not deleted", Toast.LENGTH_SHORT).show();
                 });
     }
-
-
-
 }
+
+
+
+
+
 

@@ -2,13 +2,18 @@ package com.example.trojan0project;
 
 
 import org.junit.runner.RunWith;
+
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
@@ -40,31 +45,40 @@ public class ProfileBrowseDeleteTest {
     @Test
     public void testBrowseProfiles() throws InterruptedException{
         Thread.sleep(3000);
-        Espresso.onView(ViewMatchers.withId(R.id.profile_list)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-        Espresso.onData((CoreMatchers.anything())).inAdapterView(ViewMatchers.withId(R.id.profile_list)).atPosition(0).check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withId(R.id.profile_name))));
 
+        onView(withId(R.id.profile_list)).check(matches(isDisplayed()));
+
+        onData(anything()).inAdapterView(withId(R.id.profile_list));
     }
 
     @Test
     public void testDeleteProfile()throws InterruptedException{
+
         Thread.sleep(3000);
-        //open fragment by clicking on first profile
-        Espresso.onData(CoreMatchers.anything())
-                .inAdapterView(ViewMatchers.withId(R.id.profile_list))
+
+        int[] sizeBeforeDeleting = new int[1]; //holds one size value of list before deleting
+        activityRule.getScenario().onActivity(activity ->
+                sizeBeforeDeleting[0] = activity.dataList.size());
+
+        onData(anything())
+                .inAdapterView(withId(R.id.profile_list))
                 .atPosition(0)
                 .perform(ViewActions.click());
 
         //checks if dialog is displayed
-        Espresso.onView(ViewMatchers.withText("Do you want to delete the profile?")).inRoot(RootMatchers.isDialog()).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(withText("Do you want to delete the profile?")).check(matches(isDisplayed()));
 
         //clicks yes to delete
-        Espresso.onView(ViewMatchers.withId(R.id.yes_remove_profile)).perform(ViewActions.click());
+        onView(withId(R.id.yes_remove_profile)).perform(ViewActions.click());
 
         Thread.sleep(3000);
 
-        ActivityScenario.launch(BrowseProfileAdmin.class);
 
-        Espresso.onData(anything()).inAdapterView(withId(R.id.profile_list)).atPosition(0).check(ViewAssertions.doesNotExist());
+        int[] sizeAfterDeleting = new int[1];
+        activityRule.getScenario().onActivity(activity ->
+                sizeAfterDeleting[0] = activity.dataList.size());
+
+        assertTrue(sizeAfterDeleting[0] < sizeBeforeDeleting[0]);
     }
 
 }

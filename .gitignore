@@ -1,7 +1,3 @@
-# Gradle files
-Trojan0Project/.gradle/
-Trojan0Project/build/
-
 # Local configuration file (sdk path, etc)
 Trojan0Project/local.properties
 
@@ -16,13 +12,8 @@ captures/
 Trojan0Project/*.apk
 output.json
 
-# Ignore generated APK, DEX, and JAR files
-Trojan0Project/app/build/**/*.apk
-Trojan0Project/app/build/**/*.dex
-Trojan0Project/app/build/**/*.jar
-
-# Ignore entire app/build folder
-Trojan0Project/app/build/
+# Ignore entire app/build folder (already covered by the line above)
+Trojan0Project/app/build/  
 
 # IntelliJ
 *.iml

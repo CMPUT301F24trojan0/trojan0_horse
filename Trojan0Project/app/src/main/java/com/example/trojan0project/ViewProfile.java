@@ -98,7 +98,7 @@ public class ViewProfile extends AppCompatActivity {
         String phoneNumber = phoneNumberEditText.getText().toString().trim();
         boolean notifications = notificationsToggle.isChecked();
 
-        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty()) {
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
             return;
         }

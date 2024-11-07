@@ -33,16 +33,23 @@ android {
     }
 }
 
+buildscript {
+    dependencies {
+        // Add the classpath for the Google services plugin
+        classpath("com.google.gms:google-services:4.3.10")// Check for the latest version
+    }
+}
+
 dependencies {
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.5.0"))
     implementation("com.google.firebase:firebase-firestore")
-
+    
     // Add the dependency for the Cloud Storage library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-storage")
-
     implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
 
     implementation(libs.appcompat)
     implementation(libs.material)

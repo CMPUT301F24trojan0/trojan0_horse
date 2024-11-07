@@ -113,7 +113,7 @@ public class ViewProfile extends AppCompatActivity {
         // Set up the button to update profile image
         editImageButton.setOnClickListener(v -> updateImage());
 
-        // Set up the button to update profile data
+        // Save details and go to View Events Page
         viewEventsButton.setOnClickListener(v -> saveProfileData());
 
     }
@@ -168,6 +168,7 @@ public class ViewProfile extends AppCompatActivity {
 
         if (firstName.isEmpty() || lastName.isEmpty()) {
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+            // Exit the method to stay on the same page
             return;
         }
 
@@ -180,11 +181,20 @@ public class ViewProfile extends AppCompatActivity {
         profileData.put("phone_number", phoneNumber);
         profileData.put("notifications", notifications);
 
+        // Update Firestore database
         db.collection("users").document(deviceId).set(profileData, SetOptions.merge())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Profile updated successfully: " + profileData);
                         Toast.makeText(ViewProfile.this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+
+
+                        // Prevent multiple clicks
+                        viewEventsButton.setEnabled(false);
+                        // Navigate to View Events Page
+                        Intent intent1 = new Intent(ViewProfile.this, ViewEvents.class);
+                        intent1.putExtra("DEVICE_ID", deviceId); // Add device ID to intent
+                        startActivity(intent1);
                     } else {
                         Log.e(TAG, "Profile update failed", task.getException());
                         Toast.makeText(ViewProfile.this, "Profile update failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

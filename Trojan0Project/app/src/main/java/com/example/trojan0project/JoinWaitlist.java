@@ -57,7 +57,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
         db = FirebaseFirestore.getInstance();
         deviceId = "c49fcd9f6ec4bc07";
-        eventId = "1brz3fMcdfXJYvYBFKuY";
+        eventId = "ALM32NCNIl4mOEB0rPl8";
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
@@ -79,14 +79,14 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
     }
 
+    //From https://www.geeksforgeeks.org/reverse-geocoding-in-android/ , 2024-11-07
     public String getAddressFromCoordinates(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses != null && !addresses.isEmpty()) {
                 Address address = addresses.get(0);
-                // Construct a readable address from the Address object
-                return address.getAddressLine(0); // You can use other address fields if needed
+                return address.getAddressLine(0);
             } else {
                 return "Address not found";
             }
@@ -158,7 +158,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                         String userType = documentSnapshot.getString("user_type");
                         if ("entrant".equals(userType)) {
                             db.collection("users").document(deviceId)
-                                    .update("events." + eventId, 0)
+                                    .update("events" + eventId, 0)
                                     .addOnSuccessListener(aVoid -> {
                                         Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();
                                     })
@@ -168,7 +168,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
 
                             db.collection("events").document(eventId)
-                                    .update("waitlistedDeviceIds", FieldValue.arrayUnion(deviceId))
+                                    .update("waitlisted", FieldValue.arrayUnion(deviceId))
                                     .addOnSuccessListener(aVoid -> {
                                         Toast.makeText(this, "Event waitlist updated.", Toast.LENGTH_SHORT).show();
                                     })

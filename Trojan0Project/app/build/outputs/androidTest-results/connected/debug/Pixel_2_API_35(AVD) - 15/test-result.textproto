@@ -1,0 +1,68 @@
+# 2024-11-06T23:53:42.463213Z:
+test_suite_meta_data {
+  scheduled_test_case_count: 1
+}
+test_status: PASSED
+test_result {
+  test_case {
+    test_class: "ProfileBrowseDeleteTest"
+    test_package: "com.example.trojan0project"
+    test_method: "testDeleteProfile"
+    start_time {
+      seconds: 1730937211
+      nanos: 254000000
+    }
+    end_time {
+      seconds: 1730937220
+      nanos: 300000000
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Pixel_2_API_35(AVD) - 15/logcat-com.example.trojan0project.ProfileBrowseDeleteTest-testDeleteProfile.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Pixel_2_API_35(AVD) - 15/device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Pixel_2_API_35(AVD) - 15/meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Pixel_2_API_35(AVD) - 15/cpuinfo"
+    }
+  }
+}
+output_artifact {
+  label {
+    label: "test-results.log"
+    namespace: "com.google.testing.platform.runtime.android.driver.AndroidInstrumentationDriver"
+  }
+  source_path {
+    path: "/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Pixel_2_API_35(AVD) - 15/testlog/test-results.log"
+  }
+  type: TEST_DATA
+  mime_type: "text/plain"
+}

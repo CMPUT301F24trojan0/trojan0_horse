@@ -33,6 +33,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.Trojan0Project" >
         <activity
+            android:name="com.example.trojan0project.DisplayEventDetails"
+            android:exported="false" />
+        <activity
             android:name="com.example.trojan0project.BrowseProfileAdmin"
             android:exported="true" >
         </activity>

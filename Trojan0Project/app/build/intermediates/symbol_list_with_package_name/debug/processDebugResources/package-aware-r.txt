@@ -3390,6 +3390,7 @@ id enterAlways
 id enterAlwaysCollapsed
 id escape
 id event_image
+id event_title
 id events_button
 id exitUntilCollapsed
 id expand_activities_button
@@ -3457,6 +3458,7 @@ id linear
 id listMode
 id list_item
 id locale
+id location_label
 id ltr
 id m3_side_sheet
 id main
@@ -3495,6 +3497,7 @@ id month_navigation_fragment_toggle
 id month_navigation_next
 id month_navigation_previous
 id month_title
+id more_info_label
 id motion_base
 id mtrl_anchor_parent
 id mtrl_calendar_day_selector_frame
@@ -3694,6 +3697,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
+id time_label
 id title
 id titleDividerNoCustom
 id title_template
@@ -3873,6 +3877,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout display_event_details_admin
 layout events_main
 layout fragment_delete_event
 layout fragment_remove_profile

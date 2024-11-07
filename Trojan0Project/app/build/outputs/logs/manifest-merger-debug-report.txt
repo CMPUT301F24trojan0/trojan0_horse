@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-43:12
-INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-43:12
-INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-43:12
-INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-43:12
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
+INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
+INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
+INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/Farza2/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/Farza2/.gradle/caches/transforms-4/c192f72a0e29f5c7153c5e1451e18ecd/transformed/navigation-common-2.8.3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/Farza2/.gradle/caches/transforms-4/f6934eadacc159caa4bbd3fd17e71bfd/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:17:1-22:12
@@ -80,8 +80,8 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/Farza
 	xmlns:android
 		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:5:5-41:19
-INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:5:5-41:19
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:5:5-44:19
+INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:5:5-44:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/Farza2/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/Farza2/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.android.material:material:1.12.0] /Users/Farza2/.gradle/caches/transforms-4/f03ce673052ecd6be83a8efbd6489e63/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
@@ -138,40 +138,46 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/Farz
 		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:13:9-52
 	android:dataExtractionRules
 		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:7:9-65
+activity#com.example.trojan0project.DisplayEventDetails
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:15:9-17:40
+	android:exported
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:17:13-37
+	android:name
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:16:13-48
 activity#com.example.trojan0project.BrowseProfileAdmin
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:15:9-19:20
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:18:9-22:20
 	android:exported
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:17:13-36
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:20:13-36
 	android:name
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:16:13-47
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:19:13-47
 activity#com.example.trojan0project.EventActivity
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:20:9-29:20
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:23:9-32:20
 	android:exported
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:22:13-36
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:25:13-36
 	android:name
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:21:13-42
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:24:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:23:13-27:29
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:26:13-30:29
 action#android.intent.action.MAIN
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:24:17-69
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:24:25-66
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:26:17-77
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:26:27-74
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:29:27-74
 activity#com.example.trojan0project.MainActivity
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:31:9-36:20
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:34:9-39:20
 	android:exported
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:33:13-36
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:36:13-36
 	android:name
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:32:13-41
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:35:13-41
 meta-data#preloaded_fonts
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:38:9-40:57
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:41:9-43:57
 	android:resource
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:40:13-54
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:43:13-54
 	android:name
-		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:39:13-43
+		ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:42:13-43
 uses-sdk
 INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml

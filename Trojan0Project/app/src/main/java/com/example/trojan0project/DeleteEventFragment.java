@@ -5,6 +5,7 @@ package com.example.trojan0project;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,8 +71,12 @@ public class DeleteEventFragment extends DialogFragment {
                 dismiss();
             }
         });
-
+        // Parwiz Forogh, https://www.youtube.com/watch?v=2b7YrS8ZRM4, november 6 2024, youtube
         xButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), DisplayEventDetails.class);
+
+            intent.putExtra("event_title", selectedEvent.getEventName());
+            startActivity(intent);
                 dismiss();
         });
 

@@ -95,7 +95,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
                 }
 
                 eventAdminAdapter.notifyDataSetChanged();
-                Log.d(TAG, "Snapshot received: " + queryDocumentSnapshots.getDocuments().size() + " events");
+
 
             }
         });

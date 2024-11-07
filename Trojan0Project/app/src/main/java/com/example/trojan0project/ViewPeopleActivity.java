@@ -10,8 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class ViewPeopleActivity {
-    public class ViewPeopleActivity extends AppCompatActivity {
+public class ViewPeopleActivity extends AppCompatActivity {
 
         private Switch limitToggle;
         private FrameLayout entrantLimitContainer;
@@ -30,21 +29,11 @@ public class ViewPeopleActivity {
                 if (isChecked) {
                     // Show the entrant limit fragment
                     entrantLimitContainer.setVisibility(View.VISIBLE);
-                    loadEntrantLimitFragment();
                 } else {
                     // Hide the entrant limit fragment
                     entrantLimitContainer.setVisibility(View.GONE);
                 }
             });
         }
-
-        private void loadEntrantLimitFragment() {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment fragment = new EntrantLimitFragment();
-            fragmentTransaction.replace(R.id.entrant_limit_container, fragment);
-            fragmentTransaction.commit();
-        }
     }
 
-}

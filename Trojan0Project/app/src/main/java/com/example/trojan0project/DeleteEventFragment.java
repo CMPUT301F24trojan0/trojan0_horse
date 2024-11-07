@@ -66,7 +66,6 @@ public class DeleteEventFragment extends DialogFragment {
         });
         deleteQRButton.setOnClickListener(v -> {
             if (listener != null && selectedEvent != null) {
-                selectedEvent.removeQRCode();
                 listener.deleteQRCode(selectedEvent);
                 dismiss();
             }

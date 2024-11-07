@@ -37,7 +37,10 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
         ImageView eventImage = view.findViewById(R.id.event_image);
 
         EventName.setText(event.getEventName());
-        eventImage.setImageResource(event.getImageResId());
+        //OpenAI, (2024, November 6), "How do I set the Image as a Bitmap?", ChatGPT
+        eventImage.setImageBitmap(event.getQrCodeBitmap());
+
+
 
 
         return view;

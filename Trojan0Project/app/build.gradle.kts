@@ -38,6 +38,7 @@ dependencies {
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.5.0"))
     implementation("com.google.firebase:firebase-firestore")
+    implementation ("com.google.zxing:core:3.5.0")
     
     implementation(libs.appcompat)
     implementation(libs.material)

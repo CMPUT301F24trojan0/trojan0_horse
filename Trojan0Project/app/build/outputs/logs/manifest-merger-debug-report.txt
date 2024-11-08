@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
-INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
-INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
-INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-46:12
+ADDED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/src/main/AndroidManifest.xml:2:1-47:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] /Users/Farza2/.gradle/caches/transforms-4/7d371d3e34b330d0f212f6dbfda62251/transformed/firebase-firestore-25.1.1/AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.navigation:navigation-common:2.8.3] /Users/Farza2/.gradle/caches/transforms-4/c192f72a0e29f5c7153c5e1451e18ecd/transformed/navigation-common-2.8.3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.8.3] /Users/Farza2/.gradle/caches/transforms-4/f6934eadacc159caa4bbd3fd17e71bfd/transformed/navigation-runtime-2.8.3/AndroidManifest.xml:17:1-22:12

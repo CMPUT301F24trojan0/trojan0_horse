@@ -1,0 +1,463 @@
+11-08 00:34:45.352  7997  8010 I TestRunner: started: testDeleteQR(com.example.trojan0project.EventActivityTest)
+11-08 00:34:45.356  7997  8010 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+11-08 00:34:45.362   551  1831 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@7cb7a5da does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+11-08 00:34:45.378  1071  1071 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=347, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.example.trojan0project/.EventActivity }
+11-08 00:34:45.536 21870 21911 D EGL_emulation: app_time_stats: avg=510.86ms min=9.89ms max=7930.79ms count=16
+11-08 00:34:45.596   387   387 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+11-08 00:34:45.697  7997  7997 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+11-08 00:34:45.719  7997  7997 D LifecycleMonitor: Lifecycle status change: com.example.trojan0project.EventActivity@d5ace9 in: PRE_ON_CREATE
+11-08 00:34:45.720  7997  7997 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+11-08 00:34:45.809  7997  7997 W .trojan0project: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+11-08 00:34:45.850  1319  2241 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+11-08 00:34:45.905  1319  2241 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+11-08 00:34:45.908  1319  2241 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+11-08 00:34:45.935  1319  2241 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+11-08 00:34:45.961  1071  1494 D EGL_emulation: app_time_stats: avg=1419.95ms min=3.26ms max=9879.49ms count=7
+11-08 00:34:46.060  1319  2241 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+11-08 00:34:46.157 18706 18715 I FontLog : (REDACTED) Received query %s, URI %s
+11-08 00:34:46.163 18706 18715 I FontLog : (REDACTED) Query [%s] resolved to %s
+11-08 00:34:46.232 18706 18715 I FontLog : (REDACTED) Fetch %s end status %s
+11-08 00:34:46.326 21870 21870 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-08 00:34:46.366  7997  7997 D LifecycleMonitor: Lifecycle status change: com.example.trojan0project.EventActivity@d5ace9 in: CREATED
+11-08 00:34:46.373  7997  7997 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.example.trojan0project.EventActivity@d5ace9
+11-08 00:34:46.399  7997  7997 D LifecycleMonitor: Lifecycle status change: com.example.trojan0project.EventActivity@d5ace9 in: STARTED
+11-08 00:34:46.401  7997  7997 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.example.trojan0project.EventActivity@d5ace9
+11-08 00:34:46.412  7997  7997 D LifecycleMonitor: Lifecycle status change: com.example.trojan0project.EventActivity@d5ace9 in: RESUMED
+11-08 00:34:46.413  7997  7997 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.example.trojan0project.EventActivity@d5ace9
+11-08 00:34:46.480  1319  2241 I AiAiTextClassifier: [VisualCortexAdapter]: provideRegistration: Registered Prominent Screen Entities for updates.
+11-08 00:34:46.511   788   988 D EGL_emulation: app_time_stats: avg=1783.47ms min=23.51ms max=10470.00ms count=6
+11-08 00:34:46.538  7997  7997 W HWUI    : Unknown dataspace 0
+11-08 00:34:46.655   551  1831 D ConnectivityService: requestNetwork for uid/pid:10241/7997 activeRequest: null callbackRequest: 2819 [NetworkRequest [ REQUEST id=2820, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+11-08 00:34:46.657   551   696 D ConnectivityService: NetReassign [2820 : null → 100] [c 1] [a 0] [i 1]
+11-08 00:34:46.663   551   689 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=2820, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:46.667   551   689 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=2820, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:46.667   551   689 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=2820, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:46.667   551   689 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=2820, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:46.688   551  1831 D ConnectivityService: registerNetworkAgent NetworkAgentInfo{network{512}  handle{2202428952589}  ni{MOBILE[HSPA] CONNECTING extra: fast.t-mobile.com} created=2024-11-08T07:34:46.688Z Score(Policies :  ; KeepConnected : 0)   lp{{LinkAddresses: [ ] DnsAddresses: [ ] Domains: null MTU: 0 Routes: [ ]}}  nc{[ Transports: CELLULAR Capabilities: MMS&SUPL&IA&XCAP&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=14Kbps LinkDnBandwidth>=14Kbps Specifier: <TelephonyNetworkSpecifier [mSubId = 1]> SubscriptionIds: {1} UnderlyingNetworks: Null]}  factorySerialNumber=3}
+11-08 00:34:46.691  7997  8019 W DynamiteModule: Local module descriptor class for com.google.android.gms.providerinstaller.dynamite not found.
+11-08 00:34:46.691 18706 18715 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+11-08 00:34:46.702   551   689 E MboOceController: onDataConnectionStateChanged unexpected State: 1
+11-08 00:34:46.705   387   523 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10241 pid=0
+11-08 00:34:46.705   387   523 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10241 => denied (1469 us)
+11-08 00:34:46.706   387   523 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10241 pid=0
+11-08 00:34:46.706   387   523 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10241 => denied (753 us)
+11-08 00:34:46.706   387   441 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10241 pid=7997
+11-08 00:34:46.706   387   441 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10241 => denied (750 us)
+11-08 00:34:46.707   387   441 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10241 pid=7997
+11-08 00:34:46.707   387   441 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10241 => denied (140 us)
+11-08 00:34:46.707   387   523 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10241 pid=0
+11-08 00:34:46.707   387   523 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10241 => denied (860 us)
+11-08 00:34:46.708   551   689 E WifiDataStall: onDataConnectionStateChanged unexpected State: 1
+11-08 00:34:46.740  7997  8013 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+11-08 00:34:46.741  7997  8013 I EGL_emulation: Opening libGLESv2_emulation.so
+11-08 00:34:46.752   551   696 D ConnectivityService: [512 CELLULAR] EVENT_NETWORK_INFO_CHANGED, going from CONNECTING to CONNECTING
+11-08 00:34:46.763   865  8021 D NetworkMonitor/512: checkAndRenewResourceConfig: update captive portal https urls to [https://www.google.com/generate_204]
+11-08 00:34:46.763   865  8021 D NetworkMonitor/512: checkAndRenewResourceConfig: update captive portal http urls to [http://connectivitycheck.gstatic.com/generate_204]
+11-08 00:34:46.763   865  8021 D NetworkMonitor/512: checkAndRenewResourceConfig: update captive portal fallback urls to[http://www.google.com/gen_204, http://play.googleapis.com/generate_204]
+11-08 00:34:46.763   865  8021 D NetworkMonitor: Starting on network 512 with capport HTTPS URL [https://www.google.com/generate_204] and HTTP URL [http://connectivitycheck.gstatic.com/generate_204]
+11-08 00:34:46.796  7997  8013 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+11-08 00:34:46.797  7997  8013 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-08 00:34:46.827   551   696 D ConnectivityService: [512 CELLULAR] EVENT_NETWORK_INFO_CHANGED, going from CONNECTING to DISCONNECTED
+11-08 00:34:46.828   551   696 D ConnectivityService: [512 CELLULAR] disconnected, was satisfying 0
+11-08 00:34:46.835 18706 19603 E WakeLock: GCM_CONN_ALARM ** IS FORCE-RELEASED ON TIMEOUT **
+11-08 00:34:46.841   127   127 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-08 00:34:46.844  7997  8013 I Gralloc4: mapper 4.x is not supported
+11-08 00:34:46.881 18706 18715 W ProviderHelper: Unknown dynamite feature providerinstaller.dynamite
+11-08 00:34:46.883   551   696 D ConnectivityService: NetReassign [no changes] [c 0] [a 0] [i 1]
+11-08 00:34:46.983  7997  8019 I DynamiteModule: Considering local module com.google.android.gms.providerinstaller.dynamite:0 and remote module com.google.android.gms.providerinstaller.dynamite:0
+11-08 00:34:46.985  7997  8019 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module com.google.android.gms.providerinstaller.dynamite found. Local version is 0 and remote version is 0.
+11-08 00:34:46.994   551  2307 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10241 pid=0
+11-08 00:34:46.995   551  2307 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10241 => denied (470 us)
+11-08 00:34:46.995   551  2307 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10241 pid=0
+11-08 00:34:46.995   551  2307 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10241 => denied (34 us)
+11-08 00:34:46.995   551  2307 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10241 pid=0
+11-08 00:34:46.995   551  2307 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10241 => denied (21 us)
+11-08 00:34:46.996  7997  8019 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+11-08 00:34:47.025   551   571 W ziparchive: Unable to open '/data/app/~~ZrSUsYUh0OWIa_sBhX8Iyw==/com.example.trojan0project-vRkD8la7fGnXAy9JpO1eEw==/base.dm': No such file or directory
+11-08 00:34:47.036   551   571 I ActivityTaskManager: Displayed com.example.trojan0project/.EventActivity for user 0: +1s652ms
+11-08 00:34:47.076 18706 18715 I FontLog : (REDACTED) Received query %s, URI %s
+11-08 00:34:47.077 18706 18715 I FontLog : (REDACTED) Query [%s] resolved to %s
+11-08 00:34:47.104 18706 18715 I FontLog : (REDACTED) Fetch %s end status %s
+11-08 00:34:47.117   551   660 I ImeTracker: com.example.trojan0project:39d2f6a9: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-08 00:34:47.117   551   660 I ImeTracker: com.example.trojan0project:39d2f6a9: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-08 00:34:47.146 18706 18715 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+11-08 00:34:47.171 20206 20206 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3086
+11-08 00:34:47.173 18706 18715 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+11-08 00:34:47.178 20206 20206 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2155 repeatCheckTimes = 0, locked = false
+11-08 00:34:47.193 20206 20206 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1899 onStartInput(EditorInfo{EditorInfo{packageName=com.example.trojan0project, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-08 00:34:47.195 20206 20206 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2155 repeatCheckTimes = 1, locked = false
+11-08 00:34:47.196 20206 20206 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():342 EmojiCompat.init() was never called.
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at asi.s(PG:6)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at awh.b(PG:13)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at jcq.b(PG:2)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at jcq.c(PG:4)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at jcq.f(PG:3)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at jvl.onStartInput(PG:466)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3390)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:863)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:892)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:232)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:317)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+11-08 00:34:47.198 20206 20206 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+11-08 00:34:47.237  7997  8018 W .trojan0project: Verification of com.google.firebase.database.collection.ImmutableSortedMap com.google.firebase.database.collection.ImmutableSortedMap$Builder.buildFrom(java.util.List, java.util.Map, com.google.firebase.database.collection.ImmutableSortedMap$Builder$KeyTranslator, java.util.Comparator) took 100.454ms (179.18 bytecodes/s) (2696B approximate peak alloc)
+11-08 00:34:47.243  7997  8019 D nativeloader: Configuring clns-10 for other apk /system/framework/com.android.media.remotedisplay.jar. target_sdk_version=35, uses_libraries=ALL, library_path=/data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/lib/arm64:/data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+11-08 00:34:47.284 20206 20206 W NotificationCenter: NotificationCenter$NotificationQueue.notifyOnExecutor():883 Heavy notify work detected on UI thread: [jwc->iys] takes 83ms
+11-08 00:34:47.313   788   937 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@98a3c6f
+11-08 00:34:47.324   551  2309 W InputManager-JNI: Input channel object '34d946b Splash Screen com.example.trojan0project (client)' was disposed without first being removed with the input manager!
+11-08 00:34:47.328  7997  8019 D nativeloader: Configuring clns-11 for other apk /system/framework/com.android.location.provider.jar. target_sdk_version=35, uses_libraries=ALL, library_path=/data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/lib/arm64:/data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+11-08 00:34:47.339  7997  8019 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+11-08 00:34:47.344  7997  8019 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+11-08 00:34:47.429  7997  8019 W .trojan0project: Loading /data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/oat/arm64/base.odex non-executable as it requires an image which we failed to load
+11-08 00:34:47.441 18706 18715 I FontLog : (REDACTED) Received query %s, URI %s
+11-08 00:34:47.442 18706 18715 I FontLog : (REDACTED) Query [%s] resolved to %s
+11-08 00:34:47.445 18706 18715 I FontLog : (REDACTED) Fetch %s end status %s
+11-08 00:34:47.507  7997  8019 D nativeloader: Configuring clns-12 for other apk /data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/lib/arm64:/data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+11-08 00:34:47.619 18706 18715 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+11-08 00:34:47.623  7997  8019 W ProviderInstaller: Failed to report request stats: com.google.android.gms.common.security.ProviderInstallerImpl.reportRequestStats [class android.content.Context, long, long]
+11-08 00:34:47.761 31713 31754 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 2Mbps, Tx Link speed: 2Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+11-08 00:34:47.764 25023 25100 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[e0de764d-22c3]>Handler" thread_id=148 ]
+11-08 00:34:47.767 25023 25094 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=142 ]
+11-08 00:34:47.773 18706 18715 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-08 00:34:47.780 18706 18715 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-08 00:34:47.781 25023 25100 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=148 ]
+11-08 00:34:47.907  7997  8019 D nativeloader: Load /data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/base.apk!/lib/arm64-v8a/libconscrypt_gmscore_jni.so using ns clns-12 from class loader (caller=/data/app/~~5sGgloWgUy-_oP0m2kax7g==/com.google.android.gms-KTIyGPpmT4eFQ_lySjsd1A==/base.apk!classes3.dex): ok
+11-08 00:34:47.917  7997  8019 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 305 native methods...
+11-08 00:34:48.025  7997  8031 W .trojan0project: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (unsupported, reflection, allowed)
+11-08 00:34:48.047  7997  8031 I ejky.a  : Unable to retrieve flag snapshot for com.google.android.gms.providerinstaller#com.google.android.gms, using defaults.
+11-08 00:34:48.051  7997  8019 W .trojan0project: Accessing hidden method Ljava/security/spec/ECParameterSpec;->getCurveName()Ljava/lang/String; (unsupported, reflection, allowed)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: Failed to get service from broker.
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3242)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Parcel.createException(Parcel.java:3226)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3209)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3151)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at amxe.a(:com.google.android.gms@244336035@24.43.36 (260400-691491885):36)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at amvl.z(:com.google.android.gms@244336035@24.43.36 (260400-691491885):143)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at amcs.run(:com.google.android.gms@244336035@24.43.36 (260400-691491885):54)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Handler.handleCallback(Handler.java:959)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Handler.dispatchMessage(Handler.java:100)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at bskq.mC(:com.google.android.gms@244336035@24.43.36 (260400-691491885):1)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at bskq.dispatchMessage(:com.google.android.gms@244336035@24.43.36 (260400-691491885):5)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Looper.loopOnce(Looper.java:232)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.Looper.loop(Looper.java:317)
+11-08 00:34:48.088  7997  8030 E GoogleApiManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: Failed to register com.google.android.gms.providerinstaller#com.google.android.gms
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: ejlj: 17: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null}
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at ejll.a(:com.google.android.gms@244336035@24.43.36 (260400-691491885):13)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at fcqn.d(:com.google.android.gms@244336035@24.43.36 (260400-691491885):3)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at fcqp.run(:com.google.android.gms@244336035@24.43.36 (260400-691491885):130)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at fcsi.execute(:com.google.android.gms@244336035@24.43.36 (260400-691491885):1)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at fcqq.h(:com.google.android.gms@244336035@24.43.36 (260400-691491885):1)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at fcqq.l(:com.google.android.gms@244336035@24.43.36 (260400-691491885):101)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at fcqq.p(:com.google.android.gms@244336035@24.43.36 (260400-691491885):19)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at ebqt.hE(:com.google.android.gms@244336035@24.43.36 (260400-691491885):35)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at drdz.run(:com.google.android.gms@244336035@24.43.36 (260400-691491885):14)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at fcsi.execute(:com.google.android.gms@244336035@24.43.36 (260400-691491885):1)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at drea.b(:com.google.android.gms@244336035@24.43.36 (260400-691491885):18)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at drep.b(:com.google.android.gms@244336035@24.43.36 (260400-691491885):36)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at drer.c(:com.google.android.gms@244336035@24.43.36 (260400-691491885):26)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amaa.c(:com.google.android.gms@244336035@24.43.36 (260400-691491885):9)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amcq.q(:com.google.android.gms@244336035@24.43.36 (260400-691491885):48)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amcq.d(:com.google.android.gms@244336035@24.43.36 (260400-691491885):10)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amcq.g(:com.google.android.gms@244336035@24.43.36 (260400-691491885):211)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amcq.onConnectionFailed(:com.google.android.gms@244336035@24.43.36 (260400-691491885):2)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amcs.run(:com.google.android.gms@244336035@24.43.36 (260400-691491885):82)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at android.os.Handler.handleCallback(Handler.java:959)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at android.os.Handler.dispatchMessage(Handler.java:100)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at bskq.mC(:com.google.android.gms@244336035@24.43.36 (260400-691491885):1)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at bskq.dispatchMessage(:com.google.android.gms@244336035@24.43.36 (260400-691491885):5)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at android.os.Looper.loopOnce(Looper.java:232)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at android.os.Looper.loop(Looper.java:317)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: Caused by: alys: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null}
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amux.a(:com.google.android.gms@244336035@24.43.36 (260400-691491885):15)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amad.a(:com.google.android.gms@244336035@24.43.36 (260400-691491885):1)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	at amaa.c(:com.google.android.gms@244336035@24.43.36 (260400-691491885):5)
+11-08 00:34:48.104  7997  8029 W CondFlagRegistrar: 	... 12 more
+11-08 00:34:48.112  7997  8019 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+11-08 00:34:48.141   551  1831 D ConnectivityService: requestNetwork for uid/pid:10241/7997 activeRequest: null callbackRequest: 2821 [NetworkRequest [ REQUEST id=2822, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+11-08 00:34:48.143   551   689 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=2822, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:48.149   551   689 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=2822, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:48.149   551   689 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=2822, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:48.149   551   689 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=2822, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10241 RequestorUid: 10241 RequestorPkg: com.example.trojan0project UnderlyingNetworks: Null] ]
+11-08 00:34:48.150   551   696 D ConnectivityService: NetReassign [2822 : null → 100] [c 0] [a 0] [i 8]
+11-08 00:34:48.156   551   913 D ConnectivityService: registerNetworkAgent NetworkAgentInfo{network{513}  handle{2206723919885}  ni{MOBILE[HSPA] CONNECTING extra: fast.t-mobile.com} created=2024-11-08T07:34:48.156Z Score(Policies :  ; KeepConnected : 0)   lp{{LinkAddresses: [ ] DnsAddresses: [ ] Domains: null MTU: 0 Routes: [ ]}}  nc{[ Transports: CELLULAR Capabilities: MMS&SUPL&IA&XCAP&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=14Kbps LinkDnBandwidth>=14Kbps Specifier: <TelephonyNetworkSpecifier [mSubId = 1]> SubscriptionIds: {1} UnderlyingNetworks: Null]}  factorySerialNumber=3}
+11-08 00:34:48.166   551   696 D ConnectivityService: [513 CELLULAR] EVENT_NETWORK_INFO_CHANGED, going from CONNECTING to CONNECTING
+11-08 00:34:48.169   865  8034 D NetworkMonitor/513: checkAndRenewResourceConfig: update captive portal https urls to [https://www.google.com/generate_204]
+11-08 00:34:48.171   551   689 E WifiDataStall: onDataConnectionStateChanged unexpected State: 1
+11-08 00:34:48.171   551   689 E MboOceController: onDataConnectionStateChanged unexpected State: 1
+11-08 00:34:48.171   865  8034 D NetworkMonitor/513: checkAndRenewResourceConfig: update captive portal http urls to [http://connectivitycheck.gstatic.com/generate_204]
+11-08 00:34:48.172   865  8034 D NetworkMonitor/513: checkAndRenewResourceConfig: update captive portal fallback urls to[http://www.google.com/gen_204, http://play.googleapis.com/generate_204]
+11-08 00:34:48.172   865  8034 D NetworkMonitor: Starting on network 513 with capport HTTPS URL [https://www.google.com/generate_204] and HTTP URL [http://connectivitycheck.gstatic.com/generate_204]
+11-08 00:34:48.184   551   696 D ConnectivityService: [513 CELLULAR] EVENT_NETWORK_INFO_CHANGED, going from CONNECTING to DISCONNECTED
+11-08 00:34:48.184   551   696 D ConnectivityService: [513 CELLULAR] disconnected, was satisfying 0
+11-08 00:34:48.212   551   696 D ConnectivityService: NetReassign [no changes] [c 0] [a 0] [i 0]
+11-08 00:34:48.219  7997  8013 D EGL_emulation: app_time_stats: avg=238.70ms min=2.37ms max=634.13ms count=5
+11-08 00:34:48.340   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-08 00:34:48.340   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-08 00:34:48.340   551   696 D InetDiagMessage: Destroyed live tcp sockets for uids={10189} in 0ms
+11-08 00:34:48.342   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-08 00:34:48.343   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-08 00:34:48.344   551   696 D InetDiagMessage: Destroyed live tcp sockets for uids={20189} in 1ms
+11-08 00:34:48.612   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-08 00:34:48.613   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-08 00:34:48.613   551   696 D InetDiagMessage: Destroyed live tcp sockets for uids={10146} in 0ms
+11-08 00:34:48.828  7997  8001 I .trojan0project: Compiler allocated 4206KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+11-08 00:34:48.968   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-08 00:34:48.968   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-08 00:34:48.968   551   696 D InetDiagMessage: Destroyed live tcp sockets for uids={10100} in 1ms
+11-08 00:34:49.022  7997  8001 I .trojan0project: Compiler allocated 5250KB to compile void android.view.ViewRootImpl.performTraversals()
+11-08 00:34:49.230   551   580 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:49.280   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-08 00:34:49.281   551   696 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-08 00:34:49.281   551   696 D InetDiagMessage: Destroyed live tcp sockets for uids={10097} in 1ms
+11-08 00:34:50.164  7997  8010 W FileTestStorage: Output properties is not supported.
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: enableTracing failed. You may need to upgrade your androidx.tracing:tracing version
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: java.lang.NoSuchMethodError: No static method forceEnableAppTracing()V in class Landroidx/tracing/Trace; or its super classes (declaration of 'androidx.tracing.Trace' appears in /data/app/~~ZrSUsYUh0OWIa_sBhX8Iyw==/com.example.trojan0project-vRkD8la7fGnXAy9JpO1eEw==/base.apk)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.platform.tracing.AndroidXTracer.enableTracing(AndroidXTracer.java:57)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.platform.tracing.Tracing.<init>(Tracing.java:53)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.platform.tracing.Tracing.<clinit>(Tracing.java:49)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.base.BaseLayerModule.providesTracing(BaseLayerModule.java:190)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.base.BaseLayerModule_ProvidesTracingFactory.providesTracing(BaseLayerModule_ProvidesTracingFactory.java:37)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.base.BaseLayerModule_ProvidesTracingFactory.get(BaseLayerModule_ProvidesTracingFactory.java:29)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.base.BaseLayerModule_ProvidesTracingFactory.get(BaseLayerModule_ProvidesTracingFactory.java:11)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.core.internal.deps.dagger.internal.DoubleCheck.get(DoubleCheck.java:47)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.base.IdlingResourceRegistry_Factory.get(IdlingResourceRegistry_Factory.java:34)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.base.IdlingResourceRegistry_Factory.get(IdlingResourceRegistry_Factory.java:12)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.core.internal.deps.dagger.internal.DoubleCheck.get(DoubleCheck.java:47)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.DaggerBaseLayerComponent$BaseLayerComponentImpl.idlingResourceRegistry(DaggerBaseLayerComponent.java:275)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.espresso.Espresso.<clinit>(Espresso.java:64)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at com.example.trojan0project.EventActivityTest.testDeleteQR(EventActivityTest.java:87)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at java.lang.reflect.Method.invoke(Native Method)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+11-08 00:34:50.172  7997  8010 E AndroidXTracer: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+11-08 00:34:50.173  7997  8010 I Tracing : Tracer added: class androidx.test.platform.tracing.AndroidXTracer
+11-08 00:34:50.180  7997  8010 W .trojan0project: Accessing hidden method Landroid/view/ViewConfiguration;->getDoubleTapMinTime()I (unsupported, reflection, allowed)
+11-08 00:34:50.182  7997  8010 D CompatChangeReporter: Compat change id reported: 247079863; UID 10241; state: ENABLED
+11-08 00:34:50.188  7997  8010 D EventInjectionStrategy: Creating injection strategy with input manager.
+11-08 00:34:50.189  7997  8010 W .trojan0project: Accessing hidden method Landroid/hardware/input/InputManager;->getInstance()Landroid/hardware/input/InputManager; (unsupported, reflection, allowed)
+11-08 00:34:50.191  7997  8010 W .trojan0project: Accessing hidden method Landroid/hardware/input/InputManager;->injectInputEvent(Landroid/view/InputEvent;I)Z (unsupported, reflection, allowed)
+11-08 00:34:50.191  7997  8010 W .trojan0project: Accessing hidden field Landroid/hardware/input/InputManager;->INJECT_INPUT_EVENT_MODE_WAIT_FOR_FINISH:I (unsupported, reflection, allowed)
+11-08 00:34:50.197  7997  7997 W .trojan0project: Accessing hidden method Landroid/os/MessageQueue;->next()Landroid/os/Message; (unsupported, reflection, allowed)
+11-08 00:34:50.197  7997  7997 W .trojan0project: Accessing hidden field Landroid/os/MessageQueue;->mMessages:Landroid/os/Message; (unsupported, reflection, allowed)
+11-08 00:34:50.198  7997  7997 W .trojan0project: Accessing hidden method Landroid/os/Message;->recycleUnchecked()V (unsupported, reflection, allowed)
+11-08 00:34:50.200  7997  7997 I ViewInteraction: Performing 'load adapter data' action on view view.getId() is <2131361866/com.example.trojan0project:id/admin_events_list>
+11-08 00:34:50.207  7997  8010 I UiAutomation: Initialized for user 0 on display 0
+11-08 00:34:50.223  1319 24632 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+11-08 00:34:50.227  1319  1582 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-08 00:34:50.241   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.243   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.244   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.245  1319  1582 I AiAiEcho: EchoTargets:
+11-08 00:34:50.245  1319  1582 I AiAiEcho: Filtered by AiAi flag check:
+11-08 00:34:50.245  1319  1582 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-08 00:34:50.245  1319  1582 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-08 00:34:50.246  1319  1582 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-08 00:34:50.246  1319  1582 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-08 00:34:50.246  1319  1582 I AiAiEcho: EchoTargets:
+11-08 00:34:50.246  1319  1582 I AiAiEcho: Filtered by AiAi flag check:
+11-08 00:34:50.246  1319  1582 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-08 00:34:50.246  1319  1582 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-08 00:34:50.246  1319  1582 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-08 00:34:50.246  1319  1582 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-08 00:34:50.246  1319  1582 I AiAiEcho: EchoTargets:
+11-08 00:34:50.246  1319  1582 I AiAiEcho: Filtered by AiAi flag check:
+11-08 00:34:50.246  1319  1582 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-08 00:34:50.246  1319  1582 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-08 00:34:50.246  1319  1582 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-08 00:34:50.252   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.255   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.255   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.259  6058  6091 I A       : NGA disabled due to not being eligible.
+11-08 00:34:50.265   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.266   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.266   551   551 W IPCThreadState: Sending oneway calls to frozen process.
+11-08 00:34:50.274  7997  7997 D DeviceCapture: Found 1 global views to redraw
+11-08 00:34:50.275  1319  1582 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-08 00:34:50.277  1319  1582 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-08 00:34:50.277  1319  1582 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface media_data_manager with targets# 0 (types=[])
+11-08 00:34:50.278   788   788 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-08 00:34:50.278   788   788 D SsMediaDataProvider: Forwarding Smartspace updates []
+11-08 00:34:50.286  7997  8013 D EGL_emulation: app_time_stats: avg=135.28ms min=3.94ms max=1714.37ms count=15
+11-08 00:34:50.287  7997  7997 I forceRedraw: FrameCommitCallback complete
+11-08 00:34:50.353  7997  7997 I DeviceCapture: got bitmap, returning
+11-08 00:34:50.354  7997  8010 D FileTestStorage: openOutputFile from /sdcard/Android/media/com.example.trojan0project/additional_test_output/view-op-error-1.png
+11-08 00:34:50.366  1311  1691 W MediaProvider: isAppCloneUserPair for user 0: false
+11-08 00:34:50.423 18706  7826 I NetworkScheduler.Stats: (REDACTED) Task %s/%s started execution. cause:%s exec_start_elapsed_seconds: %s
+11-08 00:34:50.429 18706  7826 I NetworkScheduler.Stats: (REDACTED) Task %s/%s finished executing. cause:%s result: %s elapsed_millis: %s uptime_millis: %s exec_start_elapsed_seconds: %s
+11-08 00:34:50.477   551  2309 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@7e6c7e79 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+11-08 00:34:50.499  7997  7997 D LifecycleMonitor: Lifecycle status change: com.example.trojan0project.EventActivity@d5ace9 in: PAUSED
+11-08 00:34:50.500  7997  7997 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.example.trojan0project.EventActivity@d5ace9
+11-08 00:34:50.507   551   574 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@7e6c7e79 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+11-08 00:34:50.530   387   387 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+11-08 00:34:50.538  1071  1071 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=348, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=com.example.trojan0project.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity }
+11-08 00:34:50.562   324   324 D Zygote  : Forked child process 8047
+11-08 00:34:50.577  8047  8047 I an0project.test: Late-enabling -Xcheck:jni
+11-08 00:34:50.622  8047  8047 I an0project.test: Using CollectorTypeCMC GC.
+11-08 00:34:50.633   389   410 I adbd    : jdwp connection from 8047
+11-08 00:34:50.683  8047  8047 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+11-08 00:34:50.711  8047  8047 D CompatChangeReporter: Compat change id reported: 242716250; UID 10242; state: ENABLED
+11-08 00:34:50.728  8047  8047 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+11-08 00:34:50.739  8047  8047 D nativeloader: Configuring clns-7 for other apk /system/framework/android.test.mock.jar. target_sdk_version=34, uses_libraries=ALL, library_path=/data/app/~~BO36WY3jTX4aZsn08OaHXw==/com.example.trojan0project.test-vKp4g0k2t_U9_BsdIB4kWQ==/lib/arm64, permitted_path=/data:/mnt/expand:/data/user/0/com.example.trojan0project.test
+11-08 00:34:50.742  8047  8047 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+11-08 00:34:50.745  8047  8047 D nativeloader: Configuring clns-8 for other apk /system/framework/android.test.runner.jar. target_sdk_version=34, uses_libraries=ALL, library_path=/data/app/~~BO36WY3jTX4aZsn08OaHXw==/com.example.trojan0project.test-vKp4g0k2t_U9_BsdIB4kWQ==/lib/arm64, permitted_path=/data:/mnt/expand:/data/user/0/com.example.trojan0project.test
+11-08 00:34:50.750  7997  8061 D ProfileInstaller: Installing profile for com.example.trojan0project
+11-08 00:34:50.754  8047  8047 W ziparchive: Unable to open '/data/app/~~BO36WY3jTX4aZsn08OaHXw==/com.example.trojan0project.test-vKp4g0k2t_U9_BsdIB4kWQ==/base.dm': No such file or directory
+11-08 00:34:50.755  8047  8047 W ziparchive: Unable to open '/data/app/~~BO36WY3jTX4aZsn08OaHXw==/com.example.trojan0project.test-vKp4g0k2t_U9_BsdIB4kWQ==/base.dm': No such file or directory
+11-08 00:34:50.773 25023 25094 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=142 ]
+11-08 00:34:50.774 25023 25100 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[e0de764d-22c3]>Handler" thread_id=148 ]
+11-08 00:34:50.778 31713 31754 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+11-08 00:34:50.789 25023 25100 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=148 ]
+11-08 00:34:50.792  8047  8047 D nativeloader: Configuring clns-9 for other apk /data/app/~~BO36WY3jTX4aZsn08OaHXw==/com.example.trojan0project.test-vKp4g0k2t_U9_BsdIB4kWQ==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~BO36WY3jTX4aZsn08OaHXw==/com.example.trojan0project.test-vKp4g0k2t_U9_BsdIB4kWQ==/lib/arm64, permitted_path=/data:/mnt/expand:/data/user/0/com.example.trojan0project.test
+11-08 00:34:50.805  8047  8047 V GraphicsEnvironment: Currently set values for:
+11-08 00:34:50.805  8047  8047 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+11-08 00:34:50.805  8047  8047 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+11-08 00:34:50.805  8047  8047 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+11-08 00:34:50.805  8047  8047 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+11-08 00:34:50.882  8047  8047 W HWUI    : Unknown dataspace 0
+11-08 00:34:50.907   387   441 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10242 pid=0
+11-08 00:34:50.907   387   441 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10242 => denied (105 us)
+11-08 00:34:50.907   387   441 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10242 pid=0
+11-08 00:34:50.907   387   441 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10242 => denied (349 us)
+11-08 00:34:50.907   387   441 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10242 pid=0
+11-08 00:34:50.907   387   441 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10242 => denied (52 us)
+11-08 00:34:50.908  8047  8063 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+11-08 00:34:50.908  8047  8063 I EGL_emulation: Opening libGLESv2_emulation.so
+11-08 00:34:50.926  8047  8063 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+11-08 00:34:50.927  8047  8063 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-08 00:34:50.936   127   127 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-08 00:34:50.936  8047  8063 I Gralloc4: mapper 4.x is not supported
+11-08 00:34:50.961   551   913 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10242 pid=0
+11-08 00:34:50.962   551   913 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10242 => denied (146 us)
+11-08 00:34:50.962   551   913 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10242 pid=0
+11-08 00:34:50.962   551   913 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10242 => denied (18 us)
+11-08 00:34:50.962   551   913 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10242 pid=0
+11-08 00:34:50.962   551   913 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10242 => denied (18 us)
+11-08 00:34:50.974   551   571 W ziparchive: Unable to open '/data/app/~~BO36WY3jTX4aZsn08OaHXw==/com.example.trojan0project.test-vKp4g0k2t_U9_BsdIB4kWQ==/base.dm': No such file or directory
+11-08 00:34:50.983   551   571 I ActivityTaskManager: Displayed com.example.trojan0project.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 0: +501ms
+11-08 00:34:51.013  1071  1071 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=290, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=com.example.listycity/.MainActivity }
+11-08 00:34:51.056 18706 18715 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-08 00:34:51.057 18706 18715 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-08 00:34:51.198  7997  7997 D VRI[EventActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-08 00:34:51.237   551   660 I ImeTracker: com.example.listycity:38205747: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-08 00:34:51.238   551   660 I ImeTracker: com.example.listycity:38205747: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-08 00:34:51.244  7997  7997 D LifecycleMonitor: Lifecycle status change: com.example.trojan0project.EventActivity@d5ace9 in: STOPPED
+11-08 00:34:51.244  7997  7997 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.example.trojan0project.EventActivity@d5ace9
+11-08 00:34:51.245 20206 20206 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3086
+11-08 00:34:51.257 20206 20206 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2155 repeatCheckTimes = 0, locked = false
+11-08 00:34:51.257 20206 20206 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1899 onStartInput(EditorInfo{EditorInfo{packageName=com.example.listycity, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-08 00:34:51.260  7997  7997 D LifecycleMonitor: Lifecycle status change: com.example.trojan0project.EventActivity@d5ace9 in: DESTROYED
+11-08 00:34:51.260  7997  7997 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+11-08 00:34:51.262  7997  8010 E TestRunner: failed: testDeleteQR(com.example.trojan0project.EventActivityTest)
+11-08 00:34:51.268  7997  8010 E TestRunner: ----- begin exception -----
+11-08 00:34:51.268  7997  8010 E TestRunner: androidx.test.espresso.PerformException: Error performing 'load adapter data' on view 'Animations or transitions are enabled on the target device.
+11-08 00:34:51.268  7997  8010 E TestRunner: For more info check: https://developer.android.com/training/testing/espresso/setup#set-up-environment
+11-08 00:34:51.268  7997  8010 E TestRunner:
+11-08 00:34:51.268  7997  8010 E TestRunner: view.getId() is <2131361866/com.example.trojan0project:id/admin_events_list>'.
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.PerformException$Builder.build(PerformException.java:86)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:56)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:31)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.base.DefaultFailureHandler$TypedFailureHandler.handle(DefaultFailureHandler.java:158)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.base.DefaultFailureHandler.handle(DefaultFailureHandler.java:120)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction.waitForAndHandleInteractionResults(ViewInteraction.java:385)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction.desugaredPerform(ViewInteraction.java:212)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction.perform(ViewInteraction.java:140)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.DataInteraction$DisplayDataMatcher.lambda$new$0(DataInteraction.java:213)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.DataInteraction$DisplayDataMatcher$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:229)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:207)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.DataInteraction$DisplayDataMatcher.displayDataMatcher(DataInteraction.java:277)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.DataInteraction.makeTargetMatcher(DataInteraction.java:152)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.espresso.DataInteraction.perform(DataInteraction.java:137)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at com.example.trojan0project.EventActivityTest.testDeleteQR(EventActivityTest.java:90)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+11-08 00:34:51.268  7997  8010 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+11-08 00:34:51.269  7997  8010 E TestRunner: Caused by: java.lang.RuntimeException: No data found matching: ANYTHING contained values: <[]>
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.espresso.action.AdapterDataLoaderAction.perform(AdapterDataLoaderAction.java:107)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction$SingleExecutionViewAction.perform(ViewInteraction.java:429)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction.doPerform(ViewInteraction.java:297)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction.access$300(ViewInteraction.java:70)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:193)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:182)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at android.os.Handler.handleCallback(Handler.java:959)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at android.os.Handler.dispatchMessage(Handler.java:100)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at android.os.Looper.loopOnce(Looper.java:232)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at android.os.Looper.loop(Looper.java:317)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+11-08 00:34:51.269  7997  8010 E TestRunner: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+11-08 00:34:51.269  7997  8010 E TestRunner: ----- end exception -----
+11-08 00:34:51.271  7997  8010 I TestRunner: finished: testDeleteQR(com.example.trojan0project.EventActivityTest)

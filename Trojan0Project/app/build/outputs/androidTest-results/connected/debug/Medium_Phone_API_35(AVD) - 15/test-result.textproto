@@ -1,0 +1,73 @@
+# 2024-11-08T07:35:34.073552Z:
+test_suite_meta_data {
+  scheduled_test_case_count: 1
+}
+test_status: FAILED
+test_result {
+  test_case {
+    test_class: "EventActivityTest"
+    test_package: "com.example.trojan0project"
+    test_method: "testDeleteQR"
+    start_time {
+      seconds: 1731051326
+      nanos: 916000000
+    }
+    end_time {
+      seconds: 1731051332
+      nanos: 854000000
+    }
+  }
+  test_status: FAILED
+  error {
+    error_message: "androidx.test.espresso.PerformException: Error performing \'load adapter data\' on view \'Animations or transitions are enabled on the target device.\nFor more info check: https://developer.android.com/training/testing/espresso/setup#set-up-environment\n\nview.getId() is <2131361866/com.example.trojan0project:id/admin_events_list>\'.\nat androidx.test.espresso.PerformException$Builder.build(PerformException.java:86)\nat androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:56)\nat androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:31)\nat androidx.test.espresso.base.DefaultFailureHandler$TypedFailureHandler.handle(DefaultFailureHandler.java:158)\nat androidx.test.espresso.base.DefaultFailureHandler.handle(DefaultFailureHandler.java:120)\nat androidx.test.espresso.ViewInteraction.waitForAndHandleInteractionResults(ViewInteraction.java:385)\nat androidx.test.espresso.ViewInteraction.desugaredPerform(ViewInteraction.java:212)\nat androidx.test.espresso.ViewInteraction.perform(ViewInteraction.java:140)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.lambda$new$0(DataInteraction.java:213)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:229)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:207)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.displayDataMatcher(DataInteraction.java:277)\nat androidx.test.espresso.DataInteraction.makeTargetMatcher(DataInteraction.java:152)\nat androidx.test.espresso.DataInteraction.perform(DataInteraction.java:137)\nat com.example.trojan0project.EventActivityTest.testDeleteQR(EventActivityTest.java:90)\n... 33 trimmed\nCaused by: java.lang.RuntimeException: No data found matching: ANYTHING contained values: <[]>\nat androidx.test.espresso.action.AdapterDataLoaderAction.perform(AdapterDataLoaderAction.java:107)\nat androidx.test.espresso.ViewInteraction$SingleExecutionViewAction.perform(ViewInteraction.java:429)\nat androidx.test.espresso.ViewInteraction.doPerform(ViewInteraction.java:297)\nat androidx.test.espresso.ViewInteraction.access$300(ViewInteraction.java:70)\nat androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:193)\nat androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:182)\nat java.util.concurrent.FutureTask.run(FutureTask.java:264)\nat android.os.Handler.handleCallback(Handler.java:959)\nat android.os.Handler.dispatchMessage(Handler.java:100)\nat android.os.Looper.loopOnce(Looper.java:232)\nat android.os.Looper.loop(Looper.java:317)\nat android.app.ActivityThread.main(ActivityThread.java:8705)\nat java.lang.reflect.Method.invoke(Native Method)\nat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)\nat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)\n"
+    error_type: "java.lang.RuntimeException"
+    stack_trace: "androidx.test.espresso.PerformException: Error performing \'load adapter data\' on view \'Animations or transitions are enabled on the target device.\nFor more info check: https://developer.android.com/training/testing/espresso/setup#set-up-environment\n\nview.getId() is <2131361866/com.example.trojan0project:id/admin_events_list>\'.\nat androidx.test.espresso.PerformException$Builder.build(PerformException.java:86)\nat androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:56)\nat androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:31)\nat androidx.test.espresso.base.DefaultFailureHandler$TypedFailureHandler.handle(DefaultFailureHandler.java:158)\nat androidx.test.espresso.base.DefaultFailureHandler.handle(DefaultFailureHandler.java:120)\nat androidx.test.espresso.ViewInteraction.waitForAndHandleInteractionResults(ViewInteraction.java:385)\nat androidx.test.espresso.ViewInteraction.desugaredPerform(ViewInteraction.java:212)\nat androidx.test.espresso.ViewInteraction.perform(ViewInteraction.java:140)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.lambda$new$0(DataInteraction.java:213)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:229)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:207)\nat androidx.test.espresso.DataInteraction$DisplayDataMatcher.displayDataMatcher(DataInteraction.java:277)\nat androidx.test.espresso.DataInteraction.makeTargetMatcher(DataInteraction.java:152)\nat androidx.test.espresso.DataInteraction.perform(DataInteraction.java:137)\nat com.example.trojan0project.EventActivityTest.testDeleteQR(EventActivityTest.java:90)\n... 33 trimmed\nCaused by: java.lang.RuntimeException: No data found matching: ANYTHING contained values: <[]>\nat androidx.test.espresso.action.AdapterDataLoaderAction.perform(AdapterDataLoaderAction.java:107)\nat androidx.test.espresso.ViewInteraction$SingleExecutionViewAction.perform(ViewInteraction.java:429)\nat androidx.test.espresso.ViewInteraction.doPerform(ViewInteraction.java:297)\nat androidx.test.espresso.ViewInteraction.access$300(ViewInteraction.java:70)\nat androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:193)\nat androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:182)\nat java.util.concurrent.FutureTask.run(FutureTask.java:264)\nat android.os.Handler.handleCallback(Handler.java:959)\nat android.os.Handler.dispatchMessage(Handler.java:100)\nat android.os.Looper.loopOnce(Looper.java:232)\nat android.os.Looper.loop(Looper.java:317)\nat android.app.ActivityThread.main(ActivityThread.java:8705)\nat java.lang.reflect.Method.invoke(Native Method)\nat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)\nat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)\n"
+  }
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/logcat-com.example.trojan0project.EventActivityTest-testDeleteQR.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/cpuinfo"
+    }
+  }
+}
+output_artifact {
+  label {
+    label: "test-results.log"
+    namespace: "com.google.testing.platform.runtime.android.driver.AndroidInstrumentationDriver"
+  }
+  source_path {
+    path: "/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/testlog/test-results.log"
+  }
+  type: TEST_DATA
+  mime_type: "text/plain"
+}

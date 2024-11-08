@@ -41,7 +41,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
 
     private ListView eventAdminList; //create reference to the Listview
     private ArrayAdapter<Event> eventAdminAdapter;
-    private ArrayList<Event> dataList;
+    public ArrayList<Event> dataList;
     private Event selectedEvent = null;
     private FirebaseFirestore db;
     private ImageView qrCodeImageView;

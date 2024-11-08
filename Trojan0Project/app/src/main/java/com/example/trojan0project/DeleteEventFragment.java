@@ -76,6 +76,7 @@ public class DeleteEventFragment extends DialogFragment {
             Intent intent = new Intent(getContext(), DisplayEventDetails.class);
 
             intent.putExtra("event_title", selectedEvent.getEventName());
+            intent.putExtra("clicked_event",selectedEvent);
             startActivity(intent);
                 dismiss();
         });

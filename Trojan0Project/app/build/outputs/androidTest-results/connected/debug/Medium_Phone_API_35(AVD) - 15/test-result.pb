@@ -1,0 +1,95 @@
+
+ç6
+Y
+EventActivityTestcom.example.trojan0projecttestDeleteQR2æ˛∂πÄö‰¥:ƒ˛∂πÄÉúóÍ.
+§androidx.test.espresso.PerformException: Error performing 'load adapter data' on view 'Animations or transitions are enabled on the target device.
+For more info check: https://developer.android.com/training/testing/espresso/setup#set-up-environment
+
+view.getId() is <2131361866/com.example.trojan0project:id/admin_events_list>'.
+at androidx.test.espresso.PerformException$Builder.build(PerformException.java:86)
+at androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:56)
+at androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:31)
+at androidx.test.espresso.base.DefaultFailureHandler$TypedFailureHandler.handle(DefaultFailureHandler.java:158)
+at androidx.test.espresso.base.DefaultFailureHandler.handle(DefaultFailureHandler.java:120)
+at androidx.test.espresso.ViewInteraction.waitForAndHandleInteractionResults(ViewInteraction.java:385)
+at androidx.test.espresso.ViewInteraction.desugaredPerform(ViewInteraction.java:212)
+at androidx.test.espresso.ViewInteraction.perform(ViewInteraction.java:140)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.lambda$new$0(DataInteraction.java:213)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:229)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:207)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.displayDataMatcher(DataInteraction.java:277)
+at androidx.test.espresso.DataInteraction.makeTargetMatcher(DataInteraction.java:152)
+at androidx.test.espresso.DataInteraction.perform(DataInteraction.java:137)
+at com.example.trojan0project.EventActivityTest.testDeleteQR(EventActivityTest.java:90)
+... 33 trimmed
+Caused by: java.lang.RuntimeException: No data found matching: ANYTHING contained values: <[]>
+at androidx.test.espresso.action.AdapterDataLoaderAction.perform(AdapterDataLoaderAction.java:107)
+at androidx.test.espresso.ViewInteraction$SingleExecutionViewAction.perform(ViewInteraction.java:429)
+at androidx.test.espresso.ViewInteraction.doPerform(ViewInteraction.java:297)
+at androidx.test.espresso.ViewInteraction.access$300(ViewInteraction.java:70)
+at androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:193)
+at androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:182)
+at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at android.os.Handler.handleCallback(Handler.java:959)
+at android.os.Handler.dispatchMessage(Handler.java:100)
+at android.os.Looper.loopOnce(Looper.java:232)
+at android.os.Looper.loop(Looper.java:317)
+at android.app.ActivityThread.main(ActivityThread.java:8705)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+java.lang.RuntimeException§androidx.test.espresso.PerformException: Error performing 'load adapter data' on view 'Animations or transitions are enabled on the target device.
+For more info check: https://developer.android.com/training/testing/espresso/setup#set-up-environment
+
+view.getId() is <2131361866/com.example.trojan0project:id/admin_events_list>'.
+at androidx.test.espresso.PerformException$Builder.build(PerformException.java:86)
+at androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:56)
+at androidx.test.espresso.base.PerformExceptionHandler.handleSafely(PerformExceptionHandler.java:31)
+at androidx.test.espresso.base.DefaultFailureHandler$TypedFailureHandler.handle(DefaultFailureHandler.java:158)
+at androidx.test.espresso.base.DefaultFailureHandler.handle(DefaultFailureHandler.java:120)
+at androidx.test.espresso.ViewInteraction.waitForAndHandleInteractionResults(ViewInteraction.java:385)
+at androidx.test.espresso.ViewInteraction.desugaredPerform(ViewInteraction.java:212)
+at androidx.test.espresso.ViewInteraction.perform(ViewInteraction.java:140)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.lambda$new$0(DataInteraction.java:213)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:229)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.<init>(DataInteraction.java:207)
+at androidx.test.espresso.DataInteraction$DisplayDataMatcher.displayDataMatcher(DataInteraction.java:277)
+at androidx.test.espresso.DataInteraction.makeTargetMatcher(DataInteraction.java:152)
+at androidx.test.espresso.DataInteraction.perform(DataInteraction.java:137)
+at com.example.trojan0project.EventActivityTest.testDeleteQR(EventActivityTest.java:90)
+... 33 trimmed
+Caused by: java.lang.RuntimeException: No data found matching: ANYTHING contained values: <[]>
+at androidx.test.espresso.action.AdapterDataLoaderAction.perform(AdapterDataLoaderAction.java:107)
+at androidx.test.espresso.ViewInteraction$SingleExecutionViewAction.perform(ViewInteraction.java:429)
+at androidx.test.espresso.ViewInteraction.doPerform(ViewInteraction.java:297)
+at androidx.test.espresso.ViewInteraction.access$300(ViewInteraction.java:70)
+at androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:193)
+at androidx.test.espresso.ViewInteraction$1.call(ViewInteraction.java:182)
+at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at android.os.Handler.handleCallback(Handler.java:959)
+at android.os.Handler.dispatchMessage(Handler.java:100)
+at android.os.Looper.loopOnce(Looper.java:232)
+at android.os.Looper.loop(Looper.java:317)
+at android.app.ActivityThread.main(ActivityThread.java:8705)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+"Ú
+
+logcatandroid‹
+Ÿ/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/logcat-com.example.trojan0project.EventActivityTest-testDeleteQR.txt"¡
+
+device-infoandroid¶
+£/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/device-info.pb"¬
+
+device-info.meminfoandroidü
+ú/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/meminfo"¬
+
+device-info.cpuinfoandroidü
+ú/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/cpuinfo*¶
+c
+test-results.logOcom.google.testing.platform.runtime.android.driver.AndroidInstrumentationDriver∞
+≠/Users/Farza2/AndroidStudioProjects/trojan0_horse/Trojan0Project/app/build/outputs/androidTest-results/connected/debug/Medium_Phone_API_35(AVD) - 15/testlog/test-results.log 2
+text/plain

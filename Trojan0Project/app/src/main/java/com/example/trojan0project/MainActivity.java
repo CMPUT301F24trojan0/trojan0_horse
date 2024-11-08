@@ -71,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
 
+                    else if ("admin".equals(userType)) {
+                        Intent intent = new Intent(MainActivity.this, EventActivity.class);
+                        intent.putExtra("DEVICE_ID", deviceId);
+                        startActivity(intent);
+                        }
+
                 } else {
                     // Device ID does not exist in Firestore
                     pickRoleText.setVisibility(View.VISIBLE); // Show the pickRoleText

@@ -2,9 +2,13 @@ package com.example.trojan0project;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.graphics.Bitmap;
+import android.util.Base64;
+import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 
-public class Event implements Parcelable{
-
+public class Event implements Parcelable, Serializable{
+    private Bitmap qrCodeBitmap;
     private String eventId;
     private String eventName;
     private double latitude;
@@ -24,6 +28,11 @@ public class Event implements Parcelable{
         this.latitude = latitude;
         this.longitude = longitude;
         this.posterPath = posterPath;
+    }
+
+    public Event(String eventName, Bitmap qrCodeBitmap){
+        this.eventName = eventName;
+        this.qrCodeBitmap = qrCodeBitmap;
     }
 
     // Parcelable constructor
@@ -105,6 +114,10 @@ public class Event implements Parcelable{
 
     public String getQrCodeUrl() {
         return qrCodeUrl;
+    }
+
+    public Bitmap getQrCodeBitmap() {
+        return qrCodeBitmap;
     }
 
     public void setQrCodeUrl(String qrCodeUrl) {

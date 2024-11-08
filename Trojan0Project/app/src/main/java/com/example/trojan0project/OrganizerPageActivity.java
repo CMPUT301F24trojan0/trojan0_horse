@@ -85,6 +85,7 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
         // Set up the Create Event button to navigate to CreateEventActivity
         createEventButton.setOnClickListener(v -> {
             Intent intent = new Intent(OrganizerPageActivity.this, CreateEventActivity.class);
+            intent.putExtra("organizerId", organizerId);
             startActivity(intent);
         });
     }

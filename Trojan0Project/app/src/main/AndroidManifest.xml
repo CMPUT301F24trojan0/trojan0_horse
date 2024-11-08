@@ -33,6 +33,7 @@
         <activity android:name=".JoinWaitlist" />
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
+        <activity android:name=".FacilityActivity" />
 
         <activity
             android:name=".MainActivity"

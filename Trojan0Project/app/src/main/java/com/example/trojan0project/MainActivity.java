@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.welcome);
 
         // Initialize Firestore
         FirebaseApp.initializeApp(this);
@@ -45,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Reference UI elements
         logoText = findViewById(R.id.logoText);
-        pickRoleText = findViewById(R.id.pickRoleText);
-        userButton = findViewById(R.id.userButton);
-        organizerButton = findViewById(R.id.organizerButton);
 
         // Check if the device ID exists in Firestore
         getDeviceIdAndCheck();
@@ -88,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                 } else {
+                    setContentView(R.layout.activity_main);
+
+                    pickRoleText = findViewById(R.id.pickRoleText);
+                    userButton = findViewById(R.id.userButton);
+                    organizerButton = findViewById(R.id.organizerButton);
+
                     // Device ID does not exist in Firestore
                     pickRoleText.setVisibility(View.VISIBLE); // Show the pickRoleText
                     userButton.setEnabled(true);               // Enable the user button

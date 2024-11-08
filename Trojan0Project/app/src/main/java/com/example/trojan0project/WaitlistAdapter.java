@@ -1,3 +1,20 @@
+/**
+ * This adapter helps display a list of profiles in a ListView for the waitlist. It shows each profile's
+ * first name, last name, and email.
+ *
+ * Purpose:
+ * The purpose of this adapter is to manage and display profiles on the waitlist in a ListView. The adapter
+ * takes a list of profiles and shows important information like the first name, last name, and email of each person.
+ * It also includes a method to add new profiles to the waitlist.
+ *
+ * Design Rationale:
+ * This adapter uses the `ArrayAdapter` class for displaying data in a ListView. It keeps the
+ * code for displaying the profiles separate from the rest of the app. The `addToWaitlist` method allows the app
+ * to add new profiles to the list and automatically update the display.
+ *
+ * Outstanding Issues:
+ * No Issues
+ */
 package com.example.trojan0project;
 
 import android.view.LayoutInflater;

@@ -1,3 +1,13 @@
+/**
+ * Purpose:
+* Hold and handle objects of type facility.
+
+ * Design Rationale:
+ *Extends ArrayAdapter to take some of its functionality and use it to hand facility objects.
+
+ * Outstanding Issues:
+ * - No Issues.
+ */
 package com.example.trojan0project;
 
 import android.content.Context;

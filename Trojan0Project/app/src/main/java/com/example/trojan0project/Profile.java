@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * This loads profiles from Firebase and displays them in a list. This way admin can click on any
+ * profile which opens a dialog and chooses to delete it.
+ *
+ * Design Rationale:
+ * This uses a ProfileAdapter to display the profile list.
+ * It also uses RemoveProfileFragment to ask to confirm before deleting a profile.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 
 package com.example.trojan0project;
 

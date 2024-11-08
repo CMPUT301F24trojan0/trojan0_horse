@@ -40,7 +40,7 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
 
     private ListView facilityAdminList; //create reference to the Listview
     private ArrayAdapter<Facility> facilityAdminAdapter;
-    private ArrayList<Facility> dataList;
+    public ArrayList<Facility> dataList;
     private Facility selectedFacility = null;
     private FirebaseFirestore db;
 
@@ -93,7 +93,7 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
         setContentView(R.layout.facility_main);
 
         db = FirebaseFirestore.getInstance();
-        final CollectionReference collectionReference = db.collection("organizers");
+        final CollectionReference collectionReference = db.collection("users");
 
 
 
@@ -119,10 +119,14 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
                 dataList.clear(); // Clear the existing data
 
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                    String facilityName = (String) doc.getData().get("facilityName");
+                    String userType = doc.getString("user_type");
+                    if ("organizer".equals(userType)) {
+                        // Get the facility name
+                        String facilityName = doc.getString("facilityName");
 
-                    dataList.add(new Facility(facilityName));
+                        dataList.add(new Facility(facilityName));
 
+                    }
                 }
 
                 facilityAdminAdapter.notifyDataSetChanged();

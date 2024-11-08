@@ -1,0 +1,206 @@
+[
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/font_cinzel_decorative.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/font/cinzel_decorative.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_organizer_signup.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_organizer_signup.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_browse_profile_admin.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_browse_profile_admin.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_profile_view.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/profile_view.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_ic_group.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/ic_group.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_plus_icon.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/plus_icon.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_view_events.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/view_events.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_fragment_time.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/fragment_time.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_demo.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/demo.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_main_admin.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_main_admin.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/navigation_admin_nav.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/navigation/admin_nav.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_baseline_person_24.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/baseline_person_24.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_ic_home.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_round_home_24.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/round_home_24.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_ic_add.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_baseline_people_24.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/baseline_people_24.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_events_list.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_events_list.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_fragment_edit_facility.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/fragment_edit_facility.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_event_detail.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_event_detail.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_baseline_photo_camera_24.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/baseline_photo_camera_24.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_minus_icon.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/minus_icon.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/xml_backup_rules.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/font_quicksand.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/font/quicksand.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_rounded_button.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/rounded_button.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_fragment_description.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/fragment_description.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_main.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_fragment_remove_profile.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/fragment_remove_profile.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_user_signup.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/user_signup.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_fragment_status.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/fragment_status.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_organizer_page.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_organizer_page.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_selected_icon.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/selected_icon.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_home_icon.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/home_icon.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_activity_create_event.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/activity_create_event.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_item_event.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/item_event.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/drawable_circular_ring.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/drawable/circular_ring.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/layout_profile_layout.xml.flat",
+        "source": "com.example.trojan0project.app-main-51:/layout/profile_layout.xml"
+    },
+    {
+        "merged": "com.example.trojan0project.app-merged_res-49:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.trojan0project.app-main-51:/mipmap-xhdpi/ic_launcher_round.webp"
+    }
+]

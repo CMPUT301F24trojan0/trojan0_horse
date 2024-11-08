@@ -13,12 +13,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -26,10 +29,13 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.common.BitMatrix;
+
 import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 
 public class CreateEventActivity extends AppCompatActivity {
+
     private EditText eventNameInput;
     private Switch geolocationSwitch;
     private Button addPosterButton, saveButton, addDescriptionButton, addTimeButton;
@@ -43,11 +49,15 @@ public class CreateEventActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private String eventDescription = "";
     private String eventTime = "";
+    private String organizerId; // Field to store the organizer ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+
+        // Retrieve the organizer ID passed from OrganizerPageActivity
+        organizerId = getIntent().getStringExtra("organizerId");
 
         // Initialize UI elements
         eventNameInput = findViewById(R.id.eventNameInput);
@@ -65,10 +75,8 @@ public class CreateEventActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
 
         // Request location permission if not granted
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
         // Geolocation Switch Logic
@@ -109,7 +117,7 @@ public class CreateEventActivity extends AppCompatActivity {
         saveButton.setOnClickListener(v -> {
             String eventName = eventNameInput.getText().toString();
             if (validateInput(eventName, posterUri)) {
-                Event event = new Event(eventName,"", latitude, longitude, ""); // posterPath will be set later
+                Event event = new Event(eventName, "", latitude, longitude, ""); // posterPath will be set later
                 event.setDescription(eventDescription);
                 event.setTime(eventTime);
                 saveEvent(event);
@@ -166,12 +174,23 @@ public class CreateEventActivity extends AppCompatActivity {
                     event.setEventId(eventId);  // Set the document ID as the event ID
                     String qrContent = createQRContent(event); // Create QR content
                     uploadPosterToStorage(eventId, event, qrContent);  // Upload poster and save event details
+
+                    // Add the event to the organizer's event list
+                    addEventToOrganizer(eventId);
                 })
                 .addOnFailureListener(e -> {
                     progressDialog.dismiss();
                     Toast.makeText(this, "Failed to save event", Toast.LENGTH_SHORT).show();
                     Log.e("Firestore Error", "Error saving initial event to Firestore", e);
                 });
+    }
+
+    private void addEventToOrganizer(String eventId) {
+        // Add the event ID to the organizer's events list in Firestore
+        db.collection("users").document(organizerId)
+                .update("organizer_details.events", FieldValue.arrayUnion(eventId))
+                .addOnSuccessListener(aVoid -> Log.d("CreateEventActivity", "Event added to organizer's event list"))
+                .addOnFailureListener(e -> Log.e("CreateEventActivity", "Failed to add event to organizer's event list", e));
     }
 
     // Upload the poster to Firebase Storage
@@ -263,7 +282,6 @@ public class CreateEventActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     Toast.makeText(this, "Failed to upload QR code to Storage", Toast.LENGTH_SHORT).show();
                     Log.e("Storage Error", "Failed to upload QR code", e);
-                    refreshActivity();
                 });
     }
 

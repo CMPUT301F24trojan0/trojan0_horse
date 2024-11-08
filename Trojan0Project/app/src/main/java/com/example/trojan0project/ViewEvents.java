@@ -28,9 +28,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_events);
 
-        // Retrieve the device ID from the intent
-        Intent intent = getIntent();
-        deviceId = intent.getStringExtra("DEVICE_ID");
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
 
         if (deviceId == null) {
             Log.e(TAG, "Device ID not received in ViewEvents");
@@ -39,38 +37,45 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
             return;
         }
 
-        // Initialize Firestore
         db = FirebaseFirestore.getInstance();
 
-        // Initialize RecyclerView and event list
         eventsRecyclerView = findViewById(R.id.recyclerView);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         eventList = new ArrayList<>();
-
-        // Set up adapter and attach it to RecyclerView
         eventAdapter = new EventAdapter(eventList);
-        eventAdapter.setOnEventClickListener(this);  // Set the click listener
+        eventAdapter.setOnEventClickListener(this);
         eventsRecyclerView.setAdapter(eventAdapter);
 
-        // Retrieve events from Firestore
         retrieveEvents();
     }
 
     @Override
     public void onEventClick(Event event) {
-        // Create a new StatusFragment
-        StatusFragment statusFragment = new StatusFragment();
-
-        // Create a bundle to pass the deviceId
-        Bundle args = new Bundle();
-        args.putString("DEVICE_ID", deviceId);  // Pass device ID to fragment
-        args.putString("EVENT_ID", event.getEventId()); // Pass the unique event ID to the fragment
-        statusFragment.setArguments(args);
-
-        // Show the fragment as a dialog (overlay)
-        statusFragment.show(getSupportFragmentManager(), "StatusFragment");
+        db.collection("users").document(deviceId)
+                .get()
+                .addOnSuccessListener(document -> {
+                    if (document.contains("events." + event.getEventId())) {
+                        Long status = document.getLong("events." + event.getEventId());
+                        if (status != null && status == 0) {
+                            // Show LeaveWaitlistFragment if the status is 0
+                            LeaveWaitlistFragment leaveWaitlistFragment = new LeaveWaitlistFragment();
+                            Bundle args = new Bundle();
+                            args.putString("DEVICE_ID", deviceId);
+                            args.putString("EVENT_ID", event.getEventId());
+                            leaveWaitlistFragment.setArguments(args);
+                            leaveWaitlistFragment.show(getSupportFragmentManager(), "LeaveWaitlistFragment");
+                        } else {
+                            Toast.makeText(this, "Not on the waitlist for this event.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "Event not found in user data.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to retrieve event status: ", e);
+                    Toast.makeText(this, "Failed to check event status.", Toast.LENGTH_SHORT).show();
+                });
     }
-
 
     private void retrieveEvents() {
         if (deviceId == null) {
@@ -155,5 +160,13 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                 });
     }
 
-}
+ }
+
+
+
+
+
+
+
+
 

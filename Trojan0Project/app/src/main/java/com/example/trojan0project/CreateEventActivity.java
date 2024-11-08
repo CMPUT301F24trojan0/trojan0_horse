@@ -109,7 +109,7 @@ public class CreateEventActivity extends AppCompatActivity {
         saveButton.setOnClickListener(v -> {
             String eventName = eventNameInput.getText().toString();
             if (validateInput(eventName, posterUri)) {
-                Event event = new Event(eventName, latitude, longitude, ""); // posterPath will be set later
+                Event event = new Event(eventName,"", latitude, longitude, ""); // posterPath will be set later
                 event.setDescription(eventDescription);
                 event.setTime(eventTime);
                 saveEvent(event);
@@ -163,7 +163,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 .add(event)
                 .addOnSuccessListener(documentReference -> {
                     String eventId = documentReference.getId();
-                    event.setId(eventId);  // Set the document ID as the event ID
+                    event.setEventId(eventId);  // Set the document ID as the event ID
                     String qrContent = createQRContent(event); // Create QR content
                     uploadPosterToStorage(eventId, event, qrContent);  // Upload poster and save event details
                 })
@@ -213,8 +213,8 @@ public class CreateEventActivity extends AppCompatActivity {
     private String createQRContent(Event event) {
         JSONObject json = new JSONObject();
         try {
-            json.put("id", event.getId());
-            json.put("name", event.getName());
+            json.put("id", event.getEventId());
+            json.put("name", event.getEventName());
         } catch (Exception e) {
             e.printStackTrace();
         }

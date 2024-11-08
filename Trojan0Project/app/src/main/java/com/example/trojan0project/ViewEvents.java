@@ -110,7 +110,10 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                                         if (eventDocument.exists()) {
                                                             String eventName = eventDocument.getString("name");
                                                             if (eventName != null) {
-                                                                eventList.add(new Event(eventId, eventName));
+                                                                double defaultLatitude = 0.0;
+                                                                double defaultLongitude = 0.0;
+                                                                String defaultPosterPath = "";
+                                                                eventList.add(new Event(eventId, eventName, defaultLatitude, defaultLongitude, defaultPosterPath));
                                                             } else {
                                                                 Log.d(TAG, "Event name is missing for event ID: " + eventId);
                                                             }
@@ -124,7 +127,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                                     // Increment the counter and check if all events are processed
                                                     counter[0]++;
                                                     if (counter[0] == totalEventsToFetch) {
-                                                        eventList.add(new Event("end", "--End of events list--"));
+                                                        eventList.add(new Event("end", "--End of events list--", 0.0, 0.0, ""));
                                                         // Notify the adapter only once all events are added
                                                         eventAdapter.notifyDataSetChanged();
                                                     }

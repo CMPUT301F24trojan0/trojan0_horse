@@ -38,7 +38,7 @@ public class EventDetailActivity extends AppCompatActivity {
                         Event event = documentSnapshot.toObject(Event.class);
                         if (event != null) {
                             // Set event name
-                            eventNameTextView.setText(event.getName());
+                            eventNameTextView.setText(event.getEventName());
 
                             // Load and display QR code image if URL is available
                             if (event.getQrCodeUrl() != null) {

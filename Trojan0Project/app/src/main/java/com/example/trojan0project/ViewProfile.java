@@ -96,7 +96,11 @@ public class ViewProfile extends AppCompatActivity {
                     Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
                 }
             });
-
+    /**
+     * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the UI elements.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +138,9 @@ public class ViewProfile extends AppCompatActivity {
         viewEventsButton.setOnClickListener(v -> saveProfileData());
 
     }
-
+    /**
+     * Loads the user's profile data from Firestore and populates the UI fields with this data.
+     */
     private void loadProfileData() {
         db.collection("users").document(deviceId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -174,7 +180,9 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Saves the updated profile data to Firestore.
+     */
     private void saveProfileData() {
         String firstName = firstNameEditText.getText().toString().trim();
         String lastName = lastNameEditText.getText().toString().trim();
@@ -218,7 +226,9 @@ public class ViewProfile extends AppCompatActivity {
                     }
                 });
     }
-
+    /**
+     * Saves the updated profile data to Firestore.
+     */
     private void updateImage(){
         pickVisualMedia.launch((new PickVisualMediaRequest
                 .Builder()
@@ -226,7 +236,9 @@ public class ViewProfile extends AppCompatActivity {
                         .PickVisualMedia.ImageOnly.INSTANCE)
                 .build()));
     }
-
+    /**
+     * Uploads the selected image to Firebase Storage and updates the user's profile picture URL in Firestore.
+     */
     private void uploadImage(){
         progressBar.setVisibility(View.VISIBLE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -266,7 +278,9 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Deletes the profile image from Firebase Storage and updates Firestore to remove the profile picture URL.
+     */
     private void deleteImage() {
         progressBar.setVisibility(View.VISIBLE);
         StorageReference imageRef = storageReference.child("profilePictures/" + deviceId);
@@ -292,7 +306,11 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Displays a new image with the user's initials when no profile image is set.
+     *
+     * @param username The username used to generate the initial.
+     */
     private void newImage(String username) {
         ImageGenerator mydrawing = new ImageGenerator(this);
         mydrawing.setUserText(String.valueOf(username.charAt(0)));

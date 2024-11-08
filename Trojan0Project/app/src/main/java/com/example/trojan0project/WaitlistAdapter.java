@@ -31,12 +31,24 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class WaitlistAdapter extends ArrayAdapter<Profile> {
-
+    /**
+     * Constructor for the WaitlistAdapter.
+     *
+     * @param context  The current context, used to inflate the layout.
+     * @param profiles The list of profiles to display in the adapter.
+     */
     public WaitlistAdapter(Context context, ArrayList<Profile> profiles) {
         super(context, 0, profiles);
     }
 
-
+    /**
+     * Gets a view that displays the data at the specified position in the data set.
+     *
+     * @param position    The position of the item within the adapter's data set of profiles.
+     * @param convertView The recycled view to populate (can be null).
+     * @param parent     The parent that this view will eventually be attached to.
+     * @return The view corresponding to the specified item in the data set.
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -57,10 +69,6 @@ public class WaitlistAdapter extends ArrayAdapter<Profile> {
         return view;
     }
 
-    public void addToWaitlist(Profile profile){
-        add(profile);
-        notifyDataSetChanged();
-    }
 
 
 }

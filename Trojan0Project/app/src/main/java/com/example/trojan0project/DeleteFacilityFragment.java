@@ -1,3 +1,16 @@
+/**
+ * Purpose:
+ * DeleteFacilityFragment shows a dialog to confirm the deletion of a facility.
+ * It lets users either delete the facility or cancel the action.
+ *
+ * Design Rationale:
+ * This fragment uses a DeleteFacilityDialogListener to communicate with its FacilityActivity.
+ * This makes sure the delete action is handled outside the fragment
+ * The design allows for simple and clear interaction with options for confirming or canceling.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.app.AlertDialog;
@@ -14,8 +27,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 public class DeleteFacilityFragment extends DialogFragment {
-
-
+    /**
+     * Creates a new instance of DeleteFacilityFragment with the specified facility.
+     *
+     * @param facility The facility to be passed into the fragment for deletion.
+     * @return A new instance of DeleteFacilityFragment with the facility attached as an argument.
+     */
     static DeleteFacilityFragment newInstance(Facility facility ){ //creates a new Instance of the class DeleteFacilityFragment
         Bundle args = new Bundle();
         args.putSerializable("facility",  facility);
@@ -25,6 +42,9 @@ public class DeleteFacilityFragment extends DialogFragment {
         return fragment;
     }
 
+    /**
+     * Listener interface for communicating deletion actions.
+     */
     interface DeleteFacilityDialogListener {
         void deleteFacility(Facility facility);
 
@@ -34,6 +54,11 @@ public class DeleteFacilityFragment extends DialogFragment {
     private DeleteFacilityDialogListener listener;
     private Facility selectedFacility;
 
+    /**
+     * Attaches the fragment to the activity, ensuring it implements the DeleteFacilityDialogListener interface.
+     *
+     * @param context The context of the activity.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -43,7 +68,12 @@ public class DeleteFacilityFragment extends DialogFragment {
             throw new RuntimeException(context + " must implement DeleteFacilityDialogListener");
         }
     }
-    // CREATING THE FRAGMENT
+    /**
+     * Creates the dialog, inflating the layout and setting up click listeners for the confirm and cancel buttons.
+     *
+     * @param savedInstanceState The saved state of the dialog, if available.
+     * @return The created dialog with custom layout and actions.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) { //customize the dialog here
@@ -74,6 +104,11 @@ public class DeleteFacilityFragment extends DialogFragment {
 
 
     }
+    /**
+     * Sets the facility selected for deletion.
+     *
+     * @param facility The facility to be set as selected.
+     */
     public void setSelectedFacility(Facility facility) {
         this.selectedFacility= facility;
     }

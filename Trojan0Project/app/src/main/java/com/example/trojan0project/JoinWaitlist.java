@@ -57,6 +57,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
     private Button joinWaitlistButton;
 
 
+    /**
+     * Initializes the activity and loads the event details.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +70,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
         db = FirebaseFirestore.getInstance();
         deviceId = getIntent().getStringExtra("DEVICE_ID");
-        eventId = "rn9jo1Z3ZHecVTN9sHhL";    // QR code needs to be scanned to get event class
+        eventId = "X37dVuve5chKjok8jj0Z";    // QR code needs to be scanned to get event class
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
@@ -85,6 +90,13 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         });
     }
 
+    /**
+     * Converts latitude and longitude coordinates to a human-readable address.
+     *
+     * @param latitude  The latitude of the location.
+     * @param longitude The longitude of the location.
+     * @return A string address based on the coordinates or an error message if unavailable.
+     */
     //From https://www.geeksforgeeks.org/reverse-geocoding-in-android/ , 2024-11-07
     public String getAddressFromCoordinates(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -101,7 +113,9 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
             return "Geocoder service not available";
         }
     }
-
+    /**
+     * Loads the event details from Firestore and displays them in the UI.
+     */
     private void loadEventDetails() {
         db.collection("events").document(eventId).get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -131,7 +145,9 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
     }
 
 
-
+    /**
+     * Retrieves the user's profile data to populate the dialog when joining the waitlist.
+     */
     private void getUserProfileForDialog(){
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -155,7 +171,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
 
     }
-
+    /**
+     * Confirms the user's intent to join the waitlist and updates Firestore with the waitlist entry.
+     *
+     * @param profile The user's profile data used to join the waitlist.
+     */
     @Override
     public void onConfirm(Profile profile) {
         db.collection("users").document(deviceId).get()

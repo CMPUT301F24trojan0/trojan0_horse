@@ -28,10 +28,24 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class ImageAdapter extends ArrayAdapter<Image> {
+    /**
+     * Constructor for ImageAdapter.
+     *
+     * @param context The current context.
+     * @param images  The list of Image objects to display.
+     */
     public ImageAdapter(Context context, ArrayList<Image> images){
         super(context, 0, images);
     }
 
+    /**
+     * Creates and returns the view for each Image item in the list.
+     *
+     * @param position    The position of the item within the adapter's data set.
+     * @param convertView The old view to reuse, if possible.
+     * @param parent      The parent view that this view will eventually be attached to.
+     * @return The constructed view for the Image item at the specified position.
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

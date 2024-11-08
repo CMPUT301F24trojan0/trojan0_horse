@@ -17,7 +17,6 @@ package com.example.trojan0project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     private Button organizerButton;
     private static final String TAG = "MainActivity";
 
+    /**
+     * Initializes the MainActivity, setting up Firestore and UI elements. Checks if the device ID is registered.
+     *
+     * @param savedInstanceState Saved instance state for restoring activity state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +68,20 @@ public class MainActivity extends AppCompatActivity {
         // Check if the device ID exists in Firestore
         getDeviceIdAndCheck();
     }
-
+    /**
+     * Retrieves the device ID and checks if it exists in Firestore. Based on the result:
+     * - Redirects the user if registered.
+     * - Shows options to select a role if unregistered.
+     */
     private void getDeviceIdAndCheck() {
         // Get the device ID
         String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         Log.d(TAG, "Generated device ID: " + deviceId);
+
+        //sending to joinWaitlist for user device ids
+        Intent intent1 = new Intent(MainActivity.this, JoinWaitlist.class);
+        intent1.putExtra("DEVICE_ID", deviceId);
+
 
         // Check if the device ID exists in Firestore
         devicesRef.document(deviceId).get().addOnCompleteListener(task -> {

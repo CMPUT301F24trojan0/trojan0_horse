@@ -28,10 +28,24 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class ProfileAdapter extends ArrayAdapter<Profile> {
+    /**
+     * Constructs a ProfileAdapter with the specified context and list of profiles.
+     *
+     * @param context The context in which the adapter is created.
+     * @param profiles The list of profiles to be displayed.
+     */
     public ProfileAdapter(Context context, ArrayList<Profile> profiles){
         super(context, 0, profiles);
     }
 
+    /**
+     * Gets the view for a specific position in the list.
+     *
+     * @param position The position of the item within the adapter's data set.
+     * @param convertView A recycled view that can be reused, or null if no view is available.
+     * @param parent The parent view that this view will eventually be attached to.
+     * @return The view for the specified position.
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

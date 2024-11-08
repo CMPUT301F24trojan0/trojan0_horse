@@ -1,3 +1,20 @@
+/**
+ * Purpose:
+ * This helps organizers create a new event by letting them fill out details like
+ * location, poster image, description, and time. It also creates a unique QR code for
+ * each event that links to the event details stored in Firestore
+ *
+ * Design Rationale:
+ * Firebase Firestore and Storage are used to keep details and images accessible.
+ * QR codes are generated on the device and stored in Firebase, which makes it easier for
+ * users to scan and view event details.
+ * Geolocation allows organizers to set a location for the event
+ *
+ * Outstanding Issues:
+ * No issues
+ *
+ */
+
 package com.example.trojan0project;
 
 import android.Manifest;
@@ -38,7 +55,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
     private EditText eventNameInput;
     private Switch geolocationSwitch;
-    private Button addPosterButton, saveButton, addDescriptionButton, addTimeButton;
+    private Button addPosterButton, saveButton, addDescriptionButton, addTimeButton,enterJoinWaitlist;
     private ImageView qrCodeImageView;
     private FusedLocationProviderClient fusedLocationClient;
     private FirebaseFirestore db;
@@ -51,6 +68,11 @@ public class CreateEventActivity extends AppCompatActivity {
     private String eventTime = "";
     private String organizerId; // Field to store the organizer ID
 
+    /**
+     * Initializes the activity, setting up UI elements, Firebase services, and event handlers.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +86,7 @@ public class CreateEventActivity extends AppCompatActivity {
         geolocationSwitch = findViewById(R.id.geolocationSwitch);
         addPosterButton = findViewById(R.id.addPosterButton);
         saveButton = findViewById(R.id.saveButton);
+        enterJoinWaitlist = findViewById(R.id.enterJoinWaitlist);
         addDescriptionButton = findViewById(R.id.addDescriptionButton);
         addTimeButton = findViewById(R.id.addTimeButton);
         qrCodeImageView = findViewById(R.id.qrCodeImageView);
@@ -123,9 +146,20 @@ public class CreateEventActivity extends AppCompatActivity {
                 saveEvent(event);
             }
         });
+
+        enterJoinWaitlist.setOnClickListener(v -> {
+            Intent intent = new Intent(CreateEventActivity.this, JoinWaitlist.class);
+            startActivity(intent);
+        });
     }
 
-    // Validate event input
+    /**
+     * Validates the event name and poster URI before saving the event.
+     *
+     * @param eventName The name of the event entered by the user.
+     * @param posterUri The URI of the poster image chosen by the user.
+     * @return true if input is valid, false otherwise.
+     */
     private boolean validateInput(String eventName, Uri posterUri) {
         if (eventName.isEmpty()) {
             Toast.makeText(this, "Please enter an event name", Toast.LENGTH_SHORT).show();
@@ -138,7 +172,9 @@ public class CreateEventActivity extends AppCompatActivity {
         return true;
     }
 
-    // Retrieve location when requested
+    /**
+     * Retrieves the user's current location if geolocation is enabled and permissions are granted.
+     */
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -153,7 +189,13 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
-    // Handle selected image
+    /**
+     * Handles image selection from the device's storage, called after user selects an image.
+     *
+     * @param requestCode The code representing the request to select an image.
+     * @param resultCode  The result code indicating if the operation was successful.
+     * @param data        The intent data containing the selected image URI.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -162,7 +204,11 @@ public class CreateEventActivity extends AppCompatActivity {
         }
     }
 
-    // Save event to Firestore
+    /**
+     * Saves the event to Firestore, uploads the poster to Firebase Storage, and generates the QR code.
+     *
+     * @param event The event object containing event details to be saved.
+     */
     private void saveEvent(Event event) {
         progressDialog.setMessage("Saving Event...");
         progressDialog.show();
@@ -192,6 +238,14 @@ public class CreateEventActivity extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> Log.d("CreateEventActivity", "Event added to organizer's event list"))
                 .addOnFailureListener(e -> Log.e("CreateEventActivity", "Failed to add event to organizer's event list", e));
     }
+
+    /**
+     * Uploads the event's poster to Firebase Storage and saves the QR code content to Firestore.
+     *
+     * @param eventId    The ID of the event in Firestore.
+     * @param event      The event object.
+     * @param qrContent  The QR code content string generated for the event.
+     */
 
     // Upload the poster to Firebase Storage
     private void uploadPosterToStorage(String eventId, Event event, String qrContent) {
@@ -229,6 +283,12 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Creates a QR code content string containing the event ID and name.
+     *
+     * @param event The event object.
+     * @return The QR content string in JSON format.
+     */
     private String createQRContent(Event event) {
         JSONObject json = new JSONObject();
         try {
@@ -240,6 +300,12 @@ public class CreateEventActivity extends AppCompatActivity {
         return json.toString();
     }
 
+    /**
+     * Generates a QR code bitmap image based on the provided content string.
+     *
+     * @param content The content to encode in the QR code.
+     * @return A Bitmap object containing the generated QR code.
+     */
     private Bitmap generateQRCode(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -257,6 +323,12 @@ public class CreateEventActivity extends AppCompatActivity {
         return null;
     }
 
+    /**
+     * Uploads the generated QR code to Firebase Storage and updates Firestore with the QR code URL.
+     *
+     * @param qrCodeBitmap The Bitmap object representing the QR code image.
+     * @param eventId      The ID of the event in Firestore.
+     */
     private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventId) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
@@ -285,7 +357,9 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
-    // Refresh the activity
+    /**
+     * Refreshes the activity.
+     */
     private void refreshActivity() {
         finish();
         overridePendingTransition(0, 0);

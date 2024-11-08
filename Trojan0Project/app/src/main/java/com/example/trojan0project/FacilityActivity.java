@@ -1,3 +1,17 @@
+/**
+ * Purpose:
+ * Manages a list of facilities and allows administrators to view and delete facilities
+ * Gets facilities from firestore and displayed in a list view
+ *
+ * Design Rationale:
+ * Firestore used to get, display and update the list of facilities
+ * Implements `DeleteFacilityFragment.DeleteFacilityDialogListener` to handle deletion of selected facilities
+ * Dialog fragment for deletion confirmation
+ *
+ * Outstanding Issues:
+ * Creates space when facility is deleted
+ *
+ */
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -31,7 +45,11 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
     private FirebaseFirestore db;
 
 
-    //NEW
+    /**
+     * Deletes the specified facility from Firestore and updates the UI.
+     *
+     * @param facility The facility to delete.
+     */
     @Override
     public void deleteFacility(Facility facility) {
         if (selectedFacility != null) { //city is not null so that means the user clicked on an existing city
@@ -63,6 +81,11 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
 
     }
 
+    /**
+     * Initializes the activity, sets up the ListView, and loads facility data from Firestore.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

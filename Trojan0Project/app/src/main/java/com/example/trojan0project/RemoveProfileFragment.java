@@ -25,20 +25,36 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 public class RemoveProfileFragment extends DialogFragment{
+    /**
+     * Listener interface for handling profile removal events.
+     */
     interface RemoveProfileDialogListener{
         void removeProfile(Profile profile);
     }
 
     private RemoveProfileDialogListener listener;
     private Profile profile;
-
+    /**
+     * Constructor to create a new instance of RemoveProfileFragment with the specified profile.
+     *
+     * @param profile The profile to be removed.
+     */
     public RemoveProfileFragment(Profile profile){
         this.profile = profile;
     }
+    /**
+     * Default constructor for creating an instance of RemoveProfileFragment without a profile.
+     */
     public RemoveProfileFragment(){
 
     }
-
+    /**
+     * Attaches the fragment to the host context and checks if the context implements
+     * the RemoveProfileDialogListener interface.
+     *
+     * @param context The context to which the fragment is being attached.
+     * @throws RuntimeException If the context does not implement RemoveProfileDialogListener.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -49,7 +65,12 @@ public class RemoveProfileFragment extends DialogFragment{
                     + " must implement RemoveProfileDialogListener");
         }
     }
-
+    /**
+     * Creates the dialog for confirming the removal of the profile.
+     *
+     * @param savedInstanceState If the fragment is being re-constructed from a previous saved state.
+     * @return The created dialog with the confirmation UI.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

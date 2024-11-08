@@ -108,6 +108,18 @@
         app:layout_constraintWidth_percent="0.4" />
 
     <Button
+        android:id="@+id/enterJoinWaitlist"
+        android:layout_width="111dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="552dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#b391f8"
+        android:text="Enter Waitlist Page"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/addDescriptionButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

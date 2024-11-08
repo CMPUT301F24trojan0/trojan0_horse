@@ -41,6 +41,11 @@ buildscript {
 }
 
 dependencies {
+    //Mockito
+    testImplementation ("org.mockito:mockito-core:4.5.1") // Use the latest version
+
+// Mockito for Android (if you're writing Android tests)
+    androidTestImplementation ("org.mockito:mockito-android:4.5.1")
     //Firebase storage
     implementation ("com.google.firebase:firebase-storage:20.1.0")
 

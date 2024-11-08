@@ -1,22 +1,11 @@
-/**
- * Purpose:
- * This loads profiles from Firebase and displays them in a list. This way admin can click on any
- * profile which opens a dialog and chooses to delete it.
- *
- * Design Rationale:
- * This uses a ProfileAdapter to display the profile list and separates the profile, display, and delete functions.
- * It also uses RemoveProfileFragment to ask to confirm before deleting a profile.
- *
- * Outstanding Issues:
- * If someone has the same username then all will be deleted
- */
 package com.example.trojan0project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,7 +28,13 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
     private FirebaseFirestore db;
     private String deviceId;
 
+    private static final String TAG = "BrowseProfileAdmin"; // Added log tag
 
+    /**
+     * Sets up the activity, including initializing Firestore, loading profiles, and setting up list and navigation buttons.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,21 +46,38 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
         dataList = new ArrayList<>();
         profileAdapter = new ProfileAdapter(this, dataList);
         profileList.setAdapter(profileAdapter);
-        deviceId = getIntent().getStringExtra("DEVICE_ID");
 
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
+        Log.d(TAG, "Device ID received: " + deviceId);  // Log device ID
+
+        ImageButton ImagePage = findViewById(R.id.camera_button);
+
+        // Fetching profiles from Firestore
         getProfile();
 
         profileList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Profile selectedProfile = dataList.get(i);
+                Log.d(TAG, "Selected profile: " + selectedProfile.getUsername());  // Log selected profile
                 new RemoveProfileFragment(selectedProfile).show(getSupportFragmentManager(), "removeProfile");
             }
         });
 
+        ImagePage.setOnClickListener(v -> {
+            Log.d(TAG, "Navigating to BrowseImagesAdmin activity");
+            Intent intent = new Intent(BrowseProfileAdmin.this, BrowseImagesAdmin.class);
+            startActivity(intent);
+        });
+
     }
 
+    /**
+     * Gets the list of profiles from Firestore where user type is "entrant" and adds them to the dataList.
+     * Notifies the adapter to refresh the view.
+     */
     private void getProfile() {
+        Log.d(TAG, "Fetching profiles from Firestore...");
         db.collection("users")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -75,19 +87,27 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
                         if ("entrant".equals(userType)) {
                             String username = document.getString("username");
                             String profileImage = document.getString("profile_url");
+                            Log.d(TAG, "Adding profile: " + username);  // Log each added profile
                             dataList.add(new Profile(username, profileImage));
-
                         }
                     }
                     profileAdapter.notifyDataSetChanged();
+                    Log.d(TAG, "Profile list updated with " + dataList.size() + " profiles.");
                 })
                 .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to get profiles", e);  // Log the error if fetching fails
                     Toast.makeText(this, "Failed to get data", Toast.LENGTH_SHORT).show();
                 });
     }
 
+    /**
+     * Removes a selected profile from Firestore and updates the local list view.
+     *
+     * @param profile The profile to be removed.
+     */
     @Override
     public void removeProfile(Profile profile) {
+        Log.d(TAG, "Removing profile: " + profile.getUsername());  // Log profile removal
         db.collection("users")
                 .document(deviceId)
                 .delete()
@@ -95,15 +115,11 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
                     dataList.remove(profile);
                     profileAdapter.notifyDataSetChanged();
                     Toast.makeText(this, "Profile is deleted", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Profile deleted successfully.");
                 })
                 .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to delete profile", e);  // Log the error if deletion fails
                     Toast.makeText(this, "Profile not deleted", Toast.LENGTH_SHORT).show();
                 });
     }
 }
-
-
-
-
-
-

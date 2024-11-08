@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * DisplayEventDetails is an activity that retrieves and displays the details of a selected event from Firestore.
+ * It shows the event's title, location, time, and description
+ *
+ * Design Rationale:
+ * The activity uses Firestore to load event data
+ * Geolocation data is converted to a readable address format using reverse geocoding
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -28,7 +40,11 @@ public class DisplayEventDetails extends AppCompatActivity {
     private TextView eventLocation;
     private TextView eventTime;
     private TextView eventMoreInfo;
-
+    /**
+     * Initializes the activity and sets up Firestore and UI components.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +52,7 @@ public class DisplayEventDetails extends AppCompatActivity {
         setContentView(R.layout.display_event_details_admin);
         db = FirebaseFirestore.getInstance();
         deviceId = getIntent().getStringExtra("DEVICE_ID");
-
+        eventId = "APJycG7rGU8UXL0XW7Eq";
 
 
         eventTitle = findViewById(R.id.event_title);
@@ -58,11 +74,15 @@ public class DisplayEventDetails extends AppCompatActivity {
         //TextView eventTextView = findViewById(R.id.event_title);
         //eventTextView.setText(selectedEventTitle);
 
-
-
-
     }
 
+    /**
+     * Converts latitude and longitude coordinates to a readable address.
+     *
+     * @param latitude  The latitude of the location.
+     * @param longitude The longitude of the location.
+     * @return The address as a String or an error message if unavailable.
+     */
     //From https://www.geeksforgeeks.org/reverse-geocoding-in-android/ , 2024-11-07
     public String getAddressFromCoordinates(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -79,7 +99,10 @@ public class DisplayEventDetails extends AppCompatActivity {
             return "Geocoder service not available";
         }
     }
-
+    /**
+     * Loads event details from Firestore and populates the UI components with the retrieved data.
+     * This includes event title, location, time, and description.
+     */
     private void loadEventDetails() {
         db.collection("events").document(eventId).get()
                 .addOnSuccessListener(documentSnapshot -> {

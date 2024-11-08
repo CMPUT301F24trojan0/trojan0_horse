@@ -26,6 +26,9 @@ import androidx.fragment.app.DialogFragment;
 
 public class JoinWaitlistFragment extends DialogFragment {
 
+    /**
+     * Listener interface to handle the confirmation action.
+     */
     public interface JoinWaitlistListener{
         void onConfirm(Profile profile);
     }
@@ -33,9 +36,19 @@ public class JoinWaitlistFragment extends DialogFragment {
     private Profile profile;
     private JoinWaitlistListener listener;
 
+    /**
+     * Constructor to initialize the fragment with an existing profile.
+     *
+     * @param profile The profile information to be displayed in the dialog.
+     */
     public JoinWaitlistFragment(Profile profile){
         this.profile = profile;
     }
+    /**
+     * Attaches the fragment to the hosting activity, checking if the activity implements JoinWaitlistListener.
+     *
+     * @param context The context of the hosting activity.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -46,6 +59,14 @@ public class JoinWaitlistFragment extends DialogFragment {
         }
     }
 
+    /**
+     * Creates and sets up the dialog view with profile data and a confirm button.
+     *
+     * @param inflater  The LayoutInflater object that can be used to inflate views in the fragment.
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
+     * @return The View for the fragment's UI, or null.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

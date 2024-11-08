@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * The EditFacilityFragment allows users to update the name of a facility.
+ * The new name is entered in a text field and saved by clicking a button.
+ *
+ * Design Rationale:
+ * This fragment uses a callback interface, OnFacilityNameUpdatedListener,
+ * to send the updated facility name back
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.content.Context;
@@ -18,13 +30,22 @@ public class EditFacilityFragment extends Fragment {
     private EditText editFacilityName;
     private Button saveFacilityButton;
 
-    // Define the callback interface
+    /**
+     * Interface to communicate the updated facility name.
+     */
     public interface OnFacilityNameUpdatedListener {
         void onFacilityNameUpdated(String newFacilityName);
     }
 
     private OnFacilityNameUpdatedListener callback;
 
+    /**
+     * Attaches the fragment to its parent activity, verifying that the activity implements
+     * the callback interface.
+     *
+     * @param context The context in which the fragment is operating.
+     * @throws ClassCastException if the activity does not implement the required interface.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -35,7 +56,14 @@ public class EditFacilityFragment extends Fragment {
             throw new ClassCastException(context.toString() + " must implement OnFacilityNameUpdatedListener");
         }
     }
-
+    /**
+     * Creates and returns the fragment's view hierarchy, setting up UI elements and event listeners.
+     *
+     * @param inflater           LayoutInflater to inflate the view.
+     * @param container          Parent view to attach the fragment UI.
+     * @param savedInstanceState Saved state of the fragment.
+     * @return The constructed view for this fragment.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

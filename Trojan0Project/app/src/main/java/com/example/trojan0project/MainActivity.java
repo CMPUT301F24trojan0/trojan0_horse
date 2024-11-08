@@ -17,6 +17,7 @@ package com.example.trojan0project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,11 +46,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView pickRoleText;
     private Button userButton;
     private Button organizerButton;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.welcome);
 
         // Initialize Firestore
         FirebaseApp.initializeApp(this);
@@ -58,9 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Reference UI elements
         logoText = findViewById(R.id.logoText);
-        pickRoleText = findViewById(R.id.pickRoleText);
-        userButton = findViewById(R.id.userButton);
-        organizerButton = findViewById(R.id.organizerButton);
 
         // Check if the device ID exists in Firestore
         getDeviceIdAndCheck();
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void getDeviceIdAndCheck() {
         // Get the device ID
         String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        Log.d(TAG, "Generated device ID: " + deviceId);
 
         // Check if the device ID exists in Firestore
         devicesRef.document(deviceId).get().addOnCompleteListener(task -> {
@@ -78,11 +78,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "Device already registered!", Toast.LENGTH_SHORT).show();
                     // Device ID exists in Firestore
                     String userType = document.getString("user_type");
-                    Log.d("TAG", "User type: " + userType);
+                    Log.d(TAG, "User type: " + userType);
 
                     if ("entrant".equals(userType)) {
                         Intent intent = new Intent(MainActivity.this, ViewProfile.class);
                         intent.putExtra("DEVICE_ID", deviceId);
+                        startActivity(intent);
+                    }
+
+                    else if ("organizer".equals(userType)) {
+                        // Directly navigate to OrganizerPageActivity if the user is an organizer
+                        Intent intent = new Intent(MainActivity.this, OrganizerPageActivity.class);
+                        intent.putExtra("organizerId", deviceId);  // Assuming deviceId is used as organizerId in Firestore
                         startActivity(intent);
                     }
 
@@ -93,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                 } else {
+                    setContentView(R.layout.activity_main);
+
+                    pickRoleText = findViewById(R.id.pickRoleText);
+                    userButton = findViewById(R.id.userButton);
+                    organizerButton = findViewById(R.id.organizerButton);
+
                     // Device ID does not exist in Firestore
                     pickRoleText.setVisibility(View.VISIBLE); // Show the pickRoleText
                     userButton.setEnabled(true);               // Enable the user button
@@ -103,12 +116,26 @@ public class MainActivity extends AppCompatActivity {
                         // Navigate to user sign-up page
                         Intent intent = new Intent(MainActivity.this, UserSignUpActivity.class);
                         intent.putExtra("DEVICE_ID", deviceId);
+                        intent.putExtra("USER_TYPE", "entrant");
                         startActivity(intent);
                     });
 
                     organizerButton.setOnClickListener(v -> {
-                        // Navigate to organizer sign-up page
-                        startActivity(new Intent(MainActivity.this, OrganizerSignUpActivity.class));
+                        devicesRef.document(deviceId).get().addOnSuccessListener(documentSnapshot -> {
+                            String userType = documentSnapshot.getString("user_type");
+                            if ("organizer".equals(userType)) {
+                                // User is already registered as an organizer, navigate directly to OrganizerPageActivity
+                                Intent intent = new Intent(MainActivity.this, OrganizerPageActivity.class);
+                                intent.putExtra("organizerId", deviceId);
+                                startActivity(intent);
+                            } else {
+                                // User is not an organizer, proceed to OrganizerSignUpActivity for registration
+                                Intent intent = new Intent(MainActivity.this, OrganizerSignUpActivity.class);
+                                intent.putExtra("DEVICE_ID", deviceId);
+                                intent.putExtra("USER_TYPE", "organizer");
+                                startActivity(intent);
+                            }
+                        }).addOnFailureListener(e -> Log.e(TAG, "Error checking user type: " + e.getMessage()));
                     });
                 }
             } else {

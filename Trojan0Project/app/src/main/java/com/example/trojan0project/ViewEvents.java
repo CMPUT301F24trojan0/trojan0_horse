@@ -128,7 +128,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                                                 double defaultLatitude = 0.0;
                                                                 double defaultLongitude = 0.0;
                                                                 String defaultPosterPath = "";
-                                                                eventList.add(new Event(eventId, eventName, defaultLatitude, defaultLongitude, defaultPosterPath));
+                                                                eventList.add(new Event(eventName, eventId, defaultLatitude, defaultLongitude, defaultPosterPath));
                                                             } else {
                                                                 Log.d(TAG, "Event name is missing for event ID: " + eventId);
                                                             }

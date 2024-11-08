@@ -15,6 +15,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="20dp" />
+
     <TextView
         android:id="@+id/facility_name_text"
         android:layout_width="wrap_content"
@@ -33,23 +34,34 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="#b391f8" />
 
-    <!-- View All Events Button -->
+    <Button
+        android:id="@+id/create_event_button"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="Create Event" />
     <Button
         android:id="@+id/view_events_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View All Events"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#b391f8" />
-
-    <!-- Placeholder for dynamic content -->
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:backgroundTint="#b391f8"
+        android:text="View All Events" />
 
     <!-- Bottom Navigation Icons -->
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="362dp"
+        android:layout_height="193dp"
+        android:layout_marginTop="150dp"
+        android:layout_weight="1"
+        > <!-- Adjust this margin to move it further down -->
+
+
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Internet permission for Firebase access -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Internet Permission -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
     <application
         android:allowBackup="true"
@@ -16,9 +18,23 @@
         android:theme="@style/Theme.Trojan0Project"
         tools:targetApi="31">
 
-        <!-- Set OrganizerSignUpActivity as the main launcher activity -->
+        <activity android:name=".UserSignUpActivity" />
+        <activity android:name=".ViewProfile" />
+        <activity android:name=".ViewEvents" />
+        <activity android:name=".Event" />
+        <activity android:name=".EventAdapter" />
+        <activity android:name=".StatusFragment" />
+        <activity android:name=".CreateEventActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".OrganizerPageActivity" />
+
         <activity
-            android:name=".OrganizerSignUpActivity"
+            android:name=".BrowseProfileAdmin"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,9 +42,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Other activities -->
-        <activity android:name=".MainActivity" android:exported="true" />
-        <activity android:name=".OrganizerPageActivity" android:exported="false" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 </manifest>

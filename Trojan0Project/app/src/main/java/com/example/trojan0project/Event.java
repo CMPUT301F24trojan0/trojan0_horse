@@ -3,20 +3,24 @@ package com.example.trojan0project;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Event implements Parcelable {
-    private String id;           // Unique event ID
-    private String name;
+public class Event implements Parcelable{
+
+    private String eventId;
+    private String eventName;
     private double latitude;
     private double longitude;
     private String posterPath;
     private String qrCodeUrl;    // URL for the QR code image
+    private String description;  // Event description
+    private String time;         // Event time
 
     // Default constructor for Firestore
     public Event() {}
 
     // Constructor
-    public Event(String name, double latitude, double longitude, String posterPath) {
-        this.name = name;
+    public Event(String eventName, String eventId, double latitude, double longitude, String posterPath) {
+        this.eventId = eventId;
+        this.eventName = eventName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.posterPath = posterPath;
@@ -24,8 +28,8 @@ public class Event implements Parcelable {
 
     // Parcelable constructor
     protected Event(Parcel in) {
-        id = in.readString();
-        name = in.readString();
+        eventId = in.readString();
+        eventName = in.readString();
         latitude = in.readDouble();
         longitude = in.readDouble();
         posterPath = in.readString();
@@ -52,8 +56,8 @@ public class Event implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
+        dest.writeString(eventId);
+        dest.writeString(eventName);
         dest.writeDouble(latitude);
         dest.writeDouble(longitude);
         dest.writeString(posterPath);
@@ -61,20 +65,18 @@ public class Event implements Parcelable {
     }
 
     // Getters and setters
-    public String getId() {
-        return id;
+    public String getEventId() {return eventId;}
+
+    public void setEventId(String id) {
+        this.eventId = id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getEventName() {
+        return eventName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setEventName(String name) {
+        this.eventName = name;
     }
 
     public double getLatitude() {
@@ -107,5 +109,21 @@ public class Event implements Parcelable {
 
     public void setQrCodeUrl(String qrCodeUrl) {
         this.qrCodeUrl = qrCodeUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

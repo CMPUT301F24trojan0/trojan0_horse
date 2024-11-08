@@ -41,6 +41,11 @@ buildscript {
 }
 
 dependencies {
+    //Firebase storage
+    implementation ("com.google.firebase:firebase-storage:20.1.0")
+
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.5.0"))
     implementation("com.google.firebase:firebase-firestore")

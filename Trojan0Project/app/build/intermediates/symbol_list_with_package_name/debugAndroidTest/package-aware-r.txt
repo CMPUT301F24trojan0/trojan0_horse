@@ -1,0 +1,3 @@
+com.example.trojan0project.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme

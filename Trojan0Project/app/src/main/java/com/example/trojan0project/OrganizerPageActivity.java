@@ -22,6 +22,11 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
     private Organizer organizer;
     private static final String TAG = "OrganizerPageActivity";
 
+    /**
+     * Initializes the activity and sets up UI elements and Firestore.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,7 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
         createEventButton = findViewById(R.id.create_event_button); // Initialize the new button
         facilityNameText = findViewById(R.id.facility_name_text);
 
+        // Initialize Firestore
         firestore = FirebaseFirestore.getInstance();
 
         // Get the organizer ID passed from the intent
@@ -89,7 +95,11 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
             startActivity(intent);
         });
     }
-
+    /**
+     * Updates the facility name displayed in the UI and in Firestore when the name is changed.
+     *
+     * @param newFacilityName The new facility name provided by the user.
+     */
     @Override
     public void onFacilityNameUpdated(String newFacilityName) {
         if (organizer != null) {

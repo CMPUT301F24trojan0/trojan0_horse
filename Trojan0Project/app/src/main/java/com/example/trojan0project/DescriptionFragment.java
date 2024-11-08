@@ -1,3 +1,14 @@
+/**
+ * Purpose:
+ * The DescriptionFragment displays a dialog with an input field for users to enter a description.
+ * Once the description is entered, the user can save it.
+ *
+ * Design Rationale:
+ * The fragment uses an OnDescriptionSavedListener interface to send the entered description back to the parent.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -16,14 +27,30 @@ public class DescriptionFragment extends DialogFragment {
     private Button saveButton;
     private OnDescriptionSavedListener listener;
 
+    /**
+     * Interface for communicating the saved description back to the activity or fragment.
+     */
     public interface OnDescriptionSavedListener {
         void onDescriptionSaved(String description);
     }
 
+    /**
+     * Sets the listener to handle the saved description.
+     *
+     * @param listener An instance implementing OnDescriptionSavedListener to handle the saved description.
+     */
     public void setOnDescriptionSavedListener(OnDescriptionSavedListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Creates the view for this fragment, inflating the layout and setting up the save button logic.
+     *
+     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     * @return The created view for the fragment with the description input and save button.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +69,9 @@ public class DescriptionFragment extends DialogFragment {
         return view;
     }
 
+    /**
+     * Adjusts the dialog dimensions to 85% of the screen width upon resume.
+     */
     @Override
     public void onResume() {
         super.onResume();

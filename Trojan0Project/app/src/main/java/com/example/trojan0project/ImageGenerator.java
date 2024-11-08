@@ -24,7 +24,11 @@ public class ImageGenerator extends Drawable {
             R.color.light_yellow, R.color.light_cyan, R.color.light_magenta,
             R.color.light_gray
     };
-
+    /**
+     * Constructor that initializes the drawable with random background color and text properties.
+     *
+     * @param context The context for accessing color resources.
+     */
     public ImageGenerator(Context context) {
         // Set up color and text size for the circle
         paint = new Paint();
@@ -38,18 +42,31 @@ public class ImageGenerator extends Drawable {
         textPaint.setAntiAlias(true); // Smooth edges of text
     }
 
-    // Method to set user text
+    /**
+     * Sets the user text to display in the center of the circle.
+     *
+     * @param text The text to display.
+     */
     public void setUserText(String text) {
         userText = text;
         invalidateSelf(); // Request redraw with new text
     }
-
+    /**
+     * Generates a random color from a predefined array of colors.
+     *
+     * @param context The context for accessing color resources.
+     * @return A randomly selected color.
+     */
     private int generateRandomColor(Context context) {
         Random random = new Random();
         int colorResId = COLORS[random.nextInt(COLORS.length)];
         return ContextCompat.getColor(context, colorResId);
     }
-
+    /**
+     * Draws the circular drawable and centered text.
+     *
+     * @param canvas The Canvas to draw on.
+     */
     @Override
     public void draw(Canvas canvas) {
         // Get the drawable's bounds
@@ -63,19 +80,31 @@ public class ImageGenerator extends Drawable {
         // Draw user-inputted text in the center of the circle
         canvas.drawText(userText, width / 2, height / 2 - ((textPaint.descent() + textPaint.ascent()) / 2), textPaint);
     }
-
+    /**
+     * Sets the alpha (transparency) level for the drawable.
+     *
+     * @param alpha The alpha value to apply.
+     */
     @Override
     public void setAlpha(int alpha) {
         paint.setAlpha(alpha);
         textPaint.setAlpha(alpha);
     }
-
+    /**
+     * Sets a color filter on the drawable.
+     *
+     * @param colorFilter The color filter to apply.
+     */
     @Override
     public void setColorFilter(@Nullable ColorFilter colorFilter) {
         paint.setColorFilter(colorFilter);
         textPaint.setColorFilter(colorFilter);
     }
-
+    /**
+     * Returns the opacity/transparency mode for the drawable.
+     *
+     * @return The opacity setting.
+     */
     @Override
     public int getOpacity() {
         return 0;

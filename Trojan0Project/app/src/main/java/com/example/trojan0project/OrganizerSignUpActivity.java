@@ -2,6 +2,7 @@ package com.example.trojan0project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,12 @@ public class OrganizerSignUpActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String deviceId;
     private static final String TAG = "OrganizerSignUpActivity";
+
+    /**
+     * Initializes the activity and sets up UI elements and event listeners.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

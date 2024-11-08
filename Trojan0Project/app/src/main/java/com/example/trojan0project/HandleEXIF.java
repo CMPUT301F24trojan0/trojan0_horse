@@ -14,6 +14,15 @@ import java.io.InputStream;
 // code from https://stackoverflow.com/questions/26460997/how-to-strip-exif-data-from-android-camera-image
 
 public class HandleEXIF {
+    /**
+     * Adjusts the orientation of an image based on EXIF data.
+     *
+     * @param context The context of the calling component.
+     * @param uri The URI of the image to process.
+     * @return A Bitmap with corrected orientation, or null if unable to decode.
+     * @throws FileNotFoundException if the image file is not found.
+     * @throws IOException if an I/O error occurs.
+     */
     public static Bitmap handleEXIF(Context context, Uri uri) throws FileNotFoundException, IOException {
         InputStream input = context.getContentResolver().openInputStream(uri);
 
@@ -58,7 +67,13 @@ public class HandleEXIF {
         input.close();
         return bitmap;
     }
-
+    /**
+     * Rotates an image by a specified angle.
+     *
+     * @param source The original bitmap to rotate.
+     * @param angle The angle of rotation in degrees.
+     * @return A rotated bitmap.
+     */
     private static Bitmap rotateImage(Bitmap source, float angle) {
         Bitmap bitmap = null;
         Matrix matrix = new Matrix();

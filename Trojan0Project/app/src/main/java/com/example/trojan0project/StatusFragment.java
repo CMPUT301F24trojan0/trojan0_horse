@@ -30,7 +30,12 @@ public class StatusFragment extends DialogFragment {
     private Button buttonAccept;
     private Button buttonDecline;
     private FirebaseFirestore db;
-
+    /**
+     * Creates the dialog for accepting or declining an event invitation.
+     *
+     * @param savedInstanceState If the fragment is being re-constructed from a previous saved state.
+     * @return The created dialog with the event invitation options.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -78,7 +83,12 @@ public class StatusFragment extends DialogFragment {
 
         return dialog;
     }
-
+    /**
+     * Updates the event status to accepted for the user in Firestore.
+     *
+     * @param deviceId The ID of the device associated with the user.
+     * @param eventId  The ID of the event to be accepted.
+     */
     private void acceptEvent(String deviceId, String eventId) {
         // Reference to the user document
         db.collection("users").document(deviceId)
@@ -92,7 +102,12 @@ public class StatusFragment extends DialogFragment {
                     Toast.makeText(getActivity(), "Failed to update event status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
+    /**
+     * Updates the event status to declined for the user in Firestore.
+     *
+     * @param deviceId The ID of the device associated with the user.
+     * @param eventId  The ID of the event to be declined.
+     */
     private void declineEvent(String deviceId, String eventId) {
         // Reference to the user document
         db.collection("users").document(deviceId)

@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import java.io.Serializable;
+
 public class DeleteEventFragment extends DialogFragment {
 
 
@@ -76,7 +78,7 @@ public class DeleteEventFragment extends DialogFragment {
             Intent intent = new Intent(getContext(), DisplayEventDetails.class);
 
             intent.putExtra("event_title", selectedEvent.getEventName());
-            intent.putExtra("clicked_event",selectedEvent);
+            intent.putExtra("clicked_event", (Serializable) selectedEvent);
             startActivity(intent);
                 dismiss();
         });

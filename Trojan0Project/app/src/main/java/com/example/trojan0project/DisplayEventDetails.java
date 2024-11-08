@@ -35,7 +35,7 @@ public class DisplayEventDetails extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.display_event_details_admin);
         db = FirebaseFirestore.getInstance();
-        deviceId = "c49fcd9f6ec4bc07";
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
         eventId = "APJycG7rGU8UXL0XW7Eq";
 
 

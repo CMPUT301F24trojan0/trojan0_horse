@@ -7,6 +7,8 @@ public class Event {
     private double longitude;
     private String posterPath;
     private String qrCodeUrl;    // URL for the QR code image
+    private String description;  // Event description
+    private String time;         // Event time
 
     // Default constructor for Firestore
     public Event() {}
@@ -66,5 +68,21 @@ public class Event {
 
     public void setQrCodeUrl(String qrCodeUrl) {
         this.qrCodeUrl = qrCodeUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

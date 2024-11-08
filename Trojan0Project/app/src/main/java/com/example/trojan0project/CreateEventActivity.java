@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,13 +27,12 @@ import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.common.BitMatrix;
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 
 public class CreateEventActivity extends AppCompatActivity {
     private EditText eventNameInput;
     private Switch geolocationSwitch;
-    private Button addPosterButton, saveButton;
+    private Button addPosterButton, saveButton, addDescriptionButton, addTimeButton;
     private ImageView qrCodeImageView;
     private FusedLocationProviderClient fusedLocationClient;
     private FirebaseFirestore db;
@@ -43,6 +41,8 @@ public class CreateEventActivity extends AppCompatActivity {
     private double longitude = 0.0;
     private Uri posterUri;
     private ProgressDialog progressDialog;
+    private String eventDescription = "";
+    private String eventTime = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,8 @@ public class CreateEventActivity extends AppCompatActivity {
         geolocationSwitch = findViewById(R.id.geolocationSwitch);
         addPosterButton = findViewById(R.id.addPosterButton);
         saveButton = findViewById(R.id.saveButton);
+        addDescriptionButton = findViewById(R.id.addDescriptionButton);
+        addTimeButton = findViewById(R.id.addTimeButton);
         qrCodeImageView = findViewById(R.id.qrCodeImageView);
         progressDialog = new ProgressDialog(this);
 
@@ -83,11 +85,33 @@ public class CreateEventActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         });
 
+        // Add Description Button Logic
+        addDescriptionButton.setOnClickListener(v -> {
+            DescriptionFragment descriptionFragment = new DescriptionFragment();
+            descriptionFragment.setOnDescriptionSavedListener(description -> {
+                eventDescription = description;
+                Toast.makeText(this, "Description saved: " + eventDescription, Toast.LENGTH_SHORT).show();
+            });
+            descriptionFragment.show(getSupportFragmentManager(), "descriptionFragment");
+        });
+
+        // Add Time Button Logic
+        addTimeButton.setOnClickListener(v -> {
+            TimeFragment timeFragment = new TimeFragment();
+            timeFragment.setOnTimeSavedListener(time -> {
+                eventTime = time;
+                Toast.makeText(this, "Time saved: " + eventTime, Toast.LENGTH_SHORT).show();
+            });
+            timeFragment.show(getSupportFragmentManager(), "timeFragment");
+        });
+
         // Save Event Button Logic
         saveButton.setOnClickListener(v -> {
             String eventName = eventNameInput.getText().toString();
             if (validateInput(eventName, posterUri)) {
                 Event event = new Event(eventName, latitude, longitude, ""); // posterPath will be set later
+                event.setDescription(eventDescription);
+                event.setTime(eventTime);
                 saveEvent(event);
             }
         });

@@ -3286,8 +3286,10 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addDescriptionButton
 id addIcon
 id addPosterButton
+id addTimeButton
 id add_event_button
 id adjust_height
 id adjust_width
@@ -3373,6 +3375,7 @@ id decor_content_parent
 id default_activity_button
 id deltaRelative
 id dependency_ordering
+id descriptionInput
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -3627,6 +3630,8 @@ id rounded
 id row_index_key
 id rtl
 id saveButton
+id saveDescriptionButton
+id saveTimeButton
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3721,6 +3726,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
+id timePicker
 id title
 id titleDividerNoCustom
 id title_template
@@ -3914,7 +3920,9 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_description
 layout fragment_remove_profile
+layout fragment_time
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout m3_alert_dialog

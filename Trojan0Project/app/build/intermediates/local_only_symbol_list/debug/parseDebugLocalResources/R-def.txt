@@ -19,8 +19,10 @@ drawable round_home_24
 drawable rounded_button
 font cinzel_decorative
 font quicksand
+id addDescriptionButton
 id addIcon
 id addPosterButton
+id addTimeButton
 id add_event_button
 id admin_content_container
 id admin_nav
@@ -29,6 +31,7 @@ id app_logo
 id browseProfileAdmin
 id camera_button
 id createEventTitle
+id descriptionInput
 id eventNameInput
 id eventNameTextView
 id events_button
@@ -52,13 +55,18 @@ id qrCodeImageView
 id removeProfileFragment
 id remove_profile_message
 id saveButton
+id saveDescriptionButton
+id saveTimeButton
+id timePicker
 id yes_remove_profile
 layout activity_browse_profile_admin
 layout activity_create_event
 layout activity_event_detail
 layout activity_main
 layout activity_main_admin
+layout fragment_description
 layout fragment_remove_profile
+layout fragment_time
 layout profile_layout
 mipmap ic_launcher
 mipmap ic_launcher_round

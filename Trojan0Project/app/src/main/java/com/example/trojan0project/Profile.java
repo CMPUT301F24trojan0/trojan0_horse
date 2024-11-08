@@ -1,10 +1,11 @@
+
 package com.example.trojan0project;
 
 public class Profile {
     private String firstName;
     private String lastName;
     private String email;
-    private int profileImage;
+    private String profileImage;
     private String username;
 
     public Profile(String firstName, String lastName, String email) {
@@ -13,7 +14,7 @@ public class Profile {
         this.email = email;
     }
 
-    public Profile(String username, int profileImage){
+    public Profile(String username, String profileImage){
         this.username = username;
         this.profileImage = profileImage;
     }
@@ -52,11 +53,11 @@ public class Profile {
     }
 
 
-    public int getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(int profileImage) {
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
 }

@@ -9,6 +9,7 @@
  *
  * Outstanding issues:
  * If user wants to sign someone other than them, the code does not do that.
+ * A QR code scanner has not been created yet so the eventID has been hard coded for the halfway checkpoint
  */
 
 package com.example.trojan0project;
@@ -63,8 +64,8 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         setContentView(R.layout.activity_join_waitlist);
 
         db = FirebaseFirestore.getInstance();
-        deviceId = "c49fcd9f6ec4bc07";
-        eventId = "rn9jo1Z3ZHecVTN9sHhL";
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
+        eventId = "rn9jo1Z3ZHecVTN9sHhL";    // QR code needs to be scanned to get event class
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
@@ -82,8 +83,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         joinWaitlistButton.setOnClickListener(v -> {
             getUserProfileForDialog();
         });
-
-
     }
 
     //From https://www.geeksforgeeks.org/reverse-geocoding-in-android/ , 2024-11-07

@@ -1,8 +1,9 @@
 package com.example.trojan0project;
 
 public class Event {
-    private String id;           // Unique event ID
-    private String name;
+
+    private String eventId;
+    private String eventName;
     private double latitude;
     private double longitude;
     private String posterPath;
@@ -14,28 +15,27 @@ public class Event {
     public Event() {}
 
     // Constructor
-    public Event(String name, double latitude, double longitude, String posterPath) {
-        this.name = name;
+    public Event(String eventName, String eventId, double latitude, double longitude, String posterPath) {
+        this.eventId = eventId;
+        this.eventName = eventName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.posterPath = posterPath;
     }
 
     // Getters and setters
-    public String getId() {
-        return id;
+    public String getEventId() {return eventId;}
+
+    public void setEventId(String id) {
+        this.eventId = id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getEventName() {
+        return eventName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setEventName(String name) {
+        this.eventName = name;
     }
 
     public double getLatitude() {

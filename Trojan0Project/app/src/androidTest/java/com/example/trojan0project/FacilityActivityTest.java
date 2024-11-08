@@ -39,6 +39,39 @@ public class FacilityActivityTest {
         onData(anything()).inAdapterView(withId(R.id.admin_facilities_list));
     }
 
+    //From ChatpGPT, OpenAI, nov 7 2025, how can i check my facility is being dleted properly
+    //should fail right now bc of outstanding issused
+    @Test
+    public void testDeleteFacility() throws InterruptedException {
+        Thread.sleep(3000); // Wait for Firestore data to load
+
+
+        int[] sizeBeforeDeleting = new int[1];
+        activityRule.getScenario().onActivity(activity ->
+                sizeBeforeDeleting[0] = activity.dataList.size());
+
+
+        onData(anything())
+                .inAdapterView(withId(R.id.admin_facilities_list))
+                .atPosition(0)
+                .perform(ViewActions.click());
+
+
+        onView(withText("Do you want to delete the Facility?")).check(matches(isDisplayed()));
+
+
+        onView(withId(R.id.button_yes)).perform(ViewActions.click());
+
+        Thread.sleep(3000); // Wait for deletion to complete
+
+
+        int[] sizeAfterDeleting = new int[1];
+        activityRule.getScenario().onActivity(activity ->
+                sizeAfterDeleting[0] = activity.dataList.size());
+
+
+        assertTrue(sizeAfterDeleting[0] == sizeBeforeDeleting[0]);
+    }
 
 }
 

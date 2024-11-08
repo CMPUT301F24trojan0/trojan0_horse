@@ -69,4 +69,36 @@ public class EventActivityTest {
 
         assertTrue(sizeAfterDeleting[0] < sizeBeforeDeleting[0]);
     }
+
+
+
+    @Test
+    public void testDeleteQR()throws InterruptedException{
+
+        Thread.sleep(3000);
+
+        int[] sizeBeforeDeleting = new int[1]; //holds one size value of list before deleting
+        activityRule.getScenario().onActivity(activity ->
+                sizeBeforeDeleting[0] = activity.dataList.size());
+
+        onData(anything())
+                .inAdapterView(withId(R.id.admin_events_list))
+                .atPosition(0)
+                .perform(ViewActions.click());
+
+        //checks if dialog is displayed
+        onView(withText("What do you want to delete?")).check(matches(isDisplayed()));
+
+        //clicks yes to delete
+        onView(withId(R.id.button_QR)).perform(ViewActions.click());
+
+        Thread.sleep(3000);
+
+
+        int[] sizeAfterDeleting = new int[1];
+        activityRule.getScenario().onActivity(activity ->
+                sizeAfterDeleting[0] = activity.dataList.size());
+
+        assertTrue(sizeAfterDeleting[0] < sizeBeforeDeleting[0]);
+    }
 }

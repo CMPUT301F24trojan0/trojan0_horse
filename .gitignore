@@ -1,23 +1,26 @@
-# Gradle files
-.gradle/
-build/
-
 # Local configuration file (sdk path, etc)
-local.properties
+Trojan0Project/local.properties
+
+# ignore idea
+.idea
 
 # Log/OS Files
 *.log
+.DS_Store
 
 # Android Studio generated files and folders
 captures/
 .externalNativeBuild/
 .cxx/
-*.apk
+Trojan0Project/*.apk
 output.json
+
+# Ignore entire app/build folder (already covered by the line above)
+Trojan0Project/app/build/  
 
 # IntelliJ
 *.iml
-.idea/
+Trojan0Project/.idea/
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
@@ -27,7 +30,7 @@ render.experimental.xml
 *.keystore
 
 # Google Services (e.g. APIs or Firebase)
-google-services.json
+Trojan0Project/google-services.json
 
 # Android Profiling
 *.hprof

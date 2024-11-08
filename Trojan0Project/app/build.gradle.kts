@@ -44,6 +44,8 @@ dependencies {
     //Mockito
     testImplementation ("org.mockito:mockito-core:4.5.1") // Use the latest version
 
+    implementation(files("/Users/yaatheshini/Library/Android/sdk/platforms/android-34/android.jar"))
+
 // Mockito for Android (if you're writing Android tests)
     androidTestImplementation ("org.mockito:mockito-android:4.5.1")
     //Firebase storage

@@ -25,6 +25,8 @@
         <activity android:name=".EventAdapter" />
         <activity android:name=".StatusFragment" />
         <activity android:name=".CreateEventActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".OrganizerPageActivity" />
 
         <activity
             android:name=".BrowseProfileAdmin"
@@ -36,7 +38,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

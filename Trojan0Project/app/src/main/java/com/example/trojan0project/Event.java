@@ -1,6 +1,9 @@
 package com.example.trojan0project;
 
-public class Event {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Event implements Parcelable{
 
     private String eventId;
     private String eventName;
@@ -21,6 +24,44 @@ public class Event {
         this.latitude = latitude;
         this.longitude = longitude;
         this.posterPath = posterPath;
+    }
+
+    // Parcelable constructor
+    protected Event(Parcel in) {
+        eventId = in.readString();
+        eventName = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+        posterPath = in.readString();
+        qrCodeUrl = in.readString();
+    }
+
+    // Creator for Parcelable
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(eventId);
+        dest.writeString(eventName);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+        dest.writeString(posterPath);
+        dest.writeString(qrCodeUrl);
     }
 
     // Getters and setters

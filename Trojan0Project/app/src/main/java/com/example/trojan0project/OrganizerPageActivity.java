@@ -1,3 +1,16 @@
+/**
+ * Purpose:
+ * This activity displays the organizer's page with options to edit the facility name
+ * and view the list of events.
+ *
+ * Design Rationale:
+ * Uses Firestore to fetch and update the organizer's information.  also
+ * interacts with EditFacilityFragment to make edits to the the facility name and move to
+ * EventsListActivity to display a list of events.
+ *
+ * Outstanding Issues:
+ * No issues.
+ */
 package com.example.trojan0project;
 
 import android.content.Intent;

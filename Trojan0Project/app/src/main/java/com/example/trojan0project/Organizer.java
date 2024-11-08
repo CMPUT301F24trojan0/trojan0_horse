@@ -1,3 +1,13 @@
+/**
+ * Purpose:
+ * This class represents an Organizer object with a facility name and a list of events.
+ *
+ * Design Rationale:
+ * Provides various constructors for setting and getting organizer related information.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 package com.example.trojan0project;
 
 import java.util.List;

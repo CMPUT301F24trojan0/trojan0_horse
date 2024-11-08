@@ -1,3 +1,13 @@
+/**
+ * Purpose:
+ * ensures images are displayed properly on different devices.
+ *
+ * Design Rationale:
+ * decodes the image and reads its EXIF metadata. Based on this data, the image is rotated properly.
+ *
+ * Outstanding Issues:
+ * - No Issues.
+ */
 package com.example.trojan0project;
 
 import android.content.Context;

@@ -1,3 +1,14 @@
+/**
+ * Purpose:
+ * This class generates a drawable that displays a colored circle with text  in it.
+ *
+ * Design Rationale:
+ * The drawable is used for specific visuals that require a circle around the text
+ * for exmaple: a profile picture
+ *
+ * Outstanding Issues:
+ * - No Issues.
+ */
 package com.example.trojan0project;
 
 import android.content.Context;

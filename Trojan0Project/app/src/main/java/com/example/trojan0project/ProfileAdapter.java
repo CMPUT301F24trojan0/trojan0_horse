@@ -1,3 +1,16 @@
+/**
+ * Purpose:
+ * To hold profile objects.. Each item in the list displays a profile name and an associated image.
+ * The images are loaded using the Glide library to handle image caching and efficient loading.
+ *
+ * Design Rationale:
+ * Designed to hold profile objects.
+ * Glide is used to load images into the ImageView.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
+
 package com.example.trojan0project;
 
 import android.content.Context;

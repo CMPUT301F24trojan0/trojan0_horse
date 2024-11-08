@@ -3,24 +3,24 @@
 3    package="com.example.trojan0project.test" >
 4
 5    <uses-sdk
-5-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:5:5-74
+5-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:5:5-74
 6        android:minSdkVersion="24"
-6-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:5:15-41
+6-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:5:15-41
 7        android:targetSdkVersion="34" />
-7-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:5:42-71
+7-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:5:42-71
 8
 9    <instrumentation
-9-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:11:5-15:76
+9-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:11:5-15:76
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:11:22-76
+10-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:11:22-76
 11        android:functionalTest="false"
-11-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:14:22-52
+11-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:14:22-52
 12        android:handleProfiling="false"
-12-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:13:22-53
+12-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:13:22-53
 13        android:label="Tests for com.example.trojan0project"
-13-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:15:22-74
+13-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:15:22-74
 14        android:targetPackage="com.example.trojan0project" />
-14-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:12:22-72
+14-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:12:22-72
 15
 16    <queries>
 16-->[androidx.test:runner:1.6.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/447c8a746d7b7d67c08b943afb90ab19/transformed/runner-1.6.1/AndroidManifest.xml:24:5-28:15
@@ -40,12 +40,12 @@
 22-->[androidx.test:core:1.6.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/29c7030b0bdd0a872015291187551fdd/transformed/core-1.6.1/AndroidManifest.xml:24:22-69
 23
 24    <application
-24-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:7:5-9:19
+24-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:7:5-9:19
 25        android:debuggable="true"
 26        android:extractNativeLibs="false" >
 27        <uses-library android:name="android.test.runner" />
-27-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:8:9-60
-27-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16351451822269575979.xml:8:23-57
+27-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:8:9-60
+27-->/Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2191740764052201779.xml:8:23-57
 28
 29        <activity
 29-->[androidx.test:core:1.6.1] /Users/gurleenbamrah/.gradle/caches/transforms-4/29c7030b0bdd0a872015291187551fdd/transformed/core-1.6.1/AndroidManifest.xml:27:9-34:20

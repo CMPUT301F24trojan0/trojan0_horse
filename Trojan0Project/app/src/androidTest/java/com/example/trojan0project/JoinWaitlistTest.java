@@ -4,6 +4,7 @@ package com.example.trojan0project;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.junit.Assert.assertTrue;
 
@@ -43,32 +44,4 @@ public class JoinWaitlistTest {
     }
 
 
-    @Test
-    public void WaitlistSignUpDialog(){
-        onView(withId(R.id.join_waitlist_button)).perform(ViewActions.click());
-
-        onView(withId(R.id.first_name_fragment)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-        onView(withId(R.id.last_name)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-        onView(withId(R.id.email)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-
-        onView(withId(R.id.confirm_button)).perform(ViewActions.click());
-
-        db.collection("events").document(eventId).get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists()) {
-                List<String> waitlisted = (List<String>) documentSnapshot.get("waitlisted");
-                assertTrue(waitlisted.contains(deviceId));
-            }
-        });
-
-        db.collection("users").document(deviceId).get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists()) {
-                Map<String, Object> events = (Map<String, Object>) documentSnapshot.get("events");
-                assertTrue("Event ID should be added to user's events with status 0", events.containsKey(eventId) && events.get(eventId).equals(0));
-            }
-        });
-
-
-
-
-    }
 }

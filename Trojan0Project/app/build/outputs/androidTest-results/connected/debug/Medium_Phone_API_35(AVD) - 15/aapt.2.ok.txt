@@ -1,7 +1,7 @@
 EXECUTING: /Users/gurleenbamrah/Library/Android/sdk/build-tools/34.0.0/aapt dump badging /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project/app/build/intermediates/apk/androidTest/debug/app-debug-androidTest.apk
 CURRENT_WORKING_DIRECTORY: /Users/gurleenbamrah/Desktop/trojan0_horse/Trojan0Project
-START_TIME: 2024-11-07 19:43:55.759
-START_TIME-NANOS: 2024-11-07 19:43:55.759497000
+START_TIME: 2024-11-07 19:51:17.846
+START_TIME-NANOS: 2024-11-07 19:51:17.846402000
 ENVIRONMENT:
 
 *****************************************
@@ -23,7 +23,7 @@ supports-any-density: 'true'
 locales: '--_--'
 densities: '160'
 ===================
-END_TIME: 2024-11-07 19:43:55.772
-END_TIME-NANOS: 2024-11-07 19:43:55.772002000
-DURATION: 12ms
+END_TIME: 2024-11-07 19:51:17.857
+END_TIME-NANOS: 2024-11-07 19:51:17.857719000
+DURATION: 11ms
 EXIT CODE: 0

@@ -4,7 +4,7 @@
             "outputFile": "com.example.trojan0project.test.app-mergeDebugAndroidTestResources-2:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "/Users/gurleenbamrah/.gradle/caches/transforms-4/e380b1c6edd66483a01854ed12c8ba76/transformed/core-1.6.1/res/values-v21/values.xml",
+                    "source": "/Users/gurleenbamrah/.gradle/caches/transforms-4/29c7030b0bdd0a872015291187551fdd/transformed/core-1.6.1/res/values-v21/values.xml",
                     "from": {
                         "startLines": "4,13",
                         "startColumns": "0,0",

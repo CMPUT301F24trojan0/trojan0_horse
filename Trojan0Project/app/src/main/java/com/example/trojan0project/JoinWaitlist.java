@@ -16,6 +16,7 @@ package com.example.trojan0project;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -31,11 +32,17 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.trojan0project.JoinWaitlistFragment;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener{
 
@@ -57,7 +64,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
         db = FirebaseFirestore.getInstance();
         deviceId = "c49fcd9f6ec4bc07";
-        eventId = "ALM32NCNIl4mOEB0rPl8";
+        eventId = "rn9jo1Z3ZHecVTN9sHhL";
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
@@ -151,21 +158,22 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
     }
 
     @Override
-    public void onConfirm(Profile profile){
+    public void onConfirm(Profile profile) {
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String userType = documentSnapshot.getString("user_type");
                         if ("entrant".equals(userType)) {
+                            Map<String, Object> eventsMap = new HashMap<>();
+                            eventsMap.put(eventId, 0);
                             db.collection("users").document(deviceId)
-                                    .update("events" + eventId, 0)
+                                    .set(Collections.singletonMap("events", eventsMap), SetOptions.merge())
                                     .addOnSuccessListener(aVoid -> {
                                         Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();
                                     })
                                     .addOnFailureListener(e -> {
                                         Toast.makeText(this, "Failed to add to waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     });
-
 
                             db.collection("events").document(eventId)
                                     .update("waitlisted", FieldValue.arrayUnion(deviceId))
@@ -175,14 +183,20 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                                     .addOnFailureListener(e -> {
                                         Toast.makeText(this, "Failed to update event waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     });
+                        } else {
+                            Log.d("JoinWaitlist", "User is not an entrant; skipping waitlist addition.");
                         }
+                    } else {
+                        Log.d("JoinWaitlist", "User document does not exist.");
                     }
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
     }
+
+
+
 
 
 }

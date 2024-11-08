@@ -11,6 +11,7 @@
  */
 package com.example.trojan0project;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,15 @@ public class JoinWaitlistFragment extends DialogFragment {
 
     public JoinWaitlistFragment(Profile profile){
         this.profile = profile;
-        this.listener = listener;
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof JoinWaitlistListener) {
+            listener = (JoinWaitlistListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement JoinWaitlistListener");
+        }
     }
 
     @Nullable

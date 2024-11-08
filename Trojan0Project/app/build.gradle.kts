@@ -41,6 +41,11 @@ buildscript {
 }
 
 dependencies {
+    //Firebase storage
+    implementation ("com.google.firebase:firebase-storage:20.1.0")
+
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.5.0"))
     implementation("com.google.firebase:firebase-firestore")
@@ -57,7 +62,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
     // QR Code Library (ZXing for generating QR codes)
-    implementation("com.google.zxing:core:3.4.1")
+    implementation("com.google.zxing:core:3.5.0")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
     implementation(libs.appcompat)
@@ -67,8 +72,14 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.firebase.database)
+    implementation(libs.firebase.storage)
     // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    testImplementation ("org.junit.jupiter:junit-jupiter-api:5.0.1")
+    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.0.1")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

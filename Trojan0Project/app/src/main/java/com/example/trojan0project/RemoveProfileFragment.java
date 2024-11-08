@@ -1,3 +1,14 @@
+/**
+ * Purpose:
+ * This fragment is used to confirm if the admin wants to delete a selected profile
+ * This fragment shows 2 buttons Yes to delete and No to cancel
+ *
+ * Design Rationale:
+ * Uses interface RemoveProfileDialogListener which send the yes and no choices back to BrowseProfileAdmin.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.app.AlertDialog;

@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BrowseProfileAdmin">
+    tools:context=".BrowseImagesAdmin">
+
 
     <TextView
         android:id="@+id/app_logo"
@@ -16,40 +17,43 @@
         android:text="TROJAN0"
         android:textColor="#8C52FF"
         android:textSize="24sp"
-        android:textStyle="bold"
-
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Profile title -->
+        />
+
+
+    <!-- Images title -->
     <TextView
-        android:id="@+id/profiles_title"
+        android:id="@+id/images_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:fontFamily="@font/quicksand"
-        android:text="Profiles"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="Images"
         android:textColor="@color/black"
         android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_logo"
-        android:paddingTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ListView
-        android:id="@+id/profile_list"
+
+    <GridView
+        android:id="@+id/images_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:divider="@color/black"
-        android:dividerHeight="1dp"
-        android:fontFamily="@font/quicksand"
-        android:paddingTop="16dp"
+        android:numColumns="2"
+        android:horizontalSpacing="8dp"
+        android:padding="8dp"
+        android:verticalSpacing="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@id/profiles_title"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/images_title" />
 
 
 

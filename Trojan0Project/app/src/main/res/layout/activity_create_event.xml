@@ -47,63 +47,65 @@
         app:layout_constraintTop_toBottomOf="@id/createEventTitle"
         app:layout_constraintWidth_percent="0.8" />
 
-    <!-- Geolocation Label -->
-
-    <!-- Geolocation Switch -->
-
-    <!-- Add Poster Button -->
-
-    <!-- Save Button -->
+    <!-- Geolocation Label and Switch -->
     <TextView
         android:id="@+id/geolocationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
         android:layout_marginTop="40dp"
         android:text="Geolocation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventNameInput" />
+        app:layout_constraintTop_toBottomOf="@id/eventNameInput"
+        android:layout_marginStart="32dp" />
 
     <Switch
         android:id="@+id/geolocationSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toEndOf="@id/geolocationLabel"
         app:layout_constraintTop_toBottomOf="@id/eventNameInput" />
 
+    <!-- Add Poster Button and Save Button -->
     <Button
         android:id="@+id/addPosterButton"
-        android:layout_width="151dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#b391f8"
         android:text="Add Poster"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/saveButton"
         app:layout_constraintTop_toBottomOf="@id/geolocationSwitch"
-        app:layout_constraintWidth_percent="0.5" />
-
-    <!-- QR Code Display -->
-
-    <!-- Bottom Navigation -->
+        app:layout_constraintWidth_percent="0.4" />
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="130dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#b391f8"
         android:text="Save Event"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toEndOf="@id/addPosterButton"
-        app:layout_constraintTop_toTopOf="@id/addPosterButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/geolocationSwitch"
+        app:layout_constraintWidth_percent="0.4" />
 
+    <!-- Add Time and Add Description Buttons -->
+    <Button
+        android:id="@+id/addTimeButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#b391f8"
+        android:text="Add Time"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addDescriptionButton"
+        app:layout_constraintTop_toBottomOf="@id/addPosterButton"
+        app:layout_constraintWidth_percent="0.4" />
 
     <Button
         android:id="@+id/enterJoinWaitlist"
@@ -119,41 +121,29 @@
 
     <Button
         android:id="@+id/addDescriptionButton"
-        android:layout_width="129dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#b391f8"
         android:text="Add Description"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/addTimeButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addTimeButton"
-        android:backgroundTint="#b391f8"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
+        app:layout_constraintTop_toBottomOf="@id/addPosterButton"
+        app:layout_constraintWidth_percent="0.4" />
 
-    <Button
-        android:id="@+id/addTimeButton"
-        android:layout_width="129dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="52dp"
-        android:text="Add Time"
-        android:backgroundTint="#b391f8"
-        app:layout_constraintEnd_toStartOf="@+id/addDescriptionButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPosterButton" />
-
+    <!-- QR Code Display -->
     <ImageView
         android:id="@+id/qrCodeImageView"
         android:layout_width="148dp"
         android:layout_height="139dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="QR Code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/saveButton" />
+        app:layout_constraintTop_toBottomOf="@id/addDescriptionButton" />
 
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -186,7 +176,6 @@
             android:layout_weight="1"
             android:src="@drawable/ic_group"
             app:tint="#b391f8" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

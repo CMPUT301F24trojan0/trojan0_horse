@@ -25,6 +25,7 @@ public class UserSignUpActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private String deviceId;
+    private String userType;
     /**
      * Initializes the activity, sets up UI elements, and retrieves the device ID from the intent.
      *
@@ -38,9 +39,10 @@ public class UserSignUpActivity extends AppCompatActivity {
         // Initialize Firestore
         db = FirebaseFirestore.getInstance();
 
-        // Retrieve the device ID from the intent
+        // Retrieve device ID and user type from intent
         Intent intent = getIntent();
         deviceId = intent.getStringExtra("DEVICE_ID");
+        userType = intent.getStringExtra("USER_TYPE");
 
         usernameEditText = findViewById(R.id.username);
         emailEditText = findViewById(R.id.email);
@@ -68,21 +70,18 @@ public class UserSignUpActivity extends AppCompatActivity {
         Map<String, String> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("email", email);
-        userData.put("user_type", "entrant"); // Add a field indicating user type
+        userData.put("user_type", userType);
 
-        db.collection("users").document(deviceId).set(userData).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Log.d("firestore", "User data saved successfully: " + userData);
-                        Toast.makeText(UserSignUpActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
+        db.collection("users").document(deviceId).set(userData).addOnSuccessListener(aVoid -> {
+            Log.d(TAG, "User data saved successfully");
+            Toast.makeText(UserSignUpActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
 
-                        // Navigate to ViewProfile page
-                        Intent intent = new Intent(UserSignUpActivity.this, ViewProfile.class);
-                        intent.putExtra("DEVICE_ID", deviceId); // Pass the deviceId if needed in ViewProfile
-                        startActivity(intent);
-                    } else {
-                        Log.e("firestore", "Registration failed: " + task.getException().getMessage());
-                        Toast.makeText(UserSignUpActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+            Intent profileIntent = new Intent(UserSignUpActivity.this, ViewProfile.class);
+            profileIntent.putExtra("DEVICE_ID", deviceId);
+            startActivity(profileIntent);
+        }).addOnFailureListener(e -> {
+            Log.e(TAG, "Registration failed: " + e.getMessage());
+            Toast.makeText(UserSignUpActivity.this, "Registration failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
 
     }

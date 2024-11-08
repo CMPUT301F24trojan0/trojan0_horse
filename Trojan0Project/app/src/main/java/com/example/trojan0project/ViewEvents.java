@@ -22,7 +22,11 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
     private EventAdapter eventAdapter;
     private List<Event> eventList;
     private String deviceId;
-
+    /**
+     * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the RecyclerView.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,12 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
         // Retrieve events from Firestore
         retrieveEvents();
     }
-
+    /**
+     * Handles the click event on an event item.
+     * Opens a StatusFragment to allow the user to accept or decline the event.
+     *
+     * @param event The event that was clicked.
+     */
     @Override
     public void onEventClick(Event event) {
         // Create a new StatusFragment
@@ -71,7 +80,10 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
         statusFragment.show(getSupportFragmentManager(), "StatusFragment");
     }
 
-
+    /**
+     * Retrieves events for the user from Firestore based on their device ID.
+     * Updates the RecyclerView with the retrieved events.
+     */
     private void retrieveEvents() {
         if (deviceId == null) {
             Log.e(TAG, "Device ID is null. Cannot retrieve events.");
@@ -113,7 +125,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                                                 double defaultLatitude = 0.0;
                                                                 double defaultLongitude = 0.0;
                                                                 String defaultPosterPath = "";
-                                                                eventList.add(new Event(eventId, eventName, defaultLatitude, defaultLongitude, defaultPosterPath));
+                                                                eventList.add(new Event(eventName, eventId, defaultLatitude, defaultLongitude, defaultPosterPath));
                                                             } else {
                                                                 Log.d(TAG, "Event name is missing for event ID: " + eventId);
                                                             }

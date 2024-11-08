@@ -25,7 +25,11 @@ public class UserSignUpActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private String deviceId;
-
+    /**
+     * Initializes the activity, sets up UI elements, and retrieves the device ID from the intent.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,10 @@ public class UserSignUpActivity extends AppCompatActivity {
 
         signUpButton.setOnClickListener(v -> saveUserData());
     }
-
+    /**
+     * Validates user input and saves the user's data to Firestore.
+     * Displays a Toast message indicating success or failure of the registration process.
+     */
     private void saveUserData() {
         String username = usernameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();

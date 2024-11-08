@@ -19,7 +19,11 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
     private TextView facilityNameText;
     private FirebaseFirestore firestore;
     private Organizer organizer;
-
+    /**
+     * Initializes the activity and sets up UI elements and Firestore.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,11 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
             }
         });
     }
-
+    /**
+     * Updates the facility name displayed in the UI and in Firestore when the name is changed.
+     *
+     * @param newFacilityName The new facility name provided by the user.
+     */
     @Override
     public void onFacilityNameUpdated(String newFacilityName) {
         if (organizer != null) {

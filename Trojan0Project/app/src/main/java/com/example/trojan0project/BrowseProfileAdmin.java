@@ -12,11 +12,13 @@
  */
 package com.example.trojan0project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,7 +41,11 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
     private FirebaseFirestore db;
     private String deviceId;
 
-
+    /**
+     * Sets up the activity, including initializing Firestore, loading profiles, and setting up list and navigation buttons.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,8 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
         profileList.setAdapter(profileAdapter);
         deviceId = getIntent().getStringExtra("DEVICE_ID");
 
+        ImageButton ImagePage = findViewById(R.id.camera_button);
+
         getProfile();
 
         profileList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,8 +71,17 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
             }
         });
 
-    }
+        ImagePage.setOnClickListener(v -> {
+            Intent intent = new Intent(BrowseProfileAdmin.this, BrowseImagesAdmin.class);
+            //intent.putExtra("DEVICE_ID", deviceId);
+            startActivity(intent);
+        });
 
+    }
+    /**
+     * Gets the list of profiles from Firestore where user type is "entrant" and adds them to the dataList.
+     * Notifies the adapter to refresh the view.
+     */
     private void getProfile() {
         db.collection("users")
                 .get()
@@ -85,7 +102,11 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
                     Toast.makeText(this, "Failed to get data", Toast.LENGTH_SHORT).show();
                 });
     }
-
+    /**
+     * Removes a selected profile from Firestore and updates the local list view.
+     *
+     * @param profile The profile to be removed.
+     */
     @Override
     public void removeProfile(Profile profile) {
         db.collection("users")

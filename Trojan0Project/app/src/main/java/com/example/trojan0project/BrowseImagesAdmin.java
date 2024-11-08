@@ -13,9 +13,11 @@
 
 package com.example.trojan0project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,6 +39,13 @@ public class BrowseImagesAdmin extends MainActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
 
+
+    /**
+     * Initializes the activity, setting up Firebase services, loading images, and configuring the grid view.
+     * Also provides navigation to the Facility page.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +57,8 @@ public class BrowseImagesAdmin extends MainActivity {
         images = new ArrayList<>();
         imagesGridView = findViewById(R.id.images_list);
 
+        ImageButton FacilityPage = findViewById(R.id.facility_button);
+
         getUserProfilePicture();
         getEventImages();
 
@@ -56,8 +67,17 @@ public class BrowseImagesAdmin extends MainActivity {
         imagesGridView.setAdapter(imageAdapter);
         imagesGridView.setNumColumns(2);
 
-    }
+        FacilityPage.setOnClickListener(v -> {
+            Intent intent = new Intent(BrowseImagesAdmin.this, FacilityActivity.class);
+            //intent.putExtra("DEVICE_ID", deviceId);
+            startActivity(intent);
+        });
 
+    }
+    /**
+     * Retrieves user profile pictures from Firestore and adds them to the images list.
+     * Notifies the adapter of any updates to display the new images in the grid.
+     */
     public void getUserProfilePicture(){
         db.collection("users")
                 .get()
@@ -76,7 +96,10 @@ public class BrowseImagesAdmin extends MainActivity {
     }
 
 
-
+    /**
+     * Retrieves event poster images from Firestore and adds them to the images list.
+     * Notifies the adapter of any updates to display the new images in the grid.
+     */
     public void getEventImages(){
         db.collection("events")
                 .get()

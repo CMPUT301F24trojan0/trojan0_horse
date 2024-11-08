@@ -30,7 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView pickRoleText;
     private Button userButton;
     private Button organizerButton;
-
+    /**
+     * Initializes the MainActivity, setting up Firestore and UI elements. Checks if the device ID is registered.
+     *
+     * @param savedInstanceState Saved instance state for restoring activity state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +54,19 @@ public class MainActivity extends AppCompatActivity {
         // Check if the device ID exists in Firestore
         getDeviceIdAndCheck();
     }
-
+    /**
+     * Retrieves the device ID and checks if it exists in Firestore. Based on the result:
+     * - Redirects the user if registered.
+     * - Shows options to select a role if unregistered.
+     */
     private void getDeviceIdAndCheck() {
         // Get the device ID
         String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        //sending to joinWaitlist for user device ids
+        Intent intent1 = new Intent(MainActivity.this, JoinWaitlist.class);
+        intent1.putExtra("DEVICE_ID", deviceId);
+
 
         // Check if the device ID exists in Firestore
         devicesRef.document(deviceId).get().addOnCompleteListener(task -> {

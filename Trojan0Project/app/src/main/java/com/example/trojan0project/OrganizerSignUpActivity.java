@@ -17,7 +17,11 @@ public class OrganizerSignUpActivity extends AppCompatActivity {
 
     private EditText facilityInput;
     private Button signUpButton;
-
+    /**
+     * Initializes the activity and sets up UI elements and event listeners.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

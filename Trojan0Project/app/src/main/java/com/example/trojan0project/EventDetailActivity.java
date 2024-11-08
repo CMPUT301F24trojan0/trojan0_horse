@@ -1,4 +1,16 @@
-// EventDetailActivity.java
+/**
+ * Purpose:
+ * displays the details of a specific event, including the event name and QR code.
+ * retrieves the event information from Firestore using the event ID passed to the activity and loads the details
+ * onto the screen.
+ *
+ * Design Rationale:
+ * Uses Firestore to retrieve event data based on a unique event ID
+ * Uses Glide to load and display the QR code image
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -14,6 +26,12 @@ public class EventDetailActivity extends AppCompatActivity {
     private TextView eventNameTextView;
     private ImageView qrCodeImageView;
 
+    /**
+     * Initializes the activity, setting up UI elements and Firebase services.
+     * Also retrieves the event ID passed in the intent and loads the event details.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +49,11 @@ public class EventDetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads the details of a specific event from Firestore and displays them in the UI.
+     *
+     * @param eventId The unique ID of the event to be displayed.
+     */
     private void loadEventDetails(String eventId) {
         db.collection("events").document(eventId).get()
                 .addOnSuccessListener(documentSnapshot -> {

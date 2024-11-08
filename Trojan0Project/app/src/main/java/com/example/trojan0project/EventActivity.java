@@ -1,14 +1,31 @@
+/**
+ * Purpose:
+ * Responsible for displaying a list of events in an admin view, allowing the admin to view event details,
+ * navigate to the profile page, and delete events or QR codes.
+ *
+ * Design Rationale:
+ * Uses Firestore to get event details
+ * Includes an adapter to display events in a list view, updating the list dynamically.
+ * Implements dialog fragments for deleting events or QR codes, updating to firestore
+ * QR codes are generated and displayed for each event, and the profile button allows navigation to the profile page.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import static android.content.ContentValues.TAG;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -48,6 +65,11 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
     private ProgressDialog progressDialog;
 
 
+    /**
+     * Initializes the activity, setting up UI elements, Firebase services, and event listeners.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +78,19 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         db = FirebaseFirestore.getInstance();
 
         final CollectionReference collectionReference = db.collection("events");
+
+        String deviceId = getIntent().getStringExtra("DEVICE_ID");
+
+
+        ImageButton profilePage = findViewById(R.id.profile_button);
+
+
+
+        profilePage.setOnClickListener(v -> {
+            Intent intent = new Intent(EventActivity.this, BrowseProfileAdmin.class);
+            intent.putExtra("DEVICE_ID", deviceId);
+            startActivity(intent);
+        });
 
 
         String []events = {"Beginners Swimming","Golfing", "Baking classes", "Picnic" }; //string array consisting of events which can be fed into ListView
@@ -114,6 +149,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
 
     }
 
+    /**
+     * Generates a QR code Bitmap from the provided content string.
+     *
+     * @param content The content to encode into a QR code.
+     * @return A Bitmap of the generated QR code.
+     */
     private Bitmap generateQRCode(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -131,14 +172,23 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return null;
     }
 
+    /**
+     * Compresses the QR code Bitmap into PNG format and returns the data as a byte array.
+     *
+     * @param qrCodeBitmap The QR code Bitmap to compress.
+     * @return Byte array of the compressed QR code image.
+     */
     private byte[] getQRCodeImageData(Bitmap qrCodeBitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         return baos.toByteArray();
     }
 
-    //NEW
-
+    /**
+     * Deletes the QR code content from Firestore for the selected event.
+     *
+     * @param event The event whose QR code is to be deleted.
+     */
     @Override
     public void deleteQRCode(Event event) {
         //selectedEvent.removeQRCode();
@@ -169,7 +219,11 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
 
 
     }
-
+    /**
+     * Deletes the selected event from Firestore.
+     *
+     * @param event The event to be deleted.
+     */
     @Override
     public void deleteEvent(Event event) {
         if (selectedEvent != null) { //city is not null so that means the user clicked on an existing city

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,8 +34,8 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
 
 
         if(profile !=null){
-            profileName.setText(profile.getName());
-            imageView.setImageResource(profile.getProfileImage());
+            profileName.setText(profile.getUsername());
+            Glide.with(getContext()).load(profile.getProfileImage()).into(imageView);
 
         }
 

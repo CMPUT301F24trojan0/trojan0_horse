@@ -14,8 +14,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="8dp"
         android:scaleType="centerInside"
-        android:src="@drawable/baseline_person_24"
-        android:background="@drawable/home_icon"
 
         />
 

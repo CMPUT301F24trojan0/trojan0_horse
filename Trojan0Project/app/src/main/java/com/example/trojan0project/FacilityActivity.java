@@ -55,12 +55,12 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
         if (selectedFacility != null) { //city is not null so that means the user clicked on an existing city
             //facilityAdminAdapter.remove(selectedFacility);
             //facilityAdminAdapter.notifyDataSetChanged();
-            db.collection("organizers")
+            db.collection("users") // CHANGE TO USERS
                     .whereEqualTo("facilityName", selectedFacility.getFacilityName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                            db.collection("organizers").document(document.getId())
+                            db.collection("users").document(document.getId())//CHANGE TO USERS
                                     .update("facilityName", FieldValue.delete())
                                     .addOnSuccessListener(Void ->{
                                         dataList.remove(selectedFacility);

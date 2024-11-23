@@ -13,9 +13,13 @@
 
 package com.example.trojan0project;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -32,7 +36,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class BrowseImagesAdmin extends MainActivity {
+public class BrowseImagesAdmin extends MainActivity implements RemoveImageFragment.removeImageListener{
     private GridView imagesGridView;
     private ImageAdapter imageAdapter;
     private ArrayList<Image> images;
@@ -67,9 +71,17 @@ public class BrowseImagesAdmin extends MainActivity {
         imagesGridView.setAdapter(imageAdapter);
         imagesGridView.setNumColumns(2);
 
+        imagesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Image selectedImage = images.get(i);
+
+                new RemoveImageFragment(selectedImage).show(getSupportFragmentManager(), "removeImage");
+            }
+        });
+
         FacilityPage.setOnClickListener(v -> {
             Intent intent = new Intent(BrowseImagesAdmin.this, FacilityActivity.class);
-            //intent.putExtra("DEVICE_ID", deviceId);
             startActivity(intent);
         });
 
@@ -83,9 +95,9 @@ public class BrowseImagesAdmin extends MainActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                        String deviceId = document.getString("profile_picture_url");
-                        if (deviceId != null){
-                            images.add(new Image(deviceId));
+                        String profilePictureUrl = document.getString("profile_picture_url");
+                        if (profilePictureUrl != null && !profilePictureUrl.isEmpty()){
+                            images.add(new Image(profilePictureUrl));
 
                         }
                     }
@@ -106,7 +118,7 @@ public class BrowseImagesAdmin extends MainActivity {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){
                         String posterPath = document.getString("posterPath");
-                        if (posterPath != null){
+                        if (posterPath != null && !posterPath.isEmpty()){
                             images.add(new Image(posterPath));
                         }
                     }
@@ -115,6 +127,43 @@ public class BrowseImagesAdmin extends MainActivity {
                 .addOnFailureListener(e ->
                         Toast.makeText(BrowseImagesAdmin.this, "Error loading poster pictures", Toast.LENGTH_SHORT).show());
 
+    }
+
+
+    @Override
+    public void removeImage(Image image){
+        String imageId = image.getImageId();
+        StorageReference imageRef = storage.getReference(imageId);
+        imageRef.delete()
+                .addOnSuccessListener(Void ->{
+                    db.collection("users")
+                            .whereEqualTo("profile_picture_url", imageId)
+                            .get()
+                            .addOnSuccessListener(queryDocumentSnapshots -> {
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots){
+                                    document.getReference().update("profile_picture_url", null);
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e("Firestore","Failed to remove profile picture", e);
+                            });
+                    db.collection("events")
+                            .whereEqualTo("posterPath", imageId)
+                            .get()
+                            .addOnSuccessListener(queryDocumentSnapshots -> {
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots){
+                                    document.getReference().update("posterPath", null);
+                                }
+                            })
+                            .addOnFailureListener(e ->{
+                                Log.e("Firestore", "Failed to remove poster path", e);
+                            });
+                    images.remove(image);
+                    imageAdapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e ->{
+                    Log.e("FirebaseStorage", "Error deleting image", e);
+                });
     }
 
 }

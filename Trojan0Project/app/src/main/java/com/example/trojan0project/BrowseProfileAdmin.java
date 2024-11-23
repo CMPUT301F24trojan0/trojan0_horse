@@ -26,7 +26,7 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
     private ListView profileList;
     private ProfileAdapter profileAdapter;
     private FirebaseFirestore db;
-    private String deviceId;
+    //private String deviceId;
 
     private static final String TAG = "BrowseProfileAdmin"; // Added log tag
 
@@ -41,14 +41,16 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_browse_profile_admin);
 
+        //FirebaseFirestore.setLoggingEnabled(true);
+
         db = FirebaseFirestore.getInstance();
         profileList = findViewById(R.id.profile_list);
         dataList = new ArrayList<>();
         profileAdapter = new ProfileAdapter(this, dataList);
         profileList.setAdapter(profileAdapter);
 
-        deviceId = getIntent().getStringExtra("DEVICE_ID");
-        Log.d(TAG, "Device ID received: " + deviceId);  // Log device ID
+        //deviceId = getIntent().getStringExtra("DEVICE_ID");
+        //Log.d(TAG, "Device ID received: " + deviceId);  // Log device ID
 
         ImageButton ImagePage = findViewById(R.id.camera_button);
 
@@ -59,7 +61,7 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Profile selectedProfile = dataList.get(i);
-                Log.d(TAG, "Selected profile: " + selectedProfile.getUsername());  // Log selected profile
+
                 new RemoveProfileFragment(selectedProfile).show(getSupportFragmentManager(), "removeProfile");
             }
         });
@@ -86,9 +88,14 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
                         String userType = document.getString("user_type");
                         if ("entrant".equals(userType)) {
                             String username = document.getString("username");
-                            String profileImage = document.getString("profile_url");
-                            Log.d(TAG, "Adding profile: " + username);  // Log each added profile
-                            dataList.add(new Profile(username, profileImage));
+                            //String profileImage = document.getString("profile_url");
+                            String deviceId = document.getId();
+                            Log.d(TAG, "User Type: " + userType);
+                            Log.d(TAG, "Document ID (Device ID): " + deviceId);
+                            Log.d(TAG, "Adding profile: " + username);
+                            //Log.d(TAG, "Profile Image URL: " + profileImage);// Log each added profile
+                            dataList.add(new Profile(username, deviceId));
+                            Log.d(TAG, "Profile added to list: " + username);
                         }
                     }
                     profileAdapter.notifyDataSetChanged();
@@ -107,7 +114,8 @@ public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFra
      */
     @Override
     public void removeProfile(Profile profile) {
-        Log.d(TAG, "Removing profile: " + profile.getUsername());  // Log profile removal
+        String deviceId = profile.getDeviceId();
+        Log.d(TAG, "Attempting to remove profile with Device ID: " + deviceId);
         db.collection("users")
                 .document(deviceId)
                 .delete()

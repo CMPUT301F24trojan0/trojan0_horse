@@ -74,6 +74,10 @@ public class Event implements Parcelable, Serializable{
         qrCodeUrl = in.readString();
     }
 
+    public Event(String eventName) {
+        this.eventName = eventName;
+    }
+
     /**
      * Generates an instance of the Event class from a Parcel.
      */

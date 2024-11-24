@@ -70,6 +70,10 @@ dependencies {
     implementation("com.google.zxing:core:3.5.0")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
+    //Google maps
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

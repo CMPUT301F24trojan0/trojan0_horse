@@ -87,7 +87,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
                 dataList.clear();
 
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                    String eventName = (String) doc.getData().get("name");
+                    String eventName = (String) doc.getData().get("eventName");
                     String qrContent = (String) doc.getData().get("qrContent");
 
                     Log.d(TAG, "onEvent: Event Name: " + eventName);
@@ -148,7 +148,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         Log.d(TAG, "deleteQRCode: Deleting QR code for event: " + event.getEventName());
         if (selectedEvent != null) {
             db.collection("events")
-                    .whereEqualTo("name", selectedEvent.getEventName())
+                    .whereEqualTo("eventName", selectedEvent.getEventName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
@@ -177,7 +177,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         Log.d(TAG, "deleteEvent: Deleting event: " + event.getEventName());
         if (selectedEvent != null) {
             db.collection("events")
-                    .whereEqualTo("name", selectedEvent.getEventName())
+                    .whereEqualTo("eventName", selectedEvent.getEventName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {

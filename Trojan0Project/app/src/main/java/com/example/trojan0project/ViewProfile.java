@@ -317,3 +317,5 @@ public class ViewProfile extends AppCompatActivity {
         profilePicture.setImageDrawable(mydrawing);
     }
 }
+
+//This should not change on mainq:q

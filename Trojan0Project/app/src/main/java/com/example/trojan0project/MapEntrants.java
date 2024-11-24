@@ -55,6 +55,8 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
 
 
     }
+    //https://developers.google.com/maps/documentation/android-sdk/events#maps_android_events_disable_clicks_mapfragment-java, 2024-11-23
+    //https://www.youtube.com/watch?v=tBzAsJCuGE4 by Master Coding, 2024-11-23
     @Override
     public void onMapReady(@NonNull GoogleMap map){
         this.googleMap = map;
@@ -75,9 +77,8 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
                             entrantLocations.add(location);
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location));
-                                    //.title(eventName != null ? eventName : "Event Location"));
 
-                            // Center and zoom the map on the event location
+
                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12));
                         } else {
                             Log.e("MapEntrants", "Latitude or Longitude is null for event ID: " + eventId);

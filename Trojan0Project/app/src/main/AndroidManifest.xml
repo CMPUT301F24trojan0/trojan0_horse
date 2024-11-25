@@ -8,7 +8,10 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- Added Camera Permission -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Camera Permission -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Optional for Notifications -->
+    <uses-feature android:name="android.hardware.camera" required="false" /> <!-- Allow devices without cameras -->
 
     <application
         android:allowBackup="true"
@@ -26,18 +29,9 @@
         <activity android:name=".OrganizerSignUpActivity" />
         <activity android:name=".ViewProfile" />
         <activity android:name=".ViewEvents" />
-        <activity android:name=".Event" />
-        <activity android:name=".EventAdapter" />
-        <activity android:name=".StatusFragment" />
         <activity android:name=".CreateEventActivity" />
-        <activity android:name=".OrganizerPageActivity" />
-        <activity android:name=".BrowseProfileAdmin" />
-        <activity android:name=".BrowseImagesAdmin" />
-        <activity android:name=".JoinWaitlist" />
-        <activity android:name=".DisplayEventDetails" />
-        <activity android:name=".EventActivity" />
-        <activity android:name=".FacilityActivity" />
-        <activity android:name=".QrScannerActivity" /> <!-- Added QrScannerActivity -->
+        <activity android:name=".QrScannerActivity" /> <!-- QrScannerActivity for QR code scanning -->
+        <activity android:name=".EventDetailsActivity" /> <!-- EventDetailsActivity for displaying event details -->
 
         <activity
             android:name=".MainActivity"
@@ -48,7 +42,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Preloaded Fonts Metadata -->
+        <!-- Optional Metadata -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

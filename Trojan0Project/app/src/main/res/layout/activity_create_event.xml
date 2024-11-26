@@ -133,18 +133,17 @@
         app:layout_constraintWidth_percent="0.4" />
 
     <!-- QR Code Display -->
+
     <ImageView
         android:id="@+id/qrCodeImageView"
         android:layout_width="148dp"
         android:layout_height="139dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="92dp"
         android:contentDescription="QR Code"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addDescriptionButton" />
-
-
-    <!-- Bottom Navigation -->
 
     <EditText
         android:id="@+id/waitlist_limit_input"
@@ -154,10 +153,15 @@
         android:backgroundTint="#b391f8"
         android:hint="Waitlist Limit (Optional)"
         android:textColorHint="#b391f8"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/createEventTitle"
         app:layout_constraintWidth_percent="0.8" />
+
+
+
+    <!-- Bottom Navigation -->
 
     <LinearLayout
         android:id="@+id/linearLayout"

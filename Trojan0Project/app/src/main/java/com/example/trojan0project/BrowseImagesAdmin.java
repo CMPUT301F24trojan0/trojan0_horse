@@ -135,8 +135,6 @@ public class BrowseImagesAdmin extends MainActivity implements RemoveImageFragme
     public void removeImage(Image image) {
         String imageId = image.getImageId();
         try {
-
-
             StorageReference imageRef = storage.getReferenceFromUrl(imageId);
             imageRef.delete()
                     .addOnSuccessListener(Void -> {

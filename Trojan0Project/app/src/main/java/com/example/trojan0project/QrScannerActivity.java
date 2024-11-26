@@ -3,6 +3,7 @@ package com.example.trojan0project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,8 @@ public class QrScannerActivity extends AppCompatActivity {
     private DecoratedBarcodeView barcodeScannerView;
     private FirebaseFirestore db;
 
+    private Button cancelButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +32,15 @@ public class QrScannerActivity extends AppCompatActivity {
 
         // Initialize views and Firestore
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
+        cancelButton = findViewById(R.id.btn_cancel);
         db = FirebaseFirestore.getInstance();
+
+        // Set up cancel button functionality
+        cancelButton.setOnClickListener(v -> {
+            Log.d(TAG, "Cancel button clicked");
+            setResult(RESULT_CANCELED);
+            finish();
+        });
 
         // Set up continuous QR code scanning
         barcodeScannerView.decodeContinuous(new BarcodeCallback() {

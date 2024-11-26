@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
 
 public class RemoveImageFragment extends DialogFragment {
     private Image image;
-    private ImageView imageView;
     private removeImageListener listener;
 
     interface removeImageListener {
@@ -52,8 +51,8 @@ public class RemoveImageFragment extends DialogFragment {
         Button deleteImage = view.findViewById(R.id.confirm_button);
         Button noButton = view.findViewById(R.id.cancel_button);
 
-        if (image != null){
-            Glide.with(requireContext()).load(image.getImageId()).into(imageView);
+        if (image != null && image.getImageId() != null && !image.getImageId().isEmpty()){
+            Glide.with(requireContext()).load(image.getImageId()).into(imageViewFragment);
         }
 
         deleteImage.setOnClickListener(v ->{

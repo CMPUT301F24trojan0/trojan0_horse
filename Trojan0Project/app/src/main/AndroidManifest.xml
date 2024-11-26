@@ -36,6 +36,8 @@
         <activity android:name=".FacilityActivity" />
         <activity android:name=".EventsListActivityOrganizer" />
         <activity android:name=".EventDetailsActivityOrganizer" />
+        <activity android:name=".ViewFinalEntrantsEventActivity" />
+
         <!-- Added this -->
 
         <!-- Main Activity -->

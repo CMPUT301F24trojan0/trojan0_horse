@@ -54,11 +54,24 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Change Poster Button -->
+
+    <!-- View People Button -->
     <Button
         android:id="@+id/change_poster_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="16dp"
         android:text="Change Poster"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/view_people_button" />
+
+    <Button
+        android:id="@+id/view_people_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View People"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />

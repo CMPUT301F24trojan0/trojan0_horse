@@ -25,7 +25,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
     private TextView eventNameTextView, eventDescriptionTextView, eventTimeTextView;
     private ImageView eventPosterImageView;
-    private Button changePosterButton;
+    private Button changePosterButton, viewPeopleButton; // Added viewPeopleButton
     private FirebaseFirestore firestore;
     private FirebaseStorage firebaseStorage;
     private String eventId;
@@ -56,6 +56,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
         eventTimeTextView = findViewById(R.id.event_time_text_view);
         eventPosterImageView = findViewById(R.id.event_poster_image_view);
         changePosterButton = findViewById(R.id.change_poster_button);
+        viewPeopleButton = findViewById(R.id.view_people_button); // Initialize viewPeopleButton
 
         // Initialize Firebase services
         firestore = FirebaseFirestore.getInstance();
@@ -101,6 +102,13 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
         // Set up Change Poster button click listener
         changePosterButton.setOnClickListener(v -> openImagePicker());
+
+        // Set up View People button click listener
+        viewPeopleButton.setOnClickListener(v -> {
+            Intent intent = new Intent(EventDetailsActivityOrganizer.this, ViewFinalEntrantsEventActivity.class);
+            intent.putExtra("eventId", eventId);
+            startActivity(intent);
+        });
     }
 
     private void openImagePicker() {

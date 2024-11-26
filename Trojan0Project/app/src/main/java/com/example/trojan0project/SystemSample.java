@@ -44,7 +44,7 @@ public class SystemSample extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entrants_join_waitlist); // Set your layout file here
+        setContentView(R.layout.activity_entrants_join_waitlist);
         db = FirebaseFirestore.getInstance();
 
         waitList = new ArrayList<>();

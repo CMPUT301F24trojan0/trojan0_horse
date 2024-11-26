@@ -2,17 +2,19 @@ package com.example.trojan0project;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
     private TextView eventNameTextView, eventDescriptionTextView, eventTimeTextView;
+    private ImageView eventPosterImageView;
     private FirebaseFirestore firestore;
     private static final String TAG = "EventDetailsOrganizer";
 
@@ -25,6 +27,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
         eventNameTextView = findViewById(R.id.event_name_text_view);
         eventDescriptionTextView = findViewById(R.id.event_description_text_view);
         eventTimeTextView = findViewById(R.id.event_time_text_view);
+        eventPosterImageView = findViewById(R.id.event_poster_image_view); // Add this for the poster
 
         // Initialize Firestore
         firestore = FirebaseFirestore.getInstance();
@@ -42,10 +45,22 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
                             String eventName = documentSnapshot.getString("eventName");
                             String description = documentSnapshot.getString("description");
                             String time = documentSnapshot.getString("time");
+                            String posterPath = documentSnapshot.getString("posterPath");
 
                             eventNameTextView.setText(eventName);
                             eventDescriptionTextView.setText(description);
                             eventTimeTextView.setText(time);
+
+                            // Load poster image using Glide
+                            if (posterPath != null) {
+                                Glide.with(this)
+                                        .load(posterPath)
+                                        .placeholder(R.drawable.placeholder_image) // Optional placeholder
+
+                                        .into(eventPosterImageView);
+                            } else {
+                                Log.d(TAG, "No posterPath provided for event: " + eventId);
+                            }
 
                         } else {
                             Toast.makeText(this, "Event not found!", Toast.LENGTH_SHORT).show();

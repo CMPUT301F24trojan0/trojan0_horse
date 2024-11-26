@@ -132,15 +132,22 @@ public class BrowseImagesAdmin extends MainActivity implements RemoveImageFragme
 
     @Override
     public void removeImage(Image image){
+        if (image == null || image.getImageId() == null || image.getImageId().isEmpty()) {
+            Log.e("BrowseImagesAdmin", "Invalid image object or Image ID is null/empty.");
+            return;
+        }
         String imageId = image.getImageId();
+        Log.d("BrowseImagesAdmin", "Attempting to delete image: " + imageId);
         StorageReference imageRef = storage.getReference(imageId);
         imageRef.delete()
                 .addOnSuccessListener(Void ->{
+                    Log.d("BrowseImagesAdmin", "Image successfully deleted from storage: " + imageId);
                     db.collection("users")
                             .whereEqualTo("profile_picture_url", imageId)
                             .get()
                             .addOnSuccessListener(queryDocumentSnapshots -> {
                                 for (QueryDocumentSnapshot document : queryDocumentSnapshots){
+                                    Log.d("BrowseImagesAdmin", "Updating Firestore user document: " + document.getId());
                                     document.getReference().update("profile_picture_url", null);
                                 }
                             })
@@ -152,6 +159,7 @@ public class BrowseImagesAdmin extends MainActivity implements RemoveImageFragme
                             .get()
                             .addOnSuccessListener(queryDocumentSnapshots -> {
                                 for (QueryDocumentSnapshot document : queryDocumentSnapshots){
+                                    Log.d("BrowseImagesAdmin", "Updating Firestore event document: " + document.getId());
                                     document.getReference().update("posterPath", null);
                                 }
                             })
@@ -160,6 +168,7 @@ public class BrowseImagesAdmin extends MainActivity implements RemoveImageFragme
                             });
                     images.remove(image);
                     imageAdapter.notifyDataSetChanged();
+                    Log.d("BrowseImagesAdmin", "Image removed from adapter list.");
                 })
                 .addOnFailureListener(e ->{
                     Log.e("FirebaseStorage", "Error deleting image", e);

@@ -133,12 +133,7 @@ public class BrowseImagesAdmin extends MainActivity implements RemoveImageFragme
 
     @Override
     public void removeImage(Image image) {
-        if (image == null || image.getImageId() == null || image.getImageId().isEmpty()) {
-            Log.e("BrowseImagesAdmin", "Invalid image object or Image ID is null/empty.");
-            return;
-        }
         String imageId = image.getImageId();
-        Log.d("BrowseImagesAdmin", "Attempting to delete image: " + imageId);
         try {
 
 

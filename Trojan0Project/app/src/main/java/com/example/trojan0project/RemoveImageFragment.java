@@ -53,17 +53,12 @@ public class RemoveImageFragment extends DialogFragment {
         Button noButton = view.findViewById(R.id.cancel_button);
 
         if (image != null && image.getImageId() != null && !image.getImageId().isEmpty()){
-            Log.d("RemoveImageFragment", "Loading image: " + image.getImageId());
             Glide.with(requireContext()).load(image.getImageId()).into(imageViewFragment);
         }
 
         deleteImage.setOnClickListener(v ->{
-            Log.d("RemoveImageFragment", "Delete button clicked.");
             if (listener != null){
                 listener.removeImage(image);
-            } else{
-                Log.e("RemoveImageFragment", "Listener is null.");
-
             }
             dismiss();
         });

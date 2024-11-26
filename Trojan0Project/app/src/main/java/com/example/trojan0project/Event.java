@@ -28,6 +28,7 @@ public class Event implements Parcelable, Serializable{
     private String qrCodeUrl;    // URL for the QR code image
     private String description;  // Event description
     private String time;         // Event time
+    private int waitlistLimit;   // Event waitlist limit
 
     // Default constructor for Firestore
     public Event() {}
@@ -47,6 +48,7 @@ public class Event implements Parcelable, Serializable{
         this.latitude = latitude;
         this.longitude = longitude;
         this.posterPath = posterPath;
+        this.waitlistLimit = -1;
     }
 
     /**
@@ -58,6 +60,7 @@ public class Event implements Parcelable, Serializable{
     public Event(String eventName, Bitmap qrCodeBitmap){
         this.eventName = eventName;
         this.qrCodeBitmap = qrCodeBitmap;
+        this.waitlistLimit = -1;
     }
 
     /**
@@ -72,6 +75,7 @@ public class Event implements Parcelable, Serializable{
         longitude = in.readDouble();
         posterPath = in.readString();
         qrCodeUrl = in.readString();
+        waitlistLimit = in.readInt();
     }
 
     /**
@@ -108,6 +112,8 @@ public class Event implements Parcelable, Serializable{
         dest.writeDouble(longitude);
         dest.writeString(posterPath);
         dest.writeString(qrCodeUrl);
+        dest.writeInt(waitlistLimit); //Include Waitlist Limit in Parcel
+
     }
 
     /**
@@ -261,4 +267,25 @@ public class Event implements Parcelable, Serializable{
     public void setTime(String time) {
         this.time = time;
     }
+
+
+    /**
+     * Gets the waitlist limit for the event.
+     *
+     * @return The waitlist limit, or -1 if no limit is set.
+     */
+    public int getWaitlistLimit() {
+        return waitlistLimit;
+    }
+
+    /**
+     * Sets the waitlist limit for the event.
+     *
+     * @param waitlistLimit The maximum number of entrants allowed in the waitlist.
+     */
+    public void setWaitlistLimit(int waitlistLimit) {
+        this.waitlistLimit = waitlistLimit;
+    }
+
+
 }

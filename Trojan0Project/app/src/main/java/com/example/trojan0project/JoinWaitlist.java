@@ -178,13 +178,45 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
      */
     @Override
     public void onConfirm(Profile profile) {
+        // Fetch the event document from Firestore
+        db.collection("events").document(eventId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Get the current waitlist and waitlist limit
+                        List<String> currentWaitlist = (List<String>) documentSnapshot.get("waitlisted");
+                        int waitlistLimit = documentSnapshot.contains("waitlist_limit")
+                                ? documentSnapshot.getLong("waitlist_limit").intValue()
+                                : -1; // Default to -1 if no limit is specified
+
+                        // Check if the waitlist is not full or has no limit
+                        if (waitlistLimit == -1 || (currentWaitlist != null && currentWaitlist.size() < waitlistLimit)) {
+                            // Proceed to add the user to the waitlist
+                            addToWaitlist();
+                        } else {
+                            // Waitlist is full
+                            Toast.makeText(this, "The waitlist is full! You cannot join.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        // Event document doesn't exist
+                        Toast.makeText(this, "Event not found!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to retrieve event: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    //new method called above addToWaitlist() that actually does the actual adding to waitlist part, logic to check if the actiom should happen based on if waitlist limit has been reached is handled above
+
+    private void addToWaitlist() {
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String userType = documentSnapshot.getString("user_type");
                         if ("entrant".equals(userType)) {
+                            // Set the user's initial status for the event as "0" (Waitlisted)
                             Map<String, Object> eventsMap = new HashMap<>();
-                            eventsMap.put(eventId, 0);
+                            eventsMap.put(eventId, 0); // 0 = waitlisted
                             db.collection("users").document(deviceId)
                                     .set(Collections.singletonMap("events", eventsMap), SetOptions.merge())
                                     .addOnSuccessListener(aVoid -> {
@@ -213,6 +245,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                     Toast.makeText(this, "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
 
 
 

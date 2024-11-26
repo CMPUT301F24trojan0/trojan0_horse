@@ -54,6 +54,7 @@ import java.io.ByteArrayOutputStream;
 public class CreateEventActivity extends AppCompatActivity {
 
     private EditText eventNameInput;
+    private EditText waitlistLimitInput;
     private Switch geolocationSwitch;
     private Button addPosterButton, saveButton, addDescriptionButton, addTimeButton,enterJoinWaitlist;
     private ImageView qrCodeImageView;
@@ -83,6 +84,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
         // Initialize UI elements
         eventNameInput = findViewById(R.id.eventNameInput);
+        waitlistLimitInput = findViewById(R.id.waitlist_limit_input); //new field for waitlist limit input
         geolocationSwitch = findViewById(R.id.geolocationSwitch);
         addPosterButton = findViewById(R.id.addPosterButton);
         saveButton = findViewById(R.id.saveButton);
@@ -143,6 +145,14 @@ public class CreateEventActivity extends AppCompatActivity {
                 Event event = new Event(eventName, "", latitude, longitude, ""); // posterPath will be set later
                 event.setDescription(eventDescription);
                 event.setTime(eventTime);
+
+                // Parse waitlist limit and set it in the event
+                String waitlistLimitStr = waitlistLimitInput.getText().toString();
+                if (!waitlistLimitStr.isEmpty()) {
+                    int waitlistLimit = Integer.parseInt(waitlistLimitStr);
+                    event.setWaitlistLimit(waitlistLimit); // Add waitlist limit to event object
+                }
+
                 saveEvent(event);
             }
         });

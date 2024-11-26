@@ -31,7 +31,7 @@ public class RemoveImageFragment extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof RemoveProfileFragment.RemoveProfileDialogListener) {
+        if (context instanceof removeImageListener) {
             listener = (RemoveImageFragment.removeImageListener) context;
         } else {
             throw new RuntimeException(context

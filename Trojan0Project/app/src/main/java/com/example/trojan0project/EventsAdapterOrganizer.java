@@ -1,5 +1,7 @@
 package com.example.trojan0project;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +14,10 @@ import java.util.List;
 
 public class EventsAdapterOrganizer extends RecyclerView.Adapter<EventsAdapterOrganizer.EventViewHolder> {
 
-    private List<String> eventsList;
+    private final List<String> eventIds; // Assuming you are passing a list of event IDs
 
-    public EventsAdapterOrganizer(List<String> eventsList) {
-        this.eventsList = eventsList;
+    public EventsAdapterOrganizer(List<String> eventIds) {
+        this.eventIds = eventIds;
     }
 
     @NonNull
@@ -27,21 +29,31 @@ public class EventsAdapterOrganizer extends RecyclerView.Adapter<EventsAdapterOr
 
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
-        String eventId = eventsList.get(position);
-        holder.eventIdText.setText(eventId);
+        String eventId = eventIds.get(position);
+
+        // Set event name (or ID if the name isn't available)
+        holder.eventNameTextView.setText(eventId);
+
+        // Add click listener to open EventDetailsActivityOrganizer
+        holder.itemView.setOnClickListener(v -> {
+            Context context = v.getContext(); // Get context from itemView
+            Intent intent = new Intent(context, EventDetailsActivityOrganizer.class);
+            intent.putExtra("eventId", eventId); // Pass the event ID
+            context.startActivity(intent); // Start the activity
+        });
     }
 
     @Override
     public int getItemCount() {
-        return eventsList.size();
+        return eventIds.size();
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
-        TextView eventIdText;
+        TextView eventNameTextView;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
-            eventIdText = itemView.findViewById(R.id.event_id_text);
+            eventNameTextView = itemView.findViewById(R.id.eventNameTextView);
         }
     }
 }

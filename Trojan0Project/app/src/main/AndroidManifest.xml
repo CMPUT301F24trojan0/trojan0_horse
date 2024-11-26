@@ -34,7 +34,9 @@
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
-        <activity android:name=".EventsListActivityOrganizer" /> <!-- Added this -->
+        <activity android:name=".EventsListActivityOrganizer" />
+        <activity android:name=".EventDetailsActivityOrganizer" />
+        <!-- Added this -->
 
         <!-- Main Activity -->
         <activity

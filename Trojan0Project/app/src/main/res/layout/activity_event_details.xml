@@ -42,5 +42,16 @@
             android:text="Time"
             android:textSize="16sp"
             android:layout_marginBottom="16dp" />
+
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:backgroundTint="#FF6F61"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>

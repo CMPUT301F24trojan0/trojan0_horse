@@ -24,37 +24,45 @@ public class QrScannerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: Activity started");
         setContentView(R.layout.activity_qr_scanner);
 
+        // Initialize views and Firestore
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
         db = FirebaseFirestore.getInstance();
 
+        // Set up continuous QR code scanning
         barcodeScannerView.decodeContinuous(new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
                 String scannedData = result.getText();
                 if (scannedData != null) {
+                    Log.d(TAG, "barcodeResult: QR code scanned successfully.");
                     handleScannedData(scannedData);
                 }
             }
 
             @Override
             public void possibleResultPoints(@NonNull java.util.List<com.google.zxing.ResultPoint> resultPoints) {
-                // Not needed for now
+                // No action required for now
             }
         });
     }
 
     private void handleScannedData(String scannedData) {
         try {
+            // Parse JSON data from QR code
             JSONObject jsonObject = new JSONObject(scannedData);
             String eventId = jsonObject.getString("id");
+            Log.d(TAG, "handleScannedData: Parsed eventId = " + eventId);
 
-            // Query Firebase to find the event
+            // Query Firebase to fetch the event data
             db.collection("events").document(eventId).get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
-                            // Event found, pass data to EventDetailsActivity
+                            Log.d(TAG, "Event found in database: " + documentSnapshot.getData());
+
+                            // Pass data to EventDetailsActivity
                             Intent intent = new Intent(QrScannerActivity.this, EventDetailsActivity.class);
                             intent.putExtra("eventName", documentSnapshot.getString("eventName"));
                             intent.putExtra("description", documentSnapshot.getString("description"));
@@ -63,17 +71,20 @@ public class QrScannerActivity extends AppCompatActivity {
                             intent.putExtra("posterPath", documentSnapshot.getString("posterPath"));
                             intent.putExtra("time", documentSnapshot.getString("time"));
                             startActivity(intent);
+
+                            // Finish QrScannerActivity to prevent multiple instances
                             finish();
                         } else {
+                            Log.d(TAG, "handleScannedData: Event not found.");
                             Toast.makeText(QrScannerActivity.this, "Event not found in database.", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(e -> {
-                        Log.e(TAG, "Error fetching event: ", e);
+                        Log.e(TAG, "handleScannedData: Error fetching event: ", e);
                         Toast.makeText(QrScannerActivity.this, "Error fetching event.", Toast.LENGTH_SHORT).show();
                     });
         } catch (Exception e) {
-            Log.e(TAG, "Invalid QR Code format: ", e);
+            Log.e(TAG, "handleScannedData: Invalid QR Code format: ", e);
             Toast.makeText(this, "Invalid QR Code format.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -81,12 +92,20 @@ public class QrScannerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: Resuming barcode scanner");
         barcodeScannerView.resume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause: Pausing barcode scanner");
         barcodeScannerView.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: QrScannerActivity destroyed");
     }
 }

@@ -30,9 +30,15 @@
         <activity android:name=".ViewProfile" />
         <activity android:name=".ViewEvents" />
         <activity android:name=".CreateEventActivity" />
-        <activity android:name=".QrScannerActivity" /> <!-- QrScannerActivity for QR code scanning -->
-        <activity android:name=".EventDetailsActivity" /> <!-- EventDetailsActivity for displaying event details -->
+        <activity
+            android:name=".QrScannerActivity"
+            android:launchMode="singleTop" /> <!-- QrScannerActivity for QR code scanning -->
 
+        <activity
+            android:name=".EventDetailsActivity"
+            android:launchMode="singleTop" /> <!-- EventDetailsActivity with singleTop -->
+
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

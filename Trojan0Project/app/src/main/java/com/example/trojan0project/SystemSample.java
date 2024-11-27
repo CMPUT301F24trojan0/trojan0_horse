@@ -32,8 +32,10 @@ public class SystemSample extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private ArrayAdapter<Profile> ProfileAdapter;
+    private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
     //private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
-    private String targetEventId = "g7MK9lR8W8HwesTVgmdU";
+
+    ;
 
     private int numAttendees = 1;
     ListView entrantsWaitlist;
@@ -71,7 +73,7 @@ public class SystemSample extends AppCompatActivity {
         sampleWaitlistButton.setOnClickListener(v -> {
 
             sampleWaitlist(numAttendees);
-            resampleIfDeclined();
+
         });
         Log.d("sampleWaitlistActivity", "Calling sampleWaitlist() method");
 
@@ -181,7 +183,7 @@ public class SystemSample extends AppCompatActivity {
 
                         if (events != null && events.containsKey(eventId)) {
                             if ((Long) events.get(eventId) == 0) {
-                                events.put(eventId, 5);
+                                events.put(eventId, 1);
                                 doc.getReference().update("events", events)
                                         .addOnSuccessListener(aVoid -> {
                                             Log.d(TAG, "Event status updated successfully for " + email);
@@ -198,75 +200,7 @@ public class SystemSample extends AppCompatActivity {
     }
 
 
-    private void resampleIfDeclined() {
-        final CollectionReference collectionReference = db.collection("users");
 
-        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
-
-
-                Log.d("Declined", "onEvent triggered");
-
-                declinedList.clear();
-
-
-                for (QueryDocumentSnapshot doc: queryDocumentSnapshots){
-                    String userType = doc.getString("user_type");
-                    if ("entrant".equals(userType)){
-                        Map<String, Long> events = (Map<String, Long>) doc.get("events");
-
-                        if (events != null) {
-                            for (Map.Entry<String, Long> entry : events.entrySet()) {
-
-                                if (entry.getValue() == 3 && entry.getKey().equals(targetEventId)) {
-                                    String eventId = entry.getKey(); // This is the event ID
-                                    Log.d("Declined", "Event ID with 3: " + eventId);
-                                    String firstName = doc.getString("first_name");
-                                    String lastName = doc.getString("last_name");
-                                    String email = doc.getString("email");
-
-                                    //create profile
-                                    Profile profile = new Profile(firstName, lastName, email);
-                                    declinedList.add(profile);
-                                    Log.d("Waitlist", "Added Profile: " + profile.getFirstName() + " " + profile.getLastName());
-
-
-
-                                }
-
-
-
-                            }
-                        }
-
-                    }
-                }
-
-                int declinedSize = declinedList.size();
-                Log.d("DeclinedList", "Size of the declined list: " + declinedSize);
-
-                // Only resample if there are declined users
-                if (declinedSize > 0) {
-                    sampleWaitlist(declinedSize);  // Sample that many users
-                }
-                profileArrayAdapter.notifyDataSetChanged();
-
-                for (Profile profile : declinedList) {
-                    Log.d("DeclinedList",
-                            "First Name: " + profile.getFirstName() +
-                                    ", Last Name: " + profile.getLastName() +
-                                    ", Email: " + profile.getEmail());
-                }
-            }
-
-
-        });
-
-
-
-
-    }
 
 
 }

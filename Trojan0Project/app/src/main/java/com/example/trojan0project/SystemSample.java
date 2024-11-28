@@ -163,7 +163,7 @@ public class SystemSample extends AppCompatActivity {
        // show profiles
         for (Profile profile : sampledProfiles) {
             Log.d("Sampled Profile", "Registered: " + profile.getFirstName() + " " + profile.getLastName());
-            updateEventStatusAfterSampling(profile.getEmail(), targetEventId);
+            updateUserStatusAfterSampling(profile.getEmail(), targetEventId);
         }
         profileArrayAdapter.notifyDataSetChanged();
 
@@ -172,8 +172,36 @@ public class SystemSample extends AppCompatActivity {
 
 
 
-    private void updateEventStatusAfterSampling(String email, String eventId) {
+    private void updateUserStatusAfterSampling(String email, String eventId) {
         db.collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+                        Map<String, Object> events = (Map<String, Object>) doc.get("events");
+
+                        if (events != null && events.containsKey(eventId)) {
+                            if ((Long) events.get(eventId) == 0) {
+                                events.put(eventId, 1);
+                                doc.getReference().update("events", events)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Log.d(TAG, "Event status updated successfully for " + email);
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Log.e(TAG, "Error updating event status for " + email, e);
+                                        });
+                            }
+                        }
+                    } else {
+                        Log.e(TAG, "Error fetching document: ", task.getException());
+                    }
+                });
+    }
+
+
+    private void updateEventStatusAfterSampling(String email, String eventId) {
+        db.collection("events")
                 .whereEqualTo("email", email)
                 .get()
                 .addOnCompleteListener(task -> {

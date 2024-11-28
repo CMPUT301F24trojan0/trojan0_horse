@@ -19,6 +19,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -34,6 +35,7 @@ public class SystemSample extends AppCompatActivity {
     private ArrayAdapter<Profile> ProfileAdapter;
     private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
     //private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
+    private String deviceId;
 
     ;
 
@@ -164,6 +166,7 @@ public class SystemSample extends AppCompatActivity {
         for (Profile profile : sampledProfiles) {
             Log.d("Sampled Profile", "Registered: " + profile.getFirstName() + " " + profile.getLastName());
             updateUserStatusAfterSampling(profile.getEmail(), targetEventId);
+
         }
         profileArrayAdapter.notifyDataSetChanged();
 
@@ -179,6 +182,8 @@ public class SystemSample extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
                         DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+                        String deviceId = doc.getId();  // The document ID is considered the deviceId
+                        Log.d(TAG, "Device ID for " + email + ": " + deviceId);
                         Map<String, Object> events = (Map<String, Object>) doc.get("events");
 
                         if (events != null && events.containsKey(eventId)) {
@@ -197,35 +202,48 @@ public class SystemSample extends AppCompatActivity {
                         Log.e(TAG, "Error fetching document: ", task.getException());
                     }
                 });
+        updateEventsStatusInEvent(targetEventId, deviceId);
     }
 
 
-    private void updateEventStatusAfterSampling(String email, String eventId) {
+    private void updateEventsStatusInEvent(String eventId, String deviceId) {
+        // Query the 'events' collection for the document with the specified eventId
         db.collection("events")
-                .whereEqualTo("email", email)
+                .whereEqualTo(FieldPath.documentId(), eventId) // Use documentId as the eventId
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                        DocumentSnapshot doc = task.getResult().getDocuments().get(0);
-                        Map<String, Object> events = (Map<String, Object>) doc.get("events");
+                        DocumentSnapshot eventDoc = task.getResult().getDocuments().get(0);
 
-                        if (events != null && events.containsKey(eventId)) {
-                            if ((Long) events.get(eventId) == 0) {
-                                events.put(eventId, 1);
-                                doc.getReference().update("events", events)
-                                        .addOnSuccessListener(aVoid -> {
-                                            Log.d(TAG, "Event status updated successfully for " + email);
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Log.e(TAG, "Error updating event status for " + email, e);
-                                        });
+                        // Get the 'users' field, which is expected to be a map with deviceIds as keys
+                        Map<String, Object> users = (Map<String, Object>) eventDoc.get("users");
+
+                        // Check if the users map exists and contains the deviceId
+                        if (users != null && users.containsKey(deviceId)) {
+                            if ((Long) users.get(deviceId) == 0) {
+                                users.put(deviceId, 1);
                             }
+
+                            // Update the 'users' field in the event document
+                            eventDoc.getReference().update("users", users)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Log.d(TAG, "Successfully updated user status in event " + eventId);
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e(TAG, "Error updating user status in event " + eventId, e);
+                                    });
+                        } else {
+                            Log.e(TAG, "Users field not found in the event document");
                         }
                     } else {
-                        Log.e(TAG, "Error fetching document: ", task.getException());
+                        Log.e(TAG, "Event not found with eventId: " + eventId);
                     }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error fetching event document: ", e);
                 });
     }
+
 
 
 

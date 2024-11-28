@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Generated device ID: " + deviceId);
 
         //sending to joinWaitlist for user device ids
-        Intent intent1 = new Intent(MainActivity.this, JoinWaitlist.class);
-        intent1.putExtra("DEVICE_ID", deviceId);
+        //Intent intent1 = new Intent(MainActivity.this, JoinWaitlist.class);
+       // intent1.putExtra("DEVICE_ID", deviceId);
 
 
         // Check if the device ID exists in Firestore

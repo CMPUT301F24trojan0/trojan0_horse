@@ -123,4 +123,8 @@ public class Profile {
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
+
+    public String toString(){
+        return firstName + " " + lastName + " (" + email + ")";
+    }
 }

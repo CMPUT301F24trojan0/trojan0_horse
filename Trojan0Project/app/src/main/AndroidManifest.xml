@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Internet Permission -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +20,8 @@
         android:theme="@style/Theme.Trojan0Project"
         tools:targetApi="31">
 
-        <!-- Activities -->
+
+        <activity android:name=".BrowseImagesAdmin"/>
         <activity android:name=".UserSignUpActivity" />
         <activity android:name=".OrganizerSignUpActivity" /> <!-- Added this line -->
         <activity android:name=".ViewProfile" />
@@ -31,18 +32,17 @@
         <activity android:name=".CreateEventActivity" />
         <activity android:name=".OrganizerPageActivity" />
         <activity android:name=".BrowseProfileAdmin" />
-        <activity android:name=".BrowseImagesAdmin" />
-        <activity android:name=".JoinWaitlist" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".EntrantInvited" />
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
-
-
         <activity
-            android:name=".MainActivity"
+            android:name=".JoinWaitlist"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -50,8 +50,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

@@ -255,9 +255,10 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                                         Toast.makeText(this, "Failed to add to waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     });
 
-                            // Add device ID to the event's waitlisted array
+                            Map<String, Object> userMap = new HashMap<>();
+                            userMap.put(deviceId, 0);
                             db.collection("events").document(eventId)
-                                    .update("waitlisted", FieldValue.arrayUnion(deviceId))
+                                    .set(Collections.singletonMap("users", userMap), SetOptions.merge())
                                     .addOnSuccessListener(aVoid -> {
                                         Log.d("JoinWaitlist", "Device ID: " + deviceId + " successfully added to event's waitlisted list for Event ID: " + eventId);
                                         Toast.makeText(this, "Event waitlist updated.", Toast.LENGTH_SHORT).show();

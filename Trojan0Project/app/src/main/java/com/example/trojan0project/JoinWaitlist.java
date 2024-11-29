@@ -4,7 +4,7 @@
  * Users view event details and join the events waitlist by pressing confirm.
  *
  * Design Rationale:
- * Uses Firebase Firestore to get event and user data. Uses JoinWaitlistFragment dialog to confirm
+ * Uses Firebase Firestore to get event and user data and poster. Uses JoinWaitlistFragment dialog to confirm
  * if the user wants to join the waitlist.
  *
  * Outstanding issues:
@@ -76,13 +76,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         loadEventDetails();
         getEventPoster();
 
-        //ArrayList<Profile> waitlist = new ArrayList<>();
-        //WaitlistAdapter waitlistAdapter = new WaitlistAdapter(this, waitlist);
-        //ListView waitlistListView = findViewById(R.id.waitlist_view);
-        //waitlistListView.setAdapter(waitlistAdapter);
-
-        //getDeviceIdJoinWaitlist();
-
         joinWaitlistButton.setOnClickListener(v -> {
             getUserProfileForDialog();
         });
@@ -142,6 +135,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 });
     }
 
+    /**
+     * Gets and displays the poster for a specific event
+     * Retrieves posterPath from Firestore for the event id
+     * If poster is found then uses Glide to load the image into the ImageView
+     */
     public void getEventPoster() {
         db.collection("events").document(eventId)
                 .get()
@@ -167,30 +165,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 });
     }
 
-
-
-
-    /**private void getDeviceIdJoinWaitlist() {
-        db.collection("users").get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        // Use the document ID as the deviceId
-                        String userType = document.getString("user_type");
-                        if ("entrant".equals(userType)){
-                            deviceId = document.getId();
-                            Log.d("JoinWaitlist", "Processing Device ID: " + deviceId);
-
-                        }
-
-                        // Collect or process each profile as needed
-                        //getUserProfileForDialog(deviceId);
-
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error fetching user documents: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }*/
 
     /**
      * Retrieves the user's profile data to populate the dialog when joining the waitlist.

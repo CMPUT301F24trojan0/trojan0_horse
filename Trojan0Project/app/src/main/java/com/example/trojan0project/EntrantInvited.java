@@ -1,3 +1,17 @@
+/**
+ * Purpose:
+ * Displays a list of invited entrants for a specific event.
+ * Gets the data from Firestore and populates the list with profiles of users
+ * who have been invited to an event but have not yet accepted or declined
+ *
+ * Design Rationale:
+ * Firebase Firestore is used to get and monitor entrant data
+ * Profiles are displayes in a ListView and button triggers the data and displays list
+ *
+ * Outstanding Issues:
+ * No issues
+ */
+
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -29,13 +43,15 @@ public class EntrantInvited extends AppCompatActivity {
     private ArrayAdapter<Profile> ProfileAdapter;
     //private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
     private String targetEventId = "g7MK9lR8W8HwesTVgmdU";
-
-
     ListView entrantsInvited;
-
     private ArrayAdapter<Profile> profileArrayAdapter;
     public ArrayList<Profile> invited;
 
+    /**
+     * Initializes activity, setting up Firebase Firestore, adapter for the ListView
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +73,10 @@ public class EntrantInvited extends AppCompatActivity {
     }
 
 
+    /**
+     * Gets a list of invited entrants for an event in Firestore
+     * Entrants are identified as users with a status of 1
+     */
     private void getInvitedEntrants() {
         final CollectionReference collectionReference = db.collection("users");
 

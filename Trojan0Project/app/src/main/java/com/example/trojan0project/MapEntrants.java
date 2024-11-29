@@ -1,3 +1,15 @@
+/**
+ *Purpose:
+ *Displays a map with markers showing the locations of entrants for a specific event
+ * Map uses Google Maps SDK and locations are fetched from Firebase Firestore
+ *
+ * Design Rationale:
+ * Uses Google Maps SDK for maps and Firestore for getting event and entrant data
+ * Markers are added to the map based on latitude and lingitude from Firestore
+ *
+ * Outstanding Issues:
+ * No issues.
+ */
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -30,6 +42,11 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
     private List<LatLng> entrantLocations;
     private String eventId;
 
+    /**
+     * Retreives event ID from intent and sets map fragment
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +72,14 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
 
 
     }
+
+    /**
+     * Callback triggered when the map is ready to be used
+     * Gets entrant location and adds marker to the map
+     *
+     * @param map
+     *      The GoogleMap instance that is ready to use
+     */
     //https://developers.google.com/maps/documentation/android-sdk/events#maps_android_events_disable_clicks_mapfragment-java, 2024-11-23
     //https://www.youtube.com/watch?v=tBzAsJCuGE4 by Master Coding, 2024-11-23
     @Override

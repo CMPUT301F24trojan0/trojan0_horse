@@ -1,3 +1,14 @@
+/**
+ * Purpose:
+ * Displays list of events from Firestore in a RecyclerView and when an event is clicked
+ * to goes to a mapping page for that event
+ *
+ * Design Rationale:
+ * Uses Firestore to get event data, displays using RecyclerView with an EventAdapter
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -27,6 +38,11 @@ public class ListEvents extends AppCompatActivity {
     private List<Event> listEvent;
     private FirebaseFirestore db;
 
+    /**
+     * Initializes Firebase, and configures the RecyclerView and gets events
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +67,16 @@ public class ListEvents extends AppCompatActivity {
         });
     }
 
+    /**
+     * Gets a list of events from Firestore, extracts details
+     */
     private void fetchEvents(){
 
         db.collection("events")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                        String eventName = document.getString("eventName"); //ask vivaan to change event name cus theirs 2 types "eventName" and "name"
+                        String eventName = document.getString("eventName");
                         String documentId = document.getId();
                         if (eventName != null){
                             Event event = new Event(eventName);

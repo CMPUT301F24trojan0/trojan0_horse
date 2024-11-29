@@ -63,7 +63,8 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         setContentView(R.layout.activity_join_waitlist);
 
         db = FirebaseFirestore.getInstance();
-        //deviceId = getIntent().getStringExtra("DEVICE_ID");
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
+        Log.d("JoinWaitlist", "Device ID from main activity: " + deviceId);
         eventId = "XgvmubdXWF4reyDitBnv";    // QR code needs to be scanned to get event class
 
         eventTitle = findViewById(R.id.event_title);
@@ -80,7 +81,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         //ListView waitlistListView = findViewById(R.id.waitlist_view);
         //waitlistListView.setAdapter(waitlistAdapter);
 
-        getDeviceIdJoinWaitlist();
+        //getDeviceIdJoinWaitlist();
 
         joinWaitlistButton.setOnClickListener(v -> {
             getUserProfileForDialog();
@@ -169,7 +170,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
 
 
-    private void getDeviceIdJoinWaitlist() {
+    /**private void getDeviceIdJoinWaitlist() {
         db.collection("users").get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
@@ -189,7 +190,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error fetching user documents: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-    }
+    }*/
 
     /**
      * Retrieves the user's profile data to populate the dialog when joining the waitlist.

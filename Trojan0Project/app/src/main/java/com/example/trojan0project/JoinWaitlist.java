@@ -63,7 +63,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         setContentView(R.layout.activity_join_waitlist);
 
         db = FirebaseFirestore.getInstance();
-        deviceId = getIntent().getStringExtra("DEVICE_ID");
+        deviceId = getIntent().getStringExtra("device_id");
         Log.d("JoinWaitlist", "Device ID from main activity: " + deviceId);
         eventId = "XgvmubdXWF4reyDitBnv";    // QR code needs to be scanned to get event class
 

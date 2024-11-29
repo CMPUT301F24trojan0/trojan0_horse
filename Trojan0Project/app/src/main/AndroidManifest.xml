@@ -32,13 +32,13 @@
         <activity android:name=".CreateEventActivity" />
         <activity android:name=".OrganizerPageActivity" />
         <activity android:name=".BrowseProfileAdmin" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".JoinWaitlist" />
         <activity android:name=".EntrantInvited" />
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
         <activity
-            android:name=".JoinWaitlist"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

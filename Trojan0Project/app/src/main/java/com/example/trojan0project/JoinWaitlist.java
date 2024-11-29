@@ -70,7 +70,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
         db = FirebaseFirestore.getInstance();
         deviceId = getIntent().getStringExtra("DEVICE_ID");
-        eventId = "X37dVuve5chKjok8jj0Z";    // QR code needs to be scanned to get event class
+        eventId = "92JGqmZQ1ktFCAR7beQ9";    // QR code needs to be scanned to get event class
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);

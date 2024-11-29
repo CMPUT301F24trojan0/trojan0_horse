@@ -10,11 +10,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener {
 
@@ -25,6 +30,8 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
     private String eventName;
     private Double latitude;
     private Double longitude;
+    private Double userLatitude;
+    private Double userLongitude;
     private String time;
     private String description;
 
@@ -45,8 +52,10 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         deviceId = getIntent().getStringExtra("DEVICE_ID");
         eventId = getIntent().getStringExtra("eventId");
         eventName = getIntent().getStringExtra("eventName");
-        latitude = getIntent().getDoubleExtra("currentLatitude", 0.0);
-        longitude = getIntent().getDoubleExtra("currentLongitude", 0.0);
+        latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        longitude = getIntent().getDoubleExtra("longitude", 0.0);
+        userLatitude = getIntent().getDoubleExtra("currentLatitude", 0.0);
+        userLongitude = getIntent().getDoubleExtra("currentLongitude", 0.0);
         time = getIntent().getStringExtra("time");
         description = getIntent().getStringExtra("description");
 
@@ -129,7 +138,22 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
      */
     @Override
     public void onConfirm(Profile profile) {
-        // No changes to onConfirm logic as this method was already correct
-        Toast.makeText(this, "You confirmed the waitlist. Firestore updates can be added here.", Toast.LENGTH_SHORT).show();
+        // Update user's events in Firestore
+        Map<String, Object> userEventMap = new HashMap<>();
+        userEventMap.put(eventId, 0);
+
+        db.collection("users").document(deviceId)
+                .set(Collections.singletonMap("events", userEventMap), SetOptions.merge())
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "User's events updated successfully"))
+                .addOnFailureListener(e -> Log.e(TAG, "Failed to update user's events: " + e.getMessage()));
+
+        // Update the event's waitlist
+        db.collection("events").document(eventId)
+                .update("waitlisted", FieldValue.arrayUnion(deviceId))
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Event waitlist updated successfully");
+                })
+                .addOnFailureListener(e -> Log.e(TAG, "Failed to update event waitlist: " + e.getMessage()));
     }
 }

@@ -30,14 +30,23 @@
         <activity android:name=".ViewProfile" />
         <activity android:name=".ViewEvents" />
         <activity android:name=".CreateEventActivity" />
+        <activity android:name=".OrganizerPageActivity" />
+        <activity android:name=".BrowseProfileAdmin" />
+        <activity android:name=".BrowseImagesAdmin" />
         <activity android:name=".JoinWaitlist" />
+        <activity android:name=".DisplayEventDetails" />
+        <activity android:name=".EventActivity" />
+        <activity android:name=".FacilityActivity" />
+
+        <!-- QR Code Scanner Activity -->
         <activity
             android:name=".QrScannerActivity"
-            android:launchMode="singleTop" /> <!-- QrScannerActivity for QR code scanning -->
+            android:launchMode="singleTop" />
 
+        <!-- Event Details Activity -->
         <activity
             android:name=".EventDetailsActivity"
-            android:launchMode="singleTop" /> <!-- EventDetailsActivity with singleTop -->
+            android:launchMode="singleTop" />
 
         <!-- Main Activity -->
         <activity

@@ -19,13 +19,15 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.util.Date;
+
 public class EventDetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "EventDetailsActivity";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
 
     private ImageView posterImageView;
-    private TextView eventNameTextView, descriptionTextView, timeTextView;
+    private TextView eventNameTextView, descriptionTextView, timeTextView, deadlineTextView, maxEntrantsTextView;
     private Button cancelButton, signUpButton;
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -42,6 +44,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventNameTextView = findViewById(R.id.eventNameTextView);
         descriptionTextView = findViewById(R.id.descriptionTextView);
         timeTextView = findViewById(R.id.timeTextView);
+        deadlineTextView = findViewById(R.id.deadlineTextView); // New field
+        maxEntrantsTextView = findViewById(R.id.maxEntrantsTextView); // New field
         cancelButton = findViewById(R.id.cancelButton);
         signUpButton = findViewById(R.id.signUpButton);
 
@@ -51,6 +55,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Retrieve event details passed via intent
         Intent intent = getIntent();
         String eventName = null, description = null, posterUrl = null, time = null, eventId = null;
+        Date deadline = null; // New field
+        int maxNumberOfEntrants = 0; // New field
         Double latitude = null, longitude = null;
 
         if (intent != null) {
@@ -61,6 +67,8 @@ public class EventDetailsActivity extends AppCompatActivity {
             eventId = intent.getStringExtra("eventId");
             latitude = intent.getDoubleExtra("latitude", 0.0);
             longitude = intent.getDoubleExtra("longitude", 0.0);
+            deadline = (Date) intent.getSerializableExtra("deadline"); // New field
+            maxNumberOfEntrants = intent.getIntExtra("maxNumberOfEntrants", 0); // New field
 
             Log.d(TAG, "onCreate: Received event details");
             Log.d(TAG, "onCreate: eventName = " + eventName);
@@ -70,11 +78,15 @@ public class EventDetailsActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: eventId = " + eventId);
             Log.d(TAG, "onCreate: latitude = " + latitude);
             Log.d(TAG, "onCreate: longitude = " + longitude);
+            Log.d(TAG, "onCreate: deadline = " + deadline); // Log new field
+            Log.d(TAG, "onCreate: maxNumberOfEntrants = " + maxNumberOfEntrants); // Log new field
 
             // Set values in views
             eventNameTextView.setText(eventName != null ? eventName : "N/A");
             descriptionTextView.setText(description != null ? description : "N/A");
             timeTextView.setText(time != null ? String.format("Time: %s", time) : "N/A");
+            deadlineTextView.setText(deadline != null ? String.format("Deadline: %s", deadline.toString()) : "N/A"); // New field
+            maxEntrantsTextView.setText(maxNumberOfEntrants > 0 ? String.format("Max Entrants: %d", maxNumberOfEntrants) : "N/A"); // New field
 
             if (posterUrl != null) {
                 Glide.with(this).load(posterUrl).into(posterImageView);
@@ -96,6 +108,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         String finalPosterUrl = posterUrl;
         String finalTime = time;
         String finalEventId = eventId;
+        Date finalDeadline = deadline; // New field
+        int finalMaxNumberOfEntrants = maxNumberOfEntrants; // New field
         Double finalLatitude = latitude;
         Double finalLongitude = longitude;
 
@@ -132,6 +146,8 @@ public class EventDetailsActivity extends AppCompatActivity {
                                         joinWaitlistIntent.putExtra("eventId", finalEventId);
                                         joinWaitlistIntent.putExtra("latitude", finalLatitude);
                                         joinWaitlistIntent.putExtra("longitude", finalLongitude);
+                                        joinWaitlistIntent.putExtra("deadline", finalDeadline); // Pass new field
+                                        joinWaitlistIntent.putExtra("maxNumberOfEntrants", finalMaxNumberOfEntrants); // Pass new field
                                         joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
                                         joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
 

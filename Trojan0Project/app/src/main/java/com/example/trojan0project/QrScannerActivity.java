@@ -81,6 +81,7 @@ public class QrScannerActivity extends AppCompatActivity {
                             intent.putExtra("longitude", documentSnapshot.getDouble("longitude"));
                             intent.putExtra("posterPath", documentSnapshot.getString("posterPath"));
                             intent.putExtra("time", documentSnapshot.getString("time"));
+
                             startActivity(intent);
 
                             // Finish QrScannerActivity to prevent multiple instances

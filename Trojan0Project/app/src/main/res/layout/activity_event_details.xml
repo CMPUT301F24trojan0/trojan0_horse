@@ -43,6 +43,22 @@
             android:textSize="16sp"
             android:layout_marginBottom="16dp" />
 
+        <TextView
+            android:id="@+id/deadlineTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/maxEntrantsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
         <!-- Cancel Button -->
         <Button
             android:id="@+id/cancelButton"

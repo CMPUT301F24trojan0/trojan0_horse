@@ -115,7 +115,7 @@ public class SystemSample extends AppCompatActivity {
                                     String deviceId = doc.getId();
 
                                    //create profile
-                                    Profile profile = new Profile(firstName, lastName, email);
+                                    Profile profile = new Profile(firstName, lastName, email, deviceId);
                                     waitList.add(profile);
                                     Log.d("Waitlist", "Added Profile: " + profile.getFirstName() + " " + profile.getLastName());
 
@@ -133,10 +133,10 @@ public class SystemSample extends AppCompatActivity {
                 profileArrayAdapter.notifyDataSetChanged();
 
                 for (Profile profile : waitList) {
-                    Log.d("Waitlist",
-                            "First Name: " + profile.getFirstName() +
-                                    ", Last Name: " + profile.getLastName() +
-                                    ", Email: " + profile.getEmail());
+                    Log.d("Waitlist", "First Name: " + profile.getFirstName() +
+                            ", Last Name: " + profile.getLastName() +
+                            ", Email: " + profile.getEmail() +
+                            ", Device ID: " + profile.getDeviceId());
                 }
             }
 
@@ -166,7 +166,13 @@ public class SystemSample extends AppCompatActivity {
        // show profiles
         for (Profile profile : sampledProfiles) {
             Log.d("Sampled Profile", "Registered: " + profile.getFirstName() + " " + profile.getLastName());
-            updateUserStatusAfterSampling(profile.getEmail(), targetEventId);
+            String deviceId = profile.getDeviceId();
+            if (deviceId != null) {
+                updateUserStatusAfterSampling(deviceId, targetEventId);
+            } else {
+                Log.e(TAG, "Device ID is null for profile: " + profile.getFirstName() + " " + profile.getLastName());
+            }
+            //updateEventsStatusInEvent(targetEventId, deviceId);
 
         }
         profileArrayAdapter.notifyDataSetChanged();
@@ -176,7 +182,7 @@ public class SystemSample extends AppCompatActivity {
 
 
 
-    private void updateUserStatusAfterSampling(String email, String eventId) {
+    private void updateUserStatusAfterSampling(String deviceId, String eventId) {
         db.collection("users")
                 .document(deviceId)
                 .get()
@@ -191,10 +197,10 @@ public class SystemSample extends AppCompatActivity {
                                 events.put(eventId, 1);
                                 doc.getReference().update("events", events)
                                         .addOnSuccessListener(aVoid -> {
-                                            Log.d(TAG, "Event status updated successfully for " + email);
+                                            Log.d(TAG, "Event status updated successfully for " + deviceId);
                                         })
                                         .addOnFailureListener(e -> {
-                                            Log.e(TAG, "Error updating event status for " + email, e);
+                                            Log.e(TAG, "Error updating event status for " + deviceId, e);
                                         });
                             }
                         }
@@ -202,7 +208,7 @@ public class SystemSample extends AppCompatActivity {
                         Log.e(TAG, "Error fetching document: ", task.getException());
 
                     }
-                    updateEventsStatusInEvent(eventId, deviceId);
+
                 });
 
     }

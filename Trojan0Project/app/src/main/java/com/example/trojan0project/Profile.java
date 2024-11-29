@@ -19,6 +19,7 @@ public class Profile {
     private String email;
     private String profileImage;
     private String username;
+    private String deviceId;
     /**
      * Constructs a Profile with the specified first name, last name, and email.
      *
@@ -31,6 +32,13 @@ public class Profile {
         this.lastName = lastName;
         this.email = email;
     }
+
+    public Profile(String firstName, String lastName, String email, String deviceId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.deviceId = deviceId; // Store the deviceId
+    }
     /**
      * Constructs a Profile with the specified username and profile image.
      *
@@ -40,6 +48,10 @@ public class Profile {
     public Profile(String username, String profileImage){
         this.username = username;
         this.profileImage = profileImage;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
     }
 
     /**

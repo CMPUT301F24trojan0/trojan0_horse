@@ -30,6 +30,7 @@
         <activity android:name=".ViewProfile" />
         <activity android:name=".ViewEvents" />
         <activity android:name=".CreateEventActivity" />
+        <activity android:name=".JoinWaitlist" />
         <activity
             android:name=".QrScannerActivity"
             android:launchMode="singleTop" /> <!-- QrScannerActivity for QR code scanning -->

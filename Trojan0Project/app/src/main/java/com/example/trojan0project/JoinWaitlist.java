@@ -111,7 +111,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         db.collection("events").document(eventId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        // Get event details and set them in the UI
                         String title = documentSnapshot.getString("name");
                         Double latitude = documentSnapshot.getDouble("latitude");
                         Double longitude = documentSnapshot.getDouble("longitude");
@@ -205,6 +204,9 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
             return;
         }
 
+        double latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        double longitude = getIntent().getDoubleExtra("longitude", 0.0);
+
         Log.d("JoinWaitlist", "Starting waitlist confirmation for Device ID: " + deviceId + " and Event ID: " + eventId);
 
         db.collection("users").document(deviceId).get()
@@ -217,10 +219,15 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                             Log.d("JoinWaitlist", "User type is 'entrant'. Proceeding with waitlist addition.");
 
                             // Add event ID with status 0 to the user's document
-                            Map<String, Object> eventsMap = new HashMap<>();
-                            eventsMap.put(eventId, 0);
+                            Map<String, Object> eventsData = new HashMap<>();
+                            eventsData.put(eventId, 0);
+                            Map<String, Double> geolocationUser = new HashMap<>();
+                            geolocationUser.put("latitude", latitude);
+                            geolocationUser.put("longitude", longitude);
+                            eventsData.put("geolocation", geolocationUser);
+
                             db.collection("users").document(deviceId)
-                                    .set(Collections.singletonMap("events", eventsMap), SetOptions.merge())
+                                    .set(Collections.singletonMap("events", eventsData), SetOptions.merge())
                                     .addOnSuccessListener(aVoid -> {
                                         Log.d("JoinWaitlist", "Event ID: " + eventId + " successfully added to user's document with Device ID: " + deviceId);
                                         Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();

@@ -35,12 +35,12 @@
         <activity android:name=".JoinWaitlist" />
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
-        <activity android:name=".FacilityActivity"/>
+        <activity android:name=".SystemSample"/>
         <activity android:name=".MainActivity" />
 
 
         <activity
-            android:name=".SystemSample"
+            android:name=".FacilityActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -77,23 +77,52 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
     /**
      * Handles the click event on an event item.
      * Opens a StatusFragment to allow the user to accept or decline the event.
-     *
+     *Opens a WaitlistFragment to allow the user to choose to leave the waitlist for the event if they are currently on it.
      * @param event The event that was clicked.
      */
     @Override
     public void onEventClick(Event event) {
-        // Create a new StatusFragment
-        StatusFragment statusFragment = new StatusFragment();
+        db.collection("users").document(deviceId)
+                .get()
+                .addOnSuccessListener(document -> {
+                    if (document.exists() && document.contains("events")) {
+                        Map<String, Long> eventsMap = (Map<String, Long>) document.get("events");
+                        Long status = eventsMap.get(event.getEventId());
 
-        // Create a bundle to pass the deviceId
-        Bundle args = new Bundle();
-        args.putString("DEVICE_ID", deviceId);  // Pass device ID to fragment
-        args.putString("EVENT_ID", event.getEventId()); // Pass the unique event ID to the fragment
-        statusFragment.setArguments(args);
+                        if (status != null) {
+                            if (status == 0) { // Waitlisted
+                                // Open WaitlistFragment for waitlisted events
+                                WaitlistFragment waitlistFragment = new WaitlistFragment();
 
-        // Show the fragment as a dialog (overlay)
-        statusFragment.show(getSupportFragmentManager(), "StatusFragment");
+                                Bundle args = new Bundle();
+                                args.putString("DEVICE_ID", deviceId);
+                                args.putString("EVENT_ID", event.getEventId());
+                                waitlistFragment.setArguments(args);
+
+                                waitlistFragment.show(getSupportFragmentManager(), "WaitlistFragment");
+                            } else if (status == 1) { // Selected
+                                // Open StatusFragment for selected events
+                                StatusFragment statusFragment = new StatusFragment();
+
+                                Bundle args = new Bundle();
+                                args.putString("DEVICE_ID", deviceId);
+                                args.putString("EVENT_ID", event.getEventId());
+                                statusFragment.setArguments(args);
+
+                                statusFragment.show(getSupportFragmentManager(), "StatusFragment");
+                            } else {
+                                Toast.makeText(this, "This event has no associated action.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "Event status not found.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error fetching event status.", Toast.LENGTH_SHORT).show();
+                });
     }
+
 
     /**
      * Retrieves events for the user from Firestore based on their device ID.
@@ -116,74 +145,45 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                             if (document.contains("events")) {
                                 Map<String, Long> eventsMap = (Map<String, Long>) document.get("events");
 
-                                int[] counter = {0}; // Initialize a counter to track processed events
-                                int totalEventsToFetch = (int) eventsMap.entrySet().stream().filter(entry -> entry.getValue() == 1).count(); // Track total events with status 1
-
-                                // Fetch each event detail
                                 for (Map.Entry<String, Long> entry : eventsMap.entrySet()) {
                                     String eventId = entry.getKey();
-                                    Long participationStatus = entry.getValue();
 
-                                    // Check if the event has a value of 1
-                                    if (participationStatus == 1) {
-                                        Log.d(TAG, "Fetching event with ID: " + eventId);
+                                    // Fetch event details from the "events" collection using eventId
+                                    db.collection("events").document(eventId)
+                                            .get()
+                                            .addOnCompleteListener(eventTask -> {
+                                                if (eventTask.isSuccessful()) {
+                                                    DocumentSnapshot eventDocument = eventTask.getResult();
+                                                    if (eventDocument.exists()) {
+                                                        String eventName = eventDocument.getString("name");
+                                                        double latitude = eventDocument.contains("latitude")
+                                                                ? eventDocument.getDouble("latitude")
+                                                                : 0.0;
+                                                        double longitude = eventDocument.contains("longitude")
+                                                                ? eventDocument.getDouble("longitude")
+                                                                : 0.0;
+                                                        String posterPath = eventDocument.getString("posterPath");
 
-                                        // Fetch event details from the "events" collection using eventId
-                                        db.collection("events").document(eventId)
-                                                .get()
-                                                .addOnCompleteListener(eventTask -> {
-                                                    if (eventTask.isSuccessful()) {
-                                                        DocumentSnapshot eventDocument = eventTask.getResult();
-                                                        if (eventDocument.exists()) {
-                                                            String eventName = eventDocument.getString("name");
-                                                            if (eventName != null) {
-                                                                double defaultLatitude = 0.0;
-                                                                double defaultLongitude = 0.0;
-                                                                String defaultPosterPath = "";
-                                                                eventList.add(new Event(eventName, eventId, defaultLatitude, defaultLongitude, defaultPosterPath));
-                                                            } else {
-                                                                Log.d(TAG, "Event name is missing for event ID: " + eventId);
-                                                            }
-                                                        } else {
-                                                            Log.d(TAG, "Event document does not exist for event ID: " + eventId);
-                                                        }
-                                                    } else {
-                                                        Log.e(TAG, "Error fetching event details: ", eventTask.getException());
+                                                        // Create Event object and add to the list
+                                                        Event event = new Event(eventName, eventId, latitude, longitude, posterPath);
+                                                        eventList.add(event);
                                                     }
-
-                                                    // Increment the counter and check if all events are processed
-                                                    counter[0]++;
-                                                    if (counter[0] == totalEventsToFetch) {
-                                                        eventList.add(new Event("end", "--End of events list--", 0.0, 0.0, ""));
-                                                        // Notify the adapter only once all events are added
-                                                        eventAdapter.notifyDataSetChanged();
-                                                    }
-                                                });
-                                    }
+                                                }
+                                                eventAdapter.notifyDataSetChanged();
+                                            });
                                 }
-
-                                if (totalEventsToFetch == 0) {
-                                    Toast.makeText(ViewEvents.this, "No events found with status 1.", Toast.LENGTH_SHORT).show();
-                                }
-
                             } else {
-                                Log.d(TAG, "No events found for this user.");
                                 Toast.makeText(ViewEvents.this, "No events found for this user.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Log.d(TAG, "Document does not exist.");
                             Toast.makeText(ViewEvents.this, "No events found for this user.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Log.e(TAG, "Error retrieving events: ", task.getException());
                         Toast.makeText(ViewEvents.this, "Failed to retrieve events.", Toast.LENGTH_SHORT).show();
                     }
-                })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "Firestore retrieval failed: ", e);
-                    Toast.makeText(ViewEvents.this, "Firestore retrieval failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
 
 }
 

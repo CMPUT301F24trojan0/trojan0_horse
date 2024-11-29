@@ -112,6 +112,7 @@ public class SystemSample extends AppCompatActivity {
                                     String firstName = doc.getString("first_name");
                                     String lastName = doc.getString("last_name");
                                     String email = doc.getString("email");
+                                    String deviceId = doc.getId();
 
                                    //create profile
                                     Profile profile = new Profile(firstName, lastName, email);
@@ -177,13 +178,12 @@ public class SystemSample extends AppCompatActivity {
 
     private void updateUserStatusAfterSampling(String email, String eventId) {
         db.collection("users")
-                .whereEqualTo("email", email)
+                .document(deviceId)
                 .get()
                 .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                        DocumentSnapshot doc = task.getResult().getDocuments().get(0);
-                        String deviceId = doc.getId();  // The document ID is considered the deviceId
-                        Log.d(TAG, "Device ID for " + email + ": " + deviceId);
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        DocumentSnapshot doc = task.getResult();
+                        Log.d(TAG, "Device ID: " + deviceId);
                         Map<String, Object> events = (Map<String, Object>) doc.get("events");
 
                         if (events != null && events.containsKey(eventId)) {
@@ -200,9 +200,11 @@ public class SystemSample extends AppCompatActivity {
                         }
                     } else {
                         Log.e(TAG, "Error fetching document: ", task.getException());
+
                     }
+                    updateEventsStatusInEvent(eventId, deviceId);
                 });
-        updateEventsStatusInEvent(targetEventId, deviceId);
+
     }
 
 

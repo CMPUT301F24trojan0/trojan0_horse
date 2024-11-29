@@ -1,8 +1,27 @@
+/**
+ * CancelEntrants class handles cancelling entrants for a specific event who did not sign up by
+ * the deadline. Entrants are marked as 3 which is decline or cancelled in the Firestore database
+ *
+ * Purpose:
+ * Class allows the event organizer to automatically cancel all entrants by clicking a button who:
+ * were invited to sign up (status 1)
+ * did not complete the sign up process before the deadline
+ *
+ * Design Rationale:
+ * Gets signup deadline for the target event from Firestore
+ * Prompts the organizer to confirm the cancellation with a dialog
+ * Updates status of eligible entrants in Firestore to 3 (decline and cancelled)
+ *
+ * Outstanding Issues:
+ * No issues
+ *
+ */
 package com.example.trojan0project;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +29,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.WriteBatch;
@@ -22,6 +42,11 @@ public class CancelEntrants extends AppCompatActivity {
     private String targetEventId = "g7MK9lR8W8HwesTVgmdU";
     private Date signupDeadline;
 
+    /**
+     * Initializes activity and triggeres the process to get the deadline
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +54,40 @@ public class CancelEntrants extends AppCompatActivity {
         setContentView(R.layout.activity_cancel_entrants);
         db = FirebaseFirestore.getInstance();
 
-        signupDeadline = new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000);
+        getDeadline();
 
-        cancelEntrantsConfirm();
     }
 
+    /**
+     * Gets deadline for the target event from Firestore
+     * Triggers the confirmation dialog to cancel entrants
+     */
+    private void getDeadline(){
+        db.collection("events").document(targetEventId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()){
+                        Timestamp deadlineTimestamp = documentSnapshot.getTimestamp("deadline");
+                        Log.d("CancelEntrants", "Fetched deadline: " + deadlineTimestamp);
+                        if (deadlineTimestamp != null){
+                            signupDeadline = deadlineTimestamp.toDate();
+                            Log.d("CancelEntrants", "Fetched signup deadline: " + signupDeadline);
+
+                            cancelEntrantsConfirm();
+                        } else {
+                            Log.e("CancelEntrants", "Deadline field is missing in event: " + targetEventId);
+                        }
+                    }else {
+                        Log.e("CancelEntrants", "Event not found for ID: " + targetEventId);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("CancelEntrants", "Error fetching event: " + e.getMessage());
+                });
+    }
+
+    /**
+     * Displays confirmation dialog asking the user if they want to cancel all entrants
+     */
     private void cancelEntrantsConfirm() {
         new AlertDialog.Builder(this)
                 .setTitle("Cancel Entrants")
@@ -43,6 +97,12 @@ public class CancelEntrants extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * Cancels all entrants for target event who meet the conditions
+     *          - if their status is 1 (meaning invited to apply)
+     *          - the current date is after the signup deadline
+     * Performs batch update to ensure that everything gets cancelled together
+     */
     //https://firebase.google.com/docs/firestore/manage-data/transactions, 2024-11-27
     private void cancelEntrants() {
         db.collection("users")

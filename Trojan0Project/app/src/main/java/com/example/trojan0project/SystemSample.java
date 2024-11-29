@@ -172,7 +172,7 @@ public class SystemSample extends AppCompatActivity {
             } else {
                 Log.e(TAG, "Device ID is null for profile: " + profile.getFirstName() + " " + profile.getLastName());
             }
-            //updateEventsStatusInEvent(targetEventId, deviceId);
+            updateEventsStatusInEvent(targetEventId, deviceId);
 
         }
         profileArrayAdapter.notifyDataSetChanged();

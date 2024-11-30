@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F5F5F5"
     android:padding="20dp">
-
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -43,7 +43,6 @@
         android:clipToOutline="true"
         android:layout_marginBottom="8dp" />
 
-
     <!-- Edit Icon -->
     <ImageButton
         android:id="@+id/editImageIcon"
@@ -55,8 +54,7 @@
         android:contentDescription="Edit Profile Picture"
         android:layout_marginBottom="8dp" />
 
-    <!-- Profile Page Title -->
-
+    <!-- Delete Icon -->
     <ImageButton
         android:id="@+id/deleteImageIcon"
         android:layout_width="24dp"
@@ -167,7 +165,20 @@
         android:textColor="#FFFFFF"
         android:layout_marginTop="16dp" />
 
+    <!-- Scan QR Code Button -->
+
     <!-- Bottom Navigation Icons -->
+
+    <Button
+        android:id="@+id/scanQrCodeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewEventsButton"
+        android:layout_marginTop="-450dp"
+        android:backgroundTint="#8C52FF"
+        android:text="Scan QR Code"
+        android:textColor="#FFFFFF" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

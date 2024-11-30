@@ -18,32 +18,50 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
+import com.example.trojan0project.JoinWaitlistFragment;
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener{
+public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener {
 
+    private static final String TAG = "JoinWaitlist";
     private FirebaseFirestore db;
     private String deviceId;
     private String eventId;
+    private String eventName;
+    private Double latitude;
+    private Double longitude;
+    private Double userLatitude;
+    private Double userLongitude;
+    private String time;
+    private String description;
+
     private TextView eventTitle;
     private TextView eventLocation;
     private TextView eventTime;
@@ -63,10 +81,22 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         setContentView(R.layout.activity_join_waitlist);
 
         db = FirebaseFirestore.getInstance();
-        deviceId = getIntent().getStringExtra("device_id");
-        Log.d("JoinWaitlist", "Device ID from main activity: " + deviceId);
-        eventId = "XgvmubdXWF4reyDitBnv";    // QR code needs to be scanned to get event class
 
+        // Get data from Intent
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
+        Log.d("JoinWaitlist", "Device ID from main activity: " + deviceId);
+        eventId = getIntent().getStringExtra("eventId");
+        eventName = getIntent().getStringExtra("eventName");
+        latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        longitude = getIntent().getDoubleExtra("longitude", 0.0);
+        userLatitude = getIntent().getDoubleExtra("currentLatitude", 0.0);
+        userLongitude = getIntent().getDoubleExtra("currentLongitude", 0.0);
+        time = getIntent().getStringExtra("time");
+        description = getIntent().getStringExtra("description");
+
+        Log.d(TAG, "onCreate: Event Details: eventId=" + eventId + ", eventName=" + eventName + ", latitude=" + latitude + ", longitude=" + longitude + ", time=" + time + ", description=" + description);
+
+        // Reference views
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
         eventTime = findViewById(R.id.time_label);
@@ -111,6 +141,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         db.collection("events").document(eventId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
+                        // Get event details and set them in the UI
                         String title = documentSnapshot.getString("name");
                         Double latitude = documentSnapshot.getDouble("latitude");
                         Double longitude = documentSnapshot.getDouble("longitude");
@@ -188,9 +219,8 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error getting user profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
-
     }
+
     /**
      * Confirms the user's intent to join the waitlist and updates Firestore with the waitlist entry.
      *
@@ -263,10 +293,4 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                     Toast.makeText(this, "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
-
-
-
-
-
 }

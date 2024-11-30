@@ -1,16 +1,3 @@
-/**
- * Purpose:
- * This activity displays the organizer's page with options to edit the facility name
- * and view the list of events.
- *
- * Design Rationale:
- * Uses Firestore to fetch and update the organizer's information.  also
- * interacts with EditFacilityFragment to make edits to the the facility name and move to
- * EventsListActivity to display a list of events.
- *
- * Outstanding Issues:
- * No issues.
- */
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -22,10 +9,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class OrganizerPageActivity extends AppCompatActivity implements EditFacilityFragment.OnFacilityNameUpdatedListener {
 
@@ -47,7 +35,7 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
 
         editFacilityButton = findViewById(R.id.edit_facility_button);
         viewEventsButton = findViewById(R.id.view_events_button);
-        createEventButton = findViewById(R.id.create_event_button); // Initialize the new button
+        createEventButton = findViewById(R.id.create_event_button);
         facilityNameText = findViewById(R.id.facility_name_text);
 
         // Initialize Firestore
@@ -92,22 +80,60 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
         });
 
         viewEventsButton.setOnClickListener(v -> {
-            if (organizer != null && organizer.getEvents() != null && !organizer.getEvents().isEmpty()) {
-                Intent intent = new Intent(OrganizerPageActivity.this, EventsListActivity.class);
-                intent.putParcelableArrayListExtra("events_list", new ArrayList<>(organizer.getEvents()));
-                startActivity(intent);
+            if (organizerId != null) {
+                // Fetch events dynamically from Firestore
+                firestore.collection("users").document(organizerId).get()
+                        .addOnSuccessListener(documentSnapshot -> {
+                            if (documentSnapshot.exists()) {
+                                // Log the entire document for debugging
+                                Log.d(TAG, "Document Snapshot: " + documentSnapshot.getData());
+
+                                // Retrieve events from organizer_details
+                                Object organizerDetails = documentSnapshot.get("organizer_details");
+                                if (organizerDetails instanceof Map) {
+                                    Map<String, Object> detailsMap = (Map<String, Object>) organizerDetails;
+                                    Object eventsObject = detailsMap.get("events");
+                                    if (eventsObject instanceof List) {
+                                        List<String> events = (List<String>) eventsObject;
+                                        if (!events.isEmpty()) {
+                                            // Launch EventsListActivityOrganizer with events
+                                            Intent intent = new Intent(this, EventsListActivityOrganizer.class);
+                                            intent.putStringArrayListExtra("events_list", new ArrayList<>(events));
+                                            startActivity(intent);
+                                        } else {
+                                            Toast.makeText(this, "No events found", Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, "Events array is empty.");
+                                        }
+                                    } else {
+                                        Toast.makeText(this, "Invalid events data format", Toast.LENGTH_SHORT).show();
+                                        Log.e(TAG, "Events field is not a list: " + eventsObject);
+                                    }
+                                } else {
+                                    Toast.makeText(this, "No organizer details found", Toast.LENGTH_SHORT).show();
+                                    Log.e(TAG, "organizer_details is not a map: " + organizerDetails);
+                                }
+                            } else {
+                                Toast.makeText(this, "No data found for organizer", Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, "No organizer document found in Firestore.");
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(this, "Failed to fetch events", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG, "Error fetching events: " + e.getMessage());
+                        });
             } else {
-                Toast.makeText(this, "No events created yet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Organizer ID is invalid", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Organizer ID is null");
             }
         });
 
-        // Set up the Create Event button to navigate to CreateEventActivity
         createEventButton.setOnClickListener(v -> {
             Intent intent = new Intent(OrganizerPageActivity.this, CreateEventActivity.class);
             intent.putExtra("organizerId", organizerId);
             startActivity(intent);
         });
     }
+
     /**
      * Updates the facility name displayed in the UI and in Firestore when the name is changed.
      *

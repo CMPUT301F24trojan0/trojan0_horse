@@ -14,8 +14,7 @@ package com.example.trojan0project;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.graphics.Bitmap;
-import android.util.Base64;
-import java.io.ByteArrayOutputStream;
+
 import java.io.Serializable;
 
 public class Event implements Parcelable, Serializable{
@@ -30,7 +29,7 @@ public class Event implements Parcelable, Serializable{
     private String time;         // Event time
 
     // Default constructor for Firestore
-    public Event() {}
+    public Event(String eventName, String eventId, double defaultLatitude, double defaultLongitude, String defaultPosterPath, Long participationStatus) {}
 
     /**
      * Constructor to create an Event object with essential details.

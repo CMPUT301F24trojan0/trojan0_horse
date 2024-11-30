@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -86,31 +87,45 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(@NonNull GoogleMap map){
         this.googleMap = map;
 
-        db.collection("events")
-                .document(eventId)
+        db.collection("users")
                 .get()
-                .addOnSuccessListener(documentSnapshot -> {
+                .addOnSuccessListener(queryDocumentSnapshots -> {
                     entrantLocations.clear();
-                    if (documentSnapshot.exists()) {
-                        // Retrieve latitude and longitude
-                        Double lat = documentSnapshot.getDouble("latitude");
-                        Double lng = documentSnapshot.getDouble("longitude");
-                        //String eventName = documentSnapshot.getString("eventName");
-
-                        if (lat != null && lng != null) {
-                            LatLng location = new LatLng(lat, lng);
-                            entrantLocations.add(location);
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position(location));
 
 
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12));
-                        } else {
-                            Log.e("MapEntrants", "Latitude or Longitude is null for event ID: " + eventId);
+
+                    LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
+
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                        Map<String, Object> events = (Map<String, Object>) documentSnapshot.get("events");
+
+                        if (events != null && events.containsKey(eventId)){
+                            Map<String, Object> eventDetails = (Map<String, Object>) events.get(eventId);
+
+                            if(eventDetails != null && eventDetails.containsKey("geolocation")){
+                                Map<String, Object> geolocation = (Map<String, Object>) eventDetails.get("geolocation");
+                                Long status = (Long) eventDetails.get("status");
+
+                                if (geolocation != null && status != null && status == 0){
+                                    Double lat = (Double) geolocation.get("latitude");
+                                    Double lng = (Double) geolocation.get("longitude");
+                                    String username = documentSnapshot.getString("username");
+
+                                    if (lat != null && lng != null) {
+                                        LatLng location = new LatLng(lat, lng);
+                                        entrantLocations.add(location);
+                                        googleMap.addMarker(new MarkerOptions()
+                                                .position(location)
+                                                .title(username));
+                                        boundsBuilder.include(location);
+                                    } else {
+                                        Log.e("MapEntrants", "Latitude or Longitude is null for event ID: " + eventId);
+                                    }
+                                }
+                            }
                         }
-                    } else {
-                        Log.e("MapEntrants", "No document found for event ID: " + eventId);
                     }
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 100));
 
                 })
                 .addOnFailureListener(e -> {

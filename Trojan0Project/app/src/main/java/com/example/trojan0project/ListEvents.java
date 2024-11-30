@@ -61,7 +61,6 @@ public class ListEvents extends AppCompatActivity {
 
         eventListAdapter.setOnEventClickListener(event -> {
             Intent intent = new Intent(ListEvents.this, MapEntrants.class);
-            //intent.putExtra("eventName", event.getEventName());
             intent.putExtra("eventID", event.getEventId());
             startActivity(intent);
         });

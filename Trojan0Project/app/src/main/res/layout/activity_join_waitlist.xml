@@ -21,6 +21,7 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +35,7 @@
         android:text="Location"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/event_title" />
 
@@ -54,6 +56,7 @@
         android:layout_marginTop="40dp"
         android:text="Time"
         android:textColor="@color/black"
+        android:fontFamily="@font/quicksand"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/location_label" />
@@ -77,6 +80,7 @@
         android:layout_marginTop="44dp"
         android:text="More Information"
         android:textColor="@color/black"
+        android:fontFamily="@font/quicksand"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/time_label" />
@@ -92,12 +96,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/more_info_label" />
 
+
+    <ImageView
+        android:id="@+id/event_poster"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="Event Poster"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/join_waitlist_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/more_info_label"
+        app:layout_constraintVertical_bias="0.689" />
+
     <Button
         android:id="@+id/join_waitlist_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:background="@drawable/rounded_button"
+        android:layout_marginTop="320dp"
+        android:backgroundTint="@color/purple"
         android:paddingHorizontal="32dp"
         android:paddingVertical="10dp"
         android:text="Join Waiting List"

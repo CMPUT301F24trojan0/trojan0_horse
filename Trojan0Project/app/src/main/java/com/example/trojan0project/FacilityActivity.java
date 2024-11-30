@@ -9,7 +9,7 @@
  * Dialog fragment for deletion confirmation
  *
  * Outstanding Issues:
- * Creates space when facility is deleted
+ * None
  *
  */
 package com.example.trojan0project;

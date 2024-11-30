@@ -11,6 +11,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -20,14 +21,39 @@ import com.google.firebase.firestore.WriteBatch;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
+/**
+ * Purpose:
+ * This class handles the sampling process for selecting attendees from a waitlist for an event.
+ * It randomly selects profiles from the waitlist, updates their registration status in Firestore,
+ * and updates the event document with the selected attendees.
+ *
+ * Design Rationale:
+ * Firestore is used to store and retrieve user and event data. The sampling process is done randomly,
+ * and batch updates are used to ensure efficient updating of the event document with the selected attendees.
+ *
+ * Outstanding Issues:
+ * No issues at the moment.
+ */
 
 public class SamplerImplementation {
 
     private FirebaseFirestore db;
-
+    /**
+     * Initializes the SamplerImplementation instance and sets up Firestore.
+     */
     public SamplerImplementation() {
         db = FirebaseFirestore.getInstance();  // Initialize Firestore
     }
+
+    /**
+     * Samples attendees from the waitlist based on the specified number of attendees.
+     * Updates the status of the selected users and the event document with the new attendees.
+     *
+     * @param waitList The list of profiles representing the waitlist of users.
+     * @param numAttendees The number of attendees to sample from the waitlist.
+     * @param targetEventId The ID of the target event for which attendees are being sampled.
+     * @param profileArrayAdapter The ArrayAdapter used to update the ListView displaying the waitlist.
+     */
 
     public void sampleWaitlist(ArrayList<Profile> waitList, int numAttendees, String targetEventId, ArrayAdapter<Profile> profileArrayAdapter) {
 
@@ -52,6 +78,7 @@ public class SamplerImplementation {
                 Log.e(TAG, "Device ID is null for profile: " + sampledProfile.getFirstName() + " " + sampledProfile.getLastName());
             }
         }
+        updateNumSampledInEvent(targetEventId, numAttendees);
         updateEventsStatusInEvent(targetEventId, deviceIdsToUpdate);
         // show profiles
         for (Profile profile : sampledProfiles) {
@@ -72,7 +99,12 @@ public class SamplerImplementation {
         //Toast.makeText(this, numAttendees + " attendees have been registered.", Toast.LENGTH_SHORT).show();
     }
 
-
+    /**
+     * Updates the registration status of a user after they are selected from the waitlist.
+     *
+     * @param deviceId The device ID of the user to update.
+     * @param eventId The ID of the event for which the user's status is being updated.
+     */
 
     private void updateUserStatusAfterSampling(String deviceId, String eventId) {
         db.collection("users")
@@ -106,6 +138,13 @@ public class SamplerImplementation {
     }
 
     //OpenAI, (2024, November 29), "how update multiple fields of a map in the same document at the same time", ChatGPT
+    /**
+     * Updates the status of selected users in the event document using batch processing.
+     * This method ensures that multiple user statuses can be updated in one operation.
+     *
+     * @param eventId The ID of the event.
+     * @param deviceIds A list of device IDs to update their status in the event document.
+     */
 
     private void updateEventsStatusInEvent(String eventId, ArrayList<String> deviceIds) {
         // Create a WriteBatch to group all updates together
@@ -127,6 +166,39 @@ public class SamplerImplementation {
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "Error during batch update for event: " + eventId, e);
+                });
+    }
+
+    /**
+     * Updates the number of sampled attendees in the event document.
+     * This method will add the new `num_sampled` field if it doesn't exist.
+     *
+     * @param eventId The ID of the event.
+     * @param numSampled The number of sampled attendees to update in the event document.
+     */
+    private void updateNumSampledInEvent(String eventId, int numSampled) {
+        DocumentReference eventRef = db.collection("events").document(eventId);
+
+        // First, check if the num_sampled field exists. If not, initialize it with 0.
+        eventRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                DocumentSnapshot document = task.getResult();
+                if (!document.contains("num_sampled")) {
+                    // If num_sampled does not exist, initialize it with 0
+                    eventRef.update("num_sampled", 0)
+                            .addOnSuccessListener(aVoid -> Log.d(TAG, "Initialized num_sampled field for event: " + eventId))
+                            .addOnFailureListener(e -> Log.e(TAG, "Error initializing num_sampled field", e));
+                }
+            }
+        });
+
+        // Update the num_sampled field in the event document (increment by numSampled)
+        eventRef.update("num_sampled", FieldValue.increment(numSampled))
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Number of sampled attendees updated successfully for event: " + eventId);
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error updating num_sampled field for event: " + eventId, e);
                 });
     }
 

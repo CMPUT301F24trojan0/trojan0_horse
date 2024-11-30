@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -29,6 +30,21 @@ import com.google.firebase.firestore.WriteBatch;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
+
+/**
+ * Purpose:
+ * This activity allows users to view and sample a waitlist for event entrants.
+ * It interacts with Firestore to fetch event and user data and displays a waitlist of users
+ * who have shown interest in an event.
+ *
+ * Design Rationale:
+ * The app retrieves data from Firebase Firestore to build a waitlist for an event based on user type.
+ * Once data is fetched, it is displayed in a ListView. Sampling functionality is provided for event organizers
+ * to select users for an event based on the waitlist.
+ *
+ * Outstanding Issues:
+ * No issues at the moment.
+ */
 
 public class SystemSample extends AppCompatActivity {
 
@@ -47,7 +63,12 @@ public class SystemSample extends AppCompatActivity {
     private static ArrayAdapter<Profile> profileArrayAdapter;
     public ArrayList<Profile> waitList;
 
-
+    /**
+     * Initializes the activity, sets up Firebase Firestore, and configures the layout with
+     * appropriate listeners for fetching and sampling the waitlist.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +94,12 @@ public class SystemSample extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             // Retrieve the max_attendees field
-                            Long maxAttendees = document.getLong("max_attendees");
+                            Long maxAttendees = document.getLong("maxNumberofEntrants");
                             if (maxAttendees != null) {
                                 numAttendees = maxAttendees.intValue(); // Set numAttendees from Firestore
                                 Log.d(TAG, "Max Attendees: " + numAttendees);
                             } else {
-                                Log.e(TAG, "max_attendees field does not exist");
+                                Log.e(TAG, "maxNumberofEntrants field does not exist");
                             }
                         } else {
                             Log.e(TAG, "Event document does not exist");
@@ -103,15 +124,22 @@ public class SystemSample extends AppCompatActivity {
             SamplerImplementation sampler = new SamplerImplementation();
             sampler.sampleWaitlist(waitList, numAttendees, targetEventId, profileArrayAdapter);
 
+
         });
         Log.d("sampleWaitlistActivity", "Calling sampleWaitlist() method");
 
 
 
+        resampleWaitlist(targetEventId);
+
 
 
     }
-
+    /**
+     * Fetches the waitlist of entrants for the specified event from Firestore.
+     * It retrieves users marked as entrants for the event and adds them to the waitlist.
+     * The adapter is notified of changes to update the ListView display.
+     */
     private void getWaitlist() {
         final CollectionReference collectionReference = db.collection("users");
 
@@ -177,50 +205,52 @@ public class SystemSample extends AppCompatActivity {
 
     }
 
-
-
-
-    //not using atm
-
-    // Method to resample applicants if there are spots available in any event
-    private void resampleApplicants() {
-        db.collection("events")  // Fetch all events
+    private void resampleWaitlist(String targetEventId) {
+        // get the event document to compare max_attendees and num_sampled
+        db.collection("events")
+                .document(targetEventId)
                 .get()
                 .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        QuerySnapshot eventsSnapshot = task.getResult();
-                        for (QueryDocumentSnapshot eventDoc : eventsSnapshot) {
-                            String eventId = eventDoc.getId();  // Get the event ID
-                            Long maxAttendees = eventDoc.getLong("max_attendees");
-                            Map<String, Long> users = (Map<String, Long>) eventDoc.get("users");
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        DocumentSnapshot eventDoc = task.getResult();
 
-                            if (maxAttendees != null && users != null) {
-                                int selectedCount = 0;
-                                int acceptedCount = 0;
 
-                                // Count the number of selected (1) and accepted (2) users
-                                for (Long status : users.values()) {
-                                    if (status == 1) selectedCount++;
-                                    if (status == 2) acceptedCount++;
-                                }
+                        Long maxAttendees = eventDoc.getLong("maxNumberofEntrants");
+                        Long numSampled = eventDoc.getLong("num_sampled");
+                        Log.d(TAG, "maxAttendees: " + maxAttendees);
+                        Log.d(TAG, "numSampled: " + numSampled);
 
-                                int totalAttendees = selectedCount + acceptedCount;
-                                int spotsLeft = maxAttendees.intValue() - totalAttendees;
-
-                                // If there are spots left, resample applicants from the waitlist
-                                if (spotsLeft > 0) {
-                                    Log.d(TAG, "Event " + eventId + " has " + spotsLeft + " spots left. Resampling applicants...");
-                                    //sampleWaitlist(spotsLeft);  // Call the resampling function for this event
-                                } else {
-                                    Log.d(TAG, "Event " + eventId + " is full. No resampling needed.");
-                                }
+                        if (maxAttendees != null && numSampled != null) {
+                            // Check if the max number of attendees has been reached
+                            if (numSampled < maxAttendees) {
+                                // If not, trigger resampling
+                                int remainingAttendees = maxAttendees.intValue() - numSampled.intValue();
+                                Log.d(TAG, "Resampling " + remainingAttendees + " attendees...");
+                                SamplerImplementation sampler = new SamplerImplementation();
+                                sampler.sampleWaitlist(waitList, remainingAttendees, targetEventId, profileArrayAdapter);
+                                db.collection("events")
+                                        .document(targetEventId)
+                                        .update("num_sampled", FieldValue.increment(remainingAttendees))
+                                        .addOnSuccessListener(aVoid -> {
+                                            Log.d(TAG, "num_sampled field incremented by " + remainingAttendees + " for event: " + targetEventId);
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Log.e(TAG, "Error incrementing num_sampled field for event: " + targetEventId, e);
+                                        });
+                            } else {
+                                Log.d(TAG, "Max attendees reached. No need to resample.");
                             }
+                        } else {
+                            Log.e(TAG, "Failed to retrieve max_attendees or num_sampled from event document.");
                         }
                     } else {
-                        Log.e(TAG, "Failed to get events: ", task.getException());
+                        Log.e(TAG, "Error fetching event document: ", task.getException());
                     }
                 });
     }
+
+
+
 
 
 

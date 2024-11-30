@@ -130,7 +130,7 @@ public class SystemSample extends AppCompatActivity {
 
 
 
-        resampleWaitlist(targetEventId);
+        resamplingTwo(targetEventId);
 
 
 
@@ -251,6 +251,57 @@ public class SystemSample extends AppCompatActivity {
 
 
 
+    private void resamplingTwo(String targetEventId) {
+        // Use snapshot listener to actively listen for changes to the event document
+        db.collection("events")
+                .document(targetEventId)
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e(TAG, "Error fetching event document: ", error);
+                            return;
+                        }
+
+                        if (documentSnapshot != null && documentSnapshot.exists()) {
+                            Long maxAttendees = documentSnapshot.getLong("maxNumberofEntrants");
+                            Long numSampled = documentSnapshot.getLong("num_sampled");
+
+                            Log.d(TAG, "maxAttendees: " + maxAttendees);
+                            Log.d(TAG, "numSampled: " + numSampled);
+
+                            // Ensure that the fields are available and check if resampling is needed
+                            if (maxAttendees != null && numSampled != null) {
+                                if (numSampled < maxAttendees) {
+                                    // Trigger resampling if maxAttendees is not reached
+                                    int remainingAttendees = maxAttendees.intValue() - numSampled.intValue();
+                                    Log.d(TAG, "Resampling " + remainingAttendees + " attendees...");
+
+                                    SamplerImplementation sampler = new SamplerImplementation();
+                                    sampler.sampleWaitlist(waitList, remainingAttendees, targetEventId, profileArrayAdapter);
+
+                                    // Increment num_sampled field in Firestore after resampling
+                                    db.collection("events")
+                                            .document(targetEventId)
+                                            .update("num_sampled", FieldValue.increment(remainingAttendees))
+                                            .addOnSuccessListener(aVoid -> {
+                                                Log.d(TAG, "num_sampled field incremented by " + remainingAttendees);
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Log.e(TAG, "Error incrementing num_sampled field for event: " + targetEventId, e);
+                                            });
+                                } else {
+                                    Log.d(TAG, "Max attendees reached. No need to resample.");
+                                }
+                            } else {
+                                Log.e(TAG, "Failed to retrieve maxAttendees or numSampled from event document.");
+                            }
+                        } else {
+                            Log.e(TAG, "Event document is null or does not exist.");
+                        }
+                    }
+                });
+    }
 
 
 

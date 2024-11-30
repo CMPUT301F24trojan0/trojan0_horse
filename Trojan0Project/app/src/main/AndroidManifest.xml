@@ -26,7 +26,7 @@
 
         <!-- Activities -->
         <activity android:name=".UserSignUpActivity" />
-        <activity android:name=".OrganizerSignUpActivity" />
+        <activity android:name=".OrganizerSignUpActivity" /> <!-- Added this line -->
         <activity android:name=".ViewProfile" />
         <activity android:name=".ViewEvents" />
         <activity android:name=".CreateEventActivity" />
@@ -37,6 +37,9 @@
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
+        <activity android:name=".EventsListActivityOrganizer" />
+        <activity android:name=".EventDetailsActivityOrganizer" />
+        <activity android:name=".ViewFinalEntrantsEventActivity" />
 
         <!-- QR Code Scanner Activity -->
         <activity
@@ -58,10 +61,12 @@
             </intent-filter>
         </activity>
 
-        <!-- Optional Metadata -->
+        <!-- Preloaded Fonts -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 </manifest>

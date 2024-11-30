@@ -1,39 +1,12 @@
-/**
- * Purpose:
- * This activity displays and allows the user to view and edit their profile information.
- * It retrieves profile data from Firestore and lets the user update their profile,
- * including changing the profile picture.
- * It also allows the user to navigate to the events page after saving changes.
- *
- * Design Rationale:
- * The activity uses a layout with EditText fields for personal information
- * and an ImageView to show the profile picture. It interacts with Firestore
- * to fetch and update user data, and Firebase Storage to upload and delete the profile image.
- * The profile data is saved when the user clicks the "Save" button, and the
- * updated profile picture can be set using a media picker.
- *
- * Outstanding Issues:
- * No Issues.
- */
 package com.example.trojan0project;
 
-import static com.example.trojan0project.HandleEXIF.handleEXIF;
-
 import android.content.ContentResolver;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.PickVisualMediaRequest;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,9 +15,14 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -57,8 +35,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.trojan0project.HandleEXIF.handleEXIF;
+
 public class ViewProfile extends AppCompatActivity {
     private static final String TAG = "ViewProfile";
+    private static final int QR_SCANNER_REQUEST_CODE = 200;
+
     private ImageView profilePicture;
     private ImageButton editImageButton;
     private ImageButton deleteImageButton;
@@ -72,14 +54,13 @@ public class ViewProfile extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneNumberEditText;
     private Switch notificationsToggle;
-    private Button viewEventsButton;
+    private Button viewEventsButton, scanQrCodeButton;
     private FirebaseFirestore db;
     private String deviceId;
     private String username;
 
     ActivityResultLauncher<PickVisualMediaRequest> pickVisualMedia =
-            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri ->
-            {
+            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     ContentResolver CR = this.getContentResolver();
                     String type = CR.getType(uri);
@@ -96,11 +77,7 @@ public class ViewProfile extends AppCompatActivity {
                     Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
                 }
             });
-    /**
-     * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the UI elements.
-     *
-     * @param savedInstanceState The saved state of the activity.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +104,7 @@ public class ViewProfile extends AppCompatActivity {
         phoneNumberEditText = findViewById(R.id.phoneNumberInput);
         notificationsToggle = findViewById(R.id.notificationsToggle);
         viewEventsButton = findViewById(R.id.viewEventsButton);
+        scanQrCodeButton = findViewById(R.id.scanQrCodeButton);
 
         // Load profile data
         loadProfileData();
@@ -137,10 +115,13 @@ public class ViewProfile extends AppCompatActivity {
         // Save details and go to View Events Page
         viewEventsButton.setOnClickListener(v -> saveProfileData());
 
+        // Set up the QR Code Scanner button
+        scanQrCodeButton.setOnClickListener(v -> {
+            Intent qrScannerIntent = new Intent(this, QrScannerActivity.class);
+            startActivityForResult(qrScannerIntent, QR_SCANNER_REQUEST_CODE);
+        });
     }
-    /**
-     * Loads the user's profile data from Firestore and populates the UI fields with this data.
-     */
+
     private void loadProfileData() {
         db.collection("users").document(deviceId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -180,9 +161,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
-    /**
-     * Saves the updated profile data to Firestore.
-     */
+
     private void saveProfileData() {
         String firstName = firstNameEditText.getText().toString().trim();
         String lastName = lastNameEditText.getText().toString().trim();
@@ -193,11 +172,9 @@ public class ViewProfile extends AppCompatActivity {
 
         if (firstName.isEmpty() || lastName.isEmpty()) {
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
-            // Exit the method to stay on the same page
             return;
         }
 
-        // Create a Map to store updated profile data
         Map<String, Object> profileData = new HashMap<>();
         profileData.put("first_name", firstName);
         profileData.put("last_name", lastName);
@@ -206,89 +183,60 @@ public class ViewProfile extends AppCompatActivity {
         profileData.put("phone_number", phoneNumber);
         profileData.put("notifications", notifications);
 
-        // Update Firestore database
         db.collection("users").document(deviceId).set(profileData, SetOptions.merge())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Profile updated successfully: " + profileData);
                         Toast.makeText(ViewProfile.this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-
-
-                        // Prevent multiple clicks
-                        viewEventsButton.setEnabled(false);
-                        // Navigate to View Events Page
-                        Intent intent1 = new Intent(ViewProfile.this, ViewEvents.class);
-                        intent1.putExtra("DEVICE_ID", deviceId); // Add device ID to intent
-                        startActivity(intent1);
                     } else {
                         Log.e(TAG, "Profile update failed", task.getException());
                         Toast.makeText(ViewProfile.this, "Profile update failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
-    /**
-     * Saves the updated profile data to Firestore.
-     */
-    private void updateImage(){
-        pickVisualMedia.launch((new PickVisualMediaRequest
-                .Builder()
-                .setMediaType(ActivityResultContracts
-                        .PickVisualMedia.ImageOnly.INSTANCE)
+
+    private void updateImage() {
+        pickVisualMedia.launch((new PickVisualMediaRequest.Builder()
+                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build()));
     }
-    /**
-     * Uploads the selected image to Firebase Storage and updates the user's profile picture URL in Firestore.
-     */
-    private void uploadImage(){
+
+    private void uploadImage() {
         progressBar.setVisibility(View.VISIBLE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] image = baos.toByteArray();
 
-        // Upload image to Firebase Storage
         UploadTask uploadTask = storageReference.child("profilePictures/" + deviceId).putBytes(image);
-        uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if (task.isSuccessful()) {
-                    // Retrieve the download URL
-                    storageReference.child("profilePictures/" + deviceId)
-                            .getDownloadUrl()
-                            .addOnSuccessListener(uri -> {
-                                String downloadUrl = uri.toString();
+        uploadTask.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                storageReference.child("profilePictures/" + deviceId)
+                        .getDownloadUrl()
+                        .addOnSuccessListener(uri -> {
+                            String downloadUrl = uri.toString();
 
-                                // Save the URL to Firestore
-                                db.collection("users").document(deviceId)
-                                        .update("profile_picture_url", downloadUrl)
-                                        .addOnCompleteListener(updateTask -> {
-                                            if (updateTask.isSuccessful()) {
-                                                Toast.makeText(ViewProfile.this, "Image uploaded and URL saved", Toast.LENGTH_SHORT).show();
-                                                deleteImageButton.setVisibility(View.VISIBLE);
-                                                deleteImageButton.setOnClickListener(v -> deleteImage());
-                                            }
-                                            else {Toast.makeText(ViewProfile.this, "Failed to save URL: " + updateTask.getException().getMessage(), Toast.LENGTH_SHORT).show();}
-                                        });
-                            })
-                            .addOnFailureListener(e -> {
-                                Toast.makeText(ViewProfile.this, "Failed to get download URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            });
-                }
-                else {Toast.makeText(ViewProfile.this, "Image upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();}
-                progressBar.setVisibility(View.GONE);
+                            db.collection("users").document(deviceId)
+                                    .update("profile_picture_url", downloadUrl)
+                                    .addOnCompleteListener(updateTask -> {
+                                        if (updateTask.isSuccessful()) {
+                                            Toast.makeText(ViewProfile.this, "Image uploaded and URL saved", Toast.LENGTH_SHORT).show();
+                                            deleteImageButton.setVisibility(View.VISIBLE);
+                                            deleteImageButton.setOnClickListener(v -> deleteImage());
+                                        } else {
+                                            Toast.makeText(ViewProfile.this, "Failed to save URL", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        });
             }
+            progressBar.setVisibility(View.GONE);
         });
     }
-    /**
-     * Deletes the profile image from Firebase Storage and updates Firestore to remove the profile picture URL.
-     */
+
     private void deleteImage() {
         progressBar.setVisibility(View.VISIBLE);
         StorageReference imageRef = storageReference.child("profilePictures/" + deviceId);
-
-        // Delete the image from Firebase Storage
         imageRef.delete().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                // Remove the URL from Firestore
                 db.collection("users").document(deviceId)
                         .update("profile_picture_url", null)
                         .addOnCompleteListener(updateTask -> {
@@ -298,22 +246,25 @@ public class ViewProfile extends AppCompatActivity {
                                 newImage(username);
                                 deleteImageButton.setVisibility(View.GONE);
                             }
-                            else {Toast.makeText(ViewProfile.this, "Failed to update Firestore: " + updateTask.getException().getMessage(), Toast.LENGTH_SHORT).show();}
                         });
-            } else {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(ViewProfile.this, "Failed to delete image: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
-    /**
-     * Displays a new image with the user's initials when no profile image is set.
-     *
-     * @param username The username used to generate the initial.
-     */
+
     private void newImage(String username) {
         ImageGenerator mydrawing = new ImageGenerator(this);
         mydrawing.setUserText(String.valueOf(username.charAt(0)));
         profilePicture.setImageDrawable(mydrawing);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == QR_SCANNER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String scannedData = data.getStringExtra("SCANNED_DATA");
+            if (scannedData != null) {
+                Toast.makeText(this, "QR Code Scanned: " + scannedData, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

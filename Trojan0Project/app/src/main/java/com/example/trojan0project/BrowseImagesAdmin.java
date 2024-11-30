@@ -1,11 +1,12 @@
 /**
  * Purpose:
  * This retrieves user profile pictures and event poster pictures from Firebase
- * and then displays in a grid layout
+ * and then displays in a grid layout. It also removes the images that are selected
  *
  * Design Rationale:
  * User firebase storage to access the images and then downloads the URL of the images.
- * Then it stores the images in a list and displays them in a gridview using the ImageAdapter
+ * Then it stores the images in a list and displays them in a gridview using the ImageAdapter.
+ * Firebase Storage is used to delete images when needed and deletes from grid view.
  *
  * Outstanding Issues:
  * No issues
@@ -13,14 +14,19 @@
 
 package com.example.trojan0project;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -32,7 +38,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class BrowseImagesAdmin extends MainActivity {
+public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageFragment.removeImageListener{
     private GridView imagesGridView;
     private ImageAdapter imageAdapter;
     private ArrayList<Image> images;
@@ -67,13 +73,22 @@ public class BrowseImagesAdmin extends MainActivity {
         imagesGridView.setAdapter(imageAdapter);
         imagesGridView.setNumColumns(2);
 
+        imagesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Image selectedImage = images.get(i);
+
+                new RemoveImageFragment(selectedImage).show(getSupportFragmentManager(), "removeImage");
+            }
+        });
+
         FacilityPage.setOnClickListener(v -> {
             Intent intent = new Intent(BrowseImagesAdmin.this, FacilityActivity.class);
-            //intent.putExtra("DEVICE_ID", deviceId);
             startActivity(intent);
         });
 
     }
+
     /**
      * Retrieves user profile pictures from Firestore and adds them to the images list.
      * Notifies the adapter of any updates to display the new images in the grid.
@@ -82,10 +97,10 @@ public class BrowseImagesAdmin extends MainActivity {
         db.collection("users")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                        String deviceId = document.getString("profile_picture_url");
-                        if (deviceId != null){
-                            images.add(new Image(deviceId));
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        String profilePictureUrl = document.getString("profile_picture_url");
+                        if (profilePictureUrl != null && !profilePictureUrl.isEmpty()) {
+                            images.add(new Image(profilePictureUrl));
 
                         }
                     }
@@ -106,7 +121,7 @@ public class BrowseImagesAdmin extends MainActivity {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){
                         String posterPath = document.getString("posterPath");
-                        if (posterPath != null){
+                        if (posterPath != null && !posterPath.isEmpty()) {
                             images.add(new Image(posterPath));
                         }
                     }
@@ -117,4 +132,53 @@ public class BrowseImagesAdmin extends MainActivity {
 
     }
 
+    /**
+     * Removes an image from Firebase Storage updates Firestore and the gridview
+     *
+     * @param image
+     *      The image to be removed
+     */
+    @Override
+    public void removeImage(Image image) {
+        String imageId = image.getImageId();
+        try {
+            StorageReference imageRef = storage.getReferenceFromUrl(imageId);
+            imageRef.delete()
+                    .addOnSuccessListener(Void -> {
+                        Log.d("BrowseImagesAdmin", "Image successfully deleted from storage: " + imageId);
+                        db.collection("users")
+                                .whereEqualTo("profile_picture_url", imageId)
+                                .get()
+                                .addOnSuccessListener(queryDocumentSnapshots -> {
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        Log.d("BrowseImagesAdmin", "Updating Firestore user document: " + document.getId());
+                                        document.getReference().update("profile_picture_url", null);
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firestore", "Failed to remove profile picture", e);
+                                });
+                        db.collection("events")
+                                .whereEqualTo("posterPath", imageId)
+                                .get()
+                                .addOnSuccessListener(queryDocumentSnapshots -> {
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        Log.d("BrowseImagesAdmin", "Updating Firestore event document: " + document.getId());
+                                        document.getReference().update("posterPath", null);
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firestore", "Failed to remove poster path", e);
+                                });
+                        images.remove(image);
+                        imageAdapter.notifyDataSetChanged();
+                        Log.d("BrowseImagesAdmin", "Image removed from adapter list.");
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("FirebaseStorage", "Error deleting image", e);
+                    });
+        } catch (IllegalArgumentException e){
+            Log.e("BrowseImagesAdmin", "Invalid URL provided for StorageReference.", e);
+        }
+    }
 }

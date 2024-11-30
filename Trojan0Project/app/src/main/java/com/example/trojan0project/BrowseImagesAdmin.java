@@ -38,7 +38,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageFragment.removeImageListener {
+public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageFragment.removeImageListener{
     private GridView imagesGridView;
     private ImageAdapter imageAdapter;
     private ArrayList<Image> images;
@@ -93,7 +93,7 @@ public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageF
      * Retrieves user profile pictures from Firestore and adds them to the images list.
      * Notifies the adapter of any updates to display the new images in the grid.
      */
-    public void getUserProfilePicture() {
+    public void getUserProfilePicture(){
         db.collection("users")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -115,11 +115,11 @@ public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageF
      * Retrieves event poster images from Firestore and adds them to the images list.
      * Notifies the adapter of any updates to display the new images in the grid.
      */
-    public void getEventImages() {
+    public void getEventImages(){
         db.collection("events")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots){
                         String posterPath = document.getString("posterPath");
                         if (posterPath != null && !posterPath.isEmpty()) {
                             images.add(new Image(posterPath));
@@ -182,5 +182,3 @@ public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageF
         }
     }
 }
-
-

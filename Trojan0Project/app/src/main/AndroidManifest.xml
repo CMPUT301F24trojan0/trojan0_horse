@@ -32,14 +32,15 @@
         <activity android:name=".CreateEventActivity" />
         <activity android:name=".OrganizerPageActivity" />
         <activity android:name=".BrowseProfileAdmin" />
-        <activity android:name=".EventActivity" />
+        <activity android:name=".BrowseImagesAdmin" />
         <activity android:name=".JoinWaitlist" />
         <activity android:name=".DisplayEventDetails" />
-        <activity android:name=".BrowseImagesAdmin" />
+        <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
         <activity android:name=".EventsListActivityOrganizer" />
         <activity android:name=".EventDetailsActivityOrganizer" />
         <activity android:name=".ViewFinalEntrantsEventActivity" />
+        <activity android:name=".CancelEntrants" />
 
         <!-- QR Code Scanner Activity -->
         <activity
@@ -51,12 +52,12 @@
             android:name=".EventDetailsActivity"
             android:launchMode="singleTop" />
 
-        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -67,6 +68,5 @@
             android:resource="@array/preloaded_fonts" />
 
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

@@ -43,13 +43,24 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener{
 
+    private static final String TAG = "JoinWaitlist";
     private FirebaseFirestore db;
     private String deviceId;
     private String eventId;
+    private String eventName;
+    private Double latitude;
+    private Double longitude;
+    private Double userLatitude;
+    private Double userLongitude;
+    private String time;
+    private String description;
+
     private TextView eventTitle;
     private TextView eventLocation;
     private TextView eventTime;
@@ -69,9 +80,21 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         setContentView(R.layout.activity_join_waitlist);
 
         db = FirebaseFirestore.getInstance();
-        deviceId = getIntent().getStringExtra("DEVICE_ID");
-        eventId = "X37dVuve5chKjok8jj0Z";    // QR code needs to be scanned to get event class
 
+        // Get data from Intent
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
+        eventId = getIntent().getStringExtra("eventId");
+        eventName = getIntent().getStringExtra("eventName");
+        latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        longitude = getIntent().getDoubleExtra("longitude", 0.0);
+        userLatitude = getIntent().getDoubleExtra("currentLatitude", 0.0);
+        userLongitude = getIntent().getDoubleExtra("currentLongitude", 0.0);
+        time = getIntent().getStringExtra("time");
+        description = getIntent().getStringExtra("description");
+
+        Log.d(TAG, "onCreate: Event Details: eventId=" + eventId + ", eventName=" + eventName + ", latitude=" + latitude + ", longitude=" + longitude + ", time=" + time + ", description=" + description);
+
+        // Reference views
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
         eventTime = findViewById(R.id.time_label);
@@ -80,11 +103,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
         loadEventDetails();
 
-        //ArrayList<Profile> waitlist = new ArrayList<>();
-        //WaitlistAdapter waitlistAdapter = new WaitlistAdapter(this, waitlist);
-        //ListView waitlistListView = findViewById(R.id.waitlist_view);
-        //waitlistListView.setAdapter(waitlistAdapter);
-
+        // Set up the join waitlist button
         joinWaitlistButton.setOnClickListener(v -> {
             getUserProfileForDialog();
         });
@@ -168,9 +187,8 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error getting user profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
-
     }
+
     /**
      * Confirms the user's intent to join the waitlist and updates Firestore with the waitlist entry.
      *
@@ -213,9 +231,3 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                     Toast.makeText(this, "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
-
-
-
-
-}

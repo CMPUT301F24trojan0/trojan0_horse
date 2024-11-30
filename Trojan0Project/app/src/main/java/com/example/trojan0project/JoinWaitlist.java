@@ -9,9 +9,8 @@
  *
  * Outstanding issues:
  * If user wants to sign someone other than them, the code does not do that.
- * A QR code scanner has not been created yet so the eventID has been hard coded for the halfway checkpoint
+ *
  */
-
 package com.example.trojan0project;
 
 import android.location.Address;
@@ -142,7 +141,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         // Get event details and set them in the UI
-                        String title = documentSnapshot.getString("name");
+                        String title = documentSnapshot.getString("eventName");
                         Double latitude = documentSnapshot.getDouble("latitude");
                         Double longitude = documentSnapshot.getDouble("longitude");
                         String time = documentSnapshot.getString("time");
@@ -234,9 +233,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
             return;
         }
 
-        double latitude = getIntent().getDoubleExtra("latitude", 0.0);
-        double longitude = getIntent().getDoubleExtra("longitude", 0.0);
-
         Log.d("JoinWaitlist", "Starting waitlist confirmation for Device ID: " + deviceId + " and Event ID: " + eventId);
 
         db.collection("users").document(deviceId).get()
@@ -248,16 +244,22 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                         if ("entrant".equals(userType)) {
                             Log.d("JoinWaitlist", "User type is 'entrant'. Proceeding with waitlist addition.");
 
-                            // Add event ID with status 0 to the user's document
                             Map<String, Object> eventsData = new HashMap<>();
                             eventsData.put(eventId, 0);
-                            Map<String, Double> geolocationUser = new HashMap<>();
-                            geolocationUser.put("latitude", latitude);
-                            geolocationUser.put("longitude", longitude);
-                            eventsData.put("geolocation", geolocationUser);
+
+                            //making a new geolocation field - vishal can add if statement for his fragment here if user agrees
+                            Map<String,Object> geolocationData = new HashMap<>();
+                            List<Double> coordinates = new ArrayList<>();
+                            coordinates.add(userLatitude);
+                            coordinates.add(userLongitude);
+                            geolocationData.put(eventId, coordinates);
+
+                            Map<String, Object> userUpdates = new HashMap<>();
+                            userUpdates.put("events", eventsData);
+                            userUpdates.put("geolocation", geolocationData);
 
                             db.collection("users").document(deviceId)
-                                    .set(Collections.singletonMap("events", eventsData), SetOptions.merge())
+                                    .set(userUpdates, SetOptions.merge())
                                     .addOnSuccessListener(aVoid -> {
                                         Log.d("JoinWaitlist", "Event ID: " + eventId + " successfully added to user's document with Device ID: " + deviceId);
                                         Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();

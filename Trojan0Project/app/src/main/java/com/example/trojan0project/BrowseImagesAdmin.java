@@ -15,6 +15,7 @@
 package com.example.trojan0project;
 
 import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +38,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class BrowseImagesAdmin extends AppCompatActivity {
+public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageFragment.removeImageListener{
     private GridView imagesGridView;
     private ImageAdapter imageAdapter;
     private ArrayList<Image> images;
@@ -87,6 +88,7 @@ public class BrowseImagesAdmin extends AppCompatActivity {
         });
 
     }
+
     /**
      * Retrieves user profile pictures from Firestore and adds them to the images list.
      * Notifies the adapter of any updates to display the new images in the grid.

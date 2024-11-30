@@ -32,7 +32,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-public class BrowseProfileAdmin extends MainActivity implements RemoveProfileFragment.RemoveProfileDialogListener {
+public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfileFragment.RemoveProfileDialogListener {
 
     public ArrayList<Profile> dataList;
     private ListView profileList;

@@ -77,6 +77,7 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
     /**
      * Callback triggered when the map is ready to be used
      * Gets entrant location and adds marker to the map
+     * Makes sure all the markers area showing not just the last one
      *
      * @param map
      *      The GoogleMap instance that is ready to use
@@ -92,41 +93,49 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     entrantLocations.clear();
 
-
-
                     LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
-
+                    boolean hasLocations = false;
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                         Map<String, Object> events = (Map<String, Object>) documentSnapshot.get("events");
 
                         if (events != null && events.containsKey(eventId)){
                             Map<String, Object> eventDetails = (Map<String, Object>) events.get(eventId);
 
-                            if(eventDetails != null && eventDetails.containsKey("geolocation")){
-                                Map<String, Object> geolocation = (Map<String, Object>) eventDetails.get("geolocation");
-                                Long status = (Long) eventDetails.get("status");
+                            if(eventDetails != null){
 
-                                if (geolocation != null && status != null && status == 0){
-                                    Double lat = (Double) geolocation.get("latitude");
-                                    Double lng = (Double) geolocation.get("longitude");
-                                    String username = documentSnapshot.getString("username");
+                                for (Map.Entry<String, Object> entry : eventDetails.entrySet()) {
+                                    String statusKey = entry.getKey();
 
-                                    if (lat != null && lng != null) {
-                                        LatLng location = new LatLng(lat, lng);
-                                        entrantLocations.add(location);
-                                        googleMap.addMarker(new MarkerOptions()
-                                                .position(location)
-                                                .title(username));
-                                        boundsBuilder.include(location);
-                                    } else {
-                                        Log.e("MapEntrants", "Latitude or Longitude is null for event ID: " + eventId);
+                                    if ("0".equals(statusKey)){
+                                        Map<String, Object> geolocation = (Map<String, Object>) ((Map<String, Object>) entry.getValue()).get("geolocation");
+
+                                        if (geolocation != null) {
+                                            Double lat = (Double) geolocation.get("latitude");
+                                            Double lng = (Double) geolocation.get("longitude");
+                                            String username = documentSnapshot.getString("username");
+
+                                            if (lat != null && lng != null) {
+                                                LatLng location = new LatLng(lat, lng);
+                                                entrantLocations.add(location);
+                                                googleMap.addMarker(new MarkerOptions()
+                                                        .position(location)
+                                                        .title(username));
+                                                boundsBuilder.include(location);
+                                                hasLocations = true;
+                                            } else {
+                                                Log.e("MapEntrants", "Latitude or Longitude is null for event ID: " + eventId);
+                                            }
+                                        }
                                     }
+
+
                                 }
                             }
                         }
                     }
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 100));
-
+                    if (hasLocations){
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 100));
+                    }
                 })
                 .addOnFailureListener(e -> {
                     Log.e("MapEntrants", "Error getting entrant location", e);

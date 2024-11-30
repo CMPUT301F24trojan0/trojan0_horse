@@ -35,7 +35,7 @@
         <activity android:name=".EventActivity" />
         <activity android:name=".JoinWaitlist" />
         <activity android:name=".DisplayEventDetails" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".BrowseImagesAdmin" />
         <activity android:name=".FacilityActivity" />
         <activity android:name=".EventsListActivityOrganizer" />
         <activity android:name=".EventDetailsActivityOrganizer" />
@@ -53,7 +53,7 @@
 
         <!-- Main Activity -->
         <activity
-            android:name=".BrowseImagesAdmin"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

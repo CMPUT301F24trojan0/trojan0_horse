@@ -47,7 +47,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener{
+public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener {
 
     private static final String TAG = "JoinWaitlist";
     private FirebaseFirestore db;
@@ -132,6 +132,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
             return "Geocoder service not available";
         }
     }
+
     /**
      * Loads the event details from Firestore and displays them in the UI.
      */
@@ -146,7 +147,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                         String time = documentSnapshot.getString("time");
                         String description = documentSnapshot.getString("description");
 
-                        if (latitude != null && longitude != null){
+                        if (latitude != null && longitude != null) {
                             String address = getAddressFromCoordinates(latitude, longitude);
                             eventLocation.setText(address);
                         }
@@ -167,7 +168,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
     /**
      * Retrieves the user's profile data to populate the dialog when joining the waitlist.
      */
-    private void getUserProfileForDialog(){
+    private void getUserProfileForDialog() {
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
@@ -231,3 +232,4 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                     Toast.makeText(this, "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+}

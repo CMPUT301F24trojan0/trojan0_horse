@@ -20,9 +20,7 @@
         android:theme="@style/Theme.Trojan0Project"
         tools:targetApi="31">
         <activity
-            android:name=".CancelEntrants"
-            android:exported="false" />
-        <!-- Activities -->
+            android:name=".MainActivity"/>
         <activity android:name=".UserSignUpActivity" />
         <activity android:name=".OrganizerSignUpActivity" /> <!-- Added this line -->
         <activity android:name=".ViewProfile" />
@@ -39,7 +37,7 @@
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".CancelEntrants"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

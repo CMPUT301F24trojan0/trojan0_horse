@@ -21,6 +21,7 @@ package com.example.trojan0project;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -30,16 +31,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.WriteBatch;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CancelEntrants extends AppCompatActivity {
     private FirebaseFirestore db;
-    private String targetEventId = "g7MK9lR8W8HwesTVgmdU";
+    private String targetEventId = "Tm6SgOQNJgwcy79chggL";
     private Date signupDeadline;
 
     /**
@@ -54,7 +57,12 @@ public class CancelEntrants extends AppCompatActivity {
         setContentView(R.layout.activity_cancel_entrants);
         db = FirebaseFirestore.getInstance();
 
-        getDeadline();
+        Button cancelEntrantsButton = findViewById(R.id.cancelEntrantsButton);
+        cancelEntrantsButton.setOnClickListener(v -> {
+            Log.d("CancelEntrants", "Cancel Entrants button clicked");
+            getDeadline(); // Fetch the deadline and then proceed with cancellation logic
+        });
+        //getDeadline();
 
     }
 
@@ -121,9 +129,13 @@ public class CancelEntrants extends AppCompatActivity {
 
                                     if (status == 1 && eventId.equals(targetEventId)) {
                                         if (new Date().after(signupDeadline)) {
-                                            events.put(eventId, Long.valueOf(3)); // Update to status 3 (cancelled)
+                                            events.put(eventId, Long.valueOf(3));
                                             batch.update(document.getReference(), "events", events);
 
+                                            DocumentReference eventRef = db.collection("events").document(targetEventId);
+                                            Map<String, Object> userFieldUpdate = new HashMap<>();
+                                            userFieldUpdate.put(document.getId(), 3);
+                                            batch.update(eventRef, userFieldUpdate);
 
                                             Log.d("CancelEntrants", "Cancelled entrant for event: " + eventId
                                                     + ", User: " + document.getId());

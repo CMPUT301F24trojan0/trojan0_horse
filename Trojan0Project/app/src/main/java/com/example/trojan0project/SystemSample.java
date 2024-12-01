@@ -1,3 +1,18 @@
+/**
+ * Purpose:
+ * This activity allows users to view and sample a waitlist for event entrants.
+ * It interacts with Firestore to fetch event and user data and displays a waitlist of users
+ * who have shown interest in an event.
+ *
+ * Design Rationale:
+ * The app retrieves data from Firebase Firestore to build a waitlist for an event based on user type.
+ * Once data is fetched, it is displayed in a ListView. Sampling functionality is provided for event organizers
+ * to select users for an event based on the waitlist.
+ *
+ * Outstanding Issues:
+ * No issues at the moment.
+ */
+
 package com.example.trojan0project;
 
 //farza: user stories:  02.02.01, 02.05.02
@@ -31,20 +46,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * Purpose:
- * This activity allows users to view and sample a waitlist for event entrants.
- * It interacts with Firestore to fetch event and user data and displays a waitlist of users
- * who have shown interest in an event.
- *
- * Design Rationale:
- * The app retrieves data from Firebase Firestore to build a waitlist for an event based on user type.
- * Once data is fetched, it is displayed in a ListView. Sampling functionality is provided for event organizers
- * to select users for an event based on the waitlist.
- *
- * Outstanding Issues:
- * No issues at the moment.
- */
+
 
 public class SystemSample extends AppCompatActivity {
 
@@ -207,7 +209,6 @@ public class SystemSample extends AppCompatActivity {
 
 
     /**
-     * Purpose:
      * This method listens for changes to the specified event document in Firestore.
      * It checks if there are available spots for attendees in the event ( if
      * the number of sampled attendees is less than the maximum number of attendees).
@@ -215,16 +216,6 @@ public class SystemSample extends AppCompatActivity {
      * selecting more attendees from the waitlist and incrementing the `num_sampled` field
      * in Firestore. The resampling process continues until the maximum number of attendees
      * is reached.
-     *
-     * Design Rationale:
-     * The method uses a snapshot listener to actively listen for changes to the event
-     * document in real-time, ensuring that updates to the event’s data are reflected
-     * immediately in the application. This enables active resampling based on the
-     * number of attendees already sampled and the available spots in the event.
-     *
-     * Outstanding Issues:
-     * No issues
-     *
      * @param targetEventId The ID of the target event for which attendees are being sampled.
      */
 

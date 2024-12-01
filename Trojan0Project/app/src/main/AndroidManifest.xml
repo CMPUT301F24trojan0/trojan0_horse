@@ -44,7 +44,7 @@
         <activity android:name=".ViewFinalEntrantsEventActivity" />
         <activity android:name=".CancelEntrants" />
         <activity android:name=".ListEvents" />
-        <activity android:name=".SystemSample" />
+        <activity android:name=".MainActivity" />
 
         <!-- QR Code Scanner Activity -->
         <activity
@@ -57,7 +57,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".SystemSample"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

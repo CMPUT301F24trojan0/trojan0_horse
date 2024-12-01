@@ -22,7 +22,8 @@
 
         <!-- Activities -->
         <activity android:name=".UserSignUpActivity" />
-        <activity android:name=".OrganizerSignUpActivity" /> <!-- Added this line -->
+        <activity android:name=".OrganizerSignUpActivity" />
+        <activity android:name=".EntrantMain" />
         <activity android:name=".ViewProfile" />
         <activity android:name=".ViewEvents" />
         <activity android:name=".Event" />
@@ -36,6 +37,7 @@
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
+        <activity android:name=".AdminMain"/>
 
 
         <activity

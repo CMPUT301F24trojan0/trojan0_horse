@@ -134,8 +134,7 @@ public class Notification {
                                   @NonNull String eventId, @NonNull String title, @NonNull String message,
                                   @NonNull String notificationId) {
         // Intent to open the event details activity and remove the notification when clicked
-        Intent intent = new Intent(context, ViewTheDamnEvent.class);
-        intent.putExtra("deviceId", deviceId);
+        Intent intent = new Intent(context, EventDetailsActivityOrganizer.class);
         intent.putExtra("eventId", eventId);
 
         // Create a PendingIntent to launch the event details activity

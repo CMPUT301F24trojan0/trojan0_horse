@@ -39,7 +39,6 @@
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
 
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

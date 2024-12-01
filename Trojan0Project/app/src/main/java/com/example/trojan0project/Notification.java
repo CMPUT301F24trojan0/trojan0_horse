@@ -1,9 +1,13 @@
 package com.example.trojan0project;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
@@ -102,7 +106,10 @@ public class Notification {
                                 Log.d("getNotifications", "Preparing to show notification with ID: " + notificationId);
 
                                 // Create and display the notification using the unique ID
-                                showNotification(deviceId, context, notificationId, title, message);
+                                showNotification(context, deviceId, eventId, title, message, notificationId);
+
+                                // After the notification is shown, remove the notification ID from the Firestore map
+                                deleteNotificationFromQueue(deviceId, notificationId);
                             }
                         } else {
                             Log.d("getNotifications", "No notifications found for device: " + deviceId);
@@ -114,29 +121,45 @@ public class Notification {
                 .addOnFailureListener(e -> Log.e("getNotifications", "Failed to fetch notifications for device: " + deviceId + ", error: " + e));
     }
 
-    private void showNotification(@NonNull String deviceId, Context context, @NonNull String title, @NonNull String message, @NonNull String eventId) {
-        Log.d("showNotification", "Attempting to show notification for device: " + deviceId);
-
-        // Create and display the notification using the passed title, message, and eventId
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default")
-                .setSmallIcon(android.R.drawable.ic_dialog_info) // Set a small icon
-                .setContentTitle(title) // Set the notification title
-                .setContentText(message) // Set the notification message
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true); // Automatically removes the notification when clicked
-
-        // Get the NotificationManager system service
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Show the notification with a unique ID (e.g., use eventId as the ID to ensure uniqueness)
-        if (notificationManager != null) {
-            // Use eventId or a generated unique ID for the notification ID
-            int notificationId = eventId.hashCode(); // Hash eventId to get a unique integer for the notification
-            notificationManager.notify(notificationId, builder.build()); // Display the notification
-            Log.d("showNotification", "Notification displayed for device: " + deviceId + " with notification ID: " + notificationId);
-        } else {
-            Log.e("showNotification", "NotificationManager is null, unable to display notification.");
-        }
+    private void deleteNotificationFromQueue(@NonNull String deviceId, @NonNull String notificationId) {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("notificationsQueue." + notificationId, FieldValue.delete()); // Use FieldValue.delete() to remove the entry
+        db.collection("users").document(deviceId)
+                .update(updates)
+                .addOnSuccessListener(aVoid -> Log.d("deleteNotification", "Notification removed successfully: " + notificationId))
+                .addOnFailureListener(e -> Log.e("deleteNotification", "Failed to remove notification: " + notificationId + ", error: " + e));
     }
 
+    private void showNotification(@NonNull Context context, @NonNull String deviceId,
+                                  @NonNull String eventId, @NonNull String title, @NonNull String message,
+                                  @NonNull String notificationId) {
+        // Intent to open the event details activity and remove the notification when clicked
+        Intent intent = new Intent(context, ViewTheDamnEvent.class);
+        intent.putExtra("deviceId", deviceId);
+        intent.putExtra("eventId", eventId);
+        intent.putExtra("notificationId", notificationId);  // Pass the notification ID to remove
+
+        // Create a PendingIntent to launch the event details activity
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                context,
+                eventId.hashCode(), // Unique request code for each notification
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default")
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)  // When clicked, it opens the event activity
+                .setAutoCancel(true);  // Automatically dismiss the notification after being clicked
+
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (notificationManager != null) {
+            notificationManager.notify(notificationId.hashCode(), builder.build());
+        }
+    }
 }

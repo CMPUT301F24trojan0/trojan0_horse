@@ -34,11 +34,18 @@ public class Profile {
         this.lastName = lastName;
         this.email = email;
     }
+
+    public Profile(String firstName, String lastName, String email, String deviceId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.deviceId = deviceId; // Store the deviceId
+    }
     /**
      * Constructs a Profile with the specified username and profile image.
      *
      * @param username    The username of the user.
-     *  The URL of the user's profile image.
+     * The URL of the user's profile image.
      */
     public Profile(String username, String deviceId){
         this.username = username;
@@ -62,7 +69,6 @@ public class Profile {
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
     }
-
 
     /**
      * Gets the first name of the user.
@@ -144,5 +150,13 @@ public class Profile {
      */
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+
+    //OpenAI, (2024, November 24), "Why are my events printing as weird codes, how can i fix this ??", ChatGPT
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " (" + email + ")";
     }
 }

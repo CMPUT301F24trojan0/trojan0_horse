@@ -14,7 +14,11 @@
  */
 package com.example.trojan0project;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,8 +26,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
@@ -55,12 +61,12 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
         if (selectedFacility != null) { //city is not null so that means the user clicked on an existing city
             //facilityAdminAdapter.remove(selectedFacility);
             //facilityAdminAdapter.notifyDataSetChanged();
-            db.collection("organizers")
+            db.collection("users") // CHANGE TO USERS
                     .whereEqualTo("facilityName", selectedFacility.getFacilityName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                            db.collection("organizers").document(document.getId())
+                            db.collection("users").document(document.getId())//CHANGE TO USERS
                                     .update("facilityName", FieldValue.delete())
                                     .addOnSuccessListener(Void ->{
                                         dataList.remove(selectedFacility);
@@ -82,6 +88,22 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
     }
 
     /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
      * Initializes the activity, sets up the ListView, and loads facility data from Firestore.
      *
      * @param savedInstanceState The saved state of the activity.
@@ -91,6 +113,15 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.facility_main);
+
+        Toolbar toolbar = findViewById(R.id.browse_facilities_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
 
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("users");
@@ -122,9 +153,16 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
                     String userType = doc.getString("user_type");
                     if ("organizer".equals(userType)) {
                         // Get the facility name
-                        String facilityName = doc.getString("facilityName");
+                        if (doc.contains("facilityName")) {
+                            // Only access the facilityName if it exists
+                            String facilityName = doc.getString("facilityName");
 
-                        dataList.add(new Facility(facilityName));
+                            // Add the facility to the list
+                            dataList.add(new Facility(facilityName));
+                        } else {
+                            // Optionally, log or handle the case where "facilityName" doesn't exist
+                            Log.d(TAG, "facilityName field is missing for document: " + doc.getId());
+                        }
 
                     }
                 }

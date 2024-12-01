@@ -31,7 +31,7 @@ public class Event implements Parcelable, Serializable {
     private int maxNumberOfEntrants; // Maximum number of entrants allowed
 
     // Default constructor for Firestore
-    public Event() {}
+    public Event(String eventName, String eventId, double defaultLatitude, double defaultLongitude, String defaultPosterPath, Long participationStatus) {}
 
     /**
      * Constructor to create an Event object with essential details.

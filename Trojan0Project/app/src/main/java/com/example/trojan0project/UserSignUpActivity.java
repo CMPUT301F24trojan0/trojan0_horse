@@ -89,9 +89,10 @@ public class UserSignUpActivity extends AppCompatActivity {
             Log.d(TAG, "User data saved successfully");
             Toast.makeText(UserSignUpActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
 
-            Intent profileIntent = new Intent(UserSignUpActivity.this, ViewProfile.class);
+            Intent profileIntent = new Intent(UserSignUpActivity.this, EntrantMain.class);
             profileIntent.putExtra("DEVICE_ID", deviceId);
             startActivity(profileIntent);
+            finish();
         }).addOnFailureListener(e -> {
             Log.e(TAG, "Registration failed: " + e.getMessage());
             Toast.makeText(UserSignUpActivity.this, "Registration failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();

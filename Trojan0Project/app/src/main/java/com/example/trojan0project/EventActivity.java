@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +18,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
@@ -53,6 +56,16 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.events_main);
+
+        Toolbar toolbar = findViewById(R.id.browse_events_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
+
         db = FirebaseFirestore.getInstance();
         Log.d(TAG, "onCreate: Firestore instance initialized");
 
@@ -87,7 +100,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
                 dataList.clear();
 
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                    String eventName = (String) doc.getData().get("name");
+                    String eventName = (String) doc.getData().get("eventName");
                     String qrContent = (String) doc.getData().get("qrContent");
 
                     Log.d(TAG, "onEvent: Event Name: " + eventName);
@@ -116,6 +129,22 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
                 fragment.show(getSupportFragmentManager(), "Delete Event");
             }
         });
+    }
+
+    /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private Bitmap generateQRCode(String content) {
@@ -148,7 +177,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         Log.d(TAG, "deleteQRCode: Deleting QR code for event: " + event.getEventName());
         if (selectedEvent != null) {
             db.collection("events")
-                    .whereEqualTo("name", selectedEvent.getEventName())
+                    .whereEqualTo("eventName", selectedEvent.getEventName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
@@ -177,7 +206,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         Log.d(TAG, "deleteEvent: Deleting event: " + event.getEventName());
         if (selectedEvent != null) {
             db.collection("events")
-                    .whereEqualTo("name", selectedEvent.getEventName())
+                    .whereEqualTo("eventName", selectedEvent.getEventName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {

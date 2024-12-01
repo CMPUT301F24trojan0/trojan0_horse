@@ -225,6 +225,20 @@ public class ViewProfile extends AppCompatActivity {
                     Boolean notifications = document.getBoolean("notifications");
                     if (notifications != null) {
                         notificationsToggle.setChecked(notifications);
+
+                        // Attach the listener after setting the initial state
+                        notificationsToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                            if (isChecked) {
+                                // Fetch notifications, request permission, and create channel
+                                Notification notificationHelper = new Notification();
+                                notificationHelper.getNotificationsForDevice(this, deviceId);
+                                requestNotificationPermission();
+                                createNotificationChannel(this);
+                            } else {
+                                // Optionally, stop or remove notifications
+                                cancelNotifications();
+                            }
+                        });
                     }
 
                     // Load profile picture from URL
@@ -246,6 +260,12 @@ public class ViewProfile extends AppCompatActivity {
                 Toast.makeText(this, "Failed to load profile", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void cancelNotifications() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.cancelAll(); // This cancels all ongoing notifications
+        }
     }
     /**
      * Saves the updated profile data to Firestore.

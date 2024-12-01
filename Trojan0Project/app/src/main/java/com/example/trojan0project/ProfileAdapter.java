@@ -62,7 +62,7 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
 
         if(profile !=null){
             profileName.setText(profile.getUsername());
-            Glide.with(getContext()).load(profile.getProfileImage()).into(imageView);
+            //Glide.with(getContext()).load(profile.getProfileImage()).into(imageView);
 
         }
 

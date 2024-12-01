@@ -4,7 +4,7 @@
  * Users view event details and join the events waitlist by pressing confirm.
  *
  * Design Rationale:
- * Uses Firebase Firestore to get event and user data. Uses JoinWaitlistFragment dialog to confirm
+ * Uses Firebase Firestore to get event and user data and poster. Uses JoinWaitlistFragment dialog to confirm
  * if the user wants to join the waitlist.
  *
  * Outstanding issues:
@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +32,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.trojan0project.JoinWaitlistFragment;
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import org.json.JSONObject;
@@ -45,11 +48,20 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener{
+public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener {
 
+    private static final String TAG = "JoinWaitlist";
     private FirebaseFirestore db;
     private String deviceId;
     private String eventId;
+    private String eventName;
+    private Double latitude;
+    private Double longitude;
+    private Double userLatitude;
+    private Double userLongitude;
+    private String time;
+    private String description;
+
     private TextView eventTitle;
     private TextView eventLocation;
     private TextView eventTime;
@@ -69,9 +81,22 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         setContentView(R.layout.activity_join_waitlist);
 
         db = FirebaseFirestore.getInstance();
-        deviceId = getIntent().getStringExtra("DEVICE_ID");
-        eventId = "X37dVuve5chKjok8jj0Z";    // QR code needs to be scanned to get event class
 
+        // Get data from Intent
+        deviceId = getIntent().getStringExtra("DEVICE_ID");
+        Log.d("JoinWaitlist", "Device ID from main activity: " + deviceId);
+        eventId = getIntent().getStringExtra("eventId");
+        eventName = getIntent().getStringExtra("eventName");
+        latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        longitude = getIntent().getDoubleExtra("longitude", 0.0);
+        userLatitude = getIntent().getDoubleExtra("currentLatitude", 0.0);
+        userLongitude = getIntent().getDoubleExtra("currentLongitude", 0.0);
+        time = getIntent().getStringExtra("time");
+        description = getIntent().getStringExtra("description");
+
+        Log.d(TAG, "onCreate: Event Details: eventId=" + eventId + ", eventName=" + eventName + ", latitude=" + latitude + ", longitude=" + longitude + ", time=" + time + ", description=" + description);
+
+        // Reference views
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
         eventTime = findViewById(R.id.time_label);
@@ -79,11 +104,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         joinWaitlistButton = findViewById(R.id.join_waitlist_button);
 
         loadEventDetails();
-
-        //ArrayList<Profile> waitlist = new ArrayList<>();
-        //WaitlistAdapter waitlistAdapter = new WaitlistAdapter(this, waitlist);
-        //ListView waitlistListView = findViewById(R.id.waitlist_view);
-        //waitlistListView.setAdapter(waitlistAdapter);
+        getEventPoster();
 
         joinWaitlistButton.setOnClickListener(v -> {
             getUserProfileForDialog();
@@ -144,6 +165,36 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 });
     }
 
+    /**
+     * Gets and displays the poster for a specific event
+     * Retrieves posterPath from Firestore for the event id
+     * If poster is found then uses Glide to load the image into the ImageView
+     */
+    public void getEventPoster() {
+        db.collection("events").document(eventId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String posterPath = documentSnapshot.getString("posterPath");
+                        if (posterPath != null) {
+                            // Load the poster into the ImageView
+                            ImageView eventPoster = findViewById(R.id.event_poster);
+                            Glide.with(this)
+                                    .load(posterPath)
+                                    .into(eventPoster);
+                            Log.d("EventPoster", "Poster loaded: " + posterPath);
+                        } else {
+                            Toast.makeText(this, "No poster available for this event", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error loading poster: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
 
     /**
      * Retrieves the user's profile data to populate the dialog when joining the waitlist.
@@ -168,9 +219,8 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error getting user profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
-
     }
+
     /**
      * Confirms the user's intent to join the waitlist and updates Firestore with the waitlist entry.
      *
@@ -178,44 +228,69 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
      */
     @Override
     public void onConfirm(Profile profile) {
+        if (deviceId == null) {
+            Log.e("JoinWaitlist", "Device ID is null. Cannot proceed with waitlist addition.");
+            //Toast.makeText(this, "Device ID is not available. Please try again.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        double latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        double longitude = getIntent().getDoubleExtra("longitude", 0.0);
+
+        Log.d("JoinWaitlist", "Starting waitlist confirmation for Device ID: " + deviceId + " and Event ID: " + eventId);
+
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
+                        Log.d("JoinWaitlist", "User document found for Device ID: " + deviceId);
+
                         String userType = documentSnapshot.getString("user_type");
                         if ("entrant".equals(userType)) {
-                            Map<String, Object> eventsMap = new HashMap<>();
-                            eventsMap.put(eventId, 0);
+                            Log.d("JoinWaitlist", "User type is 'entrant'. Proceeding with waitlist addition.");
+
+                            // Add event ID with status 0 to the user's document
+                            Map<String, Object> eventsData = new HashMap<>();
+                            eventsData.put(eventId, 0);
+                            Map<String, Double> geolocationUser = new HashMap<>();
+                            geolocationUser.put("latitude", latitude);
+                            geolocationUser.put("longitude", longitude);
+                            eventsData.put("geolocation", geolocationUser);
+
                             db.collection("users").document(deviceId)
-                                    .set(Collections.singletonMap("events", eventsMap), SetOptions.merge())
+                                    .set(Collections.singletonMap("events", eventsData), SetOptions.merge())
                                     .addOnSuccessListener(aVoid -> {
+                                        Log.d("JoinWaitlist", "Event ID: " + eventId + " successfully added to user's document with Device ID: " + deviceId);
                                         Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();
                                     })
                                     .addOnFailureListener(e -> {
+                                        Log.e("JoinWaitlist", "Failed to add Event ID: " + eventId + " to user's document: " + e.getMessage());
                                         Toast.makeText(this, "Failed to add to waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     });
 
+                            Map<String, Object> userMap = new HashMap<>();
+                            userMap.put(deviceId, 0);
                             db.collection("events").document(eventId)
-                                    .update("waitlisted", FieldValue.arrayUnion(deviceId))
+                                    .set(Collections.singletonMap("users", userMap), SetOptions.merge())
                                     .addOnSuccessListener(aVoid -> {
+                                        Log.d("JoinWaitlist", "Device ID: " + deviceId + " successfully added to event's waitlisted list for Event ID: " + eventId);
                                         Toast.makeText(this, "Event waitlist updated.", Toast.LENGTH_SHORT).show();
                                     })
                                     .addOnFailureListener(e -> {
+                                        Log.e("JoinWaitlist", "Failed to add Device ID: " + deviceId + " to event's waitlisted list: " + e.getMessage());
                                         Toast.makeText(this, "Failed to update event waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     });
                         } else {
-                            Log.d("JoinWaitlist", "User is not an entrant; skipping waitlist addition.");
+                            Log.d("JoinWaitlist", "User type is not 'entrant'. Skipping waitlist addition.");
+                            Toast.makeText(this, "Only entrants can join the waitlist.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Log.d("JoinWaitlist", "User document does not exist.");
+                        Log.d("JoinWaitlist", "No user document found for Device ID: " + deviceId);
+                        Toast.makeText(this, "User document does not exist.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
+                    Log.e("JoinWaitlist", "Failed to retrieve user document for Device ID: " + deviceId + ": " + e.getMessage());
                     Toast.makeText(this, "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
-
-
-
-
 }

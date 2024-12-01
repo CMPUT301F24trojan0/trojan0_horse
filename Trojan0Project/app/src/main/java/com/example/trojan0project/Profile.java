@@ -1,11 +1,13 @@
 /**
  * Purpose:
- * This loads profiles from Firebase and displays them in a list. This way admin can click on any
- * profile which opens a dialog and chooses to delete it.
+ * This class represents a user profile, storing essential details like name, email, username,
+ * profile image, and device ID. It is used to load and display profile information and use
+ * Firestore Firebase to manage it.
  *
  * Design Rationale:
- * This uses a ProfileAdapter to display the profile list.
- * It also uses RemoveProfileFragment to ask to confirm before deleting a profile.
+ * The class provides constructors for flexibility in creating Profile objects based on the context.
+ * For example, some scenarios require a username and device ID, while others need full user details
+ * like name and email.
  *
  * Outstanding Issues:
  * No Issues.
@@ -45,13 +47,27 @@ public class Profile {
      * @param username    The username of the user.
      * @param profileImage The URL of the user's profile image.
      */
-    public Profile(String username, String profileImage){
+    public Profile(String username, String deviceId){
         this.username = username;
-        this.profileImage = profileImage;
+        this.deviceId = deviceId;
     }
 
-    public String getDeviceId() {
+    /**
+     * Gets the device id of the user.
+     *
+     * @return The device is of the user.
+     */
+    public String getDeviceId(){
         return deviceId;
+    }
+
+    /**
+     * Sets the device id of the user
+     *
+     * @param deviceId
+     */
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     /**

@@ -44,6 +44,7 @@
         <activity android:name=".ViewFinalEntrantsEventActivity" />
         <activity android:name=".CancelEntrants" />
         <activity android:name=".ListEvents" />
+        <activity android:name=".SystemSample" />
 
         <!-- QR Code Scanner Activity -->
         <activity

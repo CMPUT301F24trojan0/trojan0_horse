@@ -65,7 +65,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         // Get data from Intent
         //deviceId = getIntent().getStringExtra("device_id");
         //Retrieve the device ID directly within JoinWaitlist activity
-        String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
 
         Log.d(TAG, "onCreate: Device ID = " + deviceId);

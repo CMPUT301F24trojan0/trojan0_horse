@@ -147,12 +147,26 @@ public class ViewProfile extends AppCompatActivity {
         // Fetch and display notifications for the device
         Notification notificationHelper = new Notification();
         notificationHelper.getNotificationsForDevice(this, deviceId);
-
         // Request POST_NOTIFICATIONS permission
         requestNotificationPermission();
-
         // Call createNotificationChannel to ensure the channel is created on compatible devices
         createNotificationChannel(this);
+
+        /*
+        String deviceId = "8fb329762643a6cb";
+
+        // Sample notification 1
+        String eventId1 = "1XhyynHDFdlnUMgwOK5m";
+        String title1 = "Event Reminder";
+        String message1 = "Don't forget to join the upcoming event!";
+        notificationHelper.addNotificationToDevice(deviceId, eventId1, title1, message1);
+
+        // Sample notification 2
+        String eventId2 = "92JGqmZQ1ktFCAR7beQ9";
+        String title2 = "Special Offer";
+        String message2 = "Check out the exclusive offer available for event participants!";
+        notificationHelper.addNotificationToDevice(deviceId, eventId2, title2, message2);
+        */
 
         // Set up the button to update profile image
         editImageButton.setOnClickListener(v -> updateImage());
@@ -229,10 +243,12 @@ public class ViewProfile extends AppCompatActivity {
                         // Attach the listener after setting the initial state
                         notificationsToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
                             if (isChecked) {
-                                // Fetch notifications, request permission, and create channel
+                                // Fetch and display notifications for the device
                                 Notification notificationHelper = new Notification();
                                 notificationHelper.getNotificationsForDevice(this, deviceId);
+                                // Request POST_NOTIFICATIONS permission
                                 requestNotificationPermission();
+                                // Call createNotificationChannel to ensure the channel is created on compatible devices
                                 createNotificationChannel(this);
                             } else {
                                 // Optionally, stop or remove notifications

@@ -69,7 +69,6 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
 
         // Set up adapter and attach it to RecyclerView
         eventAdapter = new EventAdapter(eventList);
-        eventAdapter.setOnEventClickListener(this);  // Set the click listener
         eventsRecyclerView.setAdapter(eventAdapter);
 
         // Retrieve events from Firestore
@@ -142,10 +141,9 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
 
                                                             // Trigger the fragment popup only for events with participation status 1
                                                             if (participationStatus == 1) {
-                                                                // You can add a listener for clicks here (the assumption is you want to handle the click in your adapter)
                                                                 eventAdapter.setOnEventClickListener(event -> {
-                                                                    if (event.getEventId().equals(eventId) && participationStatus == 1) {
-                                                                        // Create a new StatusFragment
+                                                                    if (event.getEventId().equals(eventId)) {
+                                                                        // Create and show StatusFragment
                                                                         StatusFragment statusFragment = new StatusFragment();
 
                                                                         // Create a bundle to pass the deviceId and eventId
@@ -200,5 +198,4 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                     Toast.makeText(ViewEvents.this, "Firestore retrieval failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
 }

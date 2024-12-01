@@ -91,14 +91,57 @@ public class SamplerImplementation {
                 updateUserStatusAfterSampling(deviceId, targetEventId);
             }
 
-
-
-
         }
         profileArrayAdapter.notifyDataSetChanged();
 
+        // After updating sampled users, notify those with status 0
+        notifyDevicesWithStatusZero(targetEventId);
+
         //Toast.makeText(this, numAttendees + " attendees have been registered.", Toast.LENGTH_SHORT).show();
     }
+
+    private void notifyDevicesWithStatusZero(String eventId) {
+        // Fetch the event name from the events collection
+        db.collection("events")
+                .document(eventId)
+                .get()
+                .addOnSuccessListener(eventDoc -> {
+                    if (eventDoc.exists()) {
+                        String eventName = eventDoc.getString("eventName");
+                        if (eventName != null) {
+                            // Event name is successfully retrieved
+                            String title = "You've Lost!";
+                            String message = "Better luck next time for the event: " + eventName + "!";
+
+                            // Now fetch all users and check their status for the event
+                            db.collection("users")
+                                    .get()
+                                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                                            String deviceId = doc.getId(); // Device ID is the document ID
+                                            Map<String, Object> events = (Map<String, Object>) doc.get("events");
+
+                                            if (events != null && events.containsKey(eventId)) {
+                                                Long status = (Long) events.get(eventId);
+                                                if (status != null && status == 0) {
+                                                    // Send "You've Lost" notification to users with status 0
+                                                    Notification notificationHelper = new Notification();
+                                                    notificationHelper.addNotificationToDevice(deviceId, eventId, title, message);
+                                                }
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> Log.e(TAG, "Error fetching users for notification: ", e));
+                        } else {
+                            Log.e(TAG, "Event name is missing for event ID: " + eventId);
+                        }
+                    } else {
+                        Log.e(TAG, "Event document does not exist for event ID: " + eventId);
+                    }
+                })
+                .addOnFailureListener(e -> Log.e(TAG, "Error fetching event details: ", e));
+    }
+
 
     /**
      * Updates the registration status of a user after they are selected from the waitlist.
@@ -119,10 +162,34 @@ public class SamplerImplementation {
 
                         if (events != null && events.containsKey(eventId)) {
                             if ((Long) events.get(eventId) == 0) {
+                                // Update the event status to 1
                                 events.put(eventId, 1);
                                 doc.getReference().update("events", events)
                                         .addOnSuccessListener(aVoid -> {
                                             Log.d(TAG, "Event status updated successfully for " + deviceId);
+
+                                            // After updating status, fetch event name from the events collection
+                                            db.collection("events").document(eventId)
+                                                    .get()
+                                                    .addOnSuccessListener(eventDocument -> {
+                                                        if (eventDocument.exists()) {
+                                                            String eventName = eventDocument.getString("eventName");
+                                                            if (eventName != null) {
+                                                                // Construct the message
+                                                                String title = "Lottery Win!";
+                                                                String message = "You have won the lottery for " + eventName + "!";
+
+                                                                // Call the addNotificationToDevice function
+                                                                Notification notificationHelper = new Notification();
+                                                                notificationHelper.addNotificationToDevice(deviceId, eventId, title, message);
+                                                            } else {
+                                                                Log.d(TAG, "Event name is missing for event ID: " + eventId);
+                                                            }
+                                                        } else {
+                                                            Log.d(TAG, "Event document does not exist for event ID: " + eventId);
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(e -> Log.e(TAG, "Error fetching event details: ", e));
                                         })
                                         .addOnFailureListener(e -> {
                                             Log.e(TAG, "Error updating event status for " + deviceId, e);
@@ -131,12 +198,10 @@ public class SamplerImplementation {
                         }
                     } else {
                         Log.e(TAG, "Error fetching document: ", task.getException());
-
                     }
-
                 });
-
     }
+
 
     //OpenAI, (2024, November 29), "how update multiple fields of a map in the same document at the same time", ChatGPT
     /**

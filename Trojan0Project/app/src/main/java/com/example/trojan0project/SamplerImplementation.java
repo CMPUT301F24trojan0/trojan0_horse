@@ -270,9 +270,4 @@ public class SamplerImplementation {
         });
     }
 
-
-
-
-
-
 }

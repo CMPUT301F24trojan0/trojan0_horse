@@ -156,13 +156,13 @@ public class ViewProfile extends AppCompatActivity {
         String deviceId = "8fb329762643a6cb";
 
         // Sample notification 1
-        String eventId1 = "1XhyynHDFdlnUMgwOK5m";
+        String eventId1 = "8492iF6Eu41dwGCB1yUG";
         String title1 = "Event Reminder";
         String message1 = "Don't forget to join the upcoming event!";
         notificationHelper.addNotificationToDevice(deviceId, eventId1, title1, message1);
 
         // Sample notification 2
-        String eventId2 = "92JGqmZQ1ktFCAR7beQ9";
+        String eventId2 = "E4sUpzhqDYcazajGbdlW";
         String title2 = "Special Offer";
         String message2 = "Check out the exclusive offer available for event participants!";
         notificationHelper.addNotificationToDevice(deviceId, eventId2, title2, message2);

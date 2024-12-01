@@ -270,11 +270,5 @@ public class SystemSample extends AppCompatActivity {
                     }
                 });
     }
-
-
-
-
-
-
 }
 

@@ -130,7 +130,7 @@ public class SystemSample extends AppCompatActivity {
 
 
 
-        resamplingTwo(targetEventId);
+        //resamplingTwo(targetEventId);
 
 
 

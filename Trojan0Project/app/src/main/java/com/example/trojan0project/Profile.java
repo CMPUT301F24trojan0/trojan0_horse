@@ -123,4 +123,13 @@ public class Profile {
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
+
+
+    //OpenAI, (2024, November 24), "Why are my events printing as weird codes, how can i fix this ??", ChatGPT
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " (" + email + ")";
+    }
+
 }

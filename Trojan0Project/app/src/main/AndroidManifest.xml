@@ -36,10 +36,11 @@
         <activity android:name=".DisplayEventDetails" />
         <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
+        <activity android:name=".MainActivity" />
 
 
         <activity
-            android:name=".MainActivity"
+            android:name=".CancelledEntrantsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -86,15 +86,22 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
         // Create a new StatusFragment
         StatusFragment statusFragment = new StatusFragment();
 
-        // Create a bundle to pass the deviceId
+        // Create a bundle to pass the deviceId and eventId
         Bundle args = new Bundle();
         args.putString("DEVICE_ID", deviceId);  // Pass device ID to fragment
         args.putString("EVENT_ID", event.getEventId()); // Pass the unique event ID to the fragment
         statusFragment.setArguments(args);
 
+        // Set a listener or callback to dismiss the fragment after interaction
+        statusFragment.setOnDismissListener(() -> {
+            // Dismiss the fragment after interaction
+            getSupportFragmentManager().beginTransaction().remove(statusFragment).commit();
+        });
+
         // Show the fragment as a dialog (overlay)
         statusFragment.show(getSupportFragmentManager(), "StatusFragment");
     }
+
 
     /**
      * Retrieves events for the user from Firestore based on their device ID.

@@ -96,7 +96,7 @@ public class SystemSample extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             // Retrieve the max_attendees field
-                            Long maxAttendees = document.getLong("maxNumberofEntrants");
+                            Long maxAttendees = document.getLong("maxNumberOfEntrants");
                             if (maxAttendees != null) {
                                 numAttendees = maxAttendees.intValue(); // Set numAttendees from Firestore
                                 Log.d(TAG, "Max Attendees: " + numAttendees);

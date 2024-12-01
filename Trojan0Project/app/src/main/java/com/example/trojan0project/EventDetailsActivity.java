@@ -151,7 +151,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                         joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
                                         joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
 
-                                        Log.d(TAG, "onSignUpButtonClick: Passing event details and user location to JoinWaitlistActivity");
+                                        Log.d(TAG, "onSignUpButtonClick: Passing eventId = " + finalEventId + " to JoinWaitlistActivity");
                                         startActivity(joinWaitlistIntent);
                                     } else {
                                         Log.e(TAG, "Failed to retrieve current location.");

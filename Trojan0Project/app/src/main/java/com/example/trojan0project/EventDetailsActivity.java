@@ -44,8 +44,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventNameTextView = findViewById(R.id.eventNameTextView);
         descriptionTextView = findViewById(R.id.descriptionTextView);
         timeTextView = findViewById(R.id.timeTextView);
-        deadlineTextView = findViewById(R.id.deadlineTextView); // New field
-        maxEntrantsTextView = findViewById(R.id.maxEntrantsTextView); // New field
+        deadlineTextView = findViewById(R.id.deadlineTextView);
+        maxEntrantsTextView = findViewById(R.id.maxEntrantsTextView);
         cancelButton = findViewById(R.id.cancelButton);
         signUpButton = findViewById(R.id.signUpButton);
 
@@ -55,8 +55,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Retrieve event details passed via intent
         Intent intent = getIntent();
         String eventName = null, description = null, posterUrl = null, time = null, eventId = null;
-        Date deadline = null; // New field
-        int maxNumberOfEntrants = 0; // New field
+        Date deadline = null;
+        int maxNumberOfEntrants = 0;
         Double latitude = null, longitude = null;
 
         if (intent != null) {
@@ -67,8 +67,11 @@ public class EventDetailsActivity extends AppCompatActivity {
             eventId = intent.getStringExtra("eventId");
             latitude = intent.getDoubleExtra("latitude", 0.0);
             longitude = intent.getDoubleExtra("longitude", 0.0);
-            deadline = (Date) intent.getSerializableExtra("deadline"); // New field
-            maxNumberOfEntrants = intent.getIntExtra("maxNumberOfEntrants", 0); // New field
+            long deadlineMillis = intent.getLongExtra("deadline", 0); // Retrieve as long
+            if (deadlineMillis != 0) {
+                deadline = new Date(deadlineMillis); // Convert back to Date
+            }
+            maxNumberOfEntrants = intent.getIntExtra("maxNumberOfEntrants", 0);
 
             Log.d(TAG, "onCreate: Received event details");
             Log.d(TAG, "onCreate: eventName = " + eventName);
@@ -78,15 +81,15 @@ public class EventDetailsActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: eventId = " + eventId);
             Log.d(TAG, "onCreate: latitude = " + latitude);
             Log.d(TAG, "onCreate: longitude = " + longitude);
-            Log.d(TAG, "onCreate: deadline = " + deadline); // Log new field
-            Log.d(TAG, "onCreate: maxNumberOfEntrants = " + maxNumberOfEntrants); // Log new field
+            Log.d(TAG, "onCreate: deadline = " + deadline);
+            Log.d(TAG, "onCreate: maxNumberOfEntrants = " + maxNumberOfEntrants);
 
             // Set values in views
             eventNameTextView.setText(eventName != null ? eventName : "N/A");
             descriptionTextView.setText(description != null ? description : "N/A");
             timeTextView.setText(time != null ? String.format("Time: %s", time) : "N/A");
-            deadlineTextView.setText(deadline != null ? String.format("Deadline: %s", deadline.toString()) : "N/A"); // New field
-            maxEntrantsTextView.setText(maxNumberOfEntrants > 0 ? String.format("Max Entrants: %d", maxNumberOfEntrants) : "N/A"); // New field
+            deadlineTextView.setText(deadline != null ? String.format("Deadline: %s", deadline.toString()) : "N/A");
+            maxEntrantsTextView.setText(maxNumberOfEntrants > 0 ? String.format("Max Entrants: %d", maxNumberOfEntrants) : "N/A");
 
             if (posterUrl != null) {
                 Glide.with(this).load(posterUrl).into(posterImageView);
@@ -99,7 +102,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Cancel button listener
         cancelButton.setOnClickListener(v -> {
             Log.d(TAG, "Cancel button clicked");
-            finish(); // Ensure activity is properly finished
+            finish();
         });
 
         // Sign Up button listener
@@ -108,8 +111,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         String finalPosterUrl = posterUrl;
         String finalTime = time;
         String finalEventId = eventId;
-        Date finalDeadline = deadline; // New field
-        int finalMaxNumberOfEntrants = maxNumberOfEntrants; // New field
+        Date finalDeadline = deadline;
+        int finalMaxNumberOfEntrants = maxNumberOfEntrants;
         Double finalLatitude = latitude;
         Double finalLongitude = longitude;
 
@@ -129,33 +132,30 @@ public class EventDetailsActivity extends AppCompatActivity {
                 } else {
                     // Get current location
                     fusedLocationClient.getLastLocation()
-                            .addOnSuccessListener(new OnSuccessListener<Location>() {
-                                @Override
-                                public void onSuccess(Location location) {
-                                    if (location != null) {
-                                        double currentLatitude = location.getLatitude();
-                                        double currentLongitude = location.getLongitude();
-                                        Log.d(TAG, "Current location: Latitude = " + currentLatitude + ", Longitude = " + currentLongitude);
+                            .addOnSuccessListener(location -> {
+                                if (location != null) {
+                                    double currentLatitude = location.getLatitude();
+                                    double currentLongitude = location.getLongitude();
+                                    Log.d(TAG, "Current location: Latitude = " + currentLatitude + ", Longitude = " + currentLongitude);
 
-                                        // Navigate to JoinWaitlistActivity
-                                        Intent joinWaitlistIntent = new Intent(EventDetailsActivity.this, JoinWaitlist.class);
-                                        joinWaitlistIntent.putExtra("eventName", finalEventName);
-                                        joinWaitlistIntent.putExtra("description", finalDescription);
-                                        joinWaitlistIntent.putExtra("posterPath", finalPosterUrl);
-                                        joinWaitlistIntent.putExtra("time", finalTime);
-                                        joinWaitlistIntent.putExtra("eventId", finalEventId);
-                                        joinWaitlistIntent.putExtra("latitude", finalLatitude);
-                                        joinWaitlistIntent.putExtra("longitude", finalLongitude);
-                                        joinWaitlistIntent.putExtra("deadline", finalDeadline); // Pass new field
-                                        joinWaitlistIntent.putExtra("maxNumberOfEntrants", finalMaxNumberOfEntrants); // Pass new field
-                                        joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
-                                        joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
+                                    // Navigate to JoinWaitlistActivity
+                                    Intent joinWaitlistIntent = new Intent(EventDetailsActivity.this, JoinWaitlist.class);
+                                    joinWaitlistIntent.putExtra("eventName", finalEventName);
+                                    joinWaitlistIntent.putExtra("description", finalDescription);
+                                    joinWaitlistIntent.putExtra("posterPath", finalPosterUrl);
+                                    joinWaitlistIntent.putExtra("time", finalTime);
+                                    joinWaitlistIntent.putExtra("eventId", finalEventId);
+                                    joinWaitlistIntent.putExtra("latitude", finalLatitude);
+                                    joinWaitlistIntent.putExtra("longitude", finalLongitude);
+                                    joinWaitlistIntent.putExtra("deadline", finalDeadline != null ? finalDeadline.getTime() : 0); // Pass deadline as long
+                                    joinWaitlistIntent.putExtra("maxNumberOfEntrants", finalMaxNumberOfEntrants);
+                                    joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
+                                    joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
 
-                                        Log.d(TAG, "onSignUpButtonClick: Passing event details and user location to JoinWaitlistActivity");
-                                        startActivity(joinWaitlistIntent);
-                                    } else {
-                                        Log.e(TAG, "Failed to retrieve current location.");
-                                    }
+                                    Log.d(TAG, "onSignUpButtonClick: Passing event details and user location to JoinWaitlistActivity");
+                                    startActivity(joinWaitlistIntent);
+                                } else {
+                                    Log.e(TAG, "Failed to retrieve current location.");
                                 }
                             });
                 }

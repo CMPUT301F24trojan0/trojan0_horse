@@ -6,7 +6,7 @@
  * The activity uses a onCreateView to obtain the eventID and the userID and to then remove them for the waitlist dictionaries of their respective collections
  *
  * Outstanding Issues:
- * Not sure why in_waitlist.xml is not working
+ *
  */
 
 package com.example.trojan0project;

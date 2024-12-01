@@ -128,6 +128,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
      * Retrieves events for the user from Firestore based on their device ID.
      * Updates the RecyclerView with the retrieved events.
      */
+
     private void retrieveEvents() {
         if (deviceId == null) {
             Log.e(TAG, "Device ID is null. Cannot retrieve events.");
@@ -143,34 +144,45 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                         if (document.exists()) {
                             Log.d(TAG, "Document retrieved: " + document.getData());
                             if (document.contains("events")) {
-                                Map<String, Long> eventsMap = (Map<String, Long>) document.get("events");
+                                // Safely cast the events map
+                                Map<String, Object> eventsMap = (Map<String, Object>) document.get("events");
 
-                                for (Map.Entry<String, Long> entry : eventsMap.entrySet()) {
+                                for (Map.Entry<String, Object> entry : eventsMap.entrySet()) {
                                     String eventId = entry.getKey();
 
-                                    // Fetch event details from the "events" collection using eventId
-                                    db.collection("events").document(eventId)
-                                            .get()
-                                            .addOnCompleteListener(eventTask -> {
-                                                if (eventTask.isSuccessful()) {
-                                                    DocumentSnapshot eventDocument = eventTask.getResult();
-                                                    if (eventDocument.exists()) {
-                                                        String eventName = eventDocument.getString("name");
-                                                        double latitude = eventDocument.contains("latitude")
-                                                                ? eventDocument.getDouble("latitude")
-                                                                : 0.0;
-                                                        double longitude = eventDocument.contains("longitude")
-                                                                ? eventDocument.getDouble("longitude")
-                                                                : 0.0;
-                                                        String posterPath = eventDocument.getString("posterPath");
+                                    // Safely convert the value to Long
+                                    Long value = null;
+                                    try {
+                                        value = ((Number) entry.getValue()).longValue();
+                                    } catch (ClassCastException e) {
+                                        Log.e(TAG, "Error casting event value to Long for eventId: " + eventId, e);
+                                    }
 
-                                                        // Create Event object and add to the list
-                                                        Event event = new Event(eventName, eventId, latitude, longitude, posterPath);
-                                                        eventList.add(event);
+                                    if (value != null) {
+                                        // Fetch event details from the "events" collection using eventId
+                                        db.collection("events").document(eventId)
+                                                .get()
+                                                .addOnCompleteListener(eventTask -> {
+                                                    if (eventTask.isSuccessful()) {
+                                                        DocumentSnapshot eventDocument = eventTask.getResult();
+                                                        if (eventDocument.exists()) {
+                                                            String eventName = eventDocument.getString("name");
+                                                            double latitude = eventDocument.contains("latitude")
+                                                                    ? eventDocument.getDouble("latitude")
+                                                                    : 0.0;
+                                                            double longitude = eventDocument.contains("longitude")
+                                                                    ? eventDocument.getDouble("longitude")
+                                                                    : 0.0;
+                                                            String posterPath = eventDocument.getString("posterPath");
+
+                                                            // Create Event object and add to the list
+                                                            Event event = new Event(eventName, eventId, latitude, longitude, posterPath);
+                                                            eventList.add(event);
+                                                        }
                                                     }
-                                                }
-                                                eventAdapter.notifyDataSetChanged();
-                                            });
+                                                    eventAdapter.notifyDataSetChanged();
+                                                });
+                                    }
                                 }
                             } else {
                                 Toast.makeText(ViewEvents.this, "No events found for this user.", Toast.LENGTH_SHORT).show();
@@ -183,6 +195,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                     }
                 });
     }
+
 
 
 }

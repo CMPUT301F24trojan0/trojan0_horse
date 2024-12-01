@@ -108,18 +108,6 @@
         app:layout_constraintWidth_percent="0.4" />
 
     <Button
-        android:id="@+id/enterJoinWaitlist"
-        android:layout_width="111dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="552dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#b391f8"
-        android:text="Enter Waitlist Page"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/addDescriptionButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -132,6 +120,33 @@
         app:layout_constraintTop_toBottomOf="@id/addPosterButton"
         app:layout_constraintWidth_percent="0.4" />
 
+    <!-- Add Deadline and Add Max Entrants Buttons -->
+    <Button
+        android:id="@+id/addDeadlineButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#b391f8"
+        android:text="Add Deadline"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addMaxEntrantsButton"
+        app:layout_constraintTop_toBottomOf="@id/addDescriptionButton"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <Button
+        android:id="@+id/addMaxEntrantsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#b391f8"
+        android:text="Add Max Entrants"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/addDeadlineButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addDescriptionButton"
+        app:layout_constraintWidth_percent="0.4" />
+
     <!-- QR Code Display -->
     <ImageView
         android:id="@+id/qrCodeImageView"
@@ -141,7 +156,7 @@
         android:contentDescription="QR Code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addDescriptionButton" />
+        app:layout_constraintTop_toBottomOf="@id/addMaxEntrantsButton" />
 
     <!-- Bottom Navigation -->
     <LinearLayout

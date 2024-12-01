@@ -25,10 +25,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Build;
 import android.Manifest;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -37,7 +36,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -51,6 +49,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,8 +67,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.trojan0project.HandleEXIF.handleEXIF;
+
 public class ViewProfile extends AppCompatActivity {
     private static final String TAG = "ViewProfile";
+    private static final int QR_SCANNER_REQUEST_CODE = 200;
     private ImageView profilePicture;
     private ImageButton editImageButton;
     private ImageButton deleteImageButton;
@@ -82,14 +85,13 @@ public class ViewProfile extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneNumberEditText;
     private Switch notificationsToggle;
-    private Button viewEventsButton;
+    private Button viewEventsButton, scanQrCodeButton;
     private FirebaseFirestore db;
     private String deviceId;
     private String username;
 
     ActivityResultLauncher<PickVisualMediaRequest> pickVisualMedia =
-            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri ->
-            {
+            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     ContentResolver CR = this.getContentResolver();
                     String type = CR.getType(uri);
@@ -137,6 +139,7 @@ public class ViewProfile extends AppCompatActivity {
         phoneNumberEditText = findViewById(R.id.phoneNumberInput);
         notificationsToggle = findViewById(R.id.notificationsToggle);
         viewEventsButton = findViewById(R.id.viewEventsButton);
+        scanQrCodeButton = findViewById(R.id.scanQrCodeButton);
 
         // Load profile data
         loadProfileData();
@@ -157,6 +160,11 @@ public class ViewProfile extends AppCompatActivity {
         // Save details and go to View Events Page
         viewEventsButton.setOnClickListener(v -> saveProfileData());
 
+        // Set up the QR Code Scanner button
+        scanQrCodeButton.setOnClickListener(v -> {
+            Intent qrScannerIntent = new Intent(this, QrScannerActivity.class);
+            startActivityForResult(qrScannerIntent, QR_SCANNER_REQUEST_CODE);
+        });
     }
 
     public void createNotificationChannel(Context context) {
@@ -272,7 +280,6 @@ public class ViewProfile extends AppCompatActivity {
                         Log.d(TAG, "Profile updated successfully: " + profileData);
                         Toast.makeText(ViewProfile.this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
 
-
                         // Prevent multiple clicks
                         viewEventsButton.setEnabled(false);
                         // Navigate to View Events Page
@@ -285,20 +292,20 @@ public class ViewProfile extends AppCompatActivity {
                     }
                 });
     }
+
     /**
      * Saves the updated profile data to Firestore.
      */
-    private void updateImage(){
-        pickVisualMedia.launch((new PickVisualMediaRequest
-                .Builder()
-                .setMediaType(ActivityResultContracts
-                        .PickVisualMedia.ImageOnly.INSTANCE)
+    private void updateImage() {
+        pickVisualMedia.launch((new PickVisualMediaRequest.Builder()
+                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build()));
     }
+
     /**
      * Uploads the selected image to Firebase Storage and updates the user's profile picture URL in Firestore.
      */
-    private void uploadImage(){
+    private void uploadImage() {
         progressBar.setVisibility(View.VISIBLE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
@@ -337,6 +344,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Deletes the profile image from Firebase Storage and updates Firestore to remove the profile picture URL.
      */
@@ -374,5 +382,16 @@ public class ViewProfile extends AppCompatActivity {
         ImageGenerator mydrawing = new ImageGenerator(this);
         mydrawing.setUserText(String.valueOf(username.charAt(0)));
         profilePicture.setImageDrawable(mydrawing);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == QR_SCANNER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String scannedData = data.getStringExtra("SCANNED_DATA");
+            if (scannedData != null) {
+                Toast.makeText(this, "QR Code Scanned: " + scannedData, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_view_entrant_waitlist"
+    android:layout_width="0dp"
+    android:fontFamily="@font/quicksand"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:textSize="40sp">
+
+</TextView>
+
+

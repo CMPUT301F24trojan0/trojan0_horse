@@ -1,7 +1,7 @@
 /**
  * Purpose:
  * The class represents an event in the application, storing details such as event ID, name,
- * location, poster, time and QR code. It implements `Parcelable` and `Serializable` interfaces.
+ * location, poster, time, and QR code. It implements `Parcelable` and `Serializable` interfaces.
  *
  * Design Rationale:
  * Contains constructors and setters to initialize event data from various sources like Firestore or QR generation.
@@ -14,10 +14,10 @@ package com.example.trojan0project;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.graphics.Bitmap;
-
+import com.google.firebase.Timestamp;
 import java.io.Serializable;
 
-public class Event implements Parcelable, Serializable{
+public class Event implements Parcelable, Serializable {
     private Bitmap qrCodeBitmap;
     private String eventId;
     private String eventName;
@@ -27,6 +27,8 @@ public class Event implements Parcelable, Serializable{
     private String qrCodeUrl;    // URL for the QR code image
     private String description;  // Event description
     private String time;         // Event time
+    private Timestamp deadline;  // Event registration deadline (Firestore Timestamp)
+    private int maxNumberOfEntrants; // Maximum number of entrants allowed
 
     // Default constructor for Firestore
     public Event(String eventName, String eventId, double defaultLatitude, double defaultLongitude, String defaultPosterPath, Long participationStatus) {}
@@ -54,7 +56,7 @@ public class Event implements Parcelable, Serializable{
      * @param eventName     Name of the event.
      * @param qrCodeBitmap  Bitmap image of the event's QR code.
      */
-    public Event(String eventName, Bitmap qrCodeBitmap){
+    public Event(String eventName, Bitmap qrCodeBitmap) {
         this.eventName = eventName;
         this.qrCodeBitmap = qrCodeBitmap;
     }
@@ -71,6 +73,15 @@ public class Event implements Parcelable, Serializable{
         longitude = in.readDouble();
         posterPath = in.readString();
         qrCodeUrl = in.readString();
+        description = in.readString();
+        time = in.readString();
+        long deadlineMillis = in.readLong();
+        deadline = (deadlineMillis == -1) ? null : new Timestamp(deadlineMillis / 1000, 0);
+        maxNumberOfEntrants = in.readInt();
+    }
+
+    public Event(String eventName) {
+        this.eventName = eventName;
     }
 
     /**
@@ -107,6 +118,10 @@ public class Event implements Parcelable, Serializable{
         dest.writeDouble(longitude);
         dest.writeString(posterPath);
         dest.writeString(qrCodeUrl);
+        dest.writeString(description);
+        dest.writeString(time);
+        dest.writeLong(deadline != null ? deadline.toDate().getTime() : -1);
+        dest.writeInt(maxNumberOfEntrants);
     }
 
     /**
@@ -114,7 +129,9 @@ public class Event implements Parcelable, Serializable{
      *
      * @return The event ID.
      */
-    public String getEventId() {return eventId;}
+    public String getEventId() {
+        return eventId;
+    }
 
     /**
      * Sets the event ID.
@@ -193,7 +210,6 @@ public class Event implements Parcelable, Serializable{
      *
      * @param posterPath Path or URL of the event's poster image.
      */
-
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
@@ -208,6 +224,15 @@ public class Event implements Parcelable, Serializable{
     }
 
     /**
+     * Sets the QR code URL.
+     *
+     * @param qrCodeUrl URL for the event's QR code image.
+     */
+    public void setQrCodeUrl(String qrCodeUrl) {
+        this.qrCodeUrl = qrCodeUrl;
+    }
+
+    /**
      * Gets the QR code Bitmap.
      *
      * @return The Bitmap image of the QR code.
@@ -217,12 +242,12 @@ public class Event implements Parcelable, Serializable{
     }
 
     /**
-     * Sets the QR code URL.
+     * Sets the QR code Bitmap.
      *
-     * @param qrCodeUrl URL for the event's QR code image.
+     * @param qrCodeBitmap The Bitmap image of the event's QR code.
      */
-    public void setQrCodeUrl(String qrCodeUrl) {
-        this.qrCodeUrl = qrCodeUrl;
+    public void setQrCodeBitmap(Bitmap qrCodeBitmap) {
+        this.qrCodeBitmap = qrCodeBitmap;
     }
 
     /**
@@ -259,5 +284,41 @@ public class Event implements Parcelable, Serializable{
      */
     public void setTime(String time) {
         this.time = time;
+    }
+
+    /**
+     * Gets the event registration deadline.
+     *
+     * @return The deadline of the event.
+     */
+    public Timestamp getDeadline() {
+        return deadline;
+    }
+
+    /**
+     * Sets the event registration deadline.
+     *
+     * @param deadline Registration deadline.
+     */
+    public void setDeadline(Timestamp deadline) {
+        this.deadline = deadline;
+    }
+
+    /**
+     * Gets the maximum number of entrants.
+     *
+     * @return The maximum number of entrants allowed.
+     */
+    public int getMaxNumberOfEntrants() {
+        return maxNumberOfEntrants;
+    }
+
+    /**
+     * Sets the maximum number of entrants.
+     *
+     * @param maxNumberOfEntrants Maximum number of entrants allowed.
+     */
+    public void setMaxNumberOfEntrants(int maxNumberOfEntrants) {
+        this.maxNumberOfEntrants = maxNumberOfEntrants;
     }
 }

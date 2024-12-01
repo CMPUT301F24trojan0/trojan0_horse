@@ -32,14 +32,17 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -67,8 +70,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.trojan0project.HandleEXIF.handleEXIF;
-
 public class ViewProfile extends AppCompatActivity {
     private static final String TAG = "ViewProfile";
     private static final int QR_SCANNER_REQUEST_CODE = 200;
@@ -85,7 +86,6 @@ public class ViewProfile extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneNumberEditText;
     private Switch notificationsToggle;
-    private Button viewEventsButton, scanQrCodeButton;
     private FirebaseFirestore db;
     private String deviceId;
     private String username;
@@ -118,6 +118,16 @@ public class ViewProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_view); // Links the XML layout to this activity
 
+        Toolbar toolbar = findViewById(R.id.view_profile_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         // Initialize Firestore and Firebase Storage
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -138,8 +148,6 @@ public class ViewProfile extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailInput);
         phoneNumberEditText = findViewById(R.id.phoneNumberInput);
         notificationsToggle = findViewById(R.id.notificationsToggle);
-        viewEventsButton = findViewById(R.id.viewEventsButton);
-        scanQrCodeButton = findViewById(R.id.scanQrCodeButton);
 
         // Load profile data
         loadProfileData();
@@ -156,15 +164,24 @@ public class ViewProfile extends AppCompatActivity {
 
         // Set up the button to update profile image
         editImageButton.setOnClickListener(v -> updateImage());
+    }
 
-        // Save details and go to View Events Page
-        viewEventsButton.setOnClickListener(v -> saveProfileData());
-
-        // Set up the QR Code Scanner button
-        scanQrCodeButton.setOnClickListener(v -> {
-            Intent qrScannerIntent = new Intent(this, QrScannerActivity.class);
-            startActivityForResult(qrScannerIntent, QR_SCANNER_REQUEST_CODE);
-        });
+    /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     * In this case, it saves the profile data before navigating back to the previous activity.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Save profile data before navigating back
+            if (saveProfileData()) {finish();}
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void createNotificationChannel(Context context) {
@@ -250,7 +267,7 @@ public class ViewProfile extends AppCompatActivity {
     /**
      * Saves the updated profile data to Firestore.
      */
-    private void saveProfileData() {
+    private boolean saveProfileData() {
         String firstName = firstNameEditText.getText().toString().trim();
         String lastName = lastNameEditText.getText().toString().trim();
         String username = usernameEditText.getText().toString().trim();
@@ -258,10 +275,10 @@ public class ViewProfile extends AppCompatActivity {
         String phoneNumber = phoneNumberEditText.getText().toString().trim();
         boolean notifications = notificationsToggle.isChecked();
 
-        if (firstName.isEmpty() || lastName.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
             // Exit the method to stay on the same page
-            return;
+            return false;
         }
 
         // Create a Map to store updated profile data
@@ -279,18 +296,13 @@ public class ViewProfile extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Profile updated successfully: " + profileData);
                         Toast.makeText(ViewProfile.this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-
-                        // Prevent multiple clicks
-                        viewEventsButton.setEnabled(false);
-                        // Navigate to View Events Page
-                        Intent intent1 = new Intent(ViewProfile.this, ViewEvents.class);
-                        intent1.putExtra("DEVICE_ID", deviceId); // Add device ID to intent
-                        startActivity(intent1);
                     } else {
                         Log.e(TAG, "Profile update failed", task.getException());
                         Toast.makeText(ViewProfile.this, "Profile update failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        return true;
     }
 
     /**

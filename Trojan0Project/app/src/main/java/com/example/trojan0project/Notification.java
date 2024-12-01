@@ -137,7 +137,6 @@ public class Notification {
         Intent intent = new Intent(context, ViewTheDamnEvent.class);
         intent.putExtra("deviceId", deviceId);
         intent.putExtra("eventId", eventId);
-        intent.putExtra("notificationId", notificationId);  // Pass the notification ID to remove
 
         // Create a PendingIntent to launch the event details activity
         PendingIntent pendingIntent = PendingIntent.getActivity(

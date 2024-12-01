@@ -30,6 +30,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -40,6 +42,7 @@ import static com.example.trojan0project.HandleEXIF.handleEXIF;
 public class ViewProfile extends AppCompatActivity {
     private static final String TAG = "ViewProfile";
     private static final int QR_SCANNER_REQUEST_CODE = 200;
+    private static final int BYPASS_QR_CODE_REQUEST_CODE = 201;
 
     private ImageView profilePicture;
     private ImageButton editImageButton;
@@ -54,7 +57,7 @@ public class ViewProfile extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneNumberEditText;
     private Switch notificationsToggle;
-    private Button viewEventsButton, scanQrCodeButton;
+    private Button viewEventsButton, scanQrCodeButton, bypassQrCodeButton; // New Button
     private FirebaseFirestore db;
     private String deviceId;
     private String username;
@@ -105,6 +108,7 @@ public class ViewProfile extends AppCompatActivity {
         notificationsToggle = findViewById(R.id.notificationsToggle);
         viewEventsButton = findViewById(R.id.viewEventsButton);
         scanQrCodeButton = findViewById(R.id.scanQrCodeButton);
+        bypassQrCodeButton = findViewById(R.id.bypassQrCodeButton); // Initialize new button
 
         // Load profile data
         loadProfileData();
@@ -119,6 +123,12 @@ public class ViewProfile extends AppCompatActivity {
         scanQrCodeButton.setOnClickListener(v -> {
             Intent qrScannerIntent = new Intent(this, QrScannerActivity.class);
             startActivityForResult(qrScannerIntent, QR_SCANNER_REQUEST_CODE);
+        });
+
+        // Set up the Bypass QR Code button
+        bypassQrCodeButton.setOnClickListener(v -> {
+            Intent bypassQrCodeIntent = new Intent(this, ManualEntryActivity.class);
+            startActivityForResult(bypassQrCodeIntent, BYPASS_QR_CODE_REQUEST_CODE);
         });
     }
 
@@ -264,6 +274,11 @@ public class ViewProfile extends AppCompatActivity {
             String scannedData = data.getStringExtra("SCANNED_DATA");
             if (scannedData != null) {
                 Toast.makeText(this, "QR Code Scanned: " + scannedData, Toast.LENGTH_LONG).show();
+            }
+        } else if (requestCode == BYPASS_QR_CODE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String manualData = data.getStringExtra("MANUAL_DATA");
+            if (manualData != null) {
+                Toast.makeText(this, "Manual Data Entered: " + manualData, Toast.LENGTH_LONG).show();
             }
         }
     }

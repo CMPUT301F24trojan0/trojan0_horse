@@ -1,0 +1,35 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/manualInputField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter event JSON data"
+        android:inputType="textMultiLine"
+        android:gravity="start|top"
+        android:minHeight="100dp"
+        android:padding="8dp"
+        />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/manualInputField"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentEnd="true"
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/manualInputField"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:text="Cancel" />
+</RelativeLayout>

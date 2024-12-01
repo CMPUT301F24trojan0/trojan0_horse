@@ -44,6 +44,10 @@ dependencies {
     //Mockito
     testImplementation ("org.mockito:mockito-core:4.5.1") // Use the latest version
 
+    testImplementation("org.mockito:mockito-inline:4.5.1")
+
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("org.robolectric:robolectric:4.9")
 // Mockito for Android (if you're writing Android tests)
     androidTestImplementation ("org.mockito:mockito-android:4.5.1")
     //Firebase storage
@@ -70,6 +74,7 @@ dependencies {
     implementation("com.google.zxing:core:3.5.0")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation ("androidx.appcompat:appcompat:1.6.1")
 
 
     implementation(libs.appcompat)

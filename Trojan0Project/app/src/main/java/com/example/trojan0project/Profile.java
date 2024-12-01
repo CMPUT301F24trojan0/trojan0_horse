@@ -45,7 +45,7 @@ public class Profile {
      * Constructs a Profile with the specified username and profile image.
      *
      * @param username    The username of the user.
-     * @param profileImage The URL of the user's profile image.
+     * The URL of the user's profile image.
      */
     public Profile(String username, String deviceId){
         this.username = username;

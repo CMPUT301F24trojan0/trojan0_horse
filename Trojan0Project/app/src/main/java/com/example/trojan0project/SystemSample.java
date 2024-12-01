@@ -1,3 +1,18 @@
+/**
+ * Purpose:
+ * This activity allows users to view and sample a waitlist for event entrants.
+ * It interacts with Firestore to fetch event and user data and displays a waitlist of users
+ * who have shown interest in an event.
+ *
+ * Design Rationale:
+ * The app retrieves data from Firebase Firestore to build a waitlist for an event based on user type.
+ * Once data is fetched, it is displayed in a ListView. Sampling functionality is provided for event organizers
+ * to select users for an event based on the waitlist.
+ *
+ * Outstanding Issues:
+ * No issues at the moment.
+ */
+
 package com.example.trojan0project;
 
 //farza: user stories:  02.02.01, 02.05.02
@@ -20,14 +35,18 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
+
+
 
 public class SystemSample extends AppCompatActivity {
 
@@ -37,16 +56,21 @@ public class SystemSample extends AppCompatActivity {
     //private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
     private String deviceId;
 
-    ;
 
-    private int numAttendees = 1;
+
+    private int numAttendees;
     ListView entrantsWaitlist;
 
     private ListView entrantWaitlist;
-    private ArrayAdapter<Profile> profileArrayAdapter;
+    private static ArrayAdapter<Profile> profileArrayAdapter;
     public ArrayList<Profile> waitList;
-    public ArrayList<Profile> declinedList;
 
+    /**
+     * Initializes the activity, sets up Firebase Firestore, and configures the layout with
+     * appropriate listeners for fetching and sampling the waitlist.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +79,38 @@ public class SystemSample extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         waitList = new ArrayList<>();
-        declinedList = new ArrayList<>();
+
         entrantsWaitlist = findViewById(R.id.entrants_wait_list);
         profileArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, waitList);
         entrantsWaitlist.setAdapter(profileArrayAdapter);
 
         Button fetchWaitlistButton = findViewById(R.id.fetchWaitlistButton);
         Button sampleWaitlistButton = findViewById(R.id.sampleWaitlistButton);
+
+        // getting the number of attendees for that specifc event
+        db.collection("events")
+                .document(targetEventId)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // Retrieve the max_attendees field
+                            Long maxAttendees = document.getLong("maxNumberofEntrants");
+                            if (maxAttendees != null) {
+                                numAttendees = maxAttendees.intValue(); // Set numAttendees from Firestore
+                                Log.d(TAG, "Max Attendees: " + numAttendees);
+                            } else {
+                                Log.e(TAG, "maxNumberofEntrants field does not exist");
+                            }
+                        } else {
+                            Log.e(TAG, "Event document does not exist");
+                        }
+                    } else {
+                        Log.e(TAG, "Failed to get event document: ", task.getException());
+                    }
+                });
+
 
 
 
@@ -74,15 +123,25 @@ public class SystemSample extends AppCompatActivity {
 
         sampleWaitlistButton.setOnClickListener(v -> {
 
-            sampleWaitlist(numAttendees);
+            SamplerImplementation sampler = new SamplerImplementation();
+            sampler.sampleWaitlist(waitList, numAttendees, targetEventId, profileArrayAdapter);
+
 
         });
         Log.d("sampleWaitlistActivity", "Calling sampleWaitlist() method");
 
 
 
-    }
+        resamplingTwo(targetEventId);
 
+
+
+    }
+    /**
+     * Fetches the waitlist of entrants for the specified event from Firestore.
+     * It retrieves users marked as entrants for the event and adds them to the waitlist.
+     * The adapter is notified of changes to update the ListView display.
+     */
     private void getWaitlist() {
         final CollectionReference collectionReference = db.collection("users");
 
@@ -148,107 +207,67 @@ public class SystemSample extends AppCompatActivity {
 
     }
 
-    private void sampleWaitlist(int numAttendees) {
 
+    /**
+     * This method listens for changes to the specified event document in Firestore.
+     * It checks if there are available spots for attendees in the event ( if
+     * the number of sampled attendees is less than the maximum number of attendees).
+     * If there are still spots available, it triggers the resampling process by
+     * selecting more attendees from the waitlist and incrementing the `num_sampled` field
+     * in Firestore. The resampling process continues until the maximum number of attendees
+     * is reached.
+     * @param targetEventId The ID of the target event for which attendees are being sampled.
+     */
 
-        ArrayList<Profile> sampledProfiles = new ArrayList<>();
-
-        //OpenAI, (2024, November 24), "how to randomly select the people in the waiting list??", ChatGPT
-
-        Random random = new Random();
-        for (int i = 0; i < numAttendees; i++) {
-            if (waitList.size() == 0) break;
-            int index = random.nextInt(waitList.size());
-            Profile sampledProfile = waitList.get(index);
-            sampledProfiles.add(sampledProfile);
-            waitList.remove(index);
-        }
-       // show profiles
-        for (Profile profile : sampledProfiles) {
-            Log.d("Sampled Profile", "Registered: " + profile.getFirstName() + " " + profile.getLastName());
-            String deviceId = profile.getDeviceId();
-            if (deviceId != null) {
-                updateUserStatusAfterSampling(deviceId, targetEventId);
-            } else {
-                Log.e(TAG, "Device ID is null for profile: " + profile.getFirstName() + " " + profile.getLastName());
-            }
-            updateEventsStatusInEvent(targetEventId, deviceId);
-
-        }
-        profileArrayAdapter.notifyDataSetChanged();
-
-        Toast.makeText(this, numAttendees + " attendees have been registered.", Toast.LENGTH_SHORT).show();
-    }
-
-
-
-    private void updateUserStatusAfterSampling(String deviceId, String eventId) {
-        db.collection("users")
-                .document(deviceId)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        DocumentSnapshot doc = task.getResult();
-                        Log.d(TAG, "Device ID: " + deviceId);
-                        Map<String, Object> events = (Map<String, Object>) doc.get("events");
-
-                        if (events != null && events.containsKey(eventId)) {
-                            if ((Long) events.get(eventId) == 0) {
-                                events.put(eventId, 1);
-                                doc.getReference().update("events", events)
-                                        .addOnSuccessListener(aVoid -> {
-                                            Log.d(TAG, "Event status updated successfully for " + deviceId);
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Log.e(TAG, "Error updating event status for " + deviceId, e);
-                                        });
-                            }
-                        }
-                    } else {
-                        Log.e(TAG, "Error fetching document: ", task.getException());
-
-                    }
-
-                });
-
-    }
-
-
-    private void updateEventsStatusInEvent(String eventId, String deviceId) {
-        // Query the 'events' collection for the document with the specified eventId
+    private void resamplingTwo(String targetEventId) {
+        // Use snapshot listener to actively listen for changes to the event document
         db.collection("events")
-                .whereEqualTo(FieldPath.documentId(), eventId) // Use documentId as the eventId
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                        DocumentSnapshot eventDoc = task.getResult().getDocuments().get(0);
-
-                        // Get the 'users' field, which is expected to be a map with deviceIds as keys
-                        Map<String, Object> users = (Map<String, Object>) eventDoc.get("users");
-
-                        // Check if the users map exists and contains the deviceId
-                        if (users != null && users.containsKey(deviceId)) {
-                            if ((Long) users.get(deviceId) == 0) {
-                                users.put(deviceId, 1);
-                            }
-
-                            // Update the 'users' field in the event document
-                            eventDoc.getReference().update("users", users)
-                                    .addOnSuccessListener(aVoid -> {
-                                        Log.d(TAG, "Successfully updated user status in event " + eventId);
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Log.e(TAG, "Error updating user status in event " + eventId, e);
-                                    });
-                        } else {
-                            Log.e(TAG, "Users field not found in the event document");
+                .document(targetEventId)
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e(TAG, "Error fetching event document: ", error);
+                            return;
                         }
-                    } else {
-                        Log.e(TAG, "Event not found with eventId: " + eventId);
+
+                        if (documentSnapshot != null && documentSnapshot.exists()) {
+                            Long maxAttendees = documentSnapshot.getLong("maxNumberofEntrants");
+                            Long numSampled = documentSnapshot.getLong("num_sampled");
+
+                            Log.d(TAG, "maxAttendees: " + maxAttendees);
+                            Log.d(TAG, "numSampled: " + numSampled);
+
+                            // Ensure that the fields are available and check if resampling is needed
+                            if (maxAttendees != null && numSampled != null) {
+                                if (numSampled < maxAttendees) {
+                                    // Trigger resampling if maxAttendees is not reached
+                                    int remainingAttendees = maxAttendees.intValue() - numSampled.intValue();
+                                    Log.d(TAG, "Resampling " + remainingAttendees + " attendees...");
+
+                                    SamplerImplementation sampler = new SamplerImplementation();
+                                    sampler.sampleWaitlist(waitList, remainingAttendees, targetEventId, profileArrayAdapter);
+
+                                    // Increment num_sampled field in Firestore after resampling
+                                    db.collection("events")
+                                            .document(targetEventId)
+                                            .update("num_sampled", FieldValue.increment(remainingAttendees))
+                                            .addOnSuccessListener(aVoid -> {
+                                                Log.d(TAG, "num_sampled field incremented by " + remainingAttendees);
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Log.e(TAG, "Error incrementing num_sampled field for event: " + targetEventId, e);
+                                            });
+                                } else {
+                                    Log.d(TAG, "Max attendees reached. No need to resample.");
+                                }
+                            } else {
+                                Log.e(TAG, "Failed to retrieve maxAttendees or numSampled from event document.");
+                            }
+                        } else {
+                            Log.e(TAG, "Event document is null or does not exist.");
+                        }
                     }
-                })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "Error fetching event document: ", e);
                 });
     }
 

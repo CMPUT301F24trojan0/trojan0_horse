@@ -9,12 +9,15 @@
  * Dialog fragment for deletion confirmation
  *
  * Outstanding Issues:
- * Creates space when facility is deleted
+ * None
  *
  */
 package com.example.trojan0project;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -122,9 +125,16 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
                     String userType = doc.getString("user_type");
                     if ("organizer".equals(userType)) {
                         // Get the facility name
-                        String facilityName = doc.getString("facilityName");
+                        if (doc.contains("facilityName")) {
+                            // Only access the facilityName if it exists
+                            String facilityName = doc.getString("facilityName");
 
-                        dataList.add(new Facility(facilityName));
+                            // Add the facility to the list
+                            dataList.add(new Facility(facilityName));
+                        } else {
+                            // Optionally, log or handle the case where "facilityName" doesn't exist
+                            Log.d(TAG, "facilityName field is missing for document: " + doc.getId());
+                        }
 
                     }
                 }

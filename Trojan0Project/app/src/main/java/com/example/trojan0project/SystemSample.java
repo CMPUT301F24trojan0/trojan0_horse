@@ -205,51 +205,28 @@ public class SystemSample extends AppCompatActivity {
 
     }
 
-    private void resampleWaitlist(String targetEventId) {
-        // get the event document to compare max_attendees and num_sampled
-        db.collection("events")
-                .document(targetEventId)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        DocumentSnapshot eventDoc = task.getResult();
 
-
-                        Long maxAttendees = eventDoc.getLong("maxNumberofEntrants");
-                        Long numSampled = eventDoc.getLong("num_sampled");
-                        Log.d(TAG, "maxAttendees: " + maxAttendees);
-                        Log.d(TAG, "numSampled: " + numSampled);
-
-                        if (maxAttendees != null && numSampled != null) {
-                            // Check if the max number of attendees has been reached
-                            if (numSampled < maxAttendees) {
-                                // If not, trigger resampling
-                                int remainingAttendees = maxAttendees.intValue() - numSampled.intValue();
-                                Log.d(TAG, "Resampling " + remainingAttendees + " attendees...");
-                                SamplerImplementation sampler = new SamplerImplementation();
-                                sampler.sampleWaitlist(waitList, remainingAttendees, targetEventId, profileArrayAdapter);
-                                db.collection("events")
-                                        .document(targetEventId)
-                                        .update("num_sampled", FieldValue.increment(remainingAttendees))
-                                        .addOnSuccessListener(aVoid -> {
-                                            Log.d(TAG, "num_sampled field incremented by " + remainingAttendees + " for event: " + targetEventId);
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Log.e(TAG, "Error incrementing num_sampled field for event: " + targetEventId, e);
-                                        });
-                            } else {
-                                Log.d(TAG, "Max attendees reached. No need to resample.");
-                            }
-                        } else {
-                            Log.e(TAG, "Failed to retrieve max_attendees or num_sampled from event document.");
-                        }
-                    } else {
-                        Log.e(TAG, "Error fetching event document: ", task.getException());
-                    }
-                });
-    }
-
-
+    /**
+     * Purpose:
+     * This method listens for changes to the specified event document in Firestore.
+     * It checks if there are available spots for attendees in the event ( if
+     * the number of sampled attendees is less than the maximum number of attendees).
+     * If there are still spots available, it triggers the resampling process by
+     * selecting more attendees from the waitlist and incrementing the `num_sampled` field
+     * in Firestore. The resampling process continues until the maximum number of attendees
+     * is reached.
+     *
+     * Design Rationale:
+     * The method uses a snapshot listener to actively listen for changes to the event
+     * document in real-time, ensuring that updates to the event’s data are reflected
+     * immediately in the application. This enables active resampling based on the
+     * number of attendees already sampled and the available spots in the event.
+     *
+     * Outstanding Issues:
+     * No issues
+     *
+     * @param targetEventId The ID of the target event for which attendees are being sampled.
+     */
 
     private void resamplingTwo(String targetEventId) {
         // Use snapshot listener to actively listen for changes to the event document

@@ -46,6 +46,9 @@ dependencies {
 
 // Mockito for Android (if you're writing Android tests)
     androidTestImplementation ("org.mockito:mockito-android:4.5.1")
+
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("org.robolectric:robolectric:4.9")
     //Firebase storage
     implementation ("com.google.firebase:firebase-storage:20.1.0")
 

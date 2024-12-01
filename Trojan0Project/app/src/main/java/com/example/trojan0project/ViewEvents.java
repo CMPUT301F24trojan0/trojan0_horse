@@ -166,7 +166,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                                     if (eventTask.isSuccessful()) {
                                                         DocumentSnapshot eventDocument = eventTask.getResult();
                                                         if (eventDocument.exists()) {
-                                                            String eventName = eventDocument.getString("name");
+                                                            String eventName = eventDocument.getString("eventName");
                                                             double latitude = eventDocument.contains("latitude")
                                                                     ? eventDocument.getDouble("latitude")
                                                                     : 0.0;

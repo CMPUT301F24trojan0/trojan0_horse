@@ -15,7 +15,11 @@
  */
 package com.example.trojan0project;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +32,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.provider.Settings;
 import android.content.Context;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -68,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if the device ID exists in Firestore
         getDeviceIdAndCheck();
     }
+
     /**
      * Retrieves the device ID and checks if it exists in Firestore. Based on the result:
      * - Redirects the user if registered.
@@ -80,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         //sending to joinWaitlist for user device ids
         Intent intent1 = new Intent(MainActivity.this, JoinWaitlist.class);
-        intent1.putExtra("DEVICE_ID", deviceId);
+        intent1.putExtra("device_id", deviceId);
 
 
         // Check if the device ID exists in Firestore

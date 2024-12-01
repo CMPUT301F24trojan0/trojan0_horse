@@ -19,9 +19,9 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:visibility="gone" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/logoText"
@@ -51,7 +51,6 @@
         android:clipToOutline="true"
         android:layout_marginBottom="8dp" />
 
-
     <!-- Edit Icon -->
     <ImageButton
         android:id="@+id/editImageIcon"
@@ -63,8 +62,7 @@
         android:contentDescription="Edit Profile Picture"
         android:layout_marginBottom="8dp" />
 
-    <!-- Profile Page Title -->
-
+    <!-- Delete Icon -->
     <ImageButton
         android:id="@+id/deleteImageIcon"
         android:layout_width="24dp"

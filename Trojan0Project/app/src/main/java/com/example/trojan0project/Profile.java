@@ -1,11 +1,13 @@
 /**
  * Purpose:
- * This loads profiles from Firebase and displays them in a list. This way admin can click on any
- * profile which opens a dialog and chooses to delete it.
+ * This class represents a user profile, storing essential details like name, email, username,
+ * profile image, and device ID. It is used to load and display profile information and use
+ * Firestore Firebase to manage it.
  *
  * Design Rationale:
- * This uses a ProfileAdapter to display the profile list.
- * It also uses RemoveProfileFragment to ask to confirm before deleting a profile.
+ * The class provides constructors for flexibility in creating Profile objects based on the context.
+ * For example, some scenarios require a username and device ID, while others need full user details
+ * like name and email.
  *
  * Outstanding Issues:
  * No Issues.
@@ -19,6 +21,7 @@ public class Profile {
     private String email;
     private String profileImage;
     private String username;
+    private String deviceId;
     /**
      * Constructs a Profile with the specified first name, last name, and email.
      *
@@ -31,15 +34,40 @@ public class Profile {
         this.lastName = lastName;
         this.email = email;
     }
+
+    public Profile(String firstName, String lastName, String email, String deviceId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.deviceId = deviceId; // Store the deviceId
+    }
     /**
      * Constructs a Profile with the specified username and profile image.
      *
      * @param username    The username of the user.
-     * @param profileImage The URL of the user's profile image.
+     * The URL of the user's profile image.
      */
-    public Profile(String username, String profileImage){
+    public Profile(String username, String deviceId){
         this.username = username;
-        this.profileImage = profileImage;
+        this.deviceId = deviceId;
+    }
+
+    /**
+     * Gets the device id of the user.
+     *
+     * @return The device is of the user.
+     */
+    public String getDeviceId(){
+        return deviceId;
+    }
+
+    /**
+     * Sets the device id of the user
+     *
+     * @param deviceId
+     */
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     /**
@@ -122,5 +150,13 @@ public class Profile {
      */
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+
+    //OpenAI, (2024, November 24), "Why are my events printing as weird codes, how can i fix this ??", ChatGPT
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " (" + email + ")";
     }
 }

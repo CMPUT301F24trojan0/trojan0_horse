@@ -41,6 +41,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
     private EventAdapter eventAdapter;
     private List<Event> eventList;
     private String deviceId;
+
     /**
      * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the RecyclerView.
      *
@@ -87,6 +88,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
         // Retrieve events from Firestore
         retrieveEvents();
     }
+
     /**
      * Handles the click event on an event item.
      * Opens a StatusFragment to allow the user to accept or decline the event.
@@ -147,53 +149,67 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                 Map<String, Long> eventsMap = (Map<String, Long>) document.get("events");
 
                                 int[] counter = {0}; // Initialize a counter to track processed events
-                                int totalEventsToFetch = (int) eventsMap.entrySet().stream().filter(entry -> entry.getValue() == 1).count(); // Track total events with status 1
+                                int totalEventsToFetch = eventsMap.size(); // Total number of events to fetch
 
                                 // Fetch each event detail
                                 for (Map.Entry<String, Long> entry : eventsMap.entrySet()) {
                                     String eventId = entry.getKey();
                                     Long participationStatus = entry.getValue();
 
-                                    // Check if the event has a value of 1
-                                    if (participationStatus == 1) {
-                                        Log.d(TAG, "Fetching event with ID: " + eventId);
+                                    // Fetch event details from the "events" collection using eventId
+                                    db.collection("events").document(eventId)
+                                            .get()
+                                            .addOnCompleteListener(eventTask -> {
+                                                if (eventTask.isSuccessful()) {
+                                                    DocumentSnapshot eventDocument = eventTask.getResult();
+                                                    if (eventDocument.exists()) {
+                                                        String eventName = eventDocument.getString("eventName");
+                                                        if (eventName != null) {
+                                                            double defaultLatitude = 0.0;
+                                                            double defaultLongitude = 0.0;
+                                                            String defaultPosterPath = "";
+                                                            eventList.add(new Event(eventName, eventId, defaultLatitude, defaultLongitude, defaultPosterPath));
 
-                                        // Fetch event details from the "events" collection using eventId
-                                        db.collection("events").document(eventId)
-                                                .get()
-                                                .addOnCompleteListener(eventTask -> {
-                                                    if (eventTask.isSuccessful()) {
-                                                        DocumentSnapshot eventDocument = eventTask.getResult();
-                                                        if (eventDocument.exists()) {
-                                                            String eventName = eventDocument.getString("name");
-                                                            if (eventName != null) {
-                                                                double defaultLatitude = 0.0;
-                                                                double defaultLongitude = 0.0;
-                                                                String defaultPosterPath = "";
-                                                                eventList.add(new Event(eventName, eventId, defaultLatitude, defaultLongitude, defaultPosterPath));
-                                                            } else {
-                                                                Log.d(TAG, "Event name is missing for event ID: " + eventId);
+                                                            // Trigger the fragment popup only for events with participation status 1
+                                                            if (participationStatus == 1) {
+                                                                // You can add a listener for clicks here (the assumption is you want to handle the click in your adapter)
+                                                                eventAdapter.setOnEventClickListener(event -> {
+                                                                    if (event.getEventId().equals(eventId) && participationStatus == 1) {
+                                                                        // Create a new StatusFragment
+                                                                        StatusFragment statusFragment = new StatusFragment();
+
+                                                                        // Create a bundle to pass the deviceId and eventId
+                                                                        Bundle args = new Bundle();
+                                                                        args.putString("DEVICE_ID", deviceId);  // Pass device ID to fragment
+                                                                        args.putString("EVENT_ID", eventId); // Pass the unique event ID to the fragment
+                                                                        statusFragment.setArguments(args);
+
+                                                                        // Show the fragment as a dialog (overlay)
+                                                                        statusFragment.show(getSupportFragmentManager(), "StatusFragment");
+                                                                    }
+                                                                });
                                                             }
                                                         } else {
-                                                            Log.d(TAG, "Event document does not exist for event ID: " + eventId);
+                                                            Log.d(TAG, "Event name is missing for event ID: " + eventId);
                                                         }
                                                     } else {
-                                                        Log.e(TAG, "Error fetching event details: ", eventTask.getException());
+                                                        Log.d(TAG, "Event document does not exist for event ID: " + eventId);
                                                     }
+                                                } else {
+                                                    Log.e(TAG, "Error fetching event details: ", eventTask.getException());
+                                                }
 
-                                                    // Increment the counter and check if all events are processed
-                                                    counter[0]++;
-                                                    if (counter[0] == totalEventsToFetch) {
-                                                        eventList.add(new Event("end", "--End of events list--", 0.0, 0.0, ""));
-                                                        // Notify the adapter only once all events are added
-                                                        eventAdapter.notifyDataSetChanged();
-                                                    }
-                                                });
-                                    }
+                                                // Increment the counter and check if all events are processed
+                                                counter[0]++;
+                                                if (counter[0] == totalEventsToFetch) {
+                                                    // Notify the adapter only once all events are added
+                                                    eventAdapter.notifyDataSetChanged();
+                                                }
+                                            });
                                 }
 
                                 if (totalEventsToFetch == 0) {
-                                    Toast.makeText(ViewEvents.this, "No events found with status 1.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ViewEvents.this, "No events found for this user.", Toast.LENGTH_SHORT).show();
                                 }
 
                             } else {
@@ -216,4 +232,3 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
     }
 
 }
-

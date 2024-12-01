@@ -12,6 +12,8 @@
  */
 package com.example.trojan0project;
 
+//farza
+
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -52,7 +54,8 @@ public class DisplayEventDetails extends AppCompatActivity {
         setContentView(R.layout.display_event_details_admin);
         db = FirebaseFirestore.getInstance();
         deviceId = getIntent().getStringExtra("DEVICE_ID");
-        eventId = "APJycG7rGU8UXL0XW7Eq";
+        eventId = "CRMooy8t4g20CW2TEZAW"; //CHANGE TO THURSDAYS LAB
+        ;
 
 
         eventTitle = findViewById(R.id.event_title);

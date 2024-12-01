@@ -14,7 +14,10 @@
  */
 package com.example.trojan0project;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,12 +61,12 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
         if (selectedFacility != null) { //city is not null so that means the user clicked on an existing city
             //facilityAdminAdapter.remove(selectedFacility);
             //facilityAdminAdapter.notifyDataSetChanged();
-            db.collection("organizers")
+            db.collection("users") // CHANGE TO USERS
                     .whereEqualTo("facilityName", selectedFacility.getFacilityName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots){
-                            db.collection("organizers").document(document.getId())
+                            db.collection("users").document(document.getId())//CHANGE TO USERS
                                     .update("facilityName", FieldValue.delete())
                                     .addOnSuccessListener(Void ->{
                                         dataList.remove(selectedFacility);
@@ -150,9 +153,16 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
                     String userType = doc.getString("user_type");
                     if ("organizer".equals(userType)) {
                         // Get the facility name
-                        String facilityName = doc.getString("facilityName");
+                        if (doc.contains("facilityName")) {
+                            // Only access the facilityName if it exists
+                            String facilityName = doc.getString("facilityName");
 
-                        dataList.add(new Facility(facilityName));
+                            // Add the facility to the list
+                            dataList.add(new Facility(facilityName));
+                        } else {
+                            // Optionally, log or handle the case where "facilityName" doesn't exist
+                            Log.d(TAG, "facilityName field is missing for document: " + doc.getId());
+                        }
 
                     }
                 }

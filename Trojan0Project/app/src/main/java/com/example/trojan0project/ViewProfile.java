@@ -19,16 +19,24 @@ package com.example.trojan0project;
 
 import static com.example.trojan0project.HandleEXIF.handleEXIF;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-
+import android.os.Build;
+import android.Manifest;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,6 +52,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,6 +72,7 @@ import java.util.Map;
 
 public class ViewProfile extends AppCompatActivity {
     private static final String TAG = "ViewProfile";
+    private static final int QR_SCANNER_REQUEST_CODE = 200;
     private ImageView profilePicture;
     private ImageButton editImageButton;
     private ImageButton deleteImageButton;
@@ -80,8 +91,7 @@ public class ViewProfile extends AppCompatActivity {
     private String username;
 
     ActivityResultLauncher<PickVisualMediaRequest> pickVisualMedia =
-            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri ->
-            {
+            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     ContentResolver CR = this.getContentResolver();
                     String type = CR.getType(uri);
@@ -142,6 +152,16 @@ public class ViewProfile extends AppCompatActivity {
         // Load profile data
         loadProfileData();
 
+        // Fetch and display notifications for the device
+        Notification notificationHelper = new Notification();
+        notificationHelper.getNotificationsForDevice(this, deviceId);
+
+        // Request POST_NOTIFICATIONS permission
+        requestNotificationPermission();
+
+        // Call createNotificationChannel to ensure the channel is created on compatible devices
+        createNotificationChannel(this);
+
         // Set up the button to update profile image
         editImageButton.setOnClickListener(v -> updateImage());
     }
@@ -164,7 +184,44 @@ public class ViewProfile extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void createNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            if (notificationManager != null && notificationManager.getNotificationChannel("default") == null) {
+                CharSequence name = "Default Channel";
+                String description = "Channel for default notifications";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel("default", name, importance);
+                channel.setDescription(description);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+    }
 
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // API 33+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Request the permission if not already granted
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) { // Match the request code used in requestNotificationPermission
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Notification permission granted.");
+            } else {
+                Log.e(TAG, "Notification permission denied.");
+                // Optionally, explain to the user why the permission is needed
+            }
+        }
+    }
     /**
      * Loads the user's profile data from Firestore and populates the UI fields with this data.
      */
@@ -247,20 +304,20 @@ public class ViewProfile extends AppCompatActivity {
 
         return true;
     }
+
     /**
      * Saves the updated profile data to Firestore.
      */
-    private void updateImage(){
-        pickVisualMedia.launch((new PickVisualMediaRequest
-                .Builder()
-                .setMediaType(ActivityResultContracts
-                        .PickVisualMedia.ImageOnly.INSTANCE)
+    private void updateImage() {
+        pickVisualMedia.launch((new PickVisualMediaRequest.Builder()
+                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build()));
     }
+
     /**
      * Uploads the selected image to Firebase Storage and updates the user's profile picture URL in Firestore.
      */
-    private void uploadImage(){
+    private void uploadImage() {
         progressBar.setVisibility(View.VISIBLE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
@@ -299,6 +356,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Deletes the profile image from Firebase Storage and updates Firestore to remove the profile picture URL.
      */
@@ -336,5 +394,16 @@ public class ViewProfile extends AppCompatActivity {
         ImageGenerator mydrawing = new ImageGenerator(this);
         mydrawing.setUserText(String.valueOf(username.charAt(0)));
         profilePicture.setImageDrawable(mydrawing);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == QR_SCANNER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String scannedData = data.getStringExtra("SCANNED_DATA");
+            if (scannedData != null) {
+                Toast.makeText(this, "QR Code Scanned: " + scannedData, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

@@ -1,3 +1,15 @@
+/**
+ * Purpose:
+ * Allows admin to browse and manage entrant profiles. Admin can view profiles, remove profiles, and
+ *
+ * Design Rationale:
+ * Firebase Firestore is used to store and get user profiles. A custom adapter is used to display profiles
+ * in a list format.
+ *
+ * Outstanding Issues:
+ * No issues
+ *
+ */
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -29,7 +41,6 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
     private ListView profileList;
     private ProfileAdapter profileAdapter;
     private FirebaseFirestore db;
-    private String deviceId;
 
     private static final String TAG = "BrowseProfileAdmin"; // Added log tag
 
@@ -58,9 +69,6 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
         dataList = new ArrayList<>();
         profileAdapter = new ProfileAdapter(this, dataList);
         profileList.setAdapter(profileAdapter);
-
-        deviceId = getIntent().getStringExtra("DEVICE_ID");
-        Log.d(TAG, "Device ID received: " + deviceId);  // Log device ID
 
         ImageButton ImagePage = findViewById(R.id.camera_button);
 
@@ -114,9 +122,14 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
                         String userType = document.getString("user_type");
                         if ("entrant".equals(userType)) {
                             String username = document.getString("username");
-                            String profileImage = document.getString("profile_url");
-                            Log.d(TAG, "Adding profile: " + username);  // Log each added profile
-                            dataList.add(new Profile(username, profileImage));
+                            //String profileImage = document.getString("profile_url");
+                            String deviceId = document.getId();
+                            Log.d(TAG, "User Type: " + userType);
+                            Log.d(TAG, "Document ID (Device ID): " + deviceId);
+                            Log.d(TAG, "Adding profile: " + username);
+                            //Log.d(TAG, "Profile Image URL: " + profileImage);// Log each added profile
+                            dataList.add(new Profile(username, deviceId));
+                            Log.d(TAG, "Profile added to list: " + username);
                         }
                     }
                     profileAdapter.notifyDataSetChanged();
@@ -135,7 +148,8 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
      */
     @Override
     public void removeProfile(Profile profile) {
-        Log.d(TAG, "Removing profile: " + profile.getUsername());  // Log profile removal
+        String deviceId = profile.getDeviceId();
+        Log.d(TAG, "Attempting to remove profile with Device ID: " + deviceId);
         db.collection("users")
                 .document(deviceId)
                 .delete()

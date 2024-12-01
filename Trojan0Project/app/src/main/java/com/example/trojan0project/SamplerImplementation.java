@@ -179,28 +179,31 @@ public class SamplerImplementation {
     private void updateNumSampledInEvent(String eventId, int numSampled) {
         DocumentReference eventRef = db.collection("events").document(eventId);
 
-        // First, check if the num_sampled field exists. If not, initialize it with 0.
+        // Get the document to check if num_sampled already exists
         eventRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 DocumentSnapshot document = task.getResult();
-                if (!document.contains("num_sampled")) {
-                    // If num_sampled does not exist, initialize it with 0
-                    eventRef.update("num_sampled", 0)
-                            .addOnSuccessListener(aVoid -> Log.d(TAG, "Initialized num_sampled field for event: " + eventId))
-                            .addOnFailureListener(e -> Log.e(TAG, "Error initializing num_sampled field", e));
+                Long existingNumSampled = document.getLong("num_sampled");
+
+                // Check if num_sampled is already set (greater than 0)
+                if (existingNumSampled == null || existingNumSampled == 0) {
+                    // Only update if num_sampled hasn't been set or is 0
+                    eventRef.update("num_sampled", FieldValue.increment(numSampled))
+                            .addOnSuccessListener(aVoid -> {
+                                Log.d(TAG, "Number of sampled attendees updated successfully for event: " + eventId);
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e(TAG, "Error updating num_sampled field for event: " + eventId, e);
+                            });
+                } else {
+                    Log.d(TAG, "num_sampled already set. Skipping update.");
                 }
+            } else {
+                Log.e(TAG, "Error fetching event document: ", task.getException());
             }
         });
-
-        // Update the num_sampled field in the event document (increment by numSampled)
-        eventRef.update("num_sampled", FieldValue.increment(numSampled))
-                .addOnSuccessListener(aVoid -> {
-                    Log.d(TAG, "Number of sampled attendees updated successfully for event: " + eventId);
-                })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "Error updating num_sampled field for event: " + eventId, e);
-                });
     }
+
 
 
 

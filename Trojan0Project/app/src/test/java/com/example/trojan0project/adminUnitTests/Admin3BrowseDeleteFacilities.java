@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.example.trojan0project.Facility;
-import com.example.trojan0project.FacilityActivity;
+import com.example.trojan0project.Model.Facility;
+import com.example.trojan0project.Controller.Admin.FacilityActivity;
 
 import org.junit.Before;
 import org.junit.Test;

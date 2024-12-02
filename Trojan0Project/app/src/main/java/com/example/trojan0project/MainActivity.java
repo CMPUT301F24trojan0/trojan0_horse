@@ -1,30 +1,22 @@
 package com.example.trojan0project;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.provider.Settings;
-import android.content.Context;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.trojan0project.Controller.Admin.AdminMain;
+import com.example.trojan0project.Controller.Entrant.EntrantMain;
+import com.example.trojan0project.Controller.Entrant.JoinWaitlist;
+import com.example.trojan0project.Controller.Entrant.UserSignUpActivity;
+import com.example.trojan0project.Controller.Organizer.OrganizerPageActivity;
+import com.example.trojan0project.Controller.Organizer.OrganizerSignUpActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;

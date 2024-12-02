@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:background="#F5F5F5"
-    tools:context=".JoinWaitlist">
+    tools:context=".Controller.Entrant.JoinWaitlist">
 
     <!-- Event Title -->
 

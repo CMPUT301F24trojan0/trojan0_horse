@@ -4,21 +4,14 @@ package com.example.trojan0project.adminUnitTests;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.widget.ListView;
-
-import com.example.trojan0project.Event;
-import com.example.trojan0project.EventActivity;
+import com.example.trojan0project.Model.Event;
+import com.example.trojan0project.Controller.Admin.EventActivity;
 
 import java.util.ArrayList;
 

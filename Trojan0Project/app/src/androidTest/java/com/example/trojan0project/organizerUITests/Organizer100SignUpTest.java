@@ -28,9 +28,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 
 import com.example.trojan0project.MainActivity;
-import com.example.trojan0project.OrganizerSignUpActivity;
+import com.example.trojan0project.Controller.Organizer.OrganizerSignUpActivity;
 import com.example.trojan0project.R;
-import com.example.trojan0project.UserSignUpActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;

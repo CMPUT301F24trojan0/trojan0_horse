@@ -1,30 +1,13 @@
 package com.example.trojan0project.adminUnitTests;
 
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
-import android.content.Context;
-import android.widget.ListView;
-
-import com.example.trojan0project.BrowseProfileAdmin;
-import com.example.trojan0project.Profile;
-import com.example.trojan0project.ProfileAdapter;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.trojan0project.Model.Profile;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 public class Admin2BrowseDeleteProfiles {

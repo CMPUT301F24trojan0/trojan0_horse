@@ -25,10 +25,9 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 
-import com.example.trojan0project.EventsListActivityOrganizer;
+import com.example.trojan0project.Controller.CommonControllers.EventsListActivityOrganizer;
 import com.example.trojan0project.MainActivity;
 import com.example.trojan0project.R;
-import com.example.trojan0project.ViewEvents;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FieldValue;

@@ -20,7 +20,7 @@ import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.idling.CountingIdlingResource;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.trojan0project.EventActivity;
+import com.example.trojan0project.Controller.Admin.EventActivity;
 import com.example.trojan0project.MainActivity;
 import com.example.trojan0project.R;
 import com.google.firebase.firestore.CollectionReference;

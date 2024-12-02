@@ -25,8 +25,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.trojan0project.MainActivity;
 import com.example.trojan0project.R;
-import com.example.trojan0project.ViewEvents;
-import com.google.firebase.FirebaseApp;
+import com.example.trojan0project.Controller.Entrant.ViewEvents;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,12 +36,11 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import java.util.HashMap;
 import java.util.Map;
 
-// @RunWith(AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class Entrant114LeaveWaitlist {
     @Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
@@ -192,6 +190,14 @@ public class Entrant114LeaveWaitlist {
 
         // Simulate clicking the first item in the RecyclerView
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        // Check if the status dialog is displayed
+        onView(withText("You are currently on the waitlist for this event.")).check(matches(isDisplayed()));
+
+        // Click the accept button on the dialog
+        onView(withId(R.id.buttonLeaveWaitlist)).perform(click());
+
+        Thread.sleep(1000);
 
         Thread.sleep(1000);
     }

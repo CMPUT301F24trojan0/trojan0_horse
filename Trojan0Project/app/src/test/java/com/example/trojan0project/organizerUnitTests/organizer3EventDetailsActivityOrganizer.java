@@ -1,6 +1,6 @@
 package com.example.trojan0project.organizerUnitTests;
 
-import com.example.trojan0project.EventDetailsActivityOrganizer;
+import com.example.trojan0project.Controller.Organizer.EventDetailsActivityOrganizer;
 import com.example.trojan0project.R;
 
 import org.junit.Before;

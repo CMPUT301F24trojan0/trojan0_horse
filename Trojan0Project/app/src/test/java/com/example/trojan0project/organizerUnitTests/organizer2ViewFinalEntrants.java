@@ -2,8 +2,6 @@ package com.example.trojan0project.organizerUnitTests;
 
 import static org.junit.Assert.assertEquals;
 
-import com.example.trojan0project.ViewFinalEntrantsEventActivity;
-
 import org.junit.Before;
 import org.junit.Test;
 

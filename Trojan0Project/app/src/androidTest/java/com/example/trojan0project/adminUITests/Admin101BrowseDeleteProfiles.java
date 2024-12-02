@@ -22,7 +22,7 @@ import androidx.test.espresso.idling.CountingIdlingResource;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.trojan0project.BrowseProfileAdmin;
+import com.example.trojan0project.Controller.Admin.BrowseProfileAdmin;
 import com.example.trojan0project.MainActivity;
 import com.example.trojan0project.R;
 import com.google.firebase.firestore.CollectionReference;

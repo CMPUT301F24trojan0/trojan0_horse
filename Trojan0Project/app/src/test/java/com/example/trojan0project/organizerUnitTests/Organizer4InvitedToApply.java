@@ -1,7 +1,7 @@
 package com.example.trojan0project.organizerUnitTests;
 
 import static org.junit.Assert.assertEquals;
-import com.example.trojan0project.Profile;
+import com.example.trojan0project.Model.Profile;
 import org.junit.Before;
 import org.junit.Test;
 

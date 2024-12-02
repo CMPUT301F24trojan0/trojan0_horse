@@ -30,10 +30,6 @@ public class Organizer101VerifyFacilitySignUp {
 
     @Before
     public void setup() {
-        // Set up Firebase to use the emulator
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-
         // Firebase Firestore and Firebase Storage setup
         db = FirebaseFirestore.getInstance();
         devicesRef = db.collection("users");

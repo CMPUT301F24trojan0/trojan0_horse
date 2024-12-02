@@ -22,12 +22,10 @@ import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.idling.CountingIdlingResource;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.trojan0project.MainActivity;
 import com.example.trojan0project.R;
-import com.example.trojan0project.ViewEvents;
-import com.google.firebase.FirebaseApp;
+import com.example.trojan0project.Controller.Entrant.ViewEvents;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;

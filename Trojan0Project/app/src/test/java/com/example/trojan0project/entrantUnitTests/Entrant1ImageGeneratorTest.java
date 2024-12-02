@@ -13,7 +13,7 @@ import android.graphics.Rect;
 
 import static org.mockito.Mockito.*;
 
-import com.example.trojan0project.ImageGenerator;
+import com.example.trojan0project.View.Entrant.ImageGenerator;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 28)

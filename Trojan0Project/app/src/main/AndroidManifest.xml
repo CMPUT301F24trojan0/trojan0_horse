@@ -27,34 +27,34 @@
         tools:targetApi="31">
 
         <!-- Activities -->
-        <activity android:name=".MapEntrants"/>
-        <activity android:name=".UserSignUpActivity" />
-        <activity android:name=".OrganizerSignUpActivity" /> <!-- Added this line -->
-        <activity android:name=".ViewProfile" />
-        <activity android:name=".ViewEvents" />
-        <activity android:name=".CreateEventActivity" />
-        <activity android:name=".OrganizerPageActivity" />
-        <activity android:name=".BrowseProfileAdmin" />
-        <activity android:name=".BrowseImagesAdmin" />
-        <activity android:name=".JoinWaitlist" />
-        <activity android:name=".DisplayEventDetails" />
-        <activity android:name=".EventActivity" />
-        <activity android:name=".FacilityActivity" />
-        <activity android:name=".EventsListActivityOrganizer" />
-        <activity android:name=".EventDetailsActivityOrganizer" />
-        <activity android:name=".ViewFinalEntrantsEventActivity" />
-        <activity android:name=".AdminMain"/>
-        <activity android:name=".EntrantMain"/>
-        <activity android:name=".SystemSample"/>
+        <activity android:name=".Controller.Organizer.MapEntrants"/>
+        <activity android:name=".Controller.Entrant.UserSignUpActivity" />
+        <activity android:name=".Controller.Organizer.OrganizerSignUpActivity" /> <!-- Added this line -->
+        <activity android:name=".Controller.Entrant.ViewProfile" />
+        <activity android:name=".Controller.Entrant.ViewEvents" />
+        <activity android:name=".Controller.Organizer.CreateEventActivity" />
+        <activity android:name=".Controller.Organizer.OrganizerPageActivity" />
+        <activity android:name=".Controller.Admin.BrowseProfileAdmin" />
+        <activity android:name=".Controller.Admin.BrowseImagesAdmin" />
+        <activity android:name=".Controller.Entrant.JoinWaitlist" />
+        <activity android:name=".Controller.Admin.DisplayEventDetails" />
+        <activity android:name=".Controller.Admin.EventActivity" />
+        <activity android:name=".Controller.Admin.FacilityActivity" />
+        <activity android:name=".Controller.CommonControllers.EventsListActivityOrganizer" />
+        <activity android:name=".Controller.Organizer.EventDetailsActivityOrganizer" />
+        <activity android:name=".Controller.Organizer.ViewFinalEntrantsEventActivity" />
+        <activity android:name=".Controller.Admin.AdminMain"/>
+        <activity android:name=".Controller.Entrant.EntrantMain"/>
+        <activity android:name=".Controller.Organizer.SystemSample"/>
 
         <!-- QR Code Scanner Activity -->
         <activity
-            android:name=".QrScannerActivity"
+            android:name=".Controller.Entrant.QrScannerActivity"
             android:launchMode="singleTop" />
 
         <!-- Event Details Activity -->
         <activity
-            android:name=".EventDetailsActivity"
+            android:name=".Controller.CommonControllers.EventDetailsActivity"
             android:launchMode="singleTop" />
 
         <activity

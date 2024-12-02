@@ -23,7 +23,7 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 
 import com.example.trojan0project.MainActivity;
 import com.example.trojan0project.R;
-import com.example.trojan0project.ViewProfile;
+import com.example.trojan0project.Controller.Entrant.ViewProfile;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;

@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import android.widget.GridView;
 
-import com.example.trojan0project.BrowseImagesAdmin;
-import com.example.trojan0project.Image;
-import com.example.trojan0project.ImageAdapter;
+import com.example.trojan0project.Controller.Admin.BrowseImagesAdmin;
+import com.example.trojan0project.Model.Image;
+import com.example.trojan0project.View.CommonViews.ImageAdapter;
 
 import org.junit.Before;
 import org.junit.Test;

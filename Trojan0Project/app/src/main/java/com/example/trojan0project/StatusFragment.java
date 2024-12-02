@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -44,6 +45,8 @@ public class StatusFragment extends DialogFragment {
     private Button buttonAccept;
     private Button buttonDecline;
     private FirebaseFirestore db;
+
+    private OnDismissListener onDismissListener;  // Listener for dismissing the fragment
     /**
      * Creates the dialog for accepting or declining an event invitation.
      *
@@ -61,7 +64,6 @@ public class StatusFragment extends DialogFragment {
 
         if (deviceId == null || eventId == null) {
             Log.e(TAG, "Correct Details not received in StatusFragment");
-            Toast.makeText(getActivity(), "Error: Missing IDs", Toast.LENGTH_SHORT).show();
             dismiss();
             return super.onCreateDialog(savedInstanceState);
         }
@@ -83,11 +85,19 @@ public class StatusFragment extends DialogFragment {
         buttonAccept.setOnClickListener(v -> {
             // Handle the Accept button click
             acceptEvent(deviceId, eventId);
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss();  // Call listener for dismiss
+            }
+            dismiss();  // Dismiss the fragment
         });
 
         buttonDecline.setOnClickListener(v -> {
             // Handle the Decline button click
             declineEvent(deviceId, eventId);
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss();  // Call listener for dismiss
+            }
+            dismiss();  // Dismiss the fragment
         });
 
         // Create and return the dialog
@@ -97,6 +107,17 @@ public class StatusFragment extends DialogFragment {
 
         return dialog;
     }
+
+    // Interface to handle dismiss action
+    public void setOnDismissListener(OnDismissListener listener) {
+        this.onDismissListener = listener;
+    }
+
+    // Callback interface for dismiss actions
+    public interface OnDismissListener {
+        void onDismiss();
+    }
+
     /**
      * Updates the event status to accepted for the user in Firestore.
      *
@@ -106,33 +127,63 @@ public class StatusFragment extends DialogFragment {
     private void acceptEvent(String deviceId, String eventId) {
         // Reference to the user document
         db.collection("users").document(deviceId)
-                .update("events." + eventId, 2) // Update the event status
+                .update("events." + eventId, 2) // Update the event status to 2
                 .addOnSuccessListener(aVoid -> {
                     Log.d(TAG, "Event status updated successfully.");
-                    Toast.makeText(getActivity(), "Event status updated successfully.", Toast.LENGTH_SHORT).show();
+
+                    // Update the users map in the events collection
+                    db.collection("events").document(eventId)
+                            .update("users." + deviceId, 2) // Set the user's status in the map to 2
+                            .addOnSuccessListener(aVoid3 -> {
+                                Log.d(TAG, "Users map updated successfully.");
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e(TAG, "Error updating users map: ", e);
+                            });
+
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "Error updating event status: ", e);
-                    Toast.makeText(getActivity(), "Failed to update event status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
     /**
-     * Updates the event status to declined for the user in Firestore.
+     * Updates the event status to declined for the user in Firestore,
+     * decrements num_sampled, and updates the users map field in the events collection.
      *
      * @param deviceId The ID of the device associated with the user.
      * @param eventId  The ID of the event to be declined.
      */
     private void declineEvent(String deviceId, String eventId) {
-        // Reference to the user document
+        // Update the user's event status in the users collection
         db.collection("users").document(deviceId)
                 .update("events." + eventId, 3) // Update the event status
                 .addOnSuccessListener(aVoid -> {
                     Log.d(TAG, "Event status updated successfully.");
-                    Toast.makeText(getActivity(), "Event status updated successfully.", Toast.LENGTH_SHORT).show();
+
+                    // Update the num_sampled field in the events collection
+                    db.collection("events").document(eventId)
+                            .update("num_sampled", FieldValue.increment(-1)) // Decrement num_sampled by 1
+                            .addOnSuccessListener(aVoid2 -> {
+                                Log.d(TAG, "num_sampled decremented successfully.");
+
+                                // Update the users map in the events collection
+                                db.collection("events").document(eventId)
+                                        .update("users." + deviceId, 3) // Set the user's status in the map to 3
+                                        .addOnSuccessListener(aVoid3 -> {
+                                            Log.d(TAG, "Users map updated successfully.");
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Log.e(TAG, "Error updating users map: ", e);
+                                        });
+
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e(TAG, "Error decrementing num_sampled: ", e);
+                            });
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "Error updating event status: ", e);
-                    Toast.makeText(getActivity(), "Failed to update event status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }

@@ -59,13 +59,10 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
         TextView profileName = view.findViewById(R.id.profile_name);
         ImageView imageView = view.findViewById(R.id.profile_image);
 
-
         if(profile !=null){
             profileName.setText(profile.getUsername());
             //Glide.with(getContext()).load(profile.getProfileImage()).into(imageView);
-
         }
-
         return view;
     }
 }

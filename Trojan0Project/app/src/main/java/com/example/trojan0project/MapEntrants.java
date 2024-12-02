@@ -125,7 +125,6 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
                             }
                         }
                     }
-
                     if (hasLocations){
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 100));
                     }

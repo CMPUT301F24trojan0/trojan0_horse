@@ -1,4 +1,16 @@
-
+/**
+ * Purpose:
+ * This retrieves events and user profile information from firestore and displays it.
+ * Users view event details and join the events waitlist by pressing confirm.
+ *
+ * Design Rationale:
+ * Uses Firebase Firestore to get event and user data and poster. Uses JoinWaitlistFragment dialog to confirm
+ * if the user wants to join the waitlist.
+ *
+ * Outstanding issues:
+ * If user wants to sign someone other than them, the code does not do that.
+ * A QR code scanner has not been created yet so the eventID has been hard coded for the halfway checkpoint
+ */
 
 package com.example.trojan0project;
 
@@ -9,13 +21,18 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
+import com.example.trojan0project.JoinWaitlistFragment;
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -53,6 +70,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
     private TextView eventMoreInfo;
     private Button joinWaitlistButton;
 
+    /**
+     * Initializes the activity and loads the event details.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +88,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         Log.d(TAG, "onCreate: Device ID = " + deviceId);
         eventId = getIntent().getStringExtra("eventId");
-
         eventName = getIntent().getStringExtra("eventName");
         latitude = getIntent().getDoubleExtra("latitude", 0.0);
         longitude = getIntent().getDoubleExtra("longitude", 0.0);
@@ -94,6 +115,14 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
         });
     }
 
+    /**
+     * Converts latitude and longitude coordinates to a human-readable address.
+     *
+     * @param latitude  The latitude of the location.
+     * @param longitude The longitude of the location.
+     * @return A string address based on the coordinates or an error message if unavailable.
+     */
+    //From https://www.geeksforgeeks.org/reverse-geocoding-in-android/ , 2024-11-07
     public String getAddressFromCoordinates(double latitude, double longitude) {
         Log.d(TAG, "getAddressFromCoordinates: Converting coordinates to address: latitude = " + latitude + ", longitude = " + longitude);
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -112,7 +141,9 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
             return "Geocoder service not available";
         }
     }
-
+    /**
+     * Loads the event details from Firestore and displays them in the UI.
+     */
     private void loadEventDetails() {
         Log.d(TAG, "loadEventDetails: Fetching event details for eventId = " + eventId);
         db.collection("events").document(eventId).get()
@@ -125,7 +156,7 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                         String time = documentSnapshot.getString("time");
                         String description = documentSnapshot.getString("description");
 
-                        if (latitude != null && longitude != null) {
+                        if (latitude != null && longitude != null){
                             String address = getAddressFromCoordinates(latitude, longitude);
                             eventLocation.setText(address);
                         } else {
@@ -136,7 +167,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                         eventTime.setText(time != null ? time : "No Time");
                         eventMoreInfo.setText(description != null ? description : "No Description");
                     } else {
-                        Log.w(TAG, "loadEventDetails: Event not found");
                         Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -146,6 +176,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 });
     }
 
+    /**
+     * Gets and displays the poster for a specific event
+     * Retrieves posterPath from Firestore for the event id
+     * If poster is found then uses Glide to load the image into the ImageView
+     */
     public void getEventPoster() {
         Log.d(TAG, "getEventPoster: Fetching poster for eventId = " + eventId);
         db.collection("events").document(eventId)
@@ -159,12 +194,12 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                             Glide.with(this)
                                     .load(posterPath)
                                     .into(eventPoster);
+                            Log.d("EventPoster", "Poster loaded: " + posterPath);
                         } else {
                             Log.w(TAG, "getEventPoster: No poster available");
                             Toast.makeText(this, "No poster available for this event", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Log.w(TAG, "getEventPoster: Event not found");
                         Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -174,8 +209,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 });
     }
 
-    private void getUserProfileForDialog() {
-        Log.d(TAG, "getUserProfileForDialog: Fetching user profile for deviceId = " + deviceId);
+
+    /**
+     * Retrieves the user's profile data to populate the dialog when joining the waitlist.
+     */
+    private void getUserProfileForDialog(){
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
@@ -187,10 +225,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                                 ", lastName = " + lastName + ", email = " + email);
 
                         Profile profile = new Profile(firstName, lastName, email);
+
+                        // Open waitlist dialog with user profile
                         JoinWaitlistFragment dialog = new JoinWaitlistFragment(profile);
                         dialog.show(getSupportFragmentManager(), "JoinWaitlistFragment");
                     } else {
-                        Log.w(TAG, "getUserProfileForDialog: User profile not found");
                         Toast.makeText(this, "User profile not found", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -200,7 +239,11 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 });
     }
 
-
+    /**
+     * Confirms the user's intent to join the waitlist and updates Firestore with the waitlist entry.
+     *
+     * @param profile The user's profile data used to join the waitlist.
+     */
     @Override
     public void onConfirm(Profile profile) {
         if (deviceId == null) {
@@ -290,12 +333,4 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                     Toast.makeText(this, "Failed to update event waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
-
-
-
-
-
 }
-
-

@@ -59,11 +59,11 @@ public class ListEvents extends AppCompatActivity {
 
         fetchEvents();
 
-        eventListAdapter.setOnEventClickListener(event -> {
-            Intent intent = new Intent(ListEvents.this, MapEntrants.class);
-            intent.putExtra("eventID", event.getEventId());
-            startActivity(intent);
-        });
+        //eventListAdapter.setOnEventClickListener(event -> {
+            //Intent intent = new Intent(ListEvents.this, MapEntrants.class);
+            //intent.putExtra("eventID", event.getEventId());
+            //startActivity(intent);
+        //});
     }
 
     /**

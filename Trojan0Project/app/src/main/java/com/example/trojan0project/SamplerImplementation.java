@@ -92,14 +92,11 @@ public class SamplerImplementation {
                 // Update user status for each profile
                 updateUserStatusAfterSampling(deviceId, targetEventId);
             }
-
         }
         profileArrayAdapter.notifyDataSetChanged();
 
         // After updating sampled users, notify those with status 0
         notifyDevicesWithStatusZero(targetEventId, sampledDeviceIds);
-
-        //Toast.makeText(this, numAttendees + " attendees have been registered.", Toast.LENGTH_SHORT).show();
     }
 
     private void notifyDevicesWithStatusZero(String eventId,  ArrayList<String> sampledDeviceIds) {

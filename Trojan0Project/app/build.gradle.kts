@@ -108,7 +108,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") {
         exclude("com.google.protobuf", "protobuf-lite")
     }
-
     testImplementation ("org.robolectric:robolectric:4.7.3")  // Add the latest version
     testImplementation ("org.mockito:mockito-core:4.1.0")      // For mockito if needed
 

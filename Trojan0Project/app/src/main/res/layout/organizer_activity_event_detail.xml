@@ -91,9 +91,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Change Poster Button -->
-
     <!-- View People Button -->
+
     <Button
         android:id="@+id/change_poster_button"
         android:layout_width="0dp"

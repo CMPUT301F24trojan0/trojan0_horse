@@ -69,6 +69,7 @@ public class SystemSample extends AppCompatActivity {
      *
      * @param savedInstanceState The saved state of the activity.
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

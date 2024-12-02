@@ -168,6 +168,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
             intent.putExtra("eventId", eventId);
             startActivity(intent);
         });
+
     }
 
     /**

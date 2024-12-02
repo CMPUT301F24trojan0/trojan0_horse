@@ -1,14 +1,3 @@
-/**
- * Purpose:
- * This class generates a drawable that displays a colored circle with text  in it.
- *
- * Design Rationale:
- * The drawable is used for specific visuals that require a circle around the text
- * for exmaple: a profile picture
- *
- * Outstanding Issues:
- * - No Issues.
- */
 package com.example.trojan0project;
 
 import android.content.Context;
@@ -22,6 +11,18 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import java.util.Random;
+
+/**
+ * Purpose:
+ * This class generates a drawable that displays a colored circle with text  in it.
+ *
+ * Design Rationale:
+ * The drawable is used for specific visuals that require a circle around the text
+ * for exmaple: a profile picture
+ *
+ * Outstanding Issues:
+ * - No Issues.
+ */
 
 // code from https://developer.android.com/develop/ui/views/graphics/drawables#java
 

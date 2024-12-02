@@ -1,16 +1,3 @@
-/**
- * Purpose:
- * This activity allows users to sign up by entering their username and email. It then stores the user data
- * in Firestore under a document identified by the device ID.
- *
- * Design Rationale:
- * This activity uses Firestore to store user data, including the username, email, and user type .
- * The activity also handles navigation to a ViewProfile screen once the user is successfully registered.
- *
- * Outstanding Issues:
- * No Issues.
- */
-
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -29,6 +16,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * Purpose:
+ * This activity allows users to sign up by entering their username and email. It then stores the user data
+ * in Firestore under a document identified by the device ID.
+ *
+ * Design Rationale:
+ * This activity uses Firestore to store user data, including the username, email, and user type .
+ * The activity also handles navigation to a ViewProfile screen once the user is successfully registered.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 
 public class UserSignUpActivity extends AppCompatActivity {
     private static final String TAG = "UserSignUpActivity";

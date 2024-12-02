@@ -1,3 +1,26 @@
+package com.example.trojan0project;
+
+import static android.content.ContentValues.TAG;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
+import com.example.trojan0project.DisplayEventDetails;
+
+import java.io.Serializable;
 /**
  * Purpose:
  * DeleteEventFragment allows users to delete an event or its QR code
@@ -10,24 +33,6 @@
  * Outstanding Issues:
  * No issues
  */
-package com.example.trojan0project;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-
-import com.example.trojan0project.DisplayEventDetails;
-
-import java.io.Serializable;
 
 public class DeleteEventFragment extends DialogFragment {
     /**
@@ -36,9 +41,10 @@ public class DeleteEventFragment extends DialogFragment {
      * @param event The event to be passed into the fragment for deletion.
      * @return A new instance of DeleteEventFragment with the event attached as an argument.
      */
-    static DeleteEventFragment newInstance(Event event ){ //creates a new Instance of the class DeleteEventFragment
+    static DeleteEventFragment newInstance(Event event,String eventId ){ //creates a new Instance of the class DeleteEventFragment
         Bundle args = new Bundle();
         args.putSerializable("event",  event);
+        args.putString("eventId", eventId);
 
         DeleteEventFragment fragment = new DeleteEventFragment();
         fragment.setArguments(args);
@@ -80,6 +86,12 @@ public class DeleteEventFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) { //customize the dialog here
+        if (getArguments() != null) {
+            selectedEvent = (Event) getArguments().getSerializable("event");
+            String eventId = getArguments().getString("eventId");
+
+            Log.d(TAG, "DeleteEventFragment: Received eventId: " + eventId + ", eventName: " );
+        }
         View view =
                 LayoutInflater.from(getContext()).inflate(R.layout.fragment_delete_event, null);
         Button deleteQRButton = view.findViewById(R.id.button_QR);
@@ -102,13 +114,32 @@ public class DeleteEventFragment extends DialogFragment {
             }
         });
         // Parwiz Forogh, https://www.youtube.com/watch?v=2b7YrS8ZRM4, november 6 2024, youtube
-        xButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), DisplayEventDetails.class);
+        xButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retrieve eventId and eventName from the fragment's arguments
+                String eventId = getArguments() != null ? getArguments().getString("eventId") : null;
 
-            intent.putExtra("event_title", selectedEvent.getEventName());
-            intent.putExtra("clicked_event", (Serializable) selectedEvent);
-            startActivity(intent);
+
+                if (eventId != null) {
+                    // Log the data for debugging
+                    Log.d("DeleteEventFragment", "Navigating with eventId: " + eventId + ", eventName: " );
+
+                    // Create the Intent to navigate to DisplayEventDetails
+                    Intent intent = new Intent(getContext(), DisplayEventDetails.class);
+                    intent.putExtra("eventId", eventId);
+
+                    // Start the activity
+                    startActivity(intent);
+                } else {
+                    // Show a Toast if the data is missing
+                    Toast.makeText(getContext(), "Event details not available for navigation.", Toast.LENGTH_SHORT).show();
+                    Log.e("DeleteEventFragment", "Missing eventId or eventName in arguments.");
+                }
+
+                // Dismiss the fragment (optional, based on your flow)
                 dismiss();
+            }
         });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -116,8 +147,6 @@ public class DeleteEventFragment extends DialogFragment {
                 .setView(view)
 
                 .create();
-
-
     }
     /**
      * Sets the event selected for deletion.

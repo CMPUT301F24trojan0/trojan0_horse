@@ -1,14 +1,3 @@
-/**
- * Purpose:
- * The DescriptionFragment displays a dialog with an input field for users to enter a description.
- * Once the description is entered, the user can save it.
- *
- * Design Rationale:
- * The fragment uses an OnDescriptionSavedListener interface to send the entered description back to the parent.
- *
- * Outstanding Issues:
- * No issues
- */
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -20,6 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+/**
+ * Purpose:
+ * The DescriptionFragment displays a dialog with an input field for users to enter a description.
+ * Once the description is entered, the user can save it.
+ *
+ * Design Rationale:
+ * The fragment uses an OnDescriptionSavedListener interface to send the entered description back to the parent.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class DescriptionFragment extends DialogFragment {
 

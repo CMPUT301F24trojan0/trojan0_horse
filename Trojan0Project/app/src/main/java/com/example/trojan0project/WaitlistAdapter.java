@@ -1,3 +1,18 @@
+package com.example.trojan0project;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.content.Context;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+
 /**
  * This adapter helps display a list of profiles in a ListView for the waitlist. It shows each profile's
  * first name, last name, and email.
@@ -15,20 +30,6 @@
  * Outstanding Issues:
  * No Issues
  */
-package com.example.trojan0project;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.content.Context;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import java.util.ArrayList;
 
 public class WaitlistAdapter extends ArrayAdapter<Profile> {
     /**
@@ -68,7 +69,5 @@ public class WaitlistAdapter extends ArrayAdapter<Profile> {
 
         return view;
     }
-
-
 
 }

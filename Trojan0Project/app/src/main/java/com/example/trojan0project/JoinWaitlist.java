@@ -1,17 +1,3 @@
-/**
- * Purpose:
- * This retrieves events and user profile information from firestore and displays it.
- * Users view event details and join the events waitlist by pressing confirm.
- *
- * Design Rationale:
- * Uses Firebase Firestore to get event and user data and poster. Uses JoinWaitlistFragment dialog to confirm
- * if the user wants to join the waitlist.
- *
- * Outstanding issues:
- * If user wants to sign someone other than them, the code does not do that.
- * A QR code scanner has not been created yet so the eventID has been hard coded for the halfway checkpoint
- */
-
 package com.example.trojan0project;
 
 import android.location.Address;
@@ -49,6 +35,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+/**
+ * Purpose:
+ * This retrieves events and user profile information from firestore and displays it.
+ * Users view event details and join the events waitlist by pressing confirm.
+ *
+ * Design Rationale:
+ * Uses Firebase Firestore to get event and user data and poster. Uses JoinWaitlistFragment dialog to confirm
+ * if the user wants to join the waitlist.
+ *
+ * Outstanding issues:
+ * If user wants to sign someone other than them, the code does not do that.
+ *
+ */
 
 public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragment.JoinWaitlistListener {
 
@@ -288,8 +288,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                     Toast.makeText(this, "Failed to load event details. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
-
-
 
     private void addToWaitlist(Profile profile) {
         Log.d(TAG, "Adding user to waitlist with Device ID: " + deviceId + " and Event ID: " + eventId);

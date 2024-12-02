@@ -38,6 +38,25 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 
+/**
+ * CreateEventActivity allows organizers to create a new event, customize its details,
+ * and save it to Firestore along with a QR code and poster image.
+ *
+ * Purpose:
+ * - Facilitates event creation with fields like name, description, time, deadline, and maximum entrants.
+ * - Allows adding a geolocation to the event.
+ * - Generates a QR code for the event, stores it in Firebase Storage, and links it to Firestore.
+ *
+ * Design Rationale:
+ * - Provides a user-friendly interface with options for adding poster images, descriptions, deadlines,
+ *   and other event details.
+ * - Integrates Firebase Firestore for event storage and Firebase Storage for handling images and QR codes.
+ *
+ * Outstanding Issues:
+ * - Geolocation fetching might not work properly if permissions are denied or if location services are disabled.
+ * - There is no validation for event time or location fields other than basic null checks.
+ */
+
 public class CreateEventActivity extends AppCompatActivity {
 
     private EditText eventNameInput;
@@ -57,6 +76,11 @@ public class CreateEventActivity extends AppCompatActivity {
     private int maxEntrants = 0; // Maximum number of entrants
     private String organizerId; // Field to store the organizer ID
 
+    /**
+     * Initializes the activity, sets up UI elements, and configures Firebase services.
+     *
+     * @param savedInstanceState State of the activity saved during a configuration change.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,6 +227,9 @@ public class CreateEventActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Fetches the user's current location if location permissions are granted.
+     */
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -217,6 +244,13 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Handles the result of an activity, such as selecting a poster image.
+     *
+     * @param requestCode The request code identifying the activity.
+     * @param resultCode  The result code returned by the activity.
+     * @param data        The data returned by the activity.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -225,6 +259,11 @@ public class CreateEventActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves the event to Firestore and uploads associated data (poster, QR code).
+     *
+     * @param event The event to be saved.
+     */
     private void saveEvent(Event event) {
         progressDialog.setMessage("Saving Event...");
         progressDialog.show();
@@ -245,6 +284,11 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Adds the event to the organizer's list of events in Firestore.
+     *
+     * @param eventId The ID of the newly created event.
+     */
     private void addEventToOrganizer(String eventId) {
         db.collection("users").document(organizerId)
                 .update("organizer_details.events", FieldValue.arrayUnion(eventId))
@@ -252,6 +296,13 @@ public class CreateEventActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("CreateEventActivity", "Failed to add event to organizer's event list", e));
     }
 
+    /**
+     * Uploads the event's poster to Firebase Storage and updates Firestore with its URL.
+     *
+     * @param eventId    The ID of the event.
+     * @param event      The event object to be updated.
+     * @param qrContent  The content of the QR code to be generated.
+     */
     private void uploadPosterToStorage(String eventId, Event event, String qrContent) {
         StorageReference posterRef = storage.getReference().child("posters/" + eventId + "_poster.jpg");
         posterRef.putFile(posterUri)
@@ -284,6 +335,12 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Creates the content for the event's QR code in JSON format.
+     *
+     * @param event The event for which the QR code is being generated.
+     * @return The JSON string representing the event details.
+     */
     private String createQRContent(Event event) {
         JSONObject json = new JSONObject();
         try {
@@ -295,6 +352,12 @@ public class CreateEventActivity extends AppCompatActivity {
         return json.toString();
     }
 
+    /**
+     * Generates a QR code bitmap from the given content.
+     *
+     * @param content The content to encode in the QR code.
+     * @return A Bitmap object representing the QR code.
+     */
     private Bitmap generateQRCode(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -312,6 +375,12 @@ public class CreateEventActivity extends AppCompatActivity {
         return null;
     }
 
+    /**
+     * Uploads the generated QR code to Firebase Storage and updates Firestore with its URL.
+     *
+     * @param qrCodeBitmap The bitmap image of the QR code.
+     * @param eventId      The ID of the event.
+     */
     private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventId) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);

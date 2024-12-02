@@ -1,3 +1,7 @@
+package com.example.trojan0project;
+
+import java.io.Serializable;
+
 /**
  * Purpose:
  * Represents a facility with a name
@@ -9,9 +13,6 @@
  * Outstanding Issues:
  * No issues
  */
-package com.example.trojan0project;
-
-import java.io.Serializable;
 
 public class Facility implements Serializable {
     private String facilityName;

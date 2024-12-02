@@ -1,16 +1,3 @@
-/**
- * Purpose:
- * This class handles the sampling process for selecting attendees from a waitlist for an event.
- * It randomly selects profiles from the waitlist, updates their registration status in Firestore,
- * and updates the event document with the selected attendees.
- *
- * Design Rationale:
- * Firestore is used to store and retrieve user and event data. The sampling process is done randomly,
- * and batch updates are used to ensure efficient updating of the event document with the selected attendees.
- *
- * Outstanding Issues:
- * No issues at the moment.
- */
 package com.example.trojan0project;
 
 import static android.content.ContentValues.TAG;
@@ -35,6 +22,19 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * Purpose:
+ * This class handles the sampling process for selecting attendees from a waitlist for an event.
+ * It randomly selects profiles from the waitlist, updates their registration status in Firestore,
+ * and updates the event document with the selected attendees.
+ *
+ * Design Rationale:
+ * Firestore is used to store and retrieve user and event data. The sampling process is done randomly,
+ * and batch updates are used to ensure efficient updating of the event document with the selected attendees.
+ *
+ * Outstanding Issues:
+ * No issues at the moment.
+ */
 
 public class SamplerImplementation {
 
@@ -57,7 +57,6 @@ public class SamplerImplementation {
      */
 
     public void sampleWaitlist(ArrayList<Profile> waitList, int numAttendees, String targetEventId, ArrayAdapter<Profile> profileArrayAdapter) {
-
 
         ArrayList<Profile> sampledProfiles = new ArrayList<>();
         ArrayList<String> deviceIdsToUpdate = new ArrayList<>();
@@ -90,14 +89,8 @@ public class SamplerImplementation {
                 // Update user status for each profile
                 updateUserStatusAfterSampling(deviceId, targetEventId);
             }
-
-
-
-
         }
         profileArrayAdapter.notifyDataSetChanged();
-
-        //Toast.makeText(this, numAttendees + " attendees have been registered.", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -204,10 +197,4 @@ public class SamplerImplementation {
             }
         });
     }
-
-
-
-
-
-
 }

@@ -1,3 +1,5 @@
+package com.example.trojan0project;
+
 /**
  * Purpose:
  * The Image class represents an image object and the ability to get and set image id's.
@@ -8,7 +10,6 @@
  * Outstanding Issues:
  * - No Issues.
  */
-package com.example.trojan0project;
 
 public class Image {
     private String imageId;

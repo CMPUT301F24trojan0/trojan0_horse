@@ -27,6 +27,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * Purpose:
+ * The `EntrantMain` class serves as the main activity for entrants, providing access to
+ * profile management, event viewing, and QR code scanning. It integrates with Firebase Firestore
+ * and Firebase Storage to retrieve and display user profile data, including profile pictures.
+ *
+ * Design Rationale:
+ * - Utilizes Firebase Firestore for cloud-based data retrieval to manage user profile information.
+ * - Leverages Firebase Storage to handle profile picture storage and retrieval.
+ * - Implements notifications and permission handling to enhance user engagement and functionality.
+ * - Provides intuitive navigation to key entrant functionalities via buttons.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
 public class EntrantMain extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
@@ -161,6 +177,9 @@ public class EntrantMain extends AppCompatActivity {
         profilePicture.setImageDrawable(mydrawing);
     }
 
+    /**
+     * Reloads the user's profile data when the activity comes back into focus.
+     */
     @Override
     protected void onResume() {
         super.onResume();

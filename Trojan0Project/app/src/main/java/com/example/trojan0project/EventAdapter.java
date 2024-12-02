@@ -1,3 +1,13 @@
+package com.example.trojan0project;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.List;
+
 /**
  * Purpose:
  * custom adapter for displaying a list of Event objects in a RecyclerView
@@ -10,15 +20,6 @@
  * Outstanding Issues:
  * No issues
  */
-package com.example.trojan0project;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 

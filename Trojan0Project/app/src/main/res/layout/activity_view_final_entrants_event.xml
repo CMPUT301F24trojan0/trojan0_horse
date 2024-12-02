@@ -118,7 +118,7 @@
         android:id="@+id/sampleWaitlistButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sample Waitlist"
+        android:text="Sampling"
         android:backgroundTint="@color/purple"
         android:fontFamily="@font/quicksand"
         app:layout_constraintStart_toEndOf="@+id/cancelEntrantsButton"

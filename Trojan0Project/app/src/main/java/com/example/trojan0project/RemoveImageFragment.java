@@ -17,18 +17,47 @@ import androidx.fragment.app.DialogFragment;
 
 import com.bumptech.glide.Glide;
 
+/**
+ * Purpose:
+ * The `RemoveImageFragment` class provides a dialog interface for displaying an image and allowing the user to confirm or cancel its removal.
+ * It communicates with the host activity/fragment using a listener interface to perform the removal action upon user confirmation.
+ *
+ * Design Rationale:
+ * - Encapsulates the remove image functionality in a reusable and modular dialog fragment.
+ * - Uses the `Glide` library to efficiently load and display the image within the dialog.
+ * - Implements a listener interface (`removeImageListener`) to ensure a loosely coupled communication mechanism with the host.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
 public class RemoveImageFragment extends DialogFragment {
     private Image image;
     private removeImageListener listener;
 
+    /**
+     * Interface for communicating with the host activity/fragment to remove an image.
+     */
     interface removeImageListener {
         void removeImage(Image image);
     }
 
+    /**
+     * Constructor for the RemoveImageFragment that initializes the image to be removed.
+     *
+     * @param image The image to be displayed and potentially removed.
+     */
     public RemoveImageFragment(Image image) {
         this.image = image;
     }
 
+    /**
+     * Called when the fragment is attached to the host context.
+     * Ensures that the context implements the `removeImageListener` interface.
+     *
+     * @param context The context to which the fragment is attached.
+     * @throws RuntimeException If the context does not implement `removeImageListener`.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -40,6 +69,13 @@ public class RemoveImageFragment extends DialogFragment {
         }
     }
 
+    /**
+     * Creates and returns the dialog for removing the image.
+     * This dialog displays the image and asks the user to either confirm or cancel the removal action.
+     *
+     * @param savedInstanceState The saved instance state of the fragment.
+     * @return A Dialog object representing the remove image confirmation dialog.
+     */
     @Nullable
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

@@ -1,18 +1,3 @@
-/**
- * Represents the details screen for an event managed by an organizer. This activity allows the organizer to:
- * <ul>
- *     <li>View event details, including name, description, time, and poster.</li>
- *     <li>Change the event poster by selecting a new image.</li>
- *     <li>View a list of people who have signed up for the event.</li>
- * </ul>
- *
- * <p>The activity retrieves event details from Firestore and provides functionality for updating the event's poster image in Firebase Storage.</p>
- *
- * <p>This activity interacts with Firebase Firestore and Firebase Storage to fetch and update event data.</p>
- *
- * <p>Extends {@link AppCompatActivity} to support modern Android UI and lifecycle management.</p>
- */
-
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -42,6 +27,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+/**
+ * Purpose:
+ * The `EventDetailsActivityOrganizer` class provides detailed information about an event
+ * for organizers. It allows organizers to view event details, change the event's poster image,
+ * and view entrants associated with the event.
+ *
+ * Design Rationale:
+ * - Integrates with Firebase Firestore to fetch and display event details.
+ * - Utilizes Firebase Storage for managing poster image uploads and updates.
+ * - Provides a user-friendly interface with buttons for changing posters and viewing entrants.
+ * - Implements efficient data retrieval and update mechanisms for seamless user interaction.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
@@ -118,9 +119,11 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
         if (passId == null) {
             changePosterButton.setVisibility(Button.VISIBLE);
             viewPeopleButton.setVisibility(Button.VISIBLE);
+            geolocationButton.setVisibility(View.VISIBLE);
         } else {
             changePosterButton.setVisibility(Button.GONE);
             viewPeopleButton.setVisibility(Button.GONE);
+            geolocationButton.setVisibility(View.GONE);
         }
 
         if (eventId != null) {
@@ -142,6 +145,11 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
                             if (longitude != null && latitude != null && longitude != 0.0 && latitude != 0.0) {
                                 geolocationButton.setVisibility(View.VISIBLE);
+                                geolocationButton.setOnClickListener(v -> {
+                                    Intent intent = new Intent(EventDetailsActivityOrganizer.this, MapEntrants.class);
+                                    intent.putExtra("eventID", eventId);
+                                    startActivity(intent);
+                                });
                             }
 
                             // Load poster into ImageView

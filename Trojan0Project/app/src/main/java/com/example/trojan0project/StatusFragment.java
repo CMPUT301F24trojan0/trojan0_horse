@@ -1,17 +1,3 @@
-/**
- * Purpose:
- * This fragment displays a dialog where the user can accept or decline an event.
- * The event's status is updated in Firebase Firestore based on the user's action.
- * When the "Accept" button is clicked, the event status is updated to 2. When the "Decline" button is clicked, the event status is updated to 3.
- *
- * Design Rationale:
- * The fragment uses a custom layout to display two buttons: "Accept" and "Decline".
- * When buttons are clicked the event's status is updated in the Firestore database, and  feedback is shown to the user.
- *
- * Outstanding Issues:
- * No Issues.
- */
-
 package com.example.trojan0project;
 
 import android.app.Dialog;
@@ -34,6 +20,20 @@ import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * Purpose:
+ * This fragment displays a dialog where the user can accept or decline an event.
+ * The event's status is updated in Firebase Firestore based on the user's action.
+ * When the "Accept" button is clicked, the event status is updated to 2. When the "Decline" button is clicked, the event status is updated to 3.
+ *
+ * Design Rationale:
+ * The fragment uses a custom layout to display two buttons: "Accept" and "Decline".
+ * When buttons are clicked the event's status is updated in the Firestore database, and  feedback is shown to the user.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 
 public class StatusFragment extends DialogFragment {
 

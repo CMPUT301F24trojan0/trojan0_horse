@@ -1,17 +1,3 @@
-/**
- * Purpose:
- * Manages a list of facilities and allows administrators to view and delete facilities
- * Gets facilities from firestore and displayed in a list view
- *
- * Design Rationale:
- * Firestore used to get, display and update the list of facilities
- * Implements `DeleteFacilityFragment.DeleteFacilityDialogListener` to handle deletion of selected facilities
- * Dialog fragment for deletion confirmation
- *
- * Outstanding Issues:
- * Creates space when facility is deleted
- *
- */
 package com.example.trojan0project;
 
 import static android.content.ContentValues.TAG;
@@ -42,6 +28,21 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+/**
+ * Purpose:
+ * Manages a list of facilities and allows administrators to view and delete facilities
+ * Gets facilities from firestore and displayed in a list view
+ *
+ * Design Rationale:
+ * Firestore used to get, display and update the list of facilities
+ * Implements `DeleteFacilityFragment.DeleteFacilityDialogListener` to handle deletion of selected facilities
+ * Dialog fragment for deletion confirmation
+ *
+ * Outstanding Issues:
+ * Creates space when facility is deleted
+ *
+ */
+
 public class FacilityActivity extends AppCompatActivity implements DeleteFacilityFragment.DeleteFacilityDialogListener {
 
     private ListView facilityAdminList; //create reference to the Listview
@@ -49,7 +50,6 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
     public ArrayList<Facility> dataList;
     private Facility selectedFacility = null;
     private FirebaseFirestore db;
-
 
     /**
      * Deletes the specified facility from Firestore and updates the UI.
@@ -170,8 +170,6 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
                 facilityAdminAdapter.notifyDataSetChanged();
             }
         });
-
-
 
         facilityAdminList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

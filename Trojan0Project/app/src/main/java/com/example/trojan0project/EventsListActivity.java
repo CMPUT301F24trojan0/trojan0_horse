@@ -1,3 +1,9 @@
+package com.example.trojan0project;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * Purpose:
  * displays a message indicating that no events have been created yet.
@@ -8,11 +14,6 @@
  * Outstanding Issues:
  * No issues
  */
-package com.example.trojan0project;
-
-import android.os.Bundle;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class EventsListActivity extends AppCompatActivity {
 

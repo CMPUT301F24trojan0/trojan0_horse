@@ -1,3 +1,5 @@
+package com.example.trojan0project;
+
 /**
  * Purpose:
  * This class represents a user profile, storing essential details like name, email, username,
@@ -12,8 +14,6 @@
  * Outstanding Issues:
  * No Issues.
  */
-
-package com.example.trojan0project;
 
 public class Profile {
     private String firstName;

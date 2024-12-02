@@ -1,17 +1,4 @@
-/**
- * Purpose:
- * custom adapter for displaying a list of events in a ListView
- * allows each event item to display its name and associated QR code image.
- *
- * Design Rationale:
- * custom layout for each item to show the event name and an image
- *
- * Outstanding Issues:
- * No issues
- */
-
 package com.example.trojan0project;
-
 
 import android.content.Context;
 import android.util.Log;
@@ -26,6 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+
+/**
+ * Purpose:
+ * custom adapter for displaying a list of events in a ListView
+ * allows each event item to display its name and associated QR code image.
+ *
+ * Design Rationale:
+ * custom layout for each item to show the event name and an image
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class EventArrayAdapter extends ArrayAdapter<Event> {
     /**
@@ -65,9 +64,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
         EventName.setText(event.getEventName());
         //OpenAI, (2024, November 6), "How do I set the Image as a Bitmap?", ChatGPT
         eventImage.setImageBitmap(event.getQrCodeBitmap());
-
-
-
 
         return view;
     }

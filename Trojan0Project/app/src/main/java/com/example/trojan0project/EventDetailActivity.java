@@ -1,3 +1,13 @@
+package com.example.trojan0project;
+
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 /**
  * Purpose:
  * displays the details of a specific event, including the event name and QR code.
@@ -11,15 +21,6 @@
  * Outstanding Issues:
  * No issues
  */
-package com.example.trojan0project;
-
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EventDetailActivity extends AppCompatActivity {
     private FirebaseFirestore db;

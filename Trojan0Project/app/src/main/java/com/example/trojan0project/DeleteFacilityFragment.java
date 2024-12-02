@@ -1,16 +1,3 @@
-/**
- * Purpose:
- * DeleteFacilityFragment shows a dialog to confirm the deletion of a facility.
- * It lets users either delete the facility or cancel the action.
- *
- * Design Rationale:
- * This fragment uses a DeleteFacilityDialogListener to communicate with its FacilityActivity.
- * This makes sure the delete action is handled outside the fragment
- * The design allows for simple and clear interaction with options for confirming or canceling.
- *
- * Outstanding Issues:
- * No issues
- */
 package com.example.trojan0project;
 
 import android.app.AlertDialog;
@@ -25,6 +12,20 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+/**
+ * Purpose:
+ * DeleteFacilityFragment shows a dialog to confirm the deletion of a facility.
+ * It lets users either delete the facility or cancel the action.
+ *
+ * Design Rationale:
+ * This fragment uses a DeleteFacilityDialogListener to communicate with its FacilityActivity.
+ * This makes sure the delete action is handled outside the fragment
+ * The design allows for simple and clear interaction with options for confirming or canceling.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class DeleteFacilityFragment extends DialogFragment {
     /**
@@ -101,8 +102,6 @@ public class DeleteFacilityFragment extends DialogFragment {
                 .setView(view)
 
                 .create();
-
-
     }
     /**
      * Sets the facility selected for deletion.

@@ -1,16 +1,3 @@
-/**
- * Purpose:
- * This activity handles the organizer sign-up process, allowing a user to create an organizer profile
- * by entering a facility name.
- *
- * Design Rationale:
- * This uses Firestore for storing the organizer details and transitions to the OrganizerPageActivity
- * after saving the organizer data.
- *
- * Outstanding Issues:
- *No Issues.
- */
-
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -28,6 +15,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * Purpose:
+ * This activity handles the organizer sign-up process, allowing a user to create an organizer profile
+ * by entering a facility name.
+ *
+ * Design Rationale:
+ * This uses Firestore for storing the organizer details and transitions to the OrganizerPageActivity
+ * after saving the organizer data.
+ *
+ * Outstanding Issues:
+ *No Issues.
+ */
 
 public class OrganizerSignUpActivity extends AppCompatActivity {
 

@@ -1,18 +1,4 @@
-/**
- * Purpose:
- * DisplayEventDetails is an activity that retrieves and displays the details of a selected event from Firestore.
- * It shows the event's title, location, time, and description
- *
- * Design Rationale:
- * The activity uses Firestore to load event data
- * Geolocation data is converted to a readable address format using reverse geocoding
- *
- * Outstanding Issues:
- * No issues
- */
 package com.example.trojan0project;
-
-//farza
 
 import android.content.Intent;
 import android.location.Address;
@@ -34,6 +20,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Purpose:
+ * DisplayEventDetails is an activity that retrieves and displays the details of a selected event from Firestore.
+ * It shows the event's title, location, time, and description
+ *
+ * Design Rationale:
+ * The activity uses Firestore to load event data
+ * Geolocation data is converted to a readable address format using reverse geocoding
+ *
+ * Outstanding Issues:
+ * No issues
+ */
+
 public class DisplayEventDetails extends AppCompatActivity {
     private FirebaseFirestore db;
     private String deviceId;
@@ -54,29 +53,21 @@ public class DisplayEventDetails extends AppCompatActivity {
         setContentView(R.layout.display_event_details_admin);
         db = FirebaseFirestore.getInstance();
         deviceId = getIntent().getStringExtra("DEVICE_ID");
-        eventId = "CRMooy8t4g20CW2TEZAW"; //CHANGE TO THURSDAYS LAB
-        ;
+        //eventId = "CRMooy8t4g20CW2TEZAW"; //CHANGE TO THURSDAYS LAB
+        eventId = getIntent().getStringExtra("eventId");
 
+        if (eventId == null ) {
+            Toast.makeText(this, "Event ID not found", Toast.LENGTH_SHORT).show();
+            finish(); // Close the activity if no valid eventId is provided
+            return;
+        }
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
         eventTime = findViewById(R.id.time_label);
         eventMoreInfo = findViewById(R.id.more_info_label);
 
-
         loadEventDetails();
-
-
-
-        //OpenAI, (2024, November 6 2024), "How do I transfer the text from one activity to another?", ChatGPT
-        Intent intent = getIntent();
-        String selectedEventTitle = intent.getStringExtra("event_title");
-        Event selectedEvent = (Event) getIntent().getSerializableExtra("clicked_event");
-        eventId = selectedEvent.getEventId();
-
-        //TextView eventTextView = findViewById(R.id.event_title);
-        //eventTextView.setText(selectedEventTitle);
-
     }
 
     /**
@@ -135,5 +126,3 @@ public class DisplayEventDetails extends AppCompatActivity {
     }
 
 }
-
-

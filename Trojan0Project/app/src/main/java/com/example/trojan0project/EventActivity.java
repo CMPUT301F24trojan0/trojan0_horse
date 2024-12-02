@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,10 +37,30 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+/**
+ * Represents an activity for managing events in the application, providing functionalities
+ * such as viewing, generating QR codes, and deleting events. It integrates with Firestore
+ * for event data retrieval and storage and provides an admin interface for event management.
+ *
+ * <p>This class implements the `DeleteEventFragment.DeleteEventDialogListener` interface to
+ * handle dialog-based event deletion operations.</p>
+ *
+ * Features:
+ * - Displays a list of events retrieved from Firestore.
+ * - Allows navigation to a profile management page.
+ * - Supports generating and deleting QR codes for events.
+ * - Provides the ability to delete entire events from Firestore.
+ *
+ * Design Rationale:
+ * - Extends `AppCompatActivity` to utilize modern Android UI components.
+ * - Uses Firestore for cloud-based event data management.
+ */
 
 public class EventActivity extends AppCompatActivity implements DeleteEventFragment.DeleteEventDialogListener {
 
@@ -51,6 +72,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
     private ImageView qrCodeImageView;
     private ProgressDialog progressDialog;
 
+    /**
+     * Handles the creation of the `EventActivity` activity, initializing UI components,
+     * setting up Firestore integration, and defining event listeners for user interactions.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down, this Bundle contains the most recent data.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,15 +100,6 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
 
         String deviceId = getIntent().getStringExtra("DEVICE_ID");
         Log.d(TAG, "onCreate: Device ID: " + deviceId);
-
-        ImageButton profilePage = findViewById(R.id.profile_button);
-
-        profilePage.setOnClickListener(v -> {
-            Log.d(TAG, "onCreate: Profile button clicked, navigating to profile page");
-            Intent intent = new Intent(EventActivity.this, BrowseProfileAdmin.class);
-            intent.putExtra("DEVICE_ID", deviceId);
-            startActivity(intent);
-        });
 
         dataList = new ArrayList<Event>();
         eventAdminList = findViewById(R.id.admin_events_list);
@@ -123,10 +141,43 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedEvent = dataList.get(i);
-                Log.d(TAG, "onItemClick: Event selected: " + selectedEvent.getEventName());
 
-                DeleteEventFragment fragment = DeleteEventFragment.newInstance(selectedEvent);
-                fragment.show(getSupportFragmentManager(), "Delete Event");
+                // Log the selected event's name
+                String eventName = selectedEvent.getEventName();
+                Log.d(TAG, "onItemClick: Event selected: " + eventName);
+
+                // Query Firestore for the eventId associated with this eventName
+                db.collection("events")
+                        .whereEqualTo("eventName", eventName)
+                        .get()
+                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                            if (!queryDocumentSnapshots.isEmpty()) {
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                    String eventId = document.getString("eventId");
+                                    Log.d(TAG, "onItemClick: Retrieved eventId: " + eventId);
+                                    DeleteEventFragment fragment = DeleteEventFragment.newInstance(selectedEvent, eventId);
+                                    fragment.show(getSupportFragmentManager(), "Delete Event");
+
+                                    // Pass the eventId to DisplayEventDetails activity
+                                    Intent intent = new Intent(getBaseContext(), DisplayEventDetails.class);
+                                    intent.putExtra("eventId", eventId);
+                                    intent.putExtra("eventName", eventName);
+                                    //startActivity(intent);
+
+                                    break; // Exit loop after finding the first match
+                                }
+                            } else {
+                                Log.e(TAG, "onItemClick: No event found with name: " + eventName);
+                                Toast.makeText(EventActivity.this, "No event found with this name.", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.e(TAG, "onItemClick: Firestore query failed: ", e);
+                            Toast.makeText(EventActivity.this, "Failed to fetch event details.", Toast.LENGTH_SHORT).show();
+                        });
+
+
+
             }
         });
     }
@@ -147,6 +198,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Generates a QR code Bitmap from the provided content string.
+     *
+     * @param content The string content to encode in the QR code.
+     * @return A Bitmap image of the generated QR code, or null if an error occurs.
+     */
     private Bitmap generateQRCode(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -165,6 +222,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return null;
     }
 
+    /**
+     * Compresses a QR code Bitmap into a PNG format byte array.
+     *
+     * @param qrCodeBitmap The Bitmap image of the QR code.
+     * @return A byte array containing the compressed image data.
+     */
     private byte[] getQRCodeImageData(Bitmap qrCodeBitmap) {
         Log.d(TAG, "getQRCodeImageData: Compressing QR code image to byte array");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -172,6 +235,11 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return baos.toByteArray();
     }
 
+    /**
+     * Deletes the QR code associated with the provided event from the Firestore database.
+     *
+     * @param event The event whose QR code needs to be deleted.
+     */
     @Override
     public void deleteQRCode(Event event) {
         Log.d(TAG, "deleteQRCode: Deleting QR code for event: " + event.getEventName());
@@ -201,6 +269,11 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         }
     }
 
+    /**
+     * Deletes the specified event from the Firestore database.
+     *
+     * @param event The event to be deleted.
+     */
     @Override
     public void deleteEvent(Event event) {
         Log.d(TAG, "deleteEvent: Deleting event: " + event.getEventName());

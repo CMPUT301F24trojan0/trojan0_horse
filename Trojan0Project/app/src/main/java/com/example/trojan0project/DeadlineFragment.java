@@ -16,18 +16,52 @@ import com.google.firebase.Timestamp;
 
 import java.util.Calendar;
 
+/**
+ * Purpose:
+ * The `DeadlineFragment` class provides a dialog interface for selecting a deadline date.
+ * It includes a date picker dialog and communicates the selected deadline to the parent
+ * activity or fragment through a listener interface.
+ *
+ * Design Rationale:
+ * - Utilizes a `DialogFragment` for modularity and reusable UI components.
+ * - Implements a listener interface (`OnDeadlineSavedListener`) to decouple deadline selection
+ *   logic from the parent activity or fragment.
+ * - Uses a `DatePickerDialog` for user-friendly date selection.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
 public class DeadlineFragment extends DialogFragment {
 
     private OnDeadlineSavedListener onDeadlineSavedListener;
 
+    /**
+     * Interface for listening to deadline selection events.
+     * Implement this interface in the parent activity or fragment to handle
+     * the deadline selected by the user.
+     */
     public interface OnDeadlineSavedListener {
         void onDeadlineSaved(Timestamp deadline);
     }
 
+    /**
+     * Sets the listener for the deadline selection event.
+     *
+     * @param listener The {@link OnDeadlineSavedListener} implementation.
+     */
     public void setOnDeadlineSavedListener(OnDeadlineSavedListener listener) {
         this.onDeadlineSavedListener = listener;
     }
 
+    /**
+     * Inflates the layout for the fragment and sets up the date picker button.
+     *
+     * @param inflater  The LayoutInflater object that can be used to inflate views in the fragment.
+     * @param container The parent view that this fragment's UI should be attached to.
+     * @param savedInstanceState A bundle containing saved state, if available.
+     * @return The inflated view for this fragment.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

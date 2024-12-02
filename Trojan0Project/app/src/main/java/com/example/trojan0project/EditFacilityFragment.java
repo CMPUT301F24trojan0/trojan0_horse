@@ -1,15 +1,3 @@
-/**
- * Purpose:
- * The EditFacilityFragment allows users to update the name of a facility.
- * The new name is entered in a text field and saved by clicking a button.
- *
- * Design Rationale:
- * This fragment uses a callback interface, OnFacilityNameUpdatedListener,
- * to send the updated facility name back
- *
- * Outstanding Issues:
- * No issues
- */
 package com.example.trojan0project;
 
 import android.content.Context;
@@ -24,6 +12,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+/**
+ * Purpose:
+ * The EditFacilityFragment allows users to update the name of a facility.
+ * The new name is entered in a text field and saved by clicking a button.
+ *
+ * Design Rationale:
+ * This fragment uses a callback interface, OnFacilityNameUpdatedListener,
+ * to send the updated facility name back
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class EditFacilityFragment extends Fragment {
 

@@ -3,6 +3,7 @@ package com.example.trojan0project;
 import static android.content.ContentValues.TAG;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -39,23 +40,99 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 
-public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
+/**
+ * Purpose:
+ * The `ViewFinalEntrantsEventActivity` class provides functionality to display the final list of entrants for a specific event.
+ * It fetches data from Firebase Firestore, filters users based on their status for the event, and presents the results in a RecyclerView.
+ *
+ * Design Rationale:
+ * - Ensures efficient filtering of users by combining their user type and event-specific status.
+ * - Uses a RecyclerView for scalable and efficient display of the list of entrants.
+ * - Provides real-time data fetching from Firestore to ensure up-to-date entrant information.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
+public class ViewFinalEntrantsEventActivity extends AppCompatActivity implements NotificationDialogFragment.NotificationDialogListener {
 
     private static final String TAG = "ViewFinalEntrantsEventActivity";
     private RecyclerView entrantsRecyclerView;
     private EntrantsAdapter profileAdapter;
     private ArrayList<String> profileList;
+    private ArrayList<String> deviceIDList;
     private FirebaseFirestore firestore;
     private String eventID;
     private Spinner statusSpinner;
     private int selectedStatus1 = -1;
     private Long participationStatus;
     private Date signupDeadline;
-    private int numAttendees;
-    private ListView entrantWaitlist;
-    private static ArrayAdapter<Profile> profileArrayAdapter;
-    public ArrayList<Profile> waitList;
+    private Button sendNotification;
 
+    @Override
+    public void onSendNotification(String message) {
+        Log.d(TAG, "Notification message received: " + message);
+
+        // Instantiate the Notification class
+        Notification notificationManager = new Notification();
+
+        // Fetch the event name using the eventID
+        firestore.collection("events").document(eventID)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists() && document.contains("eventName")) {
+                            String eventName = document.getString("eventName");
+                            Log.d(TAG, "Event Name retrieved: " + eventName);
+
+                            // Iterate through the deviceIDlist and send notifications
+                            for (int i = 0; i < deviceIDList.size(); i++) {
+                                String deviceId = deviceIDList.get(i); // Assuming deviceIDlist matches profileList indices
+                                Log.d(TAG, "Sending notification to Device ID: " + deviceId
+                                        + ", Event ID: " + eventID
+                                        + ", Event Name: " + eventName);
+
+                                // Use addNotificationToDevice to send notifications
+                                notificationManager.addNotificationToDevice(
+                                        deviceId, // Device ID
+                                        eventID,  // Event ID
+                                        "Notification for Event: " + eventName, // Notification title
+                                        message   // Notification message
+                                );
+                            }
+
+                            // Handle the notification message here (e.g., send to Firestore or display a Toast)
+                            Toast.makeText(this, "Notification Sent: " + message + " for Event: " + eventName, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.w(TAG, "Event Name not found for Event ID: " + eventID);
+                            Toast.makeText(this, "Event Name not found.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e(TAG, "Error retrieving Event Name for Event ID: " + eventID, task.getException());
+                        Toast.makeText(this, "Error retrieving Event Name.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Firestore retrieval failed: ", e);
+                    Toast.makeText(this, "Firestore retrieval failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        // Handle the notification message here (e.g., send to Firestore or display a Toast)
+        Toast.makeText(this, "Notification Sent: " + message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Called when the activity is created. It sets up the layout, initializes
+     * the Firestore instance, and retrieves the event ID from the intent.
+     * If a valid event ID is found, it fetches the entrants for the event.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down, this Bundle contains
+     *                           the data it most recently supplied in
+     *                           {@link #onSaveInstanceState(Bundle)}.
+     *                           Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +159,7 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
         entrantsRecyclerView = findViewById(R.id.entrants_recycler_view);
         entrantsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         profileList = new ArrayList<>();
+        deviceIDList = new ArrayList<>();
 
         profileAdapter = new EntrantsAdapter(profileList);
         entrantsRecyclerView.setAdapter(profileAdapter);
@@ -92,10 +170,7 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
             getDeadline(); // Fetch the deadline and then proceed with cancellation logic
         });
 
-        waitList = new ArrayList<>();
-
         Button sampleWaitlistButton = findViewById(R.id.sampleWaitlistButton);
-        profileArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, waitList);
 
         // Set up Spinner
         statusSpinner = findViewById(R.id.statusSpinnerOrganizer);
@@ -152,159 +227,18 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
             }
         });
 
-        sampleWaitlistButton.setOnClickListener(v -> {
-            getWaitlist();
-            Log.d("WaitlistActivity", "Calling getWaitlist() method");
-            SamplerImplementation sampler = new SamplerImplementation();
-            sampler.sampleWaitlist(waitList, numAttendees, eventID, profileArrayAdapter);
+        sendNotification = findViewById(R.id.sendNotificationButton); // Ensure ID matches your layout
+
+        sendNotification.setOnClickListener(v -> {
+            NotificationDialogFragment dialogFragment = new NotificationDialogFragment();
+            dialogFragment.show(getSupportFragmentManager(), "NotificationDialog");
         });
-    }
 
-    /**
-     * Fetches the waitlist of entrants for the specified event from Firestore.
-     * It retrieves users marked as entrants for the event and adds them to the waitlist.
-     * The adapter is notified of changes to update the ListView display.
-     */
-    private void getWaitlist() {
-        // First, get the number of attendees for the specific event
-        firestore.collection("events")
-                .document(eventID)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // Retrieve the max_attendees field
-                            Long maxAttendees = document.getLong("maxNumberOfEntrants");
-                            if (maxAttendees != null) {
-                                numAttendees = maxAttendees.intValue(); // Set numAttendees from Firestore
-                                Log.d(TAG, "Max Attendees: " + numAttendees);
-                            } else {
-                                Log.e(TAG, "maxNumberofEntrants field does not exist");
-                            }
-                        } else {
-                            Log.e(TAG, "Event document does not exist");
-                        }
-                    } else {
-                        Log.e(TAG, "Failed to get event document: ");
-                    }
-
-                    // After fetching numAttendees, now fetch the waitlist data
-                    final CollectionReference collectionReference = firestore.collection("users");
-
-                    collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
-                        @Override
-                        public void onEvent(QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
-                            Log.d("Waitlist", "onEvent triggered");
-
-                            waitList.clear();  // Clear the previous data
-
-                            for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                                String userType = doc.getString("user_type");
-                                if ("entrant".equals(userType)) {
-                                    Map<String, Long> events = (Map<String, Long>) doc.get("events");
-
-                                    if (events != null) {
-                                        for (Map.Entry<String, Long> entry : events.entrySet()) {
-
-                                            if (entry.getValue() == 0 && entry.getKey().equals(eventID)) {
-                                                String eventId = entry.getKey(); // This is the event ID
-                                                Log.d("Waitlist", "Event ID with 0: " + eventId);
-                                                String firstName = doc.getString("first_name");
-                                                String lastName = doc.getString("last_name");
-                                                String email = doc.getString("email");
-                                                String deviceId = doc.getId();
-
-                                                // Create profile and add it to the waitlist
-                                                Profile profile = new Profile(firstName, lastName, email, deviceId);
-                                                waitList.add(profile);
-                                                Log.d("Waitlist", "Added Profile: " + profile.getFirstName() + " " + profile.getLastName());
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            // Notify adapter that the data has changed
-                            profileArrayAdapter.notifyDataSetChanged();
-
-                            // Log the waitlist for debugging
-                            for (Profile profile : waitList) {
-                                Log.d("Waitlist", "First Name: " + profile.getFirstName() +
-                                        ", Last Name: " + profile.getLastName() +
-                                        ", Email: " + profile.getEmail() +
-                                        ", Device ID: " + profile.getDeviceId());
-                            }
-
-                            // Call resamplingTwo after the waitlist is populated and adapter is updated
-                            resamplingTwo(eventID);
-                            Log.d("Waitlist", "Called resamplingTwo() after fetching waitlist");
-                        }
-                    });
-                });
-    }
-
-
-    /**
-     * This method listens for changes to the specified event document in Firestore.
-     * It checks if there are available spots for attendees in the event ( if
-     * the number of sampled attendees is less than the maximum number of attendees).
-     * If there are still spots available, it triggers the resampling process by
-     * selecting more attendees from the waitlist and incrementing the `num_sampled` field
-     * in Firestore. The resampling process continues until the maximum number of attendees
-     * is reached.
-     * @param targetEventId The ID of the target event for which attendees are being sampled.
-     */
-    private void resamplingTwo(String targetEventId) {
-        // Use snapshot listener to actively listen for changes to the event document
-        firestore.collection("events")
-                .document(targetEventId)
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                    @Override
-                    public void onEvent(DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                        if (error != null) {
-                            Log.e(TAG, "Error fetching event document: ", error);
-                            return;
-                        }
-
-                        if (documentSnapshot != null && documentSnapshot.exists()) {
-                            Long maxAttendees = documentSnapshot.getLong("maxNumberOfEntrants");
-                            Long numSampled = documentSnapshot.getLong("num_sampled");
-
-                            Log.d(TAG, "maxAttendees: " + maxAttendees);
-                            Log.d(TAG, "numSampled: " + numSampled);
-
-                            // Ensure that the fields are available and check if resampling is needed
-                            if (maxAttendees != null && numSampled != null) {
-                                if (numSampled < maxAttendees) {
-                                    // Trigger resampling if maxAttendees is not reached
-                                    int remainingAttendees = maxAttendees.intValue() - numSampled.intValue();
-                                    Log.d(TAG, "Resampling " + remainingAttendees + " attendees...");
-
-                                    SamplerImplementation sampler = new SamplerImplementation();
-                                    sampler.sampleWaitlist(waitList, remainingAttendees, eventID, profileArrayAdapter);
-
-                                    // Increment num_sampled field in Firestore after resampling
-                                    firestore.collection("events")
-                                            .document(eventID)
-                                            .update("num_sampled", FieldValue.increment(remainingAttendees))
-                                            .addOnSuccessListener(aVoid -> {
-                                                Log.d(TAG, "num_sampled field incremented by " + remainingAttendees);
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                Log.e(TAG, "Error incrementing num_sampled field for event: " + eventID, e);
-                                            });
-                                } else {
-                                    Log.d(TAG, "Max attendees reached. No need to resample.");
-                                }
-                            } else {
-                                Log.e(TAG, "Failed to retrieve maxAttendees or numSampled from event document.");
-                            }
-                        } else {
-                            Log.e(TAG, "Event document is null or does not exist.");
-                        }
-                    }
-                });
+        sampleWaitlistButton.setOnClickListener(v -> {
+            Intent systemIntent = new Intent(ViewFinalEntrantsEventActivity.this, SystemSample.class);
+            systemIntent.putExtra("eventId", eventID);
+            startActivity(systemIntent);
+        });
     }
 
     /**
@@ -410,6 +344,7 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
                             Log.d(TAG, "Users found in Firestore document.");
                             Map<String, Long> usersMap = (Map<String, Long>) document.get("users");
                             profileList.clear(); // Clear current events
+                            deviceIDList.clear();
                             profileAdapter.notifyDataSetChanged(); // Update RecyclerView
 
                             for (Map.Entry<String, Long> entry : usersMap.entrySet()) {
@@ -430,6 +365,7 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
                                                         String username = entrantDocument.getString("username");
                                                         if (username != null) {
                                                             Log.d(TAG, "User details retrieved: " + username);
+                                                            deviceIDList.add(deviceId);
                                                             profileList.add(username);
                                                             Log.d(TAG, "User added to the list: " + deviceId);
                                                         } else {

@@ -6,6 +6,19 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Purpose:
+ * This class serves as the main admin panel, providing navigation to sections such as
+ * event management, facility management, image browsing, and profile browsing.
+ *
+ * Design Rationale:
+ * - Uses buttons for intuitive navigation to key admin functionalities.
+ * - Centralizes all administrative options in a single screen for efficiency.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
 public class AdminMain extends AppCompatActivity {
     private Button browseAllEvents;
     private Button browseAllFacilities;

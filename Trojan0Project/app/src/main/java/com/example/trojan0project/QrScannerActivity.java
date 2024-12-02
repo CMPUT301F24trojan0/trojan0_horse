@@ -24,6 +24,22 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+/**
+ * Purpose:
+ * The `QrScannerActivity` class provides functionality for scanning QR codes to retrieve event information.
+ * It utilizes a barcode scanner to decode QR codes, processes the scanned data, and retrieves corresponding
+ * event details from Firebase Firestore. Users are then directed to the `EventDetailsActivity` to view event details.
+ *
+ * Design Rationale:
+ * - Uses the `JourneyApps Barcode Scanner` library for efficient QR code scanning.
+ * - Integrates with Firebase Firestore to dynamically fetch event information based on scanned QR codes.
+ * - Implements permission handling to ensure proper access to the device camera.
+ * - Provides seamless navigation to event details upon successful QR code scans.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
 public class QrScannerActivity extends AppCompatActivity {
     private static final String TAG = "QrScannerActivity";
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 200;
@@ -32,6 +48,12 @@ public class QrScannerActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private Button cancelButton;
 
+    /**
+     * Initializes the activity, sets up the barcode scanner view, and configures the cancel button.
+     * It also starts continuous QR code scanning and processes the scanned QR code data.
+     *
+     * @param savedInstanceState The saved instance state for restoring the activity's previous state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +119,13 @@ public class QrScannerActivity extends AppCompatActivity {
     }
 
     // Handle the scanned QR code data
+    /**
+     * Processes the scanned QR code data. It parses the QR code data (which is expected to be in JSON format)
+     * and queries the Firebase Firestore database to fetch event details. If an event is found, it navigates
+     * to the `EventDetailsActivity` to display the event information.
+     *
+     * @param scannedData The scanned QR code data in string format.
+     */
     private void handleScannedData(String scannedData) {
         try {
             JSONObject jsonObject = new JSONObject(scannedData);
@@ -138,6 +167,10 @@ public class QrScannerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Resumes the barcode scanner when the activity is resumed.
+     * This method is called when the activity becomes visible to the user.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -146,6 +179,10 @@ public class QrScannerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Pauses the barcode scanner when the activity is paused.
+     * This method is called when the activity is no longer visible to the user.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -154,6 +191,9 @@ public class QrScannerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the destruction of the activity. It logs when the activity is destroyed.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

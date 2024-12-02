@@ -15,6 +15,22 @@ import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationManager;
 
+/**
+ * Purpose:
+ * The `Notification` class is responsible for managing user notifications in the application.
+ * It interacts with Firebase Firestore to store, retrieve, and manage notifications for individual devices.
+ * Notifications are displayed to the user and linked to specific events, allowing easy navigation to event details.
+ *
+ * Design Rationale:
+ * - Utilizes Firebase Firestore for efficient storage and retrieval of notifications.
+ * - Implements a queue-based approach for managing device notifications, ensuring scalability and flexibility.
+ * - Integrates with Android's notification system using `NotificationCompat` to provide user-friendly, clickable notifications.
+ * - Supports automatic removal of displayed notifications from Firestore to maintain a clean queue.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
 public class Notification {
 
     private final FirebaseFirestore db;
@@ -136,6 +152,7 @@ public class Notification {
         // Intent to open the event details activity and remove the notification when clicked
         Intent intent = new Intent(context, EventDetailsActivityOrganizer.class);
         intent.putExtra("eventId", eventId);
+        intent.putExtra("passId", eventId);
 
         // Create a PendingIntent to launch the event details activity
         PendingIntent pendingIntent = PendingIntent.getActivity(

@@ -1,15 +1,3 @@
-/**
- *Purpose:
- *Displays a map with markers showing the locations of entrants for a specific event
- * Map uses Google Maps SDK and locations are fetched from Firebase Firestore
- *
- * Design Rationale:
- * Uses Google Maps SDK for maps and Firestore for getting event and entrant data
- * Markers are added to the map based on latitude and lingitude from Firestore
- *
- * Outstanding Issues:
- * No issues.
- */
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -35,6 +23,19 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+/**
+ *Purpose:
+ *Displays a map with markers showing the locations of entrants for a specific event
+ * Map uses Google Maps SDK and locations are fetched from Firebase Firestore
+ *
+ * Design Rationale:
+ * Uses Google Maps SDK for maps and Firestore for getting event and entrant data
+ * Markers are added to the map based on latitude and lingitude from Firestore
+ *
+ * Outstanding Issues:
+ * No issues.
+ */
 
 public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -71,7 +72,6 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
             mapFragment.getMapAsync(this);
         }
 
-
     }
 
     /**
@@ -96,39 +96,31 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
                     LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
                     boolean hasLocations = false;
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                        Map<String, Object> events = (Map<String, Object>) documentSnapshot.get("events");
+                        Map<String, Object> geolocationData = (Map<String, Object>) documentSnapshot.get("geolocation");
 
-                        if (events != null && events.containsKey(eventId)){
-                            Map<String, Object> eventDetails = (Map<String, Object>) events.get(eventId);
+                        if (geolocationData != null && geolocationData.containsKey(eventId)) {
+                            // Retrieve the coordinates array for the specific event ID
+                            List<Double> coordinates = (List<Double>) geolocationData.get(eventId);
 
-                            if(eventDetails != null){
+                            if (coordinates != null && coordinates.size() == 2) {
+                                Double lat = coordinates.get(0);
+                                Double lng = coordinates.get(1);
+                                String username = documentSnapshot.getString("username");
 
-                                for (Map.Entry<String, Object> entry : eventDetails.entrySet()) {
-                                    String statusKey = entry.getKey();
+                                if (lat != null && lng != null) {
+                                    LatLng location = new LatLng(lat, lng);
+                                    entrantLocations.add(location);
 
-                                    if ("0".equals(statusKey)){
-                                        Map<String, Object> geolocation = (Map<String, Object>) ((Map<String, Object>) entry.getValue()).get("geolocation");
+                                    // Add marker to the map
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(location)
+                                            .title(username));
 
-                                        if (geolocation != null) {
-                                            Double lat = (Double) geolocation.get("latitude");
-                                            Double lng = (Double) geolocation.get("longitude");
-                                            String username = documentSnapshot.getString("username");
-
-                                            if (lat != null && lng != null) {
-                                                LatLng location = new LatLng(lat, lng);
-                                                entrantLocations.add(location);
-                                                googleMap.addMarker(new MarkerOptions()
-                                                        .position(location)
-                                                        .title(username));
-                                                boundsBuilder.include(location);
-                                                hasLocations = true;
-                                            } else {
-                                                Log.e("MapEntrants", "Latitude or Longitude is null for event ID: " + eventId);
-                                            }
-                                        }
-                                    }
-
-
+                                    // Include location in bounds builder
+                                    boundsBuilder.include(location);
+                                    hasLocations = true;
+                                } else {
+                                    Log.e("MapEntrants", "Invalid latitude or longitude for user: " + documentSnapshot.getId());
                                 }
                             }
                         }

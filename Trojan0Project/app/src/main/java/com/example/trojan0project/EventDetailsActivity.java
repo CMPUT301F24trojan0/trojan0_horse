@@ -20,6 +20,21 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.Date;
 
+/**
+ * Purpose:
+ * The `EventDetailsActivity` class displays detailed information about a specific event.
+ * It provides functionality to view event details, cancel the current view, and sign up for the event.
+ * Additionally, it retrieves the user's current location (with proper permissions) to facilitate event-related actions.
+ *
+ * Design Rationale:
+ * - Displays event details such as name, description, poster image, time, deadline, and max entrants.
+ * - Provides a "Sign Up" button to navigate to the waitlist with the event details and user's location.
+ * - Implements location services and permissions handling to enhance user interaction with location-based events.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
 public class EventDetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "EventDetailsActivity";
@@ -29,6 +44,19 @@ public class EventDetailsActivity extends AppCompatActivity {
     private TextView eventNameTextView, descriptionTextView, timeTextView, deadlineTextView, maxEntrantsTextView;
     private Button cancelButton, signUpButton;
 
+    /**
+     * Initializes the activity, setting up the UI elements and retrieving event details passed via Intent.
+     *
+     * <p>Performs the following tasks:</p>
+     * <ul>
+     *     <li>References and initializes UI components such as text views, image views, and buttons.</li>
+     *     <li>Retrieves event details, such as name, description, and geolocation, from the Intent.</li>
+     *     <li>Displays the event information on the screen.</li>
+     *     <li>Sets up listeners for the "Cancel" and "Sign Up" buttons.</li>
+     * </ul>
+     *
+     * @param savedInstanceState The saved state of the activity, if any.
+     */
     private FusedLocationProviderClient fusedLocationClient;
 
     @Override
@@ -80,7 +108,12 @@ public class EventDetailsActivity extends AppCompatActivity {
                 Log.d(TAG, "Poster image loaded");
             }
 
-            // Set up Cancel button
+            /**
+             * Handles the click event for the "Cancel" button.
+             *
+             * <p>Closes the current activity and navigates back to the previous screen.</p>
+             */
+            // Cancel button listener
             cancelButton.setOnClickListener(v -> {
                 Log.d(TAG, "Cancel button clicked");
                 finish();
@@ -154,6 +187,11 @@ public class EventDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Cleans up resources and logs the destruction of the activity.
+     *
+     * <p>Called when the activity is destroyed.</p>
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

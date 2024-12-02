@@ -1,15 +1,3 @@
-/**
- * Purpose:
- * This fragment allows the user to pick a time. It includes a button to save the selected time.
- * When the time is saved, it sends the selected time back to the activity or parent fragment via the OnTimeSavedListener interface.
- *
- * Design Rationale:
- * The fragment uses a TimePicker to allow the user to select a time, which is then formatted into a string representing time format.
- *
- * Outstanding Issues:
- * No Issues.
- */
-
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -21,6 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TimePicker;
+
+/**
+ * Purpose:
+ * This fragment allows the user to pick a time. It includes a button to save the selected time.
+ * When the time is saved, it sends the selected time back to the activity or parent fragment via the OnTimeSavedListener interface.
+ *
+ * Design Rationale:
+ * The fragment uses a TimePicker to allow the user to select a time, which is then formatted into a string representing time format.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 
 public class TimeFragment extends DialogFragment {
 

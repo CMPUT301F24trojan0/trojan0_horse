@@ -1,3 +1,18 @@
+/**
+ * Represents the details screen for an event managed by an organizer. This activity allows the organizer to:
+ * <ul>
+ *     <li>View event details, including name, description, time, and poster.</li>
+ *     <li>Change the event poster by selecting a new image.</li>
+ *     <li>View a list of people who have signed up for the event.</li>
+ * </ul>
+ *
+ * <p>The activity retrieves event details from Firestore and provides functionality for updating the event's poster image in Firebase Storage.</p>
+ *
+ * <p>This activity interacts with Firebase Firestore and Firebase Storage to fetch and update event data.</p>
+ *
+ * <p>Extends {@link AppCompatActivity} to support modern Android UI and lifecycle management.</p>
+ */
+
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -29,6 +44,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseStorage firebaseStorage;
     private String eventId;
+    private String passId;
     private static final String TAG = "EventDetailsOrganizer";
 
     private final ActivityResultLauncher<Intent> pickImageLauncher = registerForActivityResult(
@@ -45,6 +61,19 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
             }
     );
 
+    /**
+     * Initializes the activity, setting up the UI elements, fetching event details from Firestore,
+     * and setting up listeners for user interactions.
+     * <p>It performs the following:</p>
+     * <ul>
+     *     <li>Initializes UI components such as TextViews, ImageView, and Buttons.</li>
+     *     <li>Retrieves the event ID and pass ID from the Intent and conditionally displays buttons based on passId.</li>
+     *     <li>Fetches event details (name, description, time, poster) from Firestore and updates the UI.</li>
+     *     <li>Sets up listeners for the Change Poster button and View People button.</li>
+     * </ul>
+     *
+     * @param savedInstanceState The saved state of the activity, if any.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +91,20 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
 
-        // Get the event ID passed through the intent
+        // Get the event ID and pass ID passed through the intent
         eventId = getIntent().getStringExtra("eventId");
         Log.d(TAG, "Received event ID: " + eventId);
+        passId = getIntent().getStringExtra("passId");
+        Log.d(TAG, "Received event ID: " + passId);
+
+        // Conditionally set button visibility based on passId
+        if (passId == null) {
+            changePosterButton.setVisibility(Button.VISIBLE);
+            viewPeopleButton.setVisibility(Button.VISIBLE);
+        } else {
+            changePosterButton.setVisibility(Button.GONE);
+            viewPeopleButton.setVisibility(Button.GONE);
+        }
 
         if (eventId != null) {
             // Fetch event details from Firestore
@@ -112,12 +152,26 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
     }
 
+    /**
+     * Opens the image picker to allow the organizer to select a new poster image from the device's gallery.
+     *
+     * <p>This method uses the {@link ActivityResultLauncher} to start an activity for result, which will pick an image
+     * and pass the URI to the {@link #uploadPosterToFirebase(Uri)} method.</p>
+     */
     private void openImagePicker() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         pickImageLauncher.launch(intent);
     }
 
+    /**
+     * Uploads the selected poster image to Firebase Storage and updates the event's poster path in Firestore.
+     *
+     * <p>This method uploads the image to Firebase Storage, retrieves its download URL, and updates the Firestore
+     * document with the new poster URL.</p>
+     *
+     * @param imageUri The URI of the selected image to be uploaded.
+     */
     private void uploadPosterToFirebase(Uri imageUri) {
         String posterId = UUID.randomUUID().toString();
         StorageReference storageReference = firebaseStorage.getReference().child("posters/" + posterId);
@@ -138,6 +192,14 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Updates the event's poster path in Firestore with the new URL from Firebase Storage.
+     *
+     * <p>This method updates the Firestore document for the event with the new poster path and then loads the new
+     * poster into the ImageView.</p>
+     *
+     * @param newPosterPath The URL of the new poster image.
+     */
     private void updatePosterPathInFirestore(String newPosterPath) {
         firestore.collection("events").document(eventId)
                 .update("posterPath", newPosterPath)

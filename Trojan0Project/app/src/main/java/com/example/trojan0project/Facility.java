@@ -25,7 +25,6 @@ public class Facility implements Serializable {
         this.facilityName = eventName;
     }
 
-
     /**
      * Retrieves the facility name.
      *

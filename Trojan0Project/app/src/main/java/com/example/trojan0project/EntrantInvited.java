@@ -72,7 +72,6 @@ public class EntrantInvited extends AppCompatActivity {
         Log.d("InvitedActivity", "Calling getInvitedEntrants() method");
     }
 
-
     /**
      * Gets a list of invited entrants for an event in Firestore
      * Entrants are identified as users with a status of 1
@@ -80,16 +79,13 @@ public class EntrantInvited extends AppCompatActivity {
     private void getInvitedEntrants() {
         final CollectionReference collectionReference = db.collection("users");
 
-
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
 
-
                 Log.d("Invited", "onEvent triggered");
 
                 invited.clear();
-
 
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                     String userType = doc.getString("user_type");
@@ -110,14 +106,9 @@ public class EntrantInvited extends AppCompatActivity {
                                     Profile profile = new Profile(firstName, lastName, email);
                                     invited.add(profile);
                                     Log.d("Invited", "Added Profile: " + profile.getFirstName() + " " + profile.getLastName());
-
-
                                 }
-
-
                             }
                         }
-
                     }
                 }
                 profileArrayAdapter.notifyDataSetChanged();
@@ -129,9 +120,6 @@ public class EntrantInvited extends AppCompatActivity {
                                     ", Email: " + profile.getEmail());
                 }
             }
-
-
         });
-
     }
 }

@@ -9,6 +9,7 @@
  * Outstanding Issues:
  *
  */
+
 package com.example.trojan0project;
 
 import android.content.Context;
@@ -83,7 +84,6 @@ public class JoinWaitlistFragment extends DialogFragment {
             emailField.setText(profile.getEmail());
         }
 
-
         confirmButton.setOnClickListener(v -> {
             profile.setFirstName(firstNameField.getText().toString());
             profile.setLastName(lastNameField.getText().toString());
@@ -94,10 +94,6 @@ public class JoinWaitlistFragment extends DialogFragment {
             }
             dismiss();
         });
-
         return view;
     }
-
-
-
 }

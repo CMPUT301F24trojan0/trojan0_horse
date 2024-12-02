@@ -10,6 +10,7 @@
  * Outstanding Issues:
  * No issues.
  */
+
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -70,8 +71,6 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
-
     }
 
     /**
@@ -127,8 +126,6 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
                                             }
                                         }
                                     }
-
-
                                 }
                             }
                         }
@@ -140,6 +137,5 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
                 .addOnFailureListener(e -> {
                     Log.e("MapEntrants", "Error getting entrant location", e);
                 });
-
     }
 }

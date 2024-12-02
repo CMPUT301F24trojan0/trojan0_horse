@@ -15,7 +15,9 @@
 
 package com.example.trojan0project;
 
-//farza: user stories:  02.02.01, 02.05.02
+
+//users stories 02.05.03 automatically resamples someone there is space in the waitinglist
+//therefore 01.05.01 will automatically be done if someone declines their invitation
 import static android.content.ContentValues.TAG;
 
 import android.graphics.Bitmap;

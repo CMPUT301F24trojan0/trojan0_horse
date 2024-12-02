@@ -23,14 +23,14 @@ public class organizer1SystemSample {
 
     @Before
     public void setup() throws NoSuchFieldException, IllegalAccessException {
-        // Mock the ArrayAdapter instead of interacting with the real one
+
         profileArrayAdapter = mock(ArrayAdapter.class);
 
-        // Initialize the SystemSample instance
+
         systemSample = new SystemSample();
         systemSample.waitList = new ArrayList<>();
 
-        // Use reflection to set the private profileArrayAdapter field
+
         Field adapterField = SystemSample.class.getDeclaredField("profileArrayAdapter");
         adapterField.setAccessible(true);
         adapterField.set(systemSample, profileArrayAdapter);

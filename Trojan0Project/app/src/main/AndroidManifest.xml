@@ -37,7 +37,7 @@
         <activity android:name=".JoinWaitlist" />
         <activity android:name=".EntrantInvited" />
         <activity android:name=".DisplayEventDetails" />
-        <activity android:name=".EventActivity" />
+        <activity android:name=".SystemSample" />
         <activity android:name=".FacilityActivity" />
         <activity android:name=".EventsListActivityOrganizer" />
         <activity android:name=".EventDetailsActivityOrganizer" />
@@ -57,7 +57,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".SystemSample"
+            android:name=".EventActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

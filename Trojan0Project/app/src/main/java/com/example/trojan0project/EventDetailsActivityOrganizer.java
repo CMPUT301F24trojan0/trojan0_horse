@@ -145,8 +145,8 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
         // Set up View People button click listener
         viewPeopleButton.setOnClickListener(v -> {
-            Intent intent = new Intent(EventDetailsActivityOrganizer.this, ViewFinalEntrantsEventActivity.class);
-            intent.putExtra("eventId", eventId);
+            Intent intent = new Intent(EventDetailsActivityOrganizer.this, PeopleFiltersActivity.class);
+            intent.putExtra("eventId", eventId); // Pass the eventId to the new activity
             startActivity(intent);
         });
 

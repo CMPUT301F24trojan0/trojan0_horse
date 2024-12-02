@@ -8,6 +8,7 @@
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/zxing_barcode_scanner"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="match_parent" >
 
         <Button
@@ -21,6 +22,9 @@
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
     </com.journeyapps.barcodescanner.DecoratedBarcodeView>
+=======
+        android:layout_height="match_parent" />
+>>>>>>> 87cbaeae7379b587eb04f6f752c755c36b14b79b
 
     <!-- Overlay Text -->
     <TextView
@@ -33,6 +37,22 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
+<<<<<<< HEAD
     <!-- Flashlight Toggle Button -->
 
 </RelativeLayout>
+=======
+    <!-- Cancel Button -->
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#843D9E"
+        android:text="Cancel"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+</RelativeLayout>
+>>>>>>> 87cbaeae7379b587eb04f6f752c755c36b14b79b

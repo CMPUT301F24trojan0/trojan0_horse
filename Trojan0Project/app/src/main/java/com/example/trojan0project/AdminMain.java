@@ -1,3 +1,9 @@
+/**
+ * AdminMain is an activity that serves as the main screen for the admin panel of the application.
+ * It provides buttons that navigate to different sections such as events, facilities, images, and profiles.
+ * Each button, when clicked, opens a new activity to manage or view relevant content.
+ */
+
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -7,15 +13,17 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminMain extends AppCompatActivity {
+
     private Button browseAllEvents;
     private Button browseAllFacilities;
     private Button browseAllImages;
     private Button browseAllProfiles;
 
     /**
-     * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the UI elements.
+     * Initializes the activity, sets the content view, references UI elements, and sets up click listeners
+     * for each button to navigate to respective activities.
      *
-     * @param savedInstanceState The saved state of the activity.
+     * @param savedInstanceState The saved instance state, if any, from the previous activity lifecycle.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,7 @@ public class AdminMain extends AppCompatActivity {
         browseAllImages = findViewById(R.id.browse_images_button);
         browseAllProfiles = findViewById(R.id.browse_profiles_button);
 
+        // Set click listeners for each button to navigate to corresponding activities
         browseAllEvents.setOnClickListener(v -> {
             Intent profileIntent = new Intent(AdminMain.this, EventActivity.class);
             startActivity(profileIntent);
@@ -49,4 +58,3 @@ public class AdminMain extends AppCompatActivity {
         });
     }
 }
-

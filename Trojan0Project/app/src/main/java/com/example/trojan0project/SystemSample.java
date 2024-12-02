@@ -15,7 +15,9 @@
 
 package com.example.trojan0project;
 
-//farza: user stories:  02.02.01, 02.05.02
+
+//users stories 02.05.03 automatically resamples someone there is space in the waitinglist
+//therefore 01.05.01 will automatically be done if someone declines their invitation
 import static android.content.ContentValues.TAG;
 
 import android.graphics.Bitmap;
@@ -46,8 +48,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-
-
 public class SystemSample extends AppCompatActivity {
 
     private FirebaseFirestore db;
@@ -55,8 +55,6 @@ public class SystemSample extends AppCompatActivity {
     private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
     //private String targetEventId = "9AOwqyKOPMUO7rCZIF6V";
     private String deviceId;
-
-
 
     private int numAttendees;
     ListView entrantsWaitlist;
@@ -96,7 +94,7 @@ public class SystemSample extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             // Retrieve the max_attendees field
-                            Long maxAttendees = document.getLong("maxNumberofEntrants");
+                            Long maxAttendees = document.getLong("maxNumberOfEntrants");
                             if (maxAttendees != null) {
                                 numAttendees = maxAttendees.intValue(); // Set numAttendees from Firestore
                                 Log.d(TAG, "Max Attendees: " + numAttendees);
@@ -111,32 +109,19 @@ public class SystemSample extends AppCompatActivity {
                     }
                 });
 
-
-
-
         fetchWaitlistButton.setOnClickListener(v -> {
-
             getWaitlist();
-
         });
         Log.d("WaitlistActivity", "Calling getWaitlist() method");
 
         sampleWaitlistButton.setOnClickListener(v -> {
-
             SamplerImplementation sampler = new SamplerImplementation();
             sampler.sampleWaitlist(waitList, numAttendees, targetEventId, profileArrayAdapter);
-
-
         });
         Log.d("sampleWaitlistActivity", "Calling sampleWaitlist() method");
-
-
-
         resamplingTwo(targetEventId);
-
-
-
     }
+
     /**
      * Fetches the waitlist of entrants for the specified event from Firestore.
      * It retrieves users marked as entrants for the event and adds them to the waitlist.
@@ -145,17 +130,12 @@ public class SystemSample extends AppCompatActivity {
     private void getWaitlist() {
         final CollectionReference collectionReference = db.collection("users");
 
-
-
         collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
-
-
                 Log.d("Waitlist", "onEvent triggered");
 
                 waitList.clear();
-
 
                 for (QueryDocumentSnapshot doc: queryDocumentSnapshots){
                     String userType = doc.getString("user_type");
@@ -177,16 +157,9 @@ public class SystemSample extends AppCompatActivity {
                                     Profile profile = new Profile(firstName, lastName, email, deviceId);
                                     waitList.add(profile);
                                     Log.d("Waitlist", "Added Profile: " + profile.getFirstName() + " " + profile.getLastName());
-
-
-
                                 }
-
-
-
                             }
                         }
-
                     }
                 }
                 profileArrayAdapter.notifyDataSetChanged();
@@ -198,15 +171,8 @@ public class SystemSample extends AppCompatActivity {
                             ", Device ID: " + profile.getDeviceId());
                 }
             }
-
-
         });
-
-
-
-
     }
-
 
     /**
      * This method listens for changes to the specified event document in Firestore.
@@ -218,7 +184,6 @@ public class SystemSample extends AppCompatActivity {
      * is reached.
      * @param targetEventId The ID of the target event for which attendees are being sampled.
      */
-
     private void resamplingTwo(String targetEventId) {
         // Use snapshot listener to actively listen for changes to the event document
         db.collection("events")
@@ -232,7 +197,7 @@ public class SystemSample extends AppCompatActivity {
                         }
 
                         if (documentSnapshot != null && documentSnapshot.exists()) {
-                            Long maxAttendees = documentSnapshot.getLong("maxNumberofEntrants");
+                            Long maxAttendees = documentSnapshot.getLong("maxNumberOfEntrants");
                             Long numSampled = documentSnapshot.getLong("num_sampled");
 
                             Log.d(TAG, "maxAttendees: " + maxAttendees);
@@ -270,11 +235,4 @@ public class SystemSample extends AppCompatActivity {
                     }
                 });
     }
-
-
-
-
-
-
 }
-

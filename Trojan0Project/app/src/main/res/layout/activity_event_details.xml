@@ -24,6 +24,7 @@
             android:text="Event Name"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:fontFamily="@font/quicksand"
             android:gravity="center"
             android:layout_marginBottom="16dp" />
 
@@ -32,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Event Description"
+            android:fontFamily="@font/quicksand"
             android:textSize="16sp"
             android:layout_marginBottom="16dp" />
 
@@ -40,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Time"
+            android:fontFamily="@font/quicksand"
             android:textSize="16sp"
             android:layout_marginBottom="16dp" />
 
@@ -48,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Time"
+            android:fontFamily="@font/quicksand"
             android:textSize="16sp"
             android:layout_marginBottom="16dp" />
 
@@ -56,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Time"
+            android:fontFamily="@font/quicksand"
             android:textSize="16sp"
             android:layout_marginBottom="16dp" />
 
@@ -65,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:backgroundTint="#FF6F61"
+            android:backgroundTint="@color/purple"
+            android:fontFamily="@font/quicksand"
             android:textColor="#FFFFFF"
             android:padding="12dp"
             android:layout_marginTop="24dp" />
@@ -73,6 +79,8 @@
             android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple"
+            android:fontFamily="@font/quicksand"
             android:text="Sign Up"
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal" />

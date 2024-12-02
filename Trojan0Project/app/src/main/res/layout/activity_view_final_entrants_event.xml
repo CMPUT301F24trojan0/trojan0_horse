@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/quicksand"
         android:text="View All People"
         android:textColor="#000000"
         android:textSize="40sp"
@@ -86,13 +86,48 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Send Notification"
-        android:backgroundTint="#8C52FF"
+        android:backgroundTint="@color/purple"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancelEntrantsButton"
+        app:layout_constraintHorizontal_weight="1.1"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="5dp" />
+
+    <!-- "Cancel Entrants" Button -->
+    <Button
+        android:id="@+id/cancelEntrantsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel Entrants"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/quicksand"
+        app:layout_constraintStart_toEndOf="@+id/sendNotificationButton"
+        app:layout_constraintEnd_toStartOf="@+id/sampleWaitlistButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="5dp" />
+
+    <!-- "Sample Waitlist" Button -->
+    <Button
+        android:id="@+id/sampleWaitlistButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sample Waitlist"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/quicksand"
+        app:layout_constraintStart_toEndOf="@+id/cancelEntrantsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="10dp"/>
 
     <!-- "End of events" TextView placed below the RecyclerView -->
     <TextView

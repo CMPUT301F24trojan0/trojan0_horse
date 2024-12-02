@@ -9,6 +9,7 @@
         android:id="@+id/eventNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:textSize="20sp"
         android:padding="8dp" />
 

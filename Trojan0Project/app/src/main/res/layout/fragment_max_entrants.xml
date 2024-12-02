@@ -14,5 +14,7 @@
         android:id="@+id/saveMaxEntrantsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
+        android:backgroundTint="@color/purple"
         android:text="Save" />
 </LinearLayout>

@@ -12,5 +12,6 @@
         android:text="Entrant Name"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -114,16 +114,16 @@ public class EventDetailsActivity extends AppCompatActivity {
                 Log.d(TAG, "Poster image loaded");
             }
 
-        /**
-         * Handles the click event for the "Cancel" button.
-         *
-         * <p>Closes the current activity and navigates back to the previous screen.</p>
-         */
-        // Cancel button listener
-        cancelButton.setOnClickListener(v -> {
-            Log.d(TAG, "Cancel button clicked");
-            finish(); // Ensure activity is properly finished
-        });
+            /**
+             * Handles the click event for the "Cancel" button.
+             *
+             * <p>Closes the current activity and navigates back to the previous screen.</p>
+             */
+            // Cancel button listener
+            cancelButton.setOnClickListener(v -> {
+                Log.d(TAG, "Cancel button clicked");
+                finish(); // Ensure activity is properly finished
+            });
 
             // Set up Sign Up button
             signUpButton.setOnClickListener(v -> handleSignUp(
@@ -147,48 +147,49 @@ public class EventDetailsActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(v -> {
             Log.d(TAG, "Sign Up button clicked");
 
-        if (latitude != 0.0 && longitude != 0.0) {
-            Log.d(TAG, "Valid location. Checking permissions...");
+            if (latitude != 0.0 && longitude != 0.0) {
+                Log.d(TAG, "Valid location. Checking permissions...");
 
-            // Check location permissions
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                        LOCATION_PERMISSION_REQUEST_CODE);
+                // Check location permissions
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                            LOCATION_PERMISSION_REQUEST_CODE);
+                } else {
+                    // Get current location
+                    fusedLocationClient.getLastLocation()
+                            .addOnSuccessListener(location -> {
+                                if (location != null) {
+                                    double currentLatitude = location.getLatitude();
+                                    double currentLongitude = location.getLongitude();
+                                    Log.d(TAG, "Current location: " + currentLatitude + ", " + currentLongitude);
+
+                                    // Navigate to JoinWaitlistActivity
+                                    Intent joinWaitlistIntent = new Intent(EventDetailsActivity.this, JoinWaitlist.class);
+                                    joinWaitlistIntent.putExtra("eventName", eventName);
+                                    joinWaitlistIntent.putExtra("description", description);
+                                    joinWaitlistIntent.putExtra("posterPath", posterUrl);
+                                    joinWaitlistIntent.putExtra("time", time);
+                                    joinWaitlistIntent.putExtra("eventId", eventId);
+                                    joinWaitlistIntent.putExtra("latitude", latitude);
+                                    joinWaitlistIntent.putExtra("longitude", longitude);
+                                    joinWaitlistIntent.putExtra("deadline", deadlineTimestamp); // Pass as long
+                                    joinWaitlistIntent.putExtra("maxNumberOfEntrants", maxEntrants);
+                                    joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
+                                    joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
+
+                                    Log.d(TAG, "Navigating to JoinWaitlistActivity with eventId: " + eventId);
+                                    startActivity(joinWaitlistIntent);
+                                } else {
+                                    Log.e(TAG, "Failed to retrieve current location");
+                                }
+                            });
+                }
             } else {
-                // Get current location
-                fusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(location -> {
-                            if (location != null) {
-                                double currentLatitude = location.getLatitude();
-                                double currentLongitude = location.getLongitude();
-                                Log.d(TAG, "Current location: " + currentLatitude + ", " + currentLongitude);
-
-                                // Navigate to JoinWaitlistActivity
-                                Intent joinWaitlistIntent = new Intent(EventDetailsActivity.this, JoinWaitlist.class);
-                                joinWaitlistIntent.putExtra("eventName", eventName);
-                                joinWaitlistIntent.putExtra("description", description);
-                                joinWaitlistIntent.putExtra("posterPath", posterUrl);
-                                joinWaitlistIntent.putExtra("time", time);
-                                joinWaitlistIntent.putExtra("eventId", eventId);
-                                joinWaitlistIntent.putExtra("latitude", latitude);
-                                joinWaitlistIntent.putExtra("longitude", longitude);
-                                joinWaitlistIntent.putExtra("deadline", deadlineTimestamp); // Pass as long
-                                joinWaitlistIntent.putExtra("maxNumberOfEntrants", maxEntrants);
-                                joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
-                                joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
-
-                                Log.d(TAG, "Navigating to JoinWaitlistActivity with eventId: " + eventId);
-                                startActivity(joinWaitlistIntent);
-                            } else {
-                                Log.e(TAG, "Failed to retrieve current location");
-                            }
-                        });
+                Log.e(TAG, "Latitude or Longitude is invalid");
             }
-        } else {
-            Log.e(TAG, "Latitude or Longitude is invalid");
-        }
+        });
     }
 
     @Override
@@ -200,7 +201,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             } else {
                 Log.e(TAG, "Location permission denied");
             }
-        });
+        }
     }
 
     /**

@@ -151,7 +151,7 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
     /**
      * Handles the click event on an event item.
      * Opens a StatusFragment to allow the user to accept or decline the event.
-     *
+     * Opens a WaitlistFragment to allow the user to choose to leave the waitlist for the event if they are currently on it.
      * @param event The event that was clicked.
      */
     @Override
@@ -187,8 +187,19 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
 
                                     // Show the fragment
                                     statusFragment.show(getSupportFragmentManager(), "StatusFragment");
-                                } else {
-                                    Log.d(TAG, "Event does not match participation status 1. Ignoring click.");
+                                } else if (participationStatus != null && participationStatus == 0) {
+                                    // Open WaitlistFragment for waitlisted events
+                                    WaitlistFragment waitlistFragment = new WaitlistFragment();
+
+                                    Bundle args = new Bundle();
+                                    args.putString("DEVICE_ID", deviceId);
+                                    args.putString("EVENT_ID", event.getEventId());
+                                    waitlistFragment.setArguments(args);
+
+                                    waitlistFragment.show(getSupportFragmentManager(), "WaitlistFragment");
+                                }
+                                else {
+                                    Log.d(TAG, "Event does not match participation status 0 or 1. Ignoring click.");
                                 }
                             } else {
                                 Log.d(TAG, "No participation status found for eventId: " + event.getEventId());

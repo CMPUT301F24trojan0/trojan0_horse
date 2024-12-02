@@ -41,6 +41,7 @@ buildscript {
 }
 
 dependencies {
+    implementation(libs.play.services.maps)
     //Mockito
     testImplementation ("org.mockito:mockito-core:4.5.1") // Use the latest version
 

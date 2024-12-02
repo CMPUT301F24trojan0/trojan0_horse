@@ -1,8 +1,3 @@
-/**
- * EntrantMain is the main activity for the entrant user, which handles the display of profile data,
- * event viewing, and the management of notifications.
- */
-
 package com.example.trojan0project;
 
 import static android.content.Intent.getIntent;
@@ -19,7 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -33,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 public class EntrantMain extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
+    private static final int QR_SCANNER_REQUEST_CODE = 200;
     private StorageReference storageReference;
     private String deviceId;
     private String username;
@@ -74,7 +72,6 @@ public class EntrantMain extends AppCompatActivity {
         Notification notificationHelper = new Notification();
         notificationHelper.getNotificationsForDevice(this, deviceId);
 
-        // Request POST_NOTIFICATIONS permission
         requestNotificationPermission();
 
         // Call createNotificationChannel to ensure the channel is created on compatible devices
@@ -86,44 +83,17 @@ public class EntrantMain extends AppCompatActivity {
             startActivity(profileIntent);
         });
 
+        // Set up the QR Code Scanner button
+        scanQRcodeButton.setOnClickListener(v -> {
+            Intent qrScannerIntent = new Intent(this, QrScannerActivity.class);
+            startActivityForResult(qrScannerIntent, QR_SCANNER_REQUEST_CODE);
+        });
+
         viewAllEventsButton.setOnClickListener(v -> {
             Intent profileIntent = new Intent(EntrantMain.this, ViewEvents.class);
             profileIntent.putExtra("DEVICE_ID", deviceId);
             startActivity(profileIntent);
         });
-    }
-
-    /**
-     * Creates a notification channel for devices running Android O and above.
-     *
-     * @param context The context in which the notification channel will be created.
-     */
-    public void createNotificationChannel(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-            if (notificationManager != null && notificationManager.getNotificationChannel("default") == null) {
-                CharSequence name = "Default Channel";
-                String description = "Channel for default notifications";
-                int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                NotificationChannel channel = new NotificationChannel("default", name, importance);
-                channel.setDescription(description);
-                notificationManager.createNotificationChannel(channel);
-            }
-        }
-    }
-
-    /**
-     * Requests the POST_NOTIFICATIONS permission on Android versions 33 and above.
-     */
-    private void requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // API 33+
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                // Request the permission if not already granted
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
-            }
-        }
     }
 
     /**
@@ -150,6 +120,37 @@ public class EntrantMain extends AppCompatActivity {
     }
 
     /**
+     * Requests permission for post notifications.
+     */
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // API 33+
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Request the permission if not already granted
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+        }
+    }
+
+    /**
+     * Creates a Notification Channel
+     */
+    public void createNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            if (notificationManager != null && notificationManager.getNotificationChannel("default") == null) {
+                CharSequence name = "Default Channel";
+                String description = "Channel for default notifications";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel("default", name, importance);
+                channel.setDescription(description);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+    }
+
+    /**
      * Displays a new image with the user's initials when no profile image is set.
      *
      * @param username The username used to generate the initial.
@@ -160,12 +161,20 @@ public class EntrantMain extends AppCompatActivity {
         profilePicture.setImageDrawable(mydrawing);
     }
 
-    /**
-     * Reloads the user's profile data when the activity comes back into focus.
-     */
     @Override
     protected void onResume() {
         super.onResume();
         loadProfileData(); // Reload the profile data when the activity comes back into focus
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == QR_SCANNER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String scannedData = data.getStringExtra("SCANNED_DATA");
+            if (scannedData != null) {
+                Toast.makeText(this, "QR Code Scanned: " + scannedData, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

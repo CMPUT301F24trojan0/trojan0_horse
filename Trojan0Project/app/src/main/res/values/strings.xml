@@ -10,4 +10,11 @@
         <item>Won and Declined</item>
     </string-array>
 
+    <string-array name="participation_statuses_organizer">
+        <item>All</item>
+        <item>Waitlisted</item>
+        <item>Selected</item>
+        <item>Cancell ed</item>
+    </string-array>
+
 </resources>

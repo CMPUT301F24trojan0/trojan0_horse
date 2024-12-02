@@ -52,15 +52,22 @@ public class ImageAdapter extends ArrayAdapter<Image> {
         View view;
         if(convertView == null){
             view = LayoutInflater.from(getContext()).inflate(R.layout.image_layout, parent, false);
+
+
         } else {
             view = convertView;
         }
         Image image = getItem(position);
         ImageView imageView = view.findViewById(R.id.image_view);
 
+
+
         if(image !=null){
             Glide.with(getContext()).load(image.getImageId()).into(imageView);
+
+
         }
+
         return view;
     }
 }

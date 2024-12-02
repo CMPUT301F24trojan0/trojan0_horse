@@ -96,31 +96,39 @@ public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback
                     LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
                     boolean hasLocations = false;
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                        Map<String, Object> geolocationData = (Map<String, Object>) documentSnapshot.get("geolocation");
+                        Map<String, Object> events = (Map<String, Object>) documentSnapshot.get("events");
 
-                        if (geolocationData != null && geolocationData.containsKey(eventId)) {
-                            // Retrieve the coordinates array for the specific event ID
-                            List<Double> coordinates = (List<Double>) geolocationData.get(eventId);
+                        if (events != null && events.containsKey(eventId)){
+                            Map<String, Object> eventDetails = (Map<String, Object>) events.get(eventId);
 
-                            if (coordinates != null && coordinates.size() == 2) {
-                                Double lat = coordinates.get(0);
-                                Double lng = coordinates.get(1);
-                                String username = documentSnapshot.getString("username");
+                            if(eventDetails != null){
 
-                                if (lat != null && lng != null) {
-                                    LatLng location = new LatLng(lat, lng);
-                                    entrantLocations.add(location);
+                                for (Map.Entry<String, Object> entry : eventDetails.entrySet()) {
+                                    String statusKey = entry.getKey();
 
-                                    // Add marker to the map
-                                    googleMap.addMarker(new MarkerOptions()
-                                            .position(location)
-                                            .title(username));
+                                    if ("0".equals(statusKey)){
+                                        Map<String, Object> geolocation = (Map<String, Object>) ((Map<String, Object>) entry.getValue()).get("geolocation");
 
-                                    // Include location in bounds builder
-                                    boundsBuilder.include(location);
-                                    hasLocations = true;
-                                } else {
-                                    Log.e("MapEntrants", "Invalid latitude or longitude for user: " + documentSnapshot.getId());
+                                        if (geolocation != null) {
+                                            Double lat = (Double) geolocation.get("latitude");
+                                            Double lng = (Double) geolocation.get("longitude");
+                                            String username = documentSnapshot.getString("username");
+
+                                            if (lat != null && lng != null) {
+                                                LatLng location = new LatLng(lat, lng);
+                                                entrantLocations.add(location);
+                                                googleMap.addMarker(new MarkerOptions()
+                                                        .position(location)
+                                                        .title(username));
+                                                boundsBuilder.include(location);
+                                                hasLocations = true;
+                                            } else {
+                                                Log.e("MapEntrants", "Latitude or Longitude is null for event ID: " + eventId);
+                                            }
+                                        }
+                                    }
+
+
                                 }
                             }
                         }

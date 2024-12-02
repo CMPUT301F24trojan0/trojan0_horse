@@ -118,6 +118,8 @@ public class QrScannerActivity extends AppCompatActivity {
                             intent.putExtra("time", documentSnapshot.getString("time"));
                             intent.putExtra("deadline", documentSnapshot.getTimestamp("deadline").toDate().getTime());
                             intent.putExtra("maxNumberOfEntrants", documentSnapshot.getLong("maxNumberOfEntrants").intValue());
+                            intent.putExtra("eventId", documentSnapshot.getString("eventId"));
+
 
                             startActivity(intent);
                             finish();

@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -17,7 +17,6 @@ import androidx.core.app.ActivityCompat;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.Date;
 
@@ -39,135 +38,125 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Activity started");
 
-        // Reference views
+        // Initialize views
         posterImageView = findViewById(R.id.posterImageView);
         eventNameTextView = findViewById(R.id.eventNameTextView);
         descriptionTextView = findViewById(R.id.descriptionTextView);
         timeTextView = findViewById(R.id.timeTextView);
-        deadlineTextView = findViewById(R.id.deadlineTextView); // New field
-        maxEntrantsTextView = findViewById(R.id.maxEntrantsTextView); // New field
+        deadlineTextView = findViewById(R.id.deadlineTextView);
+        maxEntrantsTextView = findViewById(R.id.maxEntrantsTextView);
         cancelButton = findViewById(R.id.cancelButton);
         signUpButton = findViewById(R.id.signUpButton);
 
         // Initialize location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Retrieve event details passed via intent
+        // Retrieve and display event details
         Intent intent = getIntent();
-        String eventName = null, description = null, posterUrl = null, time = null, eventId = null;
-        Date deadline = null; // New field
-        int maxNumberOfEntrants = 0; // New field
-        Double latitude = null, longitude = null;
-
         if (intent != null) {
-            eventName = intent.getStringExtra("eventName");
-            description = intent.getStringExtra("description");
-            posterUrl = intent.getStringExtra("posterPath");
-            time = intent.getStringExtra("time");
-            eventId = intent.getStringExtra("eventId");
-            latitude = intent.getDoubleExtra("latitude", 0.0);
-            longitude = intent.getDoubleExtra("longitude", 0.0);
-            deadline = (Date) intent.getSerializableExtra("deadline"); // New field
-            maxNumberOfEntrants = intent.getIntExtra("maxNumberOfEntrants", 0); // New field
+            String eventName = intent.getStringExtra("eventName");
+            String description = intent.getStringExtra("description");
+            String posterUrl = intent.getStringExtra("posterPath");
+            String time = intent.getStringExtra("time");
+            String eventId = intent.getStringExtra("eventId");
+            double latitude = intent.getDoubleExtra("latitude", 0.0);
+            double longitude = intent.getDoubleExtra("longitude", 0.0);
+            long deadlineTimestamp = intent.getLongExtra("deadline", -1);
+            int maxNumberOfEntrants = intent.getIntExtra("maxNumberOfEntrants", 0);
+            Date deadline = deadlineTimestamp != -1 ? new Date(deadlineTimestamp) : null;
 
-            Log.d(TAG, "onCreate: Received event details");
-            Log.d(TAG, "onCreate: eventName = " + eventName);
-            Log.d(TAG, "onCreate: description = " + description);
-            Log.d(TAG, "onCreate: posterUrl = " + posterUrl);
-            Log.d(TAG, "onCreate: time = " + time);
-            Log.d(TAG, "onCreate: eventId = " + eventId);
-            Log.d(TAG, "onCreate: latitude = " + latitude);
-            Log.d(TAG, "onCreate: longitude = " + longitude);
-            Log.d(TAG, "onCreate: deadline = " + deadline); // Log new field
-            Log.d(TAG, "onCreate: maxNumberOfEntrants = " + maxNumberOfEntrants); // Log new field
+            // Log received details
+            Log.d(TAG, "Received event details: " + eventName + ", " + description);
 
-            // Set values in views
+            // Populate views
             eventNameTextView.setText(eventName != null ? eventName : "N/A");
             descriptionTextView.setText(description != null ? description : "N/A");
             timeTextView.setText(time != null ? String.format("Time: %s", time) : "N/A");
-            deadlineTextView.setText(deadline != null ? String.format("Deadline: %s", deadline.toString()) : "N/A"); // New field
-            maxEntrantsTextView.setText(maxNumberOfEntrants > 0 ? String.format("Max Entrants: %d", maxNumberOfEntrants) : "N/A"); // New field
+            deadlineTextView.setText(deadline != null ? String.format("Deadline: %s", deadline.toString()) : "N/A");
+            maxEntrantsTextView.setText(maxNumberOfEntrants > 0 ? String.format("Max Entrants: %d", maxNumberOfEntrants) : "N/A");
 
             if (posterUrl != null) {
                 Glide.with(this).load(posterUrl).into(posterImageView);
-                Log.d(TAG, "onCreate: Loaded poster image");
+                Log.d(TAG, "Poster image loaded");
+            }
+
+            // Set up Cancel button
+            cancelButton.setOnClickListener(v -> {
+                Log.d(TAG, "Cancel button clicked");
+                finish();
+            });
+
+            // Set up Sign Up button
+            signUpButton.setOnClickListener(v -> handleSignUp(
+                    eventName, description, posterUrl, time, eventId, latitude, longitude, deadlineTimestamp, maxNumberOfEntrants
+            ));
+        } else {
+            Log.e(TAG, "Intent is null");
+        }
+    }
+
+    private void handleSignUp(String eventName, String description, String posterUrl, String time,
+                              String eventId, double latitude, double longitude, long deadlineTimestamp, int maxEntrants) {
+
+        if (latitude != 0.0 && longitude != 0.0) {
+            Log.d(TAG, "Valid location. Checking permissions...");
+
+            // Check location permissions
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                        LOCATION_PERMISSION_REQUEST_CODE);
+            } else {
+                // Get current location
+                fusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(location -> {
+                            if (location != null) {
+                                double currentLatitude = location.getLatitude();
+                                double currentLongitude = location.getLongitude();
+                                Log.d(TAG, "Current location: " + currentLatitude + ", " + currentLongitude);
+
+                                // Navigate to JoinWaitlistActivity
+                                Intent joinWaitlistIntent = new Intent(EventDetailsActivity.this, JoinWaitlist.class);
+                                joinWaitlistIntent.putExtra("eventName", eventName);
+                                joinWaitlistIntent.putExtra("description", description);
+                                joinWaitlistIntent.putExtra("posterPath", posterUrl);
+                                joinWaitlistIntent.putExtra("time", time);
+                                joinWaitlistIntent.putExtra("eventId", eventId);
+                                joinWaitlistIntent.putExtra("latitude", latitude);
+                                joinWaitlistIntent.putExtra("longitude", longitude);
+                                joinWaitlistIntent.putExtra("deadline", deadlineTimestamp); // Pass as long
+                                joinWaitlistIntent.putExtra("maxNumberOfEntrants", maxEntrants);
+                                joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
+                                joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
+
+                                Log.d(TAG, "Navigating to JoinWaitlistActivity with eventId: " + eventId);
+                                startActivity(joinWaitlistIntent);
+                            } else {
+                                Log.e(TAG, "Failed to retrieve current location");
+                            }
+                        });
             }
         } else {
-            Log.e(TAG, "onCreate: Intent is null");
+            Log.e(TAG, "Latitude or Longitude is invalid");
         }
+    }
 
-        // Cancel button listener
-        cancelButton.setOnClickListener(v -> {
-            Log.d(TAG, "Cancel button clicked");
-            finish(); // Ensure activity is properly finished
-        });
-
-        // Sign Up button listener
-        String finalEventName = eventName;
-        String finalDescription = description;
-        String finalPosterUrl = posterUrl;
-        String finalTime = time;
-        String finalEventId = eventId;
-        Date finalDeadline = deadline; // New field
-        int finalMaxNumberOfEntrants = maxNumberOfEntrants; // New field
-        Double finalLatitude = latitude;
-        Double finalLongitude = longitude;
-
-        signUpButton.setOnClickListener(v -> {
-            Log.d(TAG, "Sign Up button clicked");
-
-            if (finalLatitude != null && finalLongitude != null) {
-                Log.d(TAG, "Latitude and Longitude are valid. Getting current geolocation...");
-
-                // Check for location permissions
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    Log.d(TAG, "Requesting location permissions...");
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                            LOCATION_PERMISSION_REQUEST_CODE);
-                } else {
-                    // Get current location
-                    fusedLocationClient.getLastLocation()
-                            .addOnSuccessListener(new OnSuccessListener<Location>() {
-                                @Override
-                                public void onSuccess(Location location) {
-                                    if (location != null) {
-                                        double currentLatitude = location.getLatitude();
-                                        double currentLongitude = location.getLongitude();
-                                        Log.d(TAG, "Current location: Latitude = " + currentLatitude + ", Longitude = " + currentLongitude);
-
-                                        // Navigate to JoinWaitlistActivity
-                                        Intent joinWaitlistIntent = new Intent(EventDetailsActivity.this, JoinWaitlist.class);
-                                        joinWaitlistIntent.putExtra("eventName", finalEventName);
-                                        joinWaitlistIntent.putExtra("description", finalDescription);
-                                        joinWaitlistIntent.putExtra("posterPath", finalPosterUrl);
-                                        joinWaitlistIntent.putExtra("time", finalTime);
-                                        joinWaitlistIntent.putExtra("eventId", finalEventId);
-                                        joinWaitlistIntent.putExtra("latitude", finalLatitude);
-                                        joinWaitlistIntent.putExtra("longitude", finalLongitude);
-                                        joinWaitlistIntent.putExtra("deadline", finalDeadline); // Pass new field
-                                        joinWaitlistIntent.putExtra("maxNumberOfEntrants", finalMaxNumberOfEntrants); // Pass new field
-                                        joinWaitlistIntent.putExtra("currentLatitude", currentLatitude);
-                                        joinWaitlistIntent.putExtra("currentLongitude", currentLongitude);
-
-                                        Log.d(TAG, "onSignUpButtonClick: Passing eventId = " + finalEventId + " to JoinWaitlistActivity");
-                                        startActivity(joinWaitlistIntent);
-                                    } else {
-                                        Log.e(TAG, "Failed to retrieve current location.");
-                                    }
-                                }
-                            });
-                }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Location permission granted");
             } else {
-                Log.e(TAG, "Latitude or Longitude is null.");
+                Log.e(TAG, "Location permission denied");
             }
-        });
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy: EventDetailsActivity destroyed");
+        Log.d(TAG, "EventDetailsActivity destroyed");
     }
 }

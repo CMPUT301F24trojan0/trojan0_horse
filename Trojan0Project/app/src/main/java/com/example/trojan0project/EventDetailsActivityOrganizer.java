@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.trojan0project.Notification;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -37,6 +38,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class EventDetailsActivityOrganizer extends AppCompatActivity {
@@ -228,6 +232,37 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
                     Glide.with(this)
                             .load(newPosterPath)
                             .into(eventPosterImageView);
+
+                    // Fetch the event details to notify users
+                    firestore.collection("events").document(eventId)
+                            .get()
+                            .addOnSuccessListener(documentSnapshot -> {
+                                if (documentSnapshot.exists()) {
+                                    String eventName = documentSnapshot.getString("eventName"); // Assuming there's a "name" field for the event
+                                    Map<String, Object> usersMap = (Map<String, Object>) documentSnapshot.get("users");
+
+                                    if (usersMap != null) {
+                                        List<String> deviceIds = new ArrayList<>(usersMap.keySet());
+                                        Notification notifications = new Notification();
+                                        for (String deviceId : deviceIds) {
+                                            notifications.addNotificationToDevice(
+                                                    deviceId,
+                                                    eventId,
+                                                    "Poster Updated",
+                                                    "The poster for event \"" + eventName + "\" has been updated."
+                                            );
+                                        }
+                                    } else {
+                                        Log.w(TAG, "Users map is empty or null.");
+                                    }
+                                } else {
+                                    Log.e(TAG, "Event not found in Firestore.");
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(this, "Failed to fetch event details", Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, "Error fetching event details: " + e.getMessage());
+                            });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Failed to update poster path in Firestore", Toast.LENGTH_SHORT).show();

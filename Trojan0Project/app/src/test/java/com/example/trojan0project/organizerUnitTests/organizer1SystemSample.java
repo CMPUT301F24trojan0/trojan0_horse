@@ -5,7 +5,6 @@ import static org.mockito.Mockito.*;
 import android.widget.ArrayAdapter;
 
 import com.example.trojan0project.Profile;
-import com.example.trojan0project.SystemSample;
 
 import org.junit.Before;
 import org.junit.Test;

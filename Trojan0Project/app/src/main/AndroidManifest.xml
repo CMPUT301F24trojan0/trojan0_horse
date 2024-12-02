@@ -44,9 +44,7 @@
         <activity android:name=".EventsListActivityOrganizer" />
         <activity android:name=".EventDetailsActivityOrganizer" />
         <activity android:name=".ViewFinalEntrantsEventActivity" />
-        <activity android:name=".CancelEntrants" />
         <activity android:name=".ListEvents" />
-        <activity android:name=".SystemSample" />
         <activity android:name=".AdminMain"/>
 
         <!-- QR Code Scanner Activity -->

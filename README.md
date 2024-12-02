@@ -75,7 +75,7 @@ OpenJDK 64-Bit Server VM Temurin-21.0.2+13 (build 21.0.2+13-LTS, mixed mode)
 ### Test Commands
 
 ```
-[Assuming the firebase tools are not currently within the testing machine. 
+[Assuming the firebase tools are not currently within the testing machine]
 curl -sL https://firebase.tools | bash     
 ```
 ```

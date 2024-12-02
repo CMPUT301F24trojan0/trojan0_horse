@@ -14,7 +14,6 @@ public class Entrant5RemoveProfilePicture {
 
     @Before
     public void setup() {
-        // Simulate profile data
         mockProfileData = new HashMap<>();
         mockProfileData.put("first_name", "Gurleen");
         mockProfileData.put("last_name", "Bamrah");
@@ -27,7 +26,7 @@ public class Entrant5RemoveProfilePicture {
 
     @Test
     public void testRemoveProfilePicture() {
-        mockProfileData.put("profile_picture_url", null); // Simulate removing the picture
+        mockProfileData.put("profile_picture_url", null);
 
         assertNull(mockProfileData.get("profile_picture_url"));
     }

@@ -84,7 +84,7 @@
         android:text="Profile Page"
         android:textSize="22sp"
         android:textColor="#000000"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/quicksand"
         android:layout_marginBottom="24dp" />
 
     <!-- First Name Input -->
@@ -96,6 +96,7 @@
         android:hint="First Name"
         android:textColor="@color/black"
         android:inputType="textPersonName"
+        android:fontFamily="@font/quicksand"
         android:layout_marginBottom="12dp" />
 
     <!-- Last Name Input -->
@@ -107,6 +108,7 @@
         android:hint="Last Name"
         android:textColor="@color/black"
         android:inputType="textPersonName"
+        android:fontFamily="@font/quicksand"
         android:layout_marginBottom="12dp" />
 
     <!-- Username Input -->
@@ -118,6 +120,7 @@
         android:hint="Username"
         android:textColor="@color/black"
         android:inputType="textPersonName"
+        android:fontFamily="@font/quicksand"
         android:layout_marginBottom="12dp" />
 
     <!-- Email Address Input -->
@@ -129,6 +132,7 @@
         android:hint="Email Address"
         android:textColor="@color/black"
         android:inputType="textEmailAddress"
+        android:fontFamily="@font/quicksand"
         android:layout_marginBottom="12dp" />
 
     <!-- Phone Number Input -->
@@ -139,6 +143,7 @@
         android:layout_below="@id/emailInput"
         android:hint="Phone Number"
         android:textColor="@color/black"
+        android:fontFamily="@font/quicksand"
         android:inputType="phone"
         android:layout_marginBottom="12dp" />
 
@@ -149,6 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/phoneNumberInput"
         android:textColor="@color/black"
+        android:fontFamily="@font/quicksand"
         android:text="Would you like to receive notifications?"
         android:textSize="16sp"
         android:layout_marginTop="8dp" />

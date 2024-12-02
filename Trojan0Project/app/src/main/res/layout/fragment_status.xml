@@ -13,6 +13,7 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="Status: Invited to Apply"
+        android:fontFamily="@font/quicksand"
         android:padding="10dp"
         android:textColor="#000000"
         android:textSize="24sp" />
@@ -27,6 +28,8 @@
             android:id="@+id/buttonAccept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:backgroundTint="@color/purple"
             android:layout_marginEnd="16dp"
             android:text="Accept" />
 
@@ -34,6 +37,8 @@
             android:id="@+id/buttonDecline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:backgroundTint="@color/purple"
             android:text="Decline" />
 
     </LinearLayout>

@@ -11,14 +11,14 @@
 
     <!-- Event Title -->
 
-
     <TextView
         android:id="@+id/event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="Event Title"
-        android:textColor="@color/black"
+        android:textColor="@color/purple"
+        android:fontFamily="@font/quicksand"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +30,7 @@
         android:id="@+id/location_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:layout_marginTop="64dp"
         android:text="Location"
         android:textColor="@color/black"
@@ -54,6 +55,7 @@
         android:layout_marginTop="40dp"
         android:text="Time"
         android:textColor="@color/black"
+        android:fontFamily="@font/quicksand"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/location_label" />
@@ -68,8 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/time_label" />
 
-
-
     <TextView
         android:id="@+id/more_info_label"
         android:layout_width="wrap_content"
@@ -77,10 +77,10 @@
         android:layout_marginTop="44dp"
         android:text="More Information"
         android:textColor="@color/black"
+        android:fontFamily="@font/quicksand"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/time_label" />
-
 
     <View
         android:layout_width="0dp"
@@ -91,11 +91,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/more_info_label" />
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

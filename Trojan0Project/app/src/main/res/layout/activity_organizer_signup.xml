@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Organizer Sign Up"
+        android:fontFamily="@font/quicksand"
         android:textSize="32sp"
         android:gravity="center"
         android:layout_gravity="center"
@@ -42,9 +43,10 @@
         android:id="@+id/signup_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:backgroundTint="#b391f8"
+        android:backgroundTint="@color/purple"
         android:text="Sign up" />
 
 </LinearLayout>

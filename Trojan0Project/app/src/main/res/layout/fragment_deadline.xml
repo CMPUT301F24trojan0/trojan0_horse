@@ -9,5 +9,7 @@
         android:id="@+id/selectDeadlineButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand"
+        android:backgroundTint="@color/purple"
         android:text="Select Deadline" />
 </LinearLayout>

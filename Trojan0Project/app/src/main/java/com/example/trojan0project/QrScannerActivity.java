@@ -1,6 +1,8 @@
 package com.example.trojan0project;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -8,17 +10,24 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.zxing.Result;
+import com.google.zxing.ResultPoint;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
-import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 public class QrScannerActivity extends AppCompatActivity {
     private static final String TAG = "QrScannerActivity";
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 200;
+
     private DecoratedBarcodeView barcodeScannerView;
     private FirebaseFirestore db;
     private Button cancelButton;
@@ -29,116 +38,123 @@ public class QrScannerActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Activity started");
         setContentView(R.layout.activity_qr_scanner);
 
-        // Initialize views and Firestore
+        // Initialize views
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
         cancelButton = findViewById(R.id.btn_cancel);
         db = FirebaseFirestore.getInstance();
 
-        // Set up cancel button functionality
+        // Request camera permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    CAMERA_PERMISSION_REQUEST_CODE);
+        } else {
+            initializeScanner();
+        }
+
+        // Cancel button functionality
         cancelButton.setOnClickListener(v -> {
             Log.d(TAG, "Cancel button clicked");
             setResult(RESULT_CANCELED);
             finish();
         });
+    }
 
-        // Set up continuous QR code scanning
+    // Handle the result of the camera permission request
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Camera permission granted");
+                initializeScanner();
+            } else {
+                Log.e(TAG, "Camera permission denied");
+                Toast.makeText(this, "Camera permission is required to scan QR codes", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
+    // Initialize the QR scanner
+    private void initializeScanner() {
         barcodeScannerView.decodeContinuous(new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
-                if (result == null || result.getText().isEmpty()) {
-                    Log.d(TAG, "barcodeResult: No valid QR code detected.");
-                    return;
-                }
-
                 String scannedData = result.getText();
-                Log.d(TAG, "barcodeResult: QR code scanned successfully.");
-                Log.d(TAG, "Scanned data: " + scannedData);
-
-                handleScannedData(scannedData);
+                if (scannedData != null) {
+                    Log.d(TAG, "QR code scanned successfully.");
+                    handleScannedData(scannedData);
+                }
             }
 
             @Override
-            public void possibleResultPoints(@NonNull java.util.List<com.google.zxing.ResultPoint> resultPoints) {
-                Log.d(TAG, "possibleResultPoints: Result points detected - " + resultPoints.size());
+            public void possibleResultPoints(@NonNull List<ResultPoint> resultPoints) {
+                // No action required for now
             }
         });
     }
 
+    // Handle the scanned QR code data
     private void handleScannedData(String scannedData) {
         try {
-            Log.d(TAG, "handleScannedData: Processing scanned data.");
-
-            // Parse JSON data from QR code
             JSONObject jsonObject = new JSONObject(scannedData);
-            String eventId = jsonObject.optString("id", null); // Use optString to avoid exceptions
-            if (eventId == null || eventId.isEmpty()) {
-                throw new JSONException("Event ID is missing or invalid in QR code data.");
-            }
-            Log.d(TAG, "handleScannedData: Parsed eventId = " + eventId);
+            String eventId = jsonObject.getString("id");
+            Log.d(TAG, "Parsed eventId = " + eventId);
 
-            // Query Firestore to fetch the event data
             db.collection("events").document(eventId).get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
                             Log.d(TAG, "Event found in database: " + documentSnapshot.getData());
 
-                            // Extract event details safely
-                            String eventName = documentSnapshot.getString("eventName");
-                            String description = documentSnapshot.getString("description");
-                            Double latitude = documentSnapshot.getDouble("latitude");
-                            Double longitude = documentSnapshot.getDouble("longitude");
-                            String posterPath = documentSnapshot.getString("posterPath");
-                            String time = documentSnapshot.getString("time");
-
-                            Log.d(TAG, "Starting EventDetailsActivity with event data.");
+                            // Pass data to EventDetailsActivity
                             Intent intent = new Intent(QrScannerActivity.this, EventDetailsActivity.class);
-                            intent.putExtra("eventId", eventId);
-                            intent.putExtra("eventName", eventName != null ? eventName : "N/A");
-                            intent.putExtra("description", description != null ? description : "N/A");
-                            intent.putExtra("latitude", latitude != null ? latitude : 0.0);
-                            intent.putExtra("longitude", longitude != null ? longitude : 0.0);
-                            intent.putExtra("posterPath", posterPath != null ? posterPath : "");
-                            intent.putExtra("time", time != null ? time : "N/A");
+                            intent.putExtra("eventName", documentSnapshot.getString("eventName"));
+                            intent.putExtra("description", documentSnapshot.getString("description"));
+                            intent.putExtra("latitude", documentSnapshot.getDouble("latitude"));
+                            intent.putExtra("longitude", documentSnapshot.getDouble("longitude"));
+                            intent.putExtra("posterPath", documentSnapshot.getString("posterPath"));
+                            intent.putExtra("time", documentSnapshot.getString("time"));
+                            intent.putExtra("deadline", documentSnapshot.getTimestamp("deadline").toDate().getTime());
+                            intent.putExtra("maxNumberOfEntrants", documentSnapshot.getLong("maxNumberOfEntrants").intValue());
 
                             startActivity(intent);
-
-                            // Finish QrScannerActivity to prevent multiple instances
                             finish();
                         } else {
-                            Log.w(TAG, "handleScannedData: Event not found in database.");
-                            Toast.makeText(QrScannerActivity.this, "Event not found in database.", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG, "Event not found in database.");
+                            Toast.makeText(QrScannerActivity.this, "Event not found.", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(e -> {
-                        Log.e(TAG, "handleScannedData: Error fetching event: ", e);
+                        Log.e(TAG, "Error fetching event data", e);
                         Toast.makeText(QrScannerActivity.this, "Error fetching event.", Toast.LENGTH_SHORT).show();
                     });
-        } catch (JSONException e) {
-            Log.e(TAG, "handleScannedData: Invalid QR Code format or missing fields: ", e);
-            Toast.makeText(this, "Invalid QR Code format.", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(TAG, "handleScannedData: Unexpected error while processing scanned data: ", e);
-            Toast.makeText(this, "Unexpected error occurred.", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Invalid QR Code format", e);
+            Toast.makeText(this, "Invalid QR Code format.", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: Resuming barcode scanner");
-        barcodeScannerView.resume();
+        if (barcodeScannerView != null) {
+            barcodeScannerView.resume();
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause: Pausing barcode scanner");
-        barcodeScannerView.pause();
+        if (barcodeScannerView != null) {
+            barcodeScannerView.pause();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy: QrScannerActivity destroyed");
+        Log.d(TAG, "QrScannerActivity destroyed");
     }
 }

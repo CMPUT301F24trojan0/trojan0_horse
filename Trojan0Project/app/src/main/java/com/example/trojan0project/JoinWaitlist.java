@@ -203,75 +203,95 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
                 });
     }
 
+
     @Override
     public void onConfirm(Profile profile) {
         if (deviceId == null) {
-            Log.e("JoinWaitlist", "Device ID is null. Cannot proceed with waitlist addition.");
-            //Toast.makeText(this, "Device ID is not available. Please try again.", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Device ID is null. Cannot proceed with waitlist addition.");
+            Toast.makeText(this, "Device ID is not available. Please try again.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Log.d("JoinWaitlist", "Starting waitlist confirmation for Device ID: " + deviceId + " and Event ID: " + eventId);
+        Log.d(TAG, "Starting waitlist confirmation for Device ID: " + deviceId + " and Event ID: " + eventId);
 
-        db.collection("users").document(deviceId).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Log.d("JoinWaitlist", "User document found for Device ID: " + deviceId);
+        // Fetch event details to check max entrants and current waitlist size
+        db.collection("events").document(eventId).get()
+                .addOnSuccessListener(eventSnapshot -> {
+                    if (eventSnapshot.exists()) {
+                        Log.d(TAG, "Event document found for Event ID: " + eventId);
 
-                        String userType = documentSnapshot.getString("user_type");
-                        if ("entrant".equals(userType)) {
-                            Log.d("JoinWaitlist", "User type is 'entrant'. Proceeding with waitlist addition.");
+                        int maxEntrants = eventSnapshot.contains("maxNumberOfEntrants") ?
+                                eventSnapshot.getLong("maxNumberOfEntrants").intValue() : Integer.MAX_VALUE;
 
-                            Map<String, Object> eventsData = new HashMap<>();
-                            eventsData.put(eventId, 0);
+                        Map<String, Object> users = (Map<String, Object>) eventSnapshot.get("users");
+                        int currentWaitlistSize = (users != null) ? users.size() : 0;
 
-                            //making a new geolocation field - vishal can add if statement for his fragment here if user agrees
-                            Map<String,Object> geolocationData = new HashMap<>();
-                            List<Double> coordinates = new ArrayList<>();
-                            coordinates.add(userLatitude);
-                            coordinates.add(userLongitude);
-                            geolocationData.put(eventId, coordinates);
+                        Log.d(TAG, "Max Entrants: " + maxEntrants + ", Current Waitlist Size: " + currentWaitlistSize);
 
-                            Map<String, Object> userUpdates = new HashMap<>();
-                            userUpdates.put("events", eventsData);
-                            userUpdates.put("geolocation", geolocationData);
-
-                            db.collection("users").document(deviceId)
-                                    .set(userUpdates, SetOptions.merge())
-                                    .addOnSuccessListener(aVoid -> {
-                                        Log.d("JoinWaitlist", "Event ID: " + eventId + " successfully added to user's document with Device ID: " + deviceId);
-                                        Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Log.e("JoinWaitlist", "Failed to add Event ID: " + eventId + " to user's document: " + e.getMessage());
-                                        Toast.makeText(this, "Failed to add to waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    });
-
-                            Map<String, Object> userMap = new HashMap<>();
-                            userMap.put(deviceId, 0);
-                            db.collection("events").document(eventId)
-                                    .set(Collections.singletonMap("users", userMap), SetOptions.merge())
-                                    .addOnSuccessListener(aVoid -> {
-                                        Log.d("JoinWaitlist", "Device ID: " + deviceId + " successfully added to event's waitlisted list for Event ID: " + eventId);
-                                        Toast.makeText(this, "Event waitlist updated.", Toast.LENGTH_SHORT).show();
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Log.e("JoinWaitlist", "Failed to add Device ID: " + deviceId + " to event's waitlisted list: " + e.getMessage());
-                                        Toast.makeText(this, "Failed to update event waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    });
-                        } else {
-                            Log.d("JoinWaitlist", "User type is not 'entrant'. Skipping waitlist addition.");
-                            Toast.makeText(this, "Only entrants can join the waitlist.", Toast.LENGTH_SHORT).show();
+                        // Check if the waitlist is full
+                        if (currentWaitlistSize >= maxEntrants) {
+                            Toast.makeText(this, "Waitlist is full!", Toast.LENGTH_SHORT).show();
+                            return; // Stop further execution
                         }
+
+                        // Proceed to add the user to the waitlist
+                        addToWaitlist(profile);
                     } else {
-                        Log.d("JoinWaitlist", "No user document found for Device ID: " + deviceId);
-                        Toast.makeText(this, "User document does not exist.", Toast.LENGTH_SHORT).show();
+                        Log.w(TAG, "Event not found for Event ID: " + eventId);
+                        Toast.makeText(this, "Event not found. Please try again later.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("JoinWaitlist", "Failed to retrieve user document for Device ID: " + deviceId + ": " + e.getMessage());
-                    Toast.makeText(this, "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Failed to retrieve event details for Event ID: " + eventId, e);
+                    Toast.makeText(this, "Failed to load event details. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
+
+
+    private void addToWaitlist(Profile profile) {
+        Log.d(TAG, "Adding user to waitlist with Device ID: " + deviceId + " and Event ID: " + eventId);
+
+        Map<String, Object> eventsData = new HashMap<>();
+        eventsData.put(eventId, 0);
+
+        Map<String, Object> geolocationData = new HashMap<>();
+        List<Double> coordinates = new ArrayList<>();
+        coordinates.add(userLatitude);
+        coordinates.add(userLongitude);
+        geolocationData.put(eventId, coordinates);
+
+        Map<String, Object> userUpdates = new HashMap<>();
+        userUpdates.put("events", eventsData);
+        userUpdates.put("geolocation", geolocationData);
+
+        // Update user's document in Firestore
+        db.collection("users").document(deviceId)
+                .set(userUpdates, SetOptions.merge())
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Event ID: " + eventId + " successfully added to user's document.");
+                    Toast.makeText(this, "You have been waitlisted for the event.", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to add Event ID: " + eventId + " to user's document: " + e.getMessage());
+                    Toast.makeText(this, "Failed to add to waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put(deviceId, 0);
+
+        // Update event's document in Firestore
+        db.collection("events").document(eventId)
+                .set(Collections.singletonMap("users", userMap), SetOptions.merge())
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Device ID: " + deviceId + " successfully added to event's waitlisted list.");
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to add Device ID: " + deviceId + " to event's waitlisted list: " + e.getMessage());
+                    Toast.makeText(this, "Failed to update event waitlist: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
 }
+
 

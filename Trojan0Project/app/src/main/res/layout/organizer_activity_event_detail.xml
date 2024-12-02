@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -27,6 +28,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintTop_toBottomOf="@id/event_poster_image_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -38,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Event Description"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintTop_toBottomOf="@id/event_name_text_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -49,6 +52,7 @@
         android:layout_height="wrap_content"
         android:text="Event Time"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/quicksand"
         app:layout_constraintTop_toBottomOf="@id/event_description_text_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -56,24 +60,51 @@
     <!-- Change Poster Button -->
 
     <!-- View People Button -->
+
     <Button
         android:id="@+id/change_poster_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="56dp"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/quicksand"
         android:text="Change Poster"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/view_people_button" />
+        app:layout_constraintEnd_toStartOf="@id/view_people_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_time_text_view"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/view_people_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="152dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/quicksand"
         android:text="View People"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/event_time_text_view"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/view_map_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="View Entrants On Map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/purple"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_people_button"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

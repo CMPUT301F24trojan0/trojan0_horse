@@ -152,30 +152,6 @@ public class ViewProfile extends AppCompatActivity {
         // Load profile data
         loadProfileData();
 
-        // Fetch and display notifications for the device
-        Notification notificationHelper = new Notification();
-        notificationHelper.getNotificationsForDevice(this, deviceId);
-        // Request POST_NOTIFICATIONS permission
-        requestNotificationPermission();
-        // Call createNotificationChannel to ensure the channel is created on compatible devices
-        createNotificationChannel(this);
-
-        /*
-        String deviceId = "8fb329762643a6cb";
-
-        // Sample notification 1
-        String eventId1 = "8492iF6Eu41dwGCB1yUG";
-        String title1 = "Event Reminder";
-        String message1 = "Don't forget to join the upcoming event!";
-        notificationHelper.addNotificationToDevice(deviceId, eventId1, title1, message1);
-
-        // Sample notification 2
-        String eventId2 = "E4sUpzhqDYcazajGbdlW";
-        String title2 = "Special Offer";
-        String message2 = "Check out the exclusive offer available for event participants!";
-        notificationHelper.addNotificationToDevice(deviceId, eventId2, title2, message2);
-        */
-
         // Set up the button to update profile image
         editImageButton.setOnClickListener(v -> updateImage());
     }
@@ -208,17 +184,6 @@ public class ViewProfile extends AppCompatActivity {
                 NotificationChannel channel = new NotificationChannel("default", name, importance);
                 channel.setDescription(description);
                 notificationManager.createNotificationChannel(channel);
-            }
-        }
-    }
-
-    private void requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // API 33+
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                // Request the permission if not already granted
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
             }
         }
     }
@@ -263,8 +228,6 @@ public class ViewProfile extends AppCompatActivity {
                                 // Fetch and display notifications for the device
                                 Notification notificationHelper = new Notification();
                                 notificationHelper.getNotificationsForDevice(this, deviceId);
-                                // Request POST_NOTIFICATIONS permission
-                                requestNotificationPermission();
                                 // Call createNotificationChannel to ensure the channel is created on compatible devices
                                 createNotificationChannel(this);
                             } else {

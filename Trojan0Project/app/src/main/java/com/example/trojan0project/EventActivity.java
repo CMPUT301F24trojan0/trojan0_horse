@@ -25,6 +25,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +56,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -148,10 +150,43 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedEvent = dataList.get(i);
-                Log.d(TAG, "onItemClick: Event selected: " + selectedEvent.getEventName());
 
-                DeleteEventFragment fragment = DeleteEventFragment.newInstance(selectedEvent);
-                fragment.show(getSupportFragmentManager(), "Delete Event");
+                // Log the selected event's name
+                String eventName = selectedEvent.getEventName();
+                Log.d(TAG, "onItemClick: Event selected: " + eventName);
+
+                // Query Firestore for the eventId associated with this eventName
+                db.collection("events")
+                        .whereEqualTo("eventName", eventName)
+                        .get()
+                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                            if (!queryDocumentSnapshots.isEmpty()) {
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                    String eventId = document.getString("eventId");
+                                    Log.d(TAG, "onItemClick: Retrieved eventId: " + eventId);
+                                    DeleteEventFragment fragment = DeleteEventFragment.newInstance(selectedEvent, eventId);
+                                    fragment.show(getSupportFragmentManager(), "Delete Event");
+
+                                    // Pass the eventId to DisplayEventDetails activity
+                                    Intent intent = new Intent(getBaseContext(), DisplayEventDetails.class);
+                                    intent.putExtra("eventId", eventId);
+                                    intent.putExtra("eventName", eventName);
+                                    //startActivity(intent);
+
+                                    break; // Exit loop after finding the first match
+                                }
+                            } else {
+                                Log.e(TAG, "onItemClick: No event found with name: " + eventName);
+                                Toast.makeText(EventActivity.this, "No event found with this name.", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.e(TAG, "onItemClick: Firestore query failed: ", e);
+                            Toast.makeText(EventActivity.this, "Failed to fetch event details.", Toast.LENGTH_SHORT).show();
+                        });
+
+
+
             }
         });
     }

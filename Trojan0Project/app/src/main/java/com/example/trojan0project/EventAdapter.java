@@ -67,7 +67,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     /**
      * Binds the data for an event to the specified ViewHolder.
      *
-     * @param holder The ViewHolder to be updated with the event data.
+     * @param holder   The ViewHolder to be updated with the event data.
      * @param position The position of the event within the adapter's data set.
      */
     @Override

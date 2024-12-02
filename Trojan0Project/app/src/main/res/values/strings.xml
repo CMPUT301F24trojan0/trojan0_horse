@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Trojan0 Project</string>
+
+    <!-- Adding the participation statuses array -->
+    <string-array name="participation_statuses">
+        <item>All</item>
+        <item>Waitlisted</item>
+        <item>Won and Pending</item>
+        <item>Won and Accepted</item>
+        <item>Won and Declined</item>
+    </string-array>
+
 </resources>

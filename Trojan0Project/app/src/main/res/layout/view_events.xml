@@ -30,7 +30,7 @@
         android:id="@+id/ViewSignedUpEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="sans-serif"
         android:text="Signed Up Events"
         android:textColor="#000000"
@@ -45,12 +45,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <Spinner
+        android:id="@+id/statusSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/participation_statuses"
+        app:layout_constraintTop_toBottomOf="@id/ViewSignedUpEvents"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
     <!-- NestedScrollView with RecyclerView inside -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/eventsScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

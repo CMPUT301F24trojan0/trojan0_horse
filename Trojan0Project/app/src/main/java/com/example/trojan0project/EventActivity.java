@@ -1,3 +1,22 @@
+/**
+ * Represents an activity for managing events in the application, providing functionalities
+ * such as viewing, generating QR codes, and deleting events. It integrates with Firestore
+ * for event data retrieval and storage and provides an admin interface for event management.
+ *
+ * <p>This class implements the `DeleteEventFragment.DeleteEventDialogListener` interface to
+ * handle dialog-based event deletion operations.</p>
+ *
+ * Features:
+ * - Displays a list of events retrieved from Firestore.
+ * - Allows navigation to a profile management page.
+ * - Supports generating and deleting QR codes for events.
+ * - Provides the ability to delete entire events from Firestore.
+ *
+ * Design Rationale:
+ * - Extends `AppCompatActivity` to utilize modern Android UI components.
+ * - Uses Firestore for cloud-based event data management.
+ */
+
 package com.example.trojan0project;
 
 import static android.content.ContentValues.TAG;
@@ -51,6 +70,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
     private ImageView qrCodeImageView;
     private ProgressDialog progressDialog;
 
+    /**
+     * Handles the creation of the `EventActivity` activity, initializing UI components,
+     * setting up Firestore integration, and defining event listeners for user interactions.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down, this Bundle contains the most recent data.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,6 +172,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Generates a QR code Bitmap from the provided content string.
+     *
+     * @param content The string content to encode in the QR code.
+     * @return A Bitmap image of the generated QR code, or null if an error occurs.
+     */
     private Bitmap generateQRCode(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -165,6 +196,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return null;
     }
 
+    /**
+     * Compresses a QR code Bitmap into a PNG format byte array.
+     *
+     * @param qrCodeBitmap The Bitmap image of the QR code.
+     * @return A byte array containing the compressed image data.
+     */
     private byte[] getQRCodeImageData(Bitmap qrCodeBitmap) {
         Log.d(TAG, "getQRCodeImageData: Compressing QR code image to byte array");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -172,6 +209,11 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return baos.toByteArray();
     }
 
+    /**
+     * Deletes the QR code associated with the provided event from the Firestore database.
+     *
+     * @param event The event whose QR code needs to be deleted.
+     */
     @Override
     public void deleteQRCode(Event event) {
         Log.d(TAG, "deleteQRCode: Deleting QR code for event: " + event.getEventName());
@@ -201,6 +243,11 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         }
     }
 
+    /**
+     * Deletes the specified event from the Firestore database.
+     *
+     * @param event The event to be deleted.
+     */
     @Override
     public void deleteEvent(Event event) {
         Log.d(TAG, "deleteEvent: Deleting event: " + event.getEventName());

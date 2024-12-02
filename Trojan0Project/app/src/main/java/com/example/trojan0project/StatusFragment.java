@@ -64,7 +64,6 @@ public class StatusFragment extends DialogFragment {
 
         if (deviceId == null || eventId == null) {
             Log.e(TAG, "Correct Details not received in StatusFragment");
-            Toast.makeText(getActivity(), "Error: Missing IDs", Toast.LENGTH_SHORT).show();
             dismiss();
             return super.onCreateDialog(savedInstanceState);
         }
@@ -118,6 +117,7 @@ public class StatusFragment extends DialogFragment {
     public interface OnDismissListener {
         void onDismiss();
     }
+
     /**
      * Updates the event status to accepted for the user in Firestore.
      *
@@ -130,37 +130,20 @@ public class StatusFragment extends DialogFragment {
                 .update("events." + eventId, 2) // Update the event status to 2
                 .addOnSuccessListener(aVoid -> {
                     Log.d(TAG, "Event status updated successfully.");
-                    Toast.makeText(getActivity(), "Event status updated successfully.", Toast.LENGTH_SHORT).show();
 
-                    // Update the num_sampled field in the events collection
+                    // Update the users map in the events collection
                     db.collection("events").document(eventId)
-                            .update("num_sampled", FieldValue.increment(1)) // Increment num_sampled by 1
-                            .addOnSuccessListener(aVoid2 -> {
-                                Log.d(TAG, "num_sampled incremented successfully.");
-                                Toast.makeText(getActivity(), "Event num_sampled incremented.", Toast.LENGTH_SHORT).show();
-
-                                // Update the users map in the events collection
-                                db.collection("events").document(eventId)
-                                        .update("users." + deviceId, 2) // Set the user's status in the map to 2
-                                        .addOnSuccessListener(aVoid3 -> {
-                                            Log.d(TAG, "Users map updated successfully.");
-                                            Toast.makeText(getActivity(), "Event users map updated.", Toast.LENGTH_SHORT).show();
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Log.e(TAG, "Error updating users map: ", e);
-                                            Toast.makeText(getActivity(), "Failed to update users map: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        });
-
+                            .update("users." + deviceId, 2) // Set the user's status in the map to 2
+                            .addOnSuccessListener(aVoid3 -> {
+                                Log.d(TAG, "Users map updated successfully.");
                             })
                             .addOnFailureListener(e -> {
-                                Log.e(TAG, "Error incrementing num_sampled: ", e);
-                                Toast.makeText(getActivity(), "Failed to increment num_sampled: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, "Error updating users map: ", e);
                             });
 
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "Error updating event status: ", e);
-                    Toast.makeText(getActivity(), "Failed to update event status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -177,38 +160,30 @@ public class StatusFragment extends DialogFragment {
                 .update("events." + eventId, 3) // Update the event status
                 .addOnSuccessListener(aVoid -> {
                     Log.d(TAG, "Event status updated successfully.");
-                    Toast.makeText(getActivity(), "Event status updated successfully.", Toast.LENGTH_SHORT).show();
 
                     // Update the num_sampled field in the events collection
                     db.collection("events").document(eventId)
                             .update("num_sampled", FieldValue.increment(-1)) // Decrement num_sampled by 1
                             .addOnSuccessListener(aVoid2 -> {
                                 Log.d(TAG, "num_sampled decremented successfully.");
-                                Toast.makeText(getActivity(), "Event num_sampled decremented.", Toast.LENGTH_SHORT).show();
 
                                 // Update the users map in the events collection
                                 db.collection("events").document(eventId)
                                         .update("users." + deviceId, 3) // Set the user's status in the map to 3
                                         .addOnSuccessListener(aVoid3 -> {
                                             Log.d(TAG, "Users map updated successfully.");
-                                            Toast.makeText(getActivity(), "Event users map updated.", Toast.LENGTH_SHORT).show();
                                         })
                                         .addOnFailureListener(e -> {
                                             Log.e(TAG, "Error updating users map: ", e);
-                                            Toast.makeText(getActivity(), "Failed to update users map: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         });
 
                             })
                             .addOnFailureListener(e -> {
                                 Log.e(TAG, "Error decrementing num_sampled: ", e);
-                                Toast.makeText(getActivity(), "Failed to decrement num_sampled: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             });
-
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "Error updating event status: ", e);
-                    Toast.makeText(getActivity(), "Failed to update event status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
 }

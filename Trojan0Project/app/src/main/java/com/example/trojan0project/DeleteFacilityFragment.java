@@ -48,7 +48,6 @@ public class DeleteFacilityFragment extends DialogFragment {
     interface DeleteFacilityDialogListener {
         void deleteFacility(Facility facility);
 
-
     }
 
     private DeleteFacilityDialogListener listener;
@@ -101,7 +100,6 @@ public class DeleteFacilityFragment extends DialogFragment {
                 .setView(view)
 
                 .create();
-
 
     }
     /**

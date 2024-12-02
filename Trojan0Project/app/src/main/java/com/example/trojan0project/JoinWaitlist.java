@@ -68,7 +68,6 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
     private TextView eventMoreInfo;
     private Button joinWaitlistButton;
 
-
     /**
      * Initializes the activity and loads the event details.
      *

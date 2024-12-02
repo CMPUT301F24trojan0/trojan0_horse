@@ -107,7 +107,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         });
     }
 
-
     /**
      * Returns the total number of items in the data set held by the adapter.
      *

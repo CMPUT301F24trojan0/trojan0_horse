@@ -35,6 +35,14 @@ public class Profile {
         this.email = email;
     }
 
+    /**
+     * Constructor to initialize a `Profile` object with the provided personal details.
+     *
+     * @param firstName The first name of the user.
+     * @param lastName The last name of the user.
+     * @param email The email address of the user.
+     * @param deviceId The unique identifier for the user's device, used for linking to Firestore or other services.
+     */
     public Profile(String firstName, String lastName, String email, String deviceId) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -152,9 +160,14 @@ public class Profile {
         this.profileImage = profileImage;
     }
 
-
     //OpenAI, (2024, November 24), "Why are my events printing as weird codes, how can i fix this ??", ChatGPT
 
+    /**
+     * Returns a string representation of the Profile object, including the user's first name, last name, and email.
+     * This method is commonly used for debugging or displaying a simple view of the user's profile.
+     *
+     * @return A string in the format: "FirstName LastName (email)".
+     */
     @Override
     public String toString() {
         return firstName + " " + lastName + " (" + email + ")";

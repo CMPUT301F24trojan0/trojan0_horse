@@ -11,6 +11,7 @@
  * Outstanding Issues:
  * No issues at the moment.
  */
+
 package com.example.trojan0project;
 
 import static android.content.ContentValues.TAG;
@@ -35,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-
 public class SamplerImplementation {
 
     private FirebaseFirestore db;
@@ -57,7 +57,6 @@ public class SamplerImplementation {
      */
 
     public void sampleWaitlist(ArrayList<Profile> waitList, int numAttendees, String targetEventId, ArrayAdapter<Profile> profileArrayAdapter) {
-
 
         ArrayList<Profile> sampledProfiles = new ArrayList<>();
         ArrayList<String> deviceIdsToUpdate = new ArrayList<>();
@@ -99,6 +98,17 @@ public class SamplerImplementation {
         notifyDevicesWithStatusZero(targetEventId, sampledDeviceIds);
     }
 
+    /**
+     * Notifies users who have a participation status of 0 for a given event.
+     * This method queries the event data from Firestore and constructs a notification
+     * message based on the event name. It then retrieves users who have a status of 0
+     * for that event and sends them a notification unless the user is in the list of
+     * sampled devices.
+     *
+     * @param eventId The ID of the event for which notifications will be sent.
+     * @param sampledDeviceIds A list of device IDs that have already been sampled,
+     *                         so they won't receive notifications.
+     */
     private void notifyDevicesWithStatusZero(String eventId,  ArrayList<String> sampledDeviceIds) {
         Log.d(TAG, "notifyDevicesWithStatusZero called with eventId: " + eventId);
 
@@ -169,7 +179,6 @@ public class SamplerImplementation {
      * @param deviceId The device ID of the user to update.
      * @param eventId The ID of the event for which the user's status is being updated.
      */
-
     private void updateUserStatusAfterSampling(String deviceId, String eventId) {
         Log.d(TAG, "updateUserStatusAfterSampling called with deviceId: " + deviceId + " and eventId: " + eventId);
 
@@ -252,7 +261,6 @@ public class SamplerImplementation {
      * @param eventId The ID of the event.
      * @param deviceIds A list of device IDs to update their status in the event document.
      */
-
     private void updateEventsStatusInEvent(String eventId, ArrayList<String> deviceIds) {
         // Create a WriteBatch to group all updates together
         WriteBatch batch = db.batch();
@@ -310,5 +318,4 @@ public class SamplerImplementation {
             }
         });
     }
-
 }

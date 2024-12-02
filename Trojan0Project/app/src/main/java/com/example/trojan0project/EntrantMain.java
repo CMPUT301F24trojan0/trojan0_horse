@@ -1,3 +1,8 @@
+/**
+ * EntrantMain is the main activity for the entrant user, which handles the display of profile data,
+ * event viewing, and the management of notifications.
+ */
+
 package com.example.trojan0project;
 
 import static android.content.Intent.getIntent;
@@ -68,26 +73,12 @@ public class EntrantMain extends AppCompatActivity {
         // Fetch and display notifications for the device
         Notification notificationHelper = new Notification();
         notificationHelper.getNotificationsForDevice(this, deviceId);
+
         // Request POST_NOTIFICATIONS permission
         requestNotificationPermission();
+
         // Call createNotificationChannel to ensure the channel is created on compatible devices
         createNotificationChannel(this);
-
-        /*
-        String deviceId = "8fb329762643a6cb";
-
-        // Sample notification 1
-        String eventId1 = "8492iF6Eu41dwGCB1yUG";
-        String title1 = "Event Reminder";
-        String message1 = "Don't forget to join the upcoming event!";
-        notificationHelper.addNotificationToDevice(deviceId, eventId1, title1, message1);
-
-        // Sample notification 2
-        String eventId2 = "E4sUpzhqDYcazajGbdlW";
-        String title2 = "Special Offer";
-        String message2 = "Check out the exclusive offer available for event participants!";
-        notificationHelper.addNotificationToDevice(deviceId, eventId2, title2, message2);
-        */
 
         updateProfileButton.setOnClickListener(v -> {
             Intent profileIntent = new Intent(EntrantMain.this, ViewProfile.class);
@@ -102,6 +93,11 @@ public class EntrantMain extends AppCompatActivity {
         });
     }
 
+    /**
+     * Creates a notification channel for devices running Android O and above.
+     *
+     * @param context The context in which the notification channel will be created.
+     */
     public void createNotificationChannel(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
@@ -116,6 +112,9 @@ public class EntrantMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * Requests the POST_NOTIFICATIONS permission on Android versions 33 and above.
+     */
     private void requestNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // API 33+
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
@@ -161,6 +160,9 @@ public class EntrantMain extends AppCompatActivity {
         profilePicture.setImageDrawable(mydrawing);
     }
 
+    /**
+     * Reloads the user's profile data when the activity comes back into focus.
+     */
     @Override
     protected void onResume() {
         super.onResume();

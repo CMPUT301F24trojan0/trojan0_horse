@@ -11,10 +11,7 @@
  * No issues
  */
 
-
 package com.example.trojan0project;
-
-
 
 import android.app.AlertDialog;
 import android.app.Dialog;

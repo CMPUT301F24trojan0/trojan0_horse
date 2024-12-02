@@ -118,6 +118,7 @@ public class StatusFragment extends DialogFragment {
     public interface OnDismissListener {
         void onDismiss();
     }
+
     /**
      * Updates the event status to accepted for the user in Firestore.
      *
@@ -203,12 +204,10 @@ public class StatusFragment extends DialogFragment {
                                 Log.e(TAG, "Error decrementing num_sampled: ", e);
                                 Toast.makeText(getActivity(), "Failed to decrement num_sampled: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             });
-
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "Error updating event status: ", e);
                     Toast.makeText(getActivity(), "Failed to update event status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
 }

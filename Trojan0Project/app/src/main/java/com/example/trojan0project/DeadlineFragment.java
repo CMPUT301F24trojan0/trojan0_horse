@@ -1,3 +1,12 @@
+/**
+ * The DeadlineFragment class represents a dialog fragment for selecting a deadline date.
+ * It provides a date picker for the user to select a specific date, which is then converted
+ * into a Firestore-compatible {@link Timestamp}.
+ *
+ * <p>This fragment is typically used in event creation or management workflows
+ * to specify registration or task deadlines.
+ */
+
 package com.example.trojan0project;
 
 import android.app.DatePickerDialog;
@@ -20,14 +29,32 @@ public class DeadlineFragment extends DialogFragment {
 
     private OnDeadlineSavedListener onDeadlineSavedListener;
 
+    /**
+     * Interface for listening to deadline selection events.
+     * Implement this interface in the parent activity or fragment to handle
+     * the deadline selected by the user.
+     */
     public interface OnDeadlineSavedListener {
         void onDeadlineSaved(Timestamp deadline);
     }
 
+    /**
+     * Sets the listener for the deadline selection event.
+     *
+     * @param listener The {@link OnDeadlineSavedListener} implementation.
+     */
     public void setOnDeadlineSavedListener(OnDeadlineSavedListener listener) {
         this.onDeadlineSavedListener = listener;
     }
 
+    /**
+     * Inflates the layout for the fragment and sets up the date picker button.
+     *
+     * @param inflater  The LayoutInflater object that can be used to inflate views in the fragment.
+     * @param container The parent view that this fragment's UI should be attached to.
+     * @param savedInstanceState A bundle containing saved state, if available.
+     * @return The inflated view for this fragment.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

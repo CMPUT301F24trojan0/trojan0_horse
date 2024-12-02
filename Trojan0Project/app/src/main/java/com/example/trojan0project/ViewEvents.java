@@ -13,6 +13,7 @@
  * Outstanding Issues:
  * No Issues.
  */
+
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -36,7 +37,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-
 public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEventClickListener {
 
     private static final String TAG = "ViewEvents";
@@ -48,7 +48,6 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
     private Spinner statusSpinner;
     private int selectedStatus = -1; // Default: All
     private Long participationStatus;
-
 
     /**
      * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the RecyclerView.
@@ -101,6 +100,16 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
         statusSpinner.setAdapter(adapter);
 
         statusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Called when an item is selected in the status spinner.
+             * It sets the `selectedStatus` variable according to the selected position
+             * and triggers the `retrieveEvents()` method to reload events based on the updated filter.
+             *
+             * @param parent The AdapterView where the selection was made.
+             * @param view The view within the AdapterView that was clicked.
+             * @param position The position of the item clicked in the spinner.
+             * @param id The row ID of the item clicked.
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
@@ -123,6 +132,13 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                 retrieveEvents(); // Reload events based on filter
             }
 
+            /**
+             * Called when no item is selected in the status spinner.
+             * This method sets the `selectedStatus` to -1 (All) and triggers
+             * the `retrieveEvents()` method to reload all events without a filter.
+             *
+             * @param parent The AdapterView where no item was selected.
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // Default to All
@@ -188,7 +204,6 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                     Log.e(TAG, "Error fetching user data: ", e);
                 });
     }
-
 
     /**
      * Handles the selection of menu items, specifically the "home" button (up navigation).
@@ -267,7 +282,6 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                                 } else {
                                                     Log.e(TAG, "Error fetching event details for ID: " + eventId, eventTask.getException());
                                                 }
-
                                                 eventAdapter.notifyDataSetChanged(); // Update RecyclerView
                                             });
                                 } else {

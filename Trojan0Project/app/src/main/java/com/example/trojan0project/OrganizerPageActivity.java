@@ -1,3 +1,9 @@
+/**
+ * Activity representing the organizer's main page. The activity allows the organizer to
+ * edit their facility name, view events, and create a new event.
+ * It retrieves the organizer's details from Firestore and updates the UI accordingly.
+ */
+
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -24,9 +30,10 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
     private static final String TAG = "OrganizerPageActivity";
 
     /**
-     * Initializes the activity and sets up UI elements and Firestore.
+     * Called when the activity is first created. Sets up the UI elements and initializes
+     * Firestore to fetch and update data related to the organizer.
      *
-     * @param savedInstanceState The saved state of the activity.
+     * @param savedInstanceState The saved instance state of the activity, if any.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,9 +142,10 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
     }
 
     /**
-     * Updates the facility name displayed in the UI and in Firestore when the name is changed.
+     * Called when the facility name is updated in the EditFacilityFragment. Updates the displayed facility
+     * name in both the UI and Firestore.
      *
-     * @param newFacilityName The new facility name provided by the user.
+     * @param newFacilityName The new facility name entered by the user.
      */
     @Override
     public void onFacilityNameUpdated(String newFacilityName) {

@@ -1,3 +1,10 @@
+/**
+ * Activity that handles QR code scanning and processes the scanned data.
+ * It uses the ZXing library to scan QR codes and Firebase Firestore to fetch event details
+ * based on the scanned data. If a valid event is found, it navigates to the `EventDetailsActivity`
+ * to display the event information.
+ */
+
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -24,6 +31,12 @@ public class QrScannerActivity extends AppCompatActivity {
 
     private Button cancelButton;
 
+    /**
+     * Initializes the activity, sets up the barcode scanner view, and configures the cancel button.
+     * It also starts continuous QR code scanning and processes the scanned QR code data.
+     *
+     * @param savedInstanceState The saved instance state for restoring the activity's previous state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +73,13 @@ public class QrScannerActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Processes the scanned QR code data. It parses the QR code data (which is expected to be in JSON format)
+     * and queries the Firebase Firestore database to fetch event details. If an event is found, it navigates
+     * to the `EventDetailsActivity` to display the event information.
+     *
+     * @param scannedData The scanned QR code data in string format.
+     */
     private void handleScannedData(String scannedData) {
         try {
             // Parse JSON data from QR code
@@ -101,6 +121,10 @@ public class QrScannerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Resumes the barcode scanner when the activity is resumed.
+     * This method is called when the activity becomes visible to the user.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -108,6 +132,10 @@ public class QrScannerActivity extends AppCompatActivity {
         barcodeScannerView.resume();
     }
 
+    /**
+     * Pauses the barcode scanner when the activity is paused.
+     * This method is called when the activity is no longer visible to the user.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -115,6 +143,9 @@ public class QrScannerActivity extends AppCompatActivity {
         barcodeScannerView.pause();
     }
 
+    /**
+     * Handles the destruction of the activity. It logs when the activity is destroyed.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

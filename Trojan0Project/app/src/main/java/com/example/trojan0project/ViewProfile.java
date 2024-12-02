@@ -15,10 +15,12 @@
  * Outstanding Issues:
  * No Issues.
  */
+
 package com.example.trojan0project;
 
 import static com.example.trojan0project.HandleEXIF.handleEXIF;
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.ContentResolver;
@@ -108,6 +110,7 @@ public class ViewProfile extends AppCompatActivity {
                     Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
                 }
             });
+
     /**
      * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the UI elements.
      *
@@ -174,6 +177,15 @@ public class ViewProfile extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Creates a notification channel for default notifications. This method is
+     * only called if the device is running Android O (API level 26) or higher.
+     * It ensures that the required notification channel exists for notifications
+     * sent with the default channel ID ("default").
+     *
+     * @param context The context used to get the system's NotificationManager
+     *                service to create the notification channel.
+     */
     public void createNotificationChannel(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
@@ -188,6 +200,18 @@ public class ViewProfile extends AppCompatActivity {
         }
     }
 
+    /**
+     * Callback method to handle the result of the permission request for notifications.
+     * This method is triggered when the user responds to the permission request dialog.
+     * It checks if the user granted or denied the notification permission and logs the result.
+     *
+     * @param requestCode The request code passed in {@link Activity#requestPermissions(String[], int)}.
+     *                    It is used to differentiate between multiple permission requests.
+     * @param permissions The requested permissions. In this case, it will be the notification permission.
+     * @param grantResults The results of the permission request. A value of
+     *                     {@link PackageManager#PERMISSION_GRANTED} means the permission was granted.
+     *                     A value of {@link PackageManager#PERMISSION_DENIED} means it was denied.
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -257,12 +281,20 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Cancels all ongoing notifications by calling the system's NotificationManager.
+     * This method is used to clear any active notifications that the app has created.
+     * It retrieves the NotificationManager system service and cancels all notifications
+     * currently displayed.
+     */
     private void cancelNotifications() {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager != null) {
             notificationManager.cancelAll(); // This cancels all ongoing notifications
         }
     }
+
     /**
      * Saves the updated profile data to Firestore.
      */
@@ -300,7 +332,6 @@ public class ViewProfile extends AppCompatActivity {
                         Toast.makeText(ViewProfile.this, "Profile update failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
         return true;
     }
 
@@ -384,6 +415,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Displays a new image with the user's initials when no profile image is set.
      *
@@ -395,6 +427,17 @@ public class ViewProfile extends AppCompatActivity {
         profilePicture.setImageDrawable(mydrawing);
     }
 
+    /**
+     * Callback method for handling the result of an activity started for a result, such as the QR scanner.
+     * This method is called when the QR scanner activity finishes, returning the scanned data.
+     *
+     * @param requestCode The request code passed to startActivityForResult().
+     * @param resultCode The result code returned by the child activity through setResult().
+     * @param data An Intent containing the result data. In this case, it includes the scanned QR code data.
+     *
+     * If the result is successful (QR_SCANNER_REQUEST_CODE) and the scanned data is present,
+     * a Toast message is displayed showing the scanned QR code content.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

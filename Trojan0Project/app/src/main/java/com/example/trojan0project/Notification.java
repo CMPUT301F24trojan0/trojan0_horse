@@ -1,3 +1,16 @@
+/**
+ * A class responsible for handling notifications within the app. It provides methods for adding notifications
+ * to a device's notification queue in Firestore and retrieving notifications for a device. If notifications are
+ * enabled for the device, they are stored in Firestore and can be displayed to the user.
+ *
+ * <p>Notifications are added to the device's Firestore document under the "notificationsQueue" field, and can
+ * be retrieved and displayed by fetching this data. Each notification consists of an event ID, title, and message.
+ * Notifications are shown through the Android notification system and are removed from the queue once they are displayed.</p>
+ *
+ * <p>This class also includes methods to manage notifications on a per-device basis, ensuring that notifications
+ * are only shown to users who have enabled them.</p>
+ */
+
 package com.example.trojan0project;
 
 import android.app.PendingIntent;
@@ -19,6 +32,9 @@ public class Notification {
 
     private final FirebaseFirestore db;
 
+    /**
+     * Constructor to initialize the Firestore instance.
+     */
     // Constructor to initialize the Firestore instance
     public Notification() {
         db = FirebaseFirestore.getInstance();
@@ -77,9 +93,11 @@ public class Notification {
     }
 
     /**
-     * Retrieves all notifications for a device.
+     * Retrieves all notifications for a device and displays them to the user. After each notification is shown,
+     * it is removed from the device's notification queue in Firestore.
      *
-     * @param deviceId The ID of the device.
+     * @param context The context used to display the notification.
+     * @param deviceId The ID of the device for which notifications are to be fetched.
      */
     public void getNotificationsForDevice(@NonNull Context context, @NonNull String deviceId) {
         Log.d("getNotifications", "Attempting to fetch notifications for device: " + deviceId);
@@ -121,6 +139,12 @@ public class Notification {
                 .addOnFailureListener(e -> Log.e("getNotifications", "Failed to fetch notifications for device: " + deviceId + ", error: " + e));
     }
 
+    /**
+     * Removes a notification from the device's notification queue in Firestore.
+     *
+     * @param deviceId The ID of the device from which the notification should be removed.
+     * @param notificationId The unique ID of the notification to be removed.
+     */
     private void deleteNotificationFromQueue(@NonNull String deviceId, @NonNull String notificationId) {
         Map<String, Object> updates = new HashMap<>();
         updates.put("notificationsQueue." + notificationId, FieldValue.delete()); // Use FieldValue.delete() to remove the entry
@@ -130,6 +154,16 @@ public class Notification {
                 .addOnFailureListener(e -> Log.e("deleteNotification", "Failed to remove notification: " + notificationId + ", error: " + e));
     }
 
+    /**
+     * Displays a notification to the user. When the notification is clicked, it opens the event details activity.
+     *
+     * @param context The context used to display the notification.
+     * @param deviceId The ID of the device receiving the notification.
+     * @param eventId The ID of the related event.
+     * @param title The title of the notification.
+     * @param message The message of the notification.
+     * @param notificationId The unique ID of the notification.
+     */
     private void showNotification(@NonNull Context context, @NonNull String deviceId,
                                   @NonNull String eventId, @NonNull String title, @NonNull String message,
                                   @NonNull String notificationId) {

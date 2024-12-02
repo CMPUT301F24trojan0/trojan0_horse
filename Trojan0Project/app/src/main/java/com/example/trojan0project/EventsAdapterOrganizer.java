@@ -1,3 +1,11 @@
+/**
+ * RecyclerView Adapter for displaying a list of event IDs in the organizer's event list.
+ * <p>This adapter takes a list of event IDs and displays them in a RecyclerView. When an item is clicked,
+ * it opens the {@link EventDetailsActivityOrganizer} activity to show details of the selected event.</p>
+ *
+ * <p>The adapter uses a ViewHolder pattern to efficiently manage the event list items and their corresponding views.</p>
+ */
+
 package com.example.trojan0project;
 
 import android.content.Context;
@@ -20,6 +28,15 @@ public class EventsAdapterOrganizer extends RecyclerView.Adapter<EventsAdapterOr
         this.eventIds = eventIds;
     }
 
+    /**
+     * Creates a new {@link EventViewHolder} for displaying an event item in the RecyclerView.
+     *
+     * <p>This method inflates the layout for an event item and creates a new ViewHolder to manage the event view.</p>
+     *
+     * @param parent The ViewGroup into which the new view will be added.
+     * @param viewType The view type of the new view (unused here).
+     * @return A new {@link EventViewHolder} instance for the event item view.
+     */
     @NonNull
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,6 +44,15 @@ public class EventsAdapterOrganizer extends RecyclerView.Adapter<EventsAdapterOr
         return new EventViewHolder(view);
     }
 
+    /**
+     * Binds the event data to the {@link EventViewHolder} at the specified position in the RecyclerView.
+     *
+     * <p>This method sets the event name (or ID if the name is unavailable) to the TextView and sets up a click
+     * listener on the item view to navigate to {@link EventDetailsActivityOrganizer} when clicked.</p>
+     *
+     * @param holder The {@link EventViewHolder} that holds the views for the event item.
+     * @param position The position of the item in the data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         String eventId = eventIds.get(position);
@@ -43,14 +69,30 @@ public class EventsAdapterOrganizer extends RecyclerView.Adapter<EventsAdapterOr
         });
     }
 
+    /**
+     * Returns the total number of items in the data set.
+     *
+     * @return The total number of events (size of the eventIds list).
+     */
     @Override
     public int getItemCount() {
         return eventIds.size();
     }
 
+    /**
+     * ViewHolder for holding views associated with an event item in the RecyclerView.
+     *
+     * <p>This class holds references to the views in an event item (such as the event name) and is responsible
+     * for efficiently binding data to those views.</p>
+     */
     public static class EventViewHolder extends RecyclerView.ViewHolder {
         TextView eventNameTextView;
 
+        /**
+         * Creates a new {@link EventViewHolder} and binds the views.
+         *
+         * @param itemView The view representing an event item.
+         */
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
             eventNameTextView = itemView.findViewById(R.id.eventNameTextView);

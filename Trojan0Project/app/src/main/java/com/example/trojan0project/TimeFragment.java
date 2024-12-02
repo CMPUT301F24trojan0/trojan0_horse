@@ -67,7 +67,6 @@ public class TimeFragment extends DialogFragment {
             }
             dismiss();
         });
-
         return view;
     }
     /**

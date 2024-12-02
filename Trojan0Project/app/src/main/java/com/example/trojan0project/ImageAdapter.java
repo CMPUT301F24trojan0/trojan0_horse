@@ -1,14 +1,4 @@
-/**
- * Purpose:
- * Is designed to hold image objects and display them.
- *
- * Design Rationale:
- * The adapter extends ArrayAdapter to take some of its functionality but instead to display data of type images.
- * Glide is used to handle image loading.
- *
- * Outstanding Issues:
- * - No Issues.
- */
+
 
 package com.example.trojan0project;
 
@@ -26,6 +16,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+/**
+ * Purpose:
+ * Is designed to hold image objects and display them.
+ *
+ * Design Rationale:
+ * The adapter extends ArrayAdapter to take some of its functionality but instead to display data of type images.
+ * Glide is used to handle image loading.
+ *
+ * Outstanding Issues:
+ * - No Issues.
+ */
 
 public class ImageAdapter extends ArrayAdapter<Image> {
     /**

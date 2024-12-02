@@ -1,20 +1,4 @@
-/**
- * Purpose:
- * This activity displays and allows the user to view and edit their profile information.
- * It retrieves profile data from Firestore and lets the user update their profile,
- * including changing the profile picture.
- * It also allows the user to navigate to the events page after saving changes.
- *
- * Design Rationale:
- * The activity uses a layout with EditText fields for personal information
- * and an ImageView to show the profile picture. It interacts with Firestore
- * to fetch and update user data, and Firebase Storage to upload and delete the profile image.
- * The profile data is saved when the user clicks the "Save" button, and the
- * updated profile picture can be set using a media picker.
- *
- * Outstanding Issues:
- * No Issues.
- */
+
 
 package com.example.trojan0project;
 
@@ -71,6 +55,23 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+/**
+ * Purpose:
+ * This activity displays and allows the user to view and edit their profile information.
+ * It retrieves profile data from Firestore and lets the user update their profile,
+ * including changing the profile picture.
+ * It also allows the user to navigate to the events page after saving changes.
+ *
+ * Design Rationale:
+ * The activity uses a layout with EditText fields for personal information
+ * and an ImageView to show the profile picture. It interacts with Firestore
+ * to fetch and update user data, and Firebase Storage to upload and delete the profile image.
+ * The profile data is saved when the user clicks the "Save" button, and the
+ * updated profile picture can be set using a media picker.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 
 public class ViewProfile extends AppCompatActivity {
     private static final String TAG = "ViewProfile";

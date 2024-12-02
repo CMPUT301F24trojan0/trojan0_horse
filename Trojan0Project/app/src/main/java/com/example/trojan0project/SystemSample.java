@@ -1,17 +1,4 @@
-/**
- * Purpose:
- * This activity allows users to view and sample a waitlist for event entrants.
- * It interacts with Firestore to fetch event and user data and displays a waitlist of users
- * who have shown interest in an event.
- *
- * Design Rationale:
- * The app retrieves data from Firebase Firestore to build a waitlist for an event based on user type.
- * Once data is fetched, it is displayed in a ListView. Sampling functionality is provided for event organizers
- * to select users for an event based on the waitlist.
- *
- * Outstanding Issues:
- * No issues at the moment.
- */
+
 
 package com.example.trojan0project;
 
@@ -47,7 +34,20 @@ import com.google.firebase.firestore.WriteBatch;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
-
+/**
+ * Purpose:
+ * This activity allows users to view and sample a waitlist for event entrants.
+ * It interacts with Firestore to fetch event and user data and displays a waitlist of users
+ * who have shown interest in an event.
+ *
+ * Design Rationale:
+ * The app retrieves data from Firebase Firestore to build a waitlist for an event based on user type.
+ * Once data is fetched, it is displayed in a ListView. Sampling functionality is provided for event organizers
+ * to select users for an event based on the waitlist.
+ *
+ * Outstanding Issues:
+ * No issues at the moment.
+ */
 public class SystemSample extends AppCompatActivity {
 
     private FirebaseFirestore db;

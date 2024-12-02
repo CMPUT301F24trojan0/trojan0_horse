@@ -1,9 +1,4 @@
-/**
- * Activity that displays a list of events in a RecyclerView for the event organizer.
- * <p>This activity retrieves a list of event IDs from the previous activity and uses a {@link RecyclerView}
- * with an {@link EventsAdapterOrganizer} to display each event. The events are displayed in a vertical list format
- * using a {@link LinearLayoutManager}.</p>
- */
+
 
 package com.example.trojan0project;
 
@@ -13,6 +8,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+/**
+ * Purpose:
+ * The `EventsListActivityOrganizer` class provides a user interface for organizers to view a list of events.
+ * It utilizes a RecyclerView to display event data in a scrollable, vertical list format, allowing organizers
+ * to interact with individual events.
+ *
+ * Design Rationale:
+ * - Uses a `RecyclerView` for efficient display of event data, leveraging its adapter-based architecture.
+ * - Integrates with `EventsAdapterOrganizer` to dynamically fetch and bind event details.
+ * - Accepts a list of event IDs passed via an intent, ensuring seamless data flow from the previous activity.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class EventsListActivityOrganizer extends AppCompatActivity {
 

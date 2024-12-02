@@ -1,16 +1,4 @@
-/**
- * Purpose:
- * Displays a list of invited entrants for a specific event.
- * Gets the data from Firestore and populates the list with profiles of users
- * who have been invited to an event but have not yet accepted or declined
- *
- * Design Rationale:
- * Firebase Firestore is used to get and monitor entrant data
- * Profiles are displayes in a ListView and button triggers the data and displays list
- *
- * Outstanding Issues:
- * No issues
- */
+
 
 package com.example.trojan0project;
 
@@ -36,6 +24,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
+/**
+ * Purpose:
+ * Displays a list of invited entrants for a specific event.
+ * Gets the data from Firestore and populates the list with profiles of users
+ * who have been invited to an event but have not yet accepted or declined
+ *
+ * Design Rationale:
+ * Firebase Firestore is used to get and monitor entrant data
+ * Profiles are displayes in a ListView and button triggers the data and displays list
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class EntrantInvited extends AppCompatActivity {
 

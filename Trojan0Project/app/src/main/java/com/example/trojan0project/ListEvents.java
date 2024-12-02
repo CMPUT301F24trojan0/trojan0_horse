@@ -1,14 +1,4 @@
-/**
- * Purpose:
- * Displays list of events from Firestore in a RecyclerView and when an event is clicked
- * to goes to a mapping page for that event
- *
- * Design Rationale:
- * Uses Firestore to get event data, displays using RecyclerView with an EventAdapter
- *
- * Outstanding Issues:
- * No issues
- */
+
 
 package com.example.trojan0project;
 
@@ -32,6 +22,17 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Purpose:
+ * Displays list of events from Firestore in a RecyclerView and when an event is clicked
+ * to goes to a mapping page for that event
+ *
+ * Design Rationale:
+ * Uses Firestore to get event data, displays using RecyclerView with an EventAdapter
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class ListEvents extends AppCompatActivity {
     private RecyclerView recyclerView;

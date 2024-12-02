@@ -1,3 +1,13 @@
+
+
+package com.example.trojan0project;
+
+import java.util.List;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Purpose:
  * This class represents an Organizer object with a facility name and a list of events.
@@ -8,15 +18,6 @@
  * Outstanding Issues:
  * No Issues.
  */
-
-package com.example.trojan0project;
-
-import java.util.List;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Organizer implements Parcelable {
     private String facilityName;

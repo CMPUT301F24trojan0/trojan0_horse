@@ -1,15 +1,4 @@
-/**
- * A class responsible for handling notifications within the app. It provides methods for adding notifications
- * to a device's notification queue in Firestore and retrieving notifications for a device. If notifications are
- * enabled for the device, they are stored in Firestore and can be displayed to the user.
- *
- * <p>Notifications are added to the device's Firestore document under the "notificationsQueue" field, and can
- * be retrieved and displayed by fetching this data. Each notification consists of an event ID, title, and message.
- * Notifications are shown through the Android notification system and are removed from the queue once they are displayed.</p>
- *
- * <p>This class also includes methods to manage notifications on a per-device basis, ensuring that notifications
- * are only shown to users who have enabled them.</p>
- */
+
 
 package com.example.trojan0project;
 
@@ -27,6 +16,21 @@ import java.util.Map;
 import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationManager;
+/**
+ * Purpose:
+ * The `Notification` class is responsible for managing user notifications in the application.
+ * It interacts with Firebase Firestore to store, retrieve, and manage notifications for individual devices.
+ * Notifications are displayed to the user and linked to specific events, allowing easy navigation to event details.
+ *
+ * Design Rationale:
+ * - Utilizes Firebase Firestore for efficient storage and retrieval of notifications.
+ * - Implements a queue-based approach for managing device notifications, ensuring scalability and flexibility.
+ * - Integrates with Android's notification system using `NotificationCompat` to provide user-friendly, clickable notifications.
+ * - Supports automatic removal of displayed notifications from Firestore to maintain a clean queue.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class Notification {
 

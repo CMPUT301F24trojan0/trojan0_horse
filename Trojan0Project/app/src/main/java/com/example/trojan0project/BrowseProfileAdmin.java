@@ -1,15 +1,4 @@
-/**
- * Purpose:
- * Allows admin to browse and manage entrant profiles. Admin can view profiles, remove profiles, and
- *
- * Design Rationale:
- * Firebase Firestore is used to store and get user profiles. A custom adapter is used to display profiles
- * in a list format.
- *
- * Outstanding Issues:
- * No issues
- *
- */
+
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -34,6 +23,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+/**
+ * Purpose:
+ * Allows admin to browse and manage entrant profiles. Admin can view profiles, remove profiles, and
+ *
+ * Design Rationale:
+ * Firebase Firestore is used to store and get user profiles. A custom adapter is used to display profiles
+ * in a list format.
+ *
+ * Outstanding Issues:
+ * No issues
+ *
+ */
 
 public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfileFragment.RemoveProfileDialogListener {
 

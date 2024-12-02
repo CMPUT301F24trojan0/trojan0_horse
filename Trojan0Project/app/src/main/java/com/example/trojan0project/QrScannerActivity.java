@@ -1,8 +1,17 @@
 /**
- * Activity that handles QR code scanning and processes the scanned data.
- * It uses the ZXing library to scan QR codes and Firebase Firestore to fetch event details
- * based on the scanned data. If a valid event is found, it navigates to the `EventDetailsActivity`
- * to display the event information.
+ * Purpose:
+ * The `QrScannerActivity` class provides functionality for scanning QR codes to retrieve event information.
+ * It utilizes a barcode scanner to decode QR codes, processes the scanned data, and retrieves corresponding
+ * event details from Firebase Firestore. Users are then directed to the `EventDetailsActivity` to view event details.
+ *
+ * Design Rationale:
+ * - Uses the `JourneyApps Barcode Scanner` library for efficient QR code scanning.
+ * - Integrates with Firebase Firestore to dynamically fetch event information based on scanned QR codes.
+ * - Implements permission handling to ensure proper access to the device camera.
+ * - Provides seamless navigation to event details upon successful QR code scans.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
  */
 
 package com.example.trojan0project;

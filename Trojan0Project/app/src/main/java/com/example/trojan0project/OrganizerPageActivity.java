@@ -1,8 +1,3 @@
-/**
- * Activity representing the organizer's main page. The activity allows the organizer to
- * edit their facility name, view events, and create a new event.
- * It retrieves the organizer's details from Firestore and updates the UI accordingly.
- */
 
 package com.example.trojan0project;
 
@@ -20,6 +15,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+/**
+ * Purpose:
+ * The `OrganizerPageActivity` class serves as the main interface for organizers, allowing them to manage their facility,
+ * view associated events, and create new events. It integrates with Firestore to fetch and update organizer-specific data.
+ *
+ * Design Rationale:
+ * - Provides a centralized interface for organizing key functionalities like editing facility names, viewing events, and creating events.
+ * - Fetches and updates data dynamically from Firestore to ensure real-time synchronization.
+ * - Integrates with `EditFacilityFragment` for modular and reusable UI components to handle facility name edits.
+ * - Ensures seamless navigation between different features with appropriate error handling and debugging logs.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class OrganizerPageActivity extends AppCompatActivity implements EditFacilityFragment.OnFacilityNameUpdatedListener {
 

@@ -1,18 +1,4 @@
-/**
- * Purpose:
- * This activity retrieves and displays a list of events associated with a specific device ID.
- * It fetches events from Firestore based on the device ID, and allows the user to view event details
- * by clicking on any event in the list, which opens a dialog to show the event status.
- *
- * Design Rationale:
- * The activity uses a RecyclerView to display a list of events and an EventAdapter
- * to bind the event data to the list. When an event is clicked, a StatusFragment is displayed
- * to show additional details about the selected event. Events are retrieved from Firestore
- * and displayed based on their participation status.
- *
- * Outstanding Issues:
- * No Issues.
- */
+
 
 package com.example.trojan0project;
 
@@ -36,6 +22,21 @@ import java.util.Map;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+/**
+ * Purpose:
+ * This activity retrieves and displays a list of events associated with a specific device ID.
+ * It fetches events from Firestore based on the device ID, and allows the user to view event details
+ * by clicking on any event in the list, which opens a dialog to show the event status.
+ *
+ * Design Rationale:
+ * The activity uses a RecyclerView to display a list of events and an EventAdapter
+ * to bind the event data to the list. When an event is clicked, a StatusFragment is displayed
+ * to show additional details about the selected event. Events are retrieved from Firestore
+ * and displayed based on their participation status.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 
 public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEventClickListener {
 

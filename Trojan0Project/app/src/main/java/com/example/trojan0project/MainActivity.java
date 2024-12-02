@@ -1,18 +1,4 @@
-/**
- * Purpose:
- * This activity checks whether the device is registered in Firestore and navigates
- * the user to the appropriate page based on their device id.
- * If not registered, the user can choose to sign up as either a user or organizer.
- * Controls the flow of the app.
- *
- * Design Rationale:
- * Firestore is used to store device-specific user data and to check if the device
- * is already associated with a user or admin or organizer role. Based on the result, the person using the app
- * is directed to either a page in the app specifc to their role or a sign-up page.
- *
- * Outstanding Issues:
- * No Issues.
- */
+
 
 package com.example.trojan0project;
 
@@ -45,6 +31,21 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+/**
+ * Purpose:
+ * This activity checks whether the device is registered in Firestore and navigates
+ * the user to the appropriate page based on their device id.
+ * If not registered, the user can choose to sign up as either a user or organizer.
+ * Controls the flow of the app.
+ *
+ * Design Rationale:
+ * Firestore is used to store device-specific user data and to check if the device
+ * is already associated with a user or admin or organizer role. Based on the result, the person using the app
+ * is directed to either a page in the app specifc to their role or a sign-up page.
+ *
+ * Outstanding Issues:
+ * No Issues.
+ */
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;

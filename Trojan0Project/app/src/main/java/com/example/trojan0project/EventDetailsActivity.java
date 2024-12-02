@@ -1,22 +1,4 @@
-/**
- * Represents the detailed view of an event, providing information such as the event's
- * name, description, poster, time, deadline, and maximum number of entrants.
- *
- * <p>This activity also allows users to:</p>
- * <ul>
- *     <li>Cancel and return to the previous screen.</li>
- *     <li>Sign up for the event, which requires location permissions to retrieve the user's current geolocation.</li>
- * </ul>
- *
- * <p>Design Features:</p>
- * <ul>
- *     <li>Integrates with the Fused Location Provider API for geolocation services.</li>
- *     <li>Uses Glide for efficient image loading.</li>
- *     <li>Handles event data passed via an Intent.</li>
- * </ul>
- *
- * <p>Extends {@link AppCompatActivity} to support modern Android UI and lifecycle management.</p>
- */
+
 
 package com.example.trojan0project;
 
@@ -40,6 +22,20 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.Date;
+/**
+ * Purpose:
+ * The `EventDetailsActivity` class displays detailed information about a specific event.
+ * It provides functionality to view event details, cancel the current view, and sign up for the event.
+ * Additionally, it retrieves the user's current location (with proper permissions) to facilitate event-related actions.
+ *
+ * Design Rationale:
+ * - Displays event details such as name, description, poster image, time, deadline, and max entrants.
+ * - Provides a "Sign Up" button to navigate to the waitlist with the event details and user's location.
+ * - Implements location services and permissions handling to enhance user interaction with location-based events.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class EventDetailsActivity extends AppCompatActivity {
 

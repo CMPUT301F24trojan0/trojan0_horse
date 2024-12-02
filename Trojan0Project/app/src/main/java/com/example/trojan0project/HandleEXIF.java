@@ -1,13 +1,4 @@
-/**
- * Purpose:
- * ensures images are displayed properly on different devices.
- *
- * Design Rationale:
- * decodes the image and reads its EXIF metadata. Based on this data, the image is rotated properly.
- *
- * Outstanding Issues:
- * - No Issues.
- */
+
 package com.example.trojan0project;
 
 import android.content.Context;
@@ -20,6 +11,16 @@ import android.net.Uri;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+/**
+ * Purpose:
+ * ensures images are displayed properly on different devices.
+ *
+ * Design Rationale:
+ * decodes the image and reads its EXIF metadata. Based on this data, the image is rotated properly.
+ *
+ * Outstanding Issues:
+ * - No Issues.
+ */
 
 // code from https://stackoverflow.com/questions/26460997/how-to-strip-exif-data-from-android-camera-image
 

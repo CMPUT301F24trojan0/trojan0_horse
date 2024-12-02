@@ -1,21 +1,4 @@
-/**
- * CancelEntrants class handles cancelling entrants for a specific event who did not sign up by
- * the deadline. Entrants are marked as 3 which is decline or cancelled in the Firestore database
- *
- * Purpose:
- * Class allows the event organizer to automatically cancel all entrants by clicking a button who:
- * were invited to sign up (status 1)
- * did not complete the sign up process before the deadline
- *
- * Design Rationale:
- * Gets signup deadline for the target event from Firestore
- * Prompts the organizer to confirm the cancellation with a dialog
- * Updates status of eligible entrants in Firestore to 3 (decline and cancelled)
- *
- * Outstanding Issues:
- * No issues
- *
- */
+
 package com.example.trojan0project;
 
 import android.app.AlertDialog;
@@ -39,6 +22,24 @@ import com.google.firebase.firestore.WriteBatch;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+/**
+ * CancelEntrants class handles cancelling entrants for a specific event who did not sign up by
+ * the deadline. Entrants are marked as 3 which is decline or cancelled in the Firestore database
+ *
+ * Purpose:
+ * Class allows the event organizer to automatically cancel all entrants by clicking a button who:
+ * were invited to sign up (status 1)
+ * did not complete the sign up process before the deadline
+ *
+ * Design Rationale:
+ * Gets signup deadline for the target event from Firestore
+ * Prompts the organizer to confirm the cancellation with a dialog
+ * Updates status of eligible entrants in Firestore to 3 (decline and cancelled)
+ *
+ * Outstanding Issues:
+ * No issues
+ *
+ */
 
 public class CancelEntrants extends AppCompatActivity {
     private FirebaseFirestore db;

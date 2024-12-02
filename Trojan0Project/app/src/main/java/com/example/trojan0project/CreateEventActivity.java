@@ -1,21 +1,4 @@
-/**
- * CreateEventActivity allows organizers to create a new event, customize its details,
- * and save it to Firestore along with a QR code and poster image.
- *
- * Purpose:
- * - Facilitates event creation with fields like name, description, time, deadline, and maximum entrants.
- * - Allows adding a geolocation to the event.
- * - Generates a QR code for the event, stores it in Firebase Storage, and links it to Firestore.
- *
- * Design Rationale:
- * - Provides a user-friendly interface with options for adding poster images, descriptions, deadlines,
- *   and other event details.
- * - Integrates Firebase Firestore for event storage and Firebase Storage for handling images and QR codes.
- *
- * Outstanding Issues:
- * - Geolocation fetching might not work properly if permissions are denied or if location services are disabled.
- * - There is no validation for event time or location fields other than basic null checks.
- */
+
 
 package com.example.trojan0project;
 
@@ -53,6 +36,25 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+
+/**
+ * CreateEventActivity allows organizers to create a new event, customize its details,
+ * and save it to Firestore along with a QR code and poster image.
+ *
+ * Purpose:
+ * - Facilitates event creation with fields like name, description, time, deadline, and maximum entrants.
+ * - Allows adding a geolocation to the event.
+ * - Generates a QR code for the event, stores it in Firebase Storage, and links it to Firestore.
+ *
+ * Design Rationale:
+ * - Provides a user-friendly interface with options for adding poster images, descriptions, deadlines,
+ *   and other event details.
+ * - Integrates Firebase Firestore for event storage and Firebase Storage for handling images and QR codes.
+ *
+ * Outstanding Issues:
+ * - Geolocation fetching might not work properly if permissions are denied or if location services are disabled.
+ * - There is no validation for event time or location fields other than basic null checks.
+ */
 
 public class CreateEventActivity extends AppCompatActivity {
 

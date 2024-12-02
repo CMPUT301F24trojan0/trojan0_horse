@@ -1,17 +1,4 @@
-/**
- * Represents the details screen for an event managed by an organizer. This activity allows the organizer to:
- * <ul>
- *     <li>View event details, including name, description, time, and poster.</li>
- *     <li>Change the event poster by selecting a new image.</li>
- *     <li>View a list of people who have signed up for the event.</li>
- * </ul>
- *
- * <p>The activity retrieves event details from Firestore and provides functionality for updating the event's poster image in Firebase Storage.</p>
- *
- * <p>This activity interacts with Firebase Firestore and Firebase Storage to fetch and update event data.</p>
- *
- * <p>Extends {@link AppCompatActivity} to support modern Android UI and lifecycle management.</p>
- */
+
 
 package com.example.trojan0project;
 
@@ -35,6 +22,22 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.UUID;
+
+/**
+ * Purpose:
+ * The `EventDetailsActivityOrganizer` class provides detailed information about an event
+ * for organizers. It allows organizers to view event details, change the event's poster image,
+ * and view entrants associated with the event.
+ *
+ * Design Rationale:
+ * - Integrates with Firebase Firestore to fetch and display event details.
+ * - Utilizes Firebase Storage for managing poster image uploads and updates.
+ * - Provides a user-friendly interface with buttons for changing posters and viewing entrants.
+ * - Implements efficient data retrieval and update mechanisms for seamless user interaction.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class EventDetailsActivityOrganizer extends AppCompatActivity {
 

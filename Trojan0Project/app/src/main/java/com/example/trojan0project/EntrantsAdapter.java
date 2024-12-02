@@ -1,7 +1,4 @@
-/**
- * The EntrantsAdapter class is a custom adapter for displaying a list of entrants in a RecyclerView.
- * Each entrant is represented as a simple string (e.g., their name), displayed in a TextView.
- */
+
 
 package com.example.trojan0project;
 
@@ -14,6 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+/**
+ * Purpose:
+ * The `EntrantsAdapter` class is a custom RecyclerView adapter for displaying a list of entrants.
+ * It binds a list of entrant names to individual views in a RecyclerView, providing a user-friendly
+ * and efficient way to display entrant data.
+ *
+ * Design Rationale:
+ * - Extends `RecyclerView.Adapter` to leverage RecyclerView's efficient item recycling.
+ * - Utilizes a ViewHolder (`EntrantViewHolder`) to hold references to individual views, improving performance.
+ * - Dynamically binds entrant names to the views for flexibility and scalability.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class EntrantsAdapter extends RecyclerView.Adapter<EntrantsAdapter.EntrantViewHolder> {
 

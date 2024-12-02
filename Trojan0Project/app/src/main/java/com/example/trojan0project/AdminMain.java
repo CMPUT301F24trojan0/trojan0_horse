@@ -1,8 +1,4 @@
-/**
- * AdminMain is an activity that serves as the main screen for the admin panel of the application.
- * It provides buttons that navigate to different sections such as events, facilities, images, and profiles.
- * Each button, when clicked, opens a new activity to manage or view relevant content.
- */
+
 
 package com.example.trojan0project;
 
@@ -11,6 +7,18 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+/**
+ * Purpose:
+ * This class serves as the main admin panel, providing navigation to sections such as
+ * event management, facility management, image browsing, and profile browsing.
+ *
+ * Design Rationale:
+ * - Uses buttons for intuitive navigation to key admin functionalities.
+ * - Centralizes all administrative options in a single screen for efficiency.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class AdminMain extends AppCompatActivity {
 

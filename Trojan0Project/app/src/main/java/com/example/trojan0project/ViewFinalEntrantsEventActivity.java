@@ -1,8 +1,3 @@
-/**
- * This activity displays the final entrants for a specific event.
- * It retrieves the list of entrants from Firebase Firestore and displays them
- * in a RecyclerView. Entrants are filtered by their status for the given event.
- */
 
 package com.example.trojan0project;
 
@@ -20,6 +15,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * Purpose:
+ * The `ViewFinalEntrantsEventActivity` class provides functionality to display the final list of entrants for a specific event.
+ * It fetches data from Firebase Firestore, filters users based on their status for the event, and presents the results in a RecyclerView.
+ *
+ * Design Rationale:
+ * - Ensures efficient filtering of users by combining their user type and event-specific status.
+ * - Uses a RecyclerView for scalable and efficient display of the list of entrants.
+ * - Provides real-time data fetching from Firestore to ensure up-to-date entrant information.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
+
+
 
 public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
 

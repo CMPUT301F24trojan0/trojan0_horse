@@ -1,3 +1,11 @@
+
+package com.example.trojan0project;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.graphics.Bitmap;
+import com.google.firebase.Timestamp;
+import java.io.Serializable;
 /**
  * Purpose:
  * The class represents an event in the application, storing details such as event ID, name,
@@ -9,13 +17,6 @@
  * Outstanding Issues:
  * No issues
  */
-package com.example.trojan0project;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.graphics.Bitmap;
-import com.google.firebase.Timestamp;
-import java.io.Serializable;
 
 public class Event implements Parcelable, Serializable {
     private Bitmap qrCodeBitmap;

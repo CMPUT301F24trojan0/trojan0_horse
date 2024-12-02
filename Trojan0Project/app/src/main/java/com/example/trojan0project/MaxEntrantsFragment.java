@@ -1,16 +1,4 @@
-/**
- * A dialog fragment for setting the maximum number of entrants for an event. This fragment contains a
- * {@link NumberPicker} that allows the user to select a value between 1 and 1000, representing the maximum
- * number of entrants for the event. Once the value is selected, the user can save it by clicking the
- * "Save" button. The selected value is passed back to the activity or parent fragment through the
- * {@link OnMaxEntrantsSavedListener} interface.
- *
- * <p>The dialog is used to update the maximum entrants value for an event in a user-friendly way, and the
- * result is communicated back to the parent component that implements the listener.</p>
- *
- * @see NumberPicker
- * @see OnMaxEntrantsSavedListener
- */
+
 
 package com.example.trojan0project;
 
@@ -24,6 +12,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.Toast;
+
+/**
+ * Purpose:
+ * The `MaxEntrantsFragment` class provides a dialog interface for selecting the maximum number of entrants
+ * for an event. It features a `NumberPicker` to allow users to choose a value between 1 and 1000
+ * and communicates the selected value back to the parent component using a listener.
+ *
+ * Design Rationale:
+ * - Utilizes a `DialogFragment` for a modular and reusable UI component.
+ * - Implements a listener interface (`OnMaxEntrantsSavedListener`) to decouple the max entrants selection logic
+ *   from the parent activity or fragment.
+ * - Uses a `NumberPicker` to ensure input consistency and provide an intuitive user experience.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class MaxEntrantsFragment extends DialogFragment {
 

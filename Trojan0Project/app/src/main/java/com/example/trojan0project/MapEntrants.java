@@ -1,15 +1,4 @@
-/**
- *Purpose:
- *Displays a map with markers showing the locations of entrants for a specific event
- * Map uses Google Maps SDK and locations are fetched from Firebase Firestore
- *
- * Design Rationale:
- * Uses Google Maps SDK for maps and Firestore for getting event and entrant data
- * Markers are added to the map based on latitude and lingitude from Firestore
- *
- * Outstanding Issues:
- * No issues.
- */
+
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -35,6 +24,18 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+/**
+ *Purpose:
+ *Displays a map with markers showing the locations of entrants for a specific event
+ * Map uses Google Maps SDK and locations are fetched from Firebase Firestore
+ *
+ * Design Rationale:
+ * Uses Google Maps SDK for maps and Firestore for getting event and entrant data
+ * Markers are added to the map based on latitude and lingitude from Firestore
+ *
+ * Outstanding Issues:
+ * No issues.
+ */
 
 public class MapEntrants extends AppCompatActivity implements OnMapReadyCallback {
 

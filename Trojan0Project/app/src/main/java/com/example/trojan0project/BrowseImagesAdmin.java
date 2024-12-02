@@ -1,16 +1,4 @@
-/**
- * Purpose:
- * This retrieves user profile pictures and event poster pictures from Firebase
- * and then displays in a grid layout. It also removes the images that are selected
- *
- * Design Rationale:
- * User firebase storage to access the images and then downloads the URL of the images.
- * Then it stores the images in a list and displays them in a gridview using the ImageAdapter.
- * Firebase Storage is used to delete images when needed and deletes from grid view.
- *
- * Outstanding Issues:
- * No issues
- */
+
 
 package com.example.trojan0project;
 
@@ -40,6 +28,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+/**
+ * Purpose:
+ * This retrieves user profile pictures and event poster pictures from Firebase
+ * and then displays in a grid layout. It also removes the images that are selected
+ *
+ * Design Rationale:
+ * User firebase storage to access the images and then downloads the URL of the images.
+ * Then it stores the images in a list and displays them in a gridview using the ImageAdapter.
+ * Firebase Storage is used to delete images when needed and deletes from grid view.
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageFragment.removeImageListener{
     private GridView imagesGridView;

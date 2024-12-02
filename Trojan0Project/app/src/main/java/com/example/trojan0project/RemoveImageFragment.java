@@ -1,9 +1,15 @@
 /**
- * A DialogFragment that displays a confirmation dialog for removing an image.
- * It shows the image and asks the user to either confirm or cancel the removal action.
- * The fragment uses the Glide library to load the image into an ImageView.
- * Upon confirmation, the fragment communicates with the hosting activity or fragment
- * through the `removeImageListener` interface to remove the image.
+ * Purpose:
+ * The `RemoveImageFragment` class provides a dialog interface for displaying an image and allowing the user to confirm or cancel its removal.
+ * It communicates with the host activity/fragment using a listener interface to perform the removal action upon user confirmation.
+ *
+ * Design Rationale:
+ * - Encapsulates the remove image functionality in a reusable and modular dialog fragment.
+ * - Uses the `Glide` library to efficiently load and display the image within the dialog.
+ * - Implements a listener interface (`removeImageListener`) to ensure a loosely coupled communication mechanism with the host.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
  */
 
 package com.example.trojan0project;

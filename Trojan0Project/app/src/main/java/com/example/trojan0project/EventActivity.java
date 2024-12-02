@@ -1,21 +1,4 @@
-/**
- * Represents an activity for managing events in the application, providing functionalities
- * such as viewing, generating QR codes, and deleting events. It integrates with Firestore
- * for event data retrieval and storage and provides an admin interface for event management.
- *
- * <p>This class implements the `DeleteEventFragment.DeleteEventDialogListener` interface to
- * handle dialog-based event deletion operations.</p>
- *
- * Features:
- * - Displays a list of events retrieved from Firestore.
- * - Allows navigation to a profile management page.
- * - Supports generating and deleting QR codes for events.
- * - Provides the ability to delete entire events from Firestore.
- *
- * Design Rationale:
- * - Extends `AppCompatActivity` to utilize modern Android UI components.
- * - Uses Firestore for cloud-based event data management.
- */
+
 
 package com.example.trojan0project;
 
@@ -61,6 +44,24 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+/**
+ * Represents an activity for managing events in the application, providing functionalities
+ * such as viewing, generating QR codes, and deleting events. It integrates with Firestore
+ * for event data retrieval and storage and provides an admin interface for event management.
+ *
+ * <p>This class implements the `DeleteEventFragment.DeleteEventDialogListener` interface to
+ * handle dialog-based event deletion operations.</p>
+ *
+ * Features:
+ * - Displays a list of events retrieved from Firestore.
+ * - Allows navigation to a profile management page.
+ * - Supports generating and deleting QR codes for events.
+ * - Provides the ability to delete entire events from Firestore.
+ *
+ * Design Rationale:
+ * - Extends `AppCompatActivity` to utilize modern Android UI components.
+ * - Uses Firestore for cloud-based event data management.
+ */
 
 public class EventActivity extends AppCompatActivity implements DeleteEventFragment.DeleteEventDialogListener {
 

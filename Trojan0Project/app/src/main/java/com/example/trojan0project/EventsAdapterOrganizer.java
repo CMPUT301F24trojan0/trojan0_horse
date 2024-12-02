@@ -1,10 +1,4 @@
-/**
- * RecyclerView Adapter for displaying a list of event IDs in the organizer's event list.
- * <p>This adapter takes a list of event IDs and displays them in a RecyclerView. When an item is clicked,
- * it opens the {@link EventDetailsActivityOrganizer} activity to show details of the selected event.</p>
- *
- * <p>The adapter uses a ViewHolder pattern to efficiently manage the event list items and their corresponding views.</p>
- */
+
 
 package com.example.trojan0project;
 
@@ -23,6 +17,21 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+/**
+ * Purpose:
+ * The `EventsAdapterOrganizer` class is a custom RecyclerView adapter designed for organizers
+ * to display and manage a list of events. It fetches event details from Firestore using event IDs
+ * and displays them in a RecyclerView. Each item can be clicked to navigate to the event's detailed view.
+ *
+ * Design Rationale:
+ * - Integrates with Firestore to dynamically fetch and display event details.
+ * - Uses a `RecyclerView` for efficient, scalable UI rendering.
+ * - Provides a user-friendly interface for event management, allowing organizers to view detailed information
+ *   about each event by tapping on the item.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class EventsAdapterOrganizer extends RecyclerView.Adapter<EventsAdapterOrganizer.EventViewHolder> {
     // Initialize Firestore

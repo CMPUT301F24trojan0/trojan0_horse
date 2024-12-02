@@ -1,14 +1,4 @@
-/**
- * Purpose:
- *Displays users profile information like first name, last name and email.
- * Also allows them to edit it before confirming their waitlist entry
- *
- * Design Rationale:
- * Uses listener interface (JoinWaitlistListener) to send information about user activity back to JoinWaitlist
- *
- * Outstanding Issues:
- *
- */
+
 
 package com.example.trojan0project;
 
@@ -24,6 +14,17 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+/**
+ * Purpose:
+ *Displays users profile information like first name, last name and email.
+ * Also allows them to edit it before confirming their waitlist entry
+ *
+ * Design Rationale:
+ * Uses listener interface (JoinWaitlistListener) to send information about user activity back to JoinWaitlist
+ *
+ * Outstanding Issues:
+ *
+ */
 
 public class JoinWaitlistFragment extends DialogFragment {
 

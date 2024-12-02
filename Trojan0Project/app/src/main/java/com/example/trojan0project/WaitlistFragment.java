@@ -1,13 +1,4 @@
-/**
- * Purpose:
- * This activity allows the user to leave the waitlist by communicating with the in_waitlist.xml fragment
- *
- * Design Rationale:
- * The activity uses a onCreateView to obtain the eventID and the userID and to then remove them for the waitlist dictionaries of their respective collections
- *
- * Outstanding Issues:
- *
- */
+
 
 package com.example.trojan0project;
 
@@ -25,6 +16,16 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+/**
+ * Purpose:
+ * This activity allows the user to leave the waitlist by communicating with the in_waitlist.xml fragment
+ *
+ * Design Rationale:
+ * The activity uses a onCreateView to obtain the eventID and the userID and to then remove them for the waitlist dictionaries of their respective collections
+ *
+ * Outstanding Issues:
+ *
+ */
 
 public class WaitlistFragment extends DialogFragment {
 

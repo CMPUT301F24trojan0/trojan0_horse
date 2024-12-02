@@ -1,15 +1,4 @@
-/**
- * Purpose:
- * DisplayEventDetails is an activity that retrieves and displays the details of a selected event from Firestore.
- * It shows the event's title, location, time, and description
- *
- * Design Rationale:
- * The activity uses Firestore to load event data
- * Geolocation data is converted to a readable address format using reverse geocoding
- *
- * Outstanding Issues:
- * No issues
- */
+
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -31,6 +20,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+/**
+ * Purpose:
+ * DisplayEventDetails is an activity that retrieves and displays the details of a selected event from Firestore.
+ * It shows the event's title, location, time, and description
+ *
+ * Design Rationale:
+ * The activity uses Firestore to load event data
+ * Geolocation data is converted to a readable address format using reverse geocoding
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class DisplayEventDetails extends AppCompatActivity {
     private FirebaseFirestore db;

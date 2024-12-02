@@ -1,15 +1,4 @@
-/**
- * Purpose:
- * DeleteEventFragment allows users to delete an event or its QR code
- * Shows a dialog with options for event deletion, QR deletion
- *
- * Design Rationale:
- * This fragment uses an interface (DeleteEventDialogListener) to communicate with EventActivity
- * ensuring that the deleting is properly handled
- *
- * Outstanding Issues:
- * No issues
- */
+
 
 package com.example.trojan0project;
 
@@ -34,6 +23,18 @@ import androidx.fragment.app.DialogFragment;
 import com.example.trojan0project.DisplayEventDetails;
 
 import java.io.Serializable;
+/**
+ * Purpose:
+ * DeleteEventFragment allows users to delete an event or its QR code
+ * Shows a dialog with options for event deletion, QR deletion
+ *
+ * Design Rationale:
+ * This fragment uses an interface (DeleteEventDialogListener) to communicate with EventActivity
+ * ensuring that the deleting is properly handled
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class DeleteEventFragment extends DialogFragment {
     /**

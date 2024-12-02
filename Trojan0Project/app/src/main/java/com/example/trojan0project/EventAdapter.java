@@ -1,15 +1,4 @@
-/**
- * Purpose:
- * custom adapter for displaying a list of Event objects in a RecyclerView
- * allows each event item to display its name and includes a click listener for item selection.
- *
- * Design Rationale:
- * Extends RecyclerView.Adapter, uses `ViewHolder` to cache view references
- * OnEventClickListener interface to handle click events on individual items
- *
- * Outstanding Issues:
- * No issues
- */
+
 package com.example.trojan0project;
 
 import android.view.LayoutInflater;
@@ -22,6 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+/**
+ * Purpose:
+ * custom adapter for displaying a list of Event objects in a RecyclerView
+ * allows each event item to display its name and includes a click listener for item selection.
+ *
+ * Design Rationale:
+ * Extends RecyclerView.Adapter, uses `ViewHolder` to cache view references
+ * OnEventClickListener interface to handle click events on individual items
+ *
+ * Outstanding Issues:
+ * No issues
+ */
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 

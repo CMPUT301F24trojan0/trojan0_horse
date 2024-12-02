@@ -1,11 +1,4 @@
-/**
- * The DeadlineFragment class represents a dialog fragment for selecting a deadline date.
- * It provides a date picker for the user to select a specific date, which is then converted
- * into a Firestore-compatible {@link Timestamp}.
- *
- * <p>This fragment is typically used in event creation or management workflows
- * to specify registration or task deadlines.
- */
+
 
 package com.example.trojan0project;
 
@@ -24,6 +17,21 @@ import android.widget.Toast;
 import com.google.firebase.Timestamp;
 
 import java.util.Calendar;
+/**
+ * Purpose:
+ * The `DeadlineFragment` class provides a dialog interface for selecting a deadline date.
+ * It includes a date picker dialog and communicates the selected deadline to the parent
+ * activity or fragment through a listener interface.
+ *
+ * Design Rationale:
+ * - Utilizes a `DialogFragment` for modularity and reusable UI components.
+ * - Implements a listener interface (`OnDeadlineSavedListener`) to decouple deadline selection
+ *   logic from the parent activity or fragment.
+ * - Uses a `DatePickerDialog` for user-friendly date selection.
+ *
+ * Outstanding Issues:
+ * - No known issues at this time.
+ */
 
 public class DeadlineFragment extends DialogFragment {
 

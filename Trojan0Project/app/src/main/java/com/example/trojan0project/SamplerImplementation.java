@@ -1,16 +1,4 @@
-/**
- * Purpose:
- * This class handles the sampling process for selecting attendees from a waitlist for an event.
- * It randomly selects profiles from the waitlist, updates their registration status in Firestore,
- * and updates the event document with the selected attendees.
- *
- * Design Rationale:
- * Firestore is used to store and retrieve user and event data. The sampling process is done randomly,
- * and batch updates are used to ensure efficient updating of the event document with the selected attendees.
- *
- * Outstanding Issues:
- * No issues at the moment.
- */
+
 
 package com.example.trojan0project;
 
@@ -35,7 +23,19 @@ import com.google.firebase.firestore.WriteBatch;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
-
+/**
+ * Purpose:
+ * This class handles the sampling process for selecting attendees from a waitlist for an event.
+ * It randomly selects profiles from the waitlist, updates their registration status in Firestore,
+ * and updates the event document with the selected attendees.
+ *
+ * Design Rationale:
+ * Firestore is used to store and retrieve user and event data. The sampling process is done randomly,
+ * and batch updates are used to ensure efficient updating of the event document with the selected attendees.
+ *
+ * Outstanding Issues:
+ * No issues at the moment.
+ */
 public class SamplerImplementation {
 
     private FirebaseFirestore db;

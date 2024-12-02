@@ -101,7 +101,7 @@ public class DisplayEventDetails extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         // Get event details and set them in the UI
-                        String title = documentSnapshot.getString("name");
+                        String title = documentSnapshot.getString("eventName");
                         Double latitude = documentSnapshot.getDouble("latitude");
                         Double longitude = documentSnapshot.getDouble("longitude");
                         String time = documentSnapshot.getString("time");

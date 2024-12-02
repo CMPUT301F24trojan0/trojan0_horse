@@ -15,6 +15,9 @@
 
 package com.example.trojan0project;
 
+
+//users stories 02.05.03 automatically resamples someone there is space in the waitinglist
+//therefore 01.05.01 will automatically be done if someone declines their invitation
 import static android.content.ContentValues.TAG;
 
 import android.graphics.Bitmap;
@@ -66,6 +69,7 @@ public class SystemSample extends AppCompatActivity {
      *
      * @param savedInstanceState The saved state of the activity.
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

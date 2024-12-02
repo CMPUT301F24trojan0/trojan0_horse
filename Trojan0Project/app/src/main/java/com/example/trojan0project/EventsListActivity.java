@@ -25,9 +25,5 @@ public class EventsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_list);
-
-        // Display "No events created yet." message
-        TextView noEventsText = findViewById(R.id.no_events_text);
-        noEventsText.setText("No events created yet.");
     }
 }

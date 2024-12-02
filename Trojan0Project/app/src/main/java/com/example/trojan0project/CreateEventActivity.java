@@ -1,22 +1,3 @@
-/**
- * CreateEventActivity allows organizers to create a new event, customize its details,
- * and save it to Firestore along with a QR code and poster image.
- *
- * Purpose:
- * - Facilitates event creation with fields like name, description, time, deadline, and maximum entrants.
- * - Allows adding a geolocation to the event.
- * - Generates a QR code for the event, stores it in Firebase Storage, and links it to Firestore.
- *
- * Design Rationale:
- * - Provides a user-friendly interface with options for adding poster images, descriptions, deadlines,
- *   and other event details.
- * - Integrates Firebase Firestore for event storage and Firebase Storage for handling images and QR codes.
- *
- * Outstanding Issues:
- * - Geolocation fetching might not work properly if permissions are denied or if location services are disabled.
- * - There is no validation for event time or location fields other than basic null checks.
- */
-
 package com.example.trojan0project;
 
 import android.Manifest;
@@ -27,14 +8,17 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -73,11 +57,6 @@ public class CreateEventActivity extends AppCompatActivity {
     private int maxEntrants = 0; // Maximum number of entrants
     private String organizerId; // Field to store the organizer ID
 
-    /**
-     * Initializes the activity, sets up UI elements, and configures Firebase services.
-     *
-     * @param savedInstanceState State of the activity saved during a configuration change.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +76,15 @@ public class CreateEventActivity extends AppCompatActivity {
         addMaxEntrantsButton = findViewById(R.id.addMaxEntrantsButton);
         qrCodeImageView = findViewById(R.id.qrCodeImageView);
         progressDialog = new ProgressDialog(this);
+
+        Toolbar toolbar = findViewById(R.id.leave_create_event_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
 
         // Initialize Firebase services
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -179,12 +167,22 @@ public class CreateEventActivity extends AppCompatActivity {
     }
 
     /**
-     * Validates the input fields for creating an event.
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
      *
-     * @param eventName The name of the event.
-     * @param posterUri The URI of the poster image.
-     * @return true if all fields are valid, false otherwise.
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
      */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(this, "Event creation incomplete", Toast.LENGTH_SHORT).show();
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private boolean validateInput(String eventName, Uri posterUri) {
         if (eventName.isEmpty()) {
             Toast.makeText(this, "Please enter an event name", Toast.LENGTH_SHORT).show();
@@ -205,9 +203,6 @@ public class CreateEventActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Fetches the user's current location if location permissions are granted.
-     */
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -222,13 +217,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Handles the result of an activity, such as selecting a poster image.
-     *
-     * @param requestCode The request code identifying the activity.
-     * @param resultCode  The result code returned by the activity.
-     * @param data        The data returned by the activity.
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -237,11 +225,6 @@ public class CreateEventActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Saves the event to Firestore and uploads associated data (poster, QR code).
-     *
-     * @param event The event to be saved.
-     */
     private void saveEvent(Event event) {
         progressDialog.setMessage("Saving Event...");
         progressDialog.show();
@@ -262,11 +245,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Adds the event to the organizer's list of events in Firestore.
-     *
-     * @param eventId The ID of the newly created event.
-     */
     private void addEventToOrganizer(String eventId) {
         db.collection("users").document(organizerId)
                 .update("organizer_details.events", FieldValue.arrayUnion(eventId))
@@ -274,13 +252,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("CreateEventActivity", "Failed to add event to organizer's event list", e));
     }
 
-    /**
-     * Uploads the event's poster to Firebase Storage and updates Firestore with its URL.
-     *
-     * @param eventId    The ID of the event.
-     * @param event      The event object to be updated.
-     * @param qrContent  The content of the QR code to be generated.
-     */
     private void uploadPosterToStorage(String eventId, Event event, String qrContent) {
         StorageReference posterRef = storage.getReference().child("posters/" + eventId + "_poster.jpg");
         posterRef.putFile(posterUri)
@@ -313,12 +284,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Creates the content for the event's QR code in JSON format.
-     *
-     * @param event The event for which the QR code is being generated.
-     * @return The JSON string representing the event details.
-     */
     private String createQRContent(Event event) {
         JSONObject json = new JSONObject();
         try {
@@ -330,12 +295,6 @@ public class CreateEventActivity extends AppCompatActivity {
         return json.toString();
     }
 
-    /**
-     * Generates a QR code bitmap from the given content.
-     *
-     * @param content The content to encode in the QR code.
-     * @return A Bitmap object representing the QR code.
-     */
     private Bitmap generateQRCode(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -353,12 +312,6 @@ public class CreateEventActivity extends AppCompatActivity {
         return null;
     }
 
-    /**
-     * Uploads the generated QR code to Firebase Storage and updates Firestore with its URL.
-     *
-     * @param qrCodeBitmap The bitmap image of the QR code.
-     * @param eventId      The ID of the event.
-     */
     private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventId) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
@@ -372,7 +325,7 @@ public class CreateEventActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 Toast.makeText(this, "Event and QR code saved successfully", Toast.LENGTH_SHORT).show();
                                 qrCodeImageView.setImageBitmap(qrCodeBitmap);
-                                refreshActivity();
+                                finish();
                             })
                             .addOnFailureListener(e -> {
                                 progressDialog.dismiss();
@@ -385,15 +338,5 @@ public class CreateEventActivity extends AppCompatActivity {
                     Toast.makeText(this, "Failed to upload QR code", Toast.LENGTH_SHORT).show();
                     Log.e("Storage Error", "Failed to upload QR code", e);
                 });
-    }
-
-    /**
-     * Refreshes the activity to clear fields and reload UI elements after event creation.
-     */
-    private void refreshActivity() {
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
     }
 }

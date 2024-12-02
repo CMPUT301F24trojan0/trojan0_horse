@@ -13,7 +13,6 @@
  * Outstanding Issues:
  * No Issues.
  */
-
 package com.example.trojan0project;
 
 import android.app.NotificationChannel;

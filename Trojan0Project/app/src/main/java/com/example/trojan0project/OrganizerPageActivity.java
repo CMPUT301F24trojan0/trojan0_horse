@@ -1,9 +1,3 @@
-/**
- * Activity representing the organizer's main page. The activity allows the organizer to
- * edit their facility name, view events, and create a new event.
- * It retrieves the organizer's details from Firestore and updates the UI accordingly.
- */
-
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -30,10 +24,9 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
     private static final String TAG = "OrganizerPageActivity";
 
     /**
-     * Called when the activity is first created. Sets up the UI elements and initializes
-     * Firestore to fetch and update data related to the organizer.
+     * Initializes the activity and sets up UI elements and Firestore.
      *
-     * @param savedInstanceState The saved instance state of the activity, if any.
+     * @param savedInstanceState The saved state of the activity.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +52,8 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
                         if (documentSnapshot.exists()) {
                             organizer = documentSnapshot.toObject(Organizer.class);
                             if (organizer != null && organizer.getFacilityName() != null) {
-                                facilityNameText.setText(organizer.getFacilityName());
+                                String welcomeMessage = "Welcome " + organizer.getFacilityName() + "!";
+                                facilityNameText.setText(welcomeMessage);
                                 Log.d(TAG, "Facility name: " + organizer.getFacilityName());
                             } else {
                                 facilityNameText.setText("No facility name provided");
@@ -116,7 +110,7 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
                                         Log.e(TAG, "Events field is not a list: " + eventsObject);
                                     }
                                 } else {
-                                    Toast.makeText(this, "No organizer details found", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, "No events to be found", Toast.LENGTH_SHORT).show();
                                     Log.e(TAG, "organizer_details is not a map: " + organizerDetails);
                                 }
                             } else {
@@ -142,16 +136,16 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
     }
 
     /**
-     * Called when the facility name is updated in the EditFacilityFragment. Updates the displayed facility
-     * name in both the UI and Firestore.
+     * Updates the facility name displayed in the UI and in Firestore when the name is changed.
      *
-     * @param newFacilityName The new facility name entered by the user.
+     * @param newFacilityName The new facility name provided by the user.
      */
     @Override
     public void onFacilityNameUpdated(String newFacilityName) {
         if (organizer != null) {
             organizer.setFacilityName(newFacilityName);
-            facilityNameText.setText(newFacilityName);
+            String welcomeMessage = "Welcome " + newFacilityName + "!";
+            facilityNameText.setText(welcomeMessage);
 
             // Update Firestore with the new facility name
             firestore.collection("users").document(getIntent().getStringExtra("organizerId"))
@@ -159,5 +153,10 @@ public class OrganizerPageActivity extends AppCompatActivity implements EditFaci
                     .addOnSuccessListener(aVoid -> Toast.makeText(this, "Facility name updated", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e -> Toast.makeText(this, "Failed to update facility name", Toast.LENGTH_SHORT).show());
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

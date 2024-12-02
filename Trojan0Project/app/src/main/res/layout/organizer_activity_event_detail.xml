@@ -7,17 +7,38 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Event Poster -->
-    <ImageView
-        android:id="@+id/event_poster_image_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        android:contentDescription="Event Poster"
+    <!-- Logo Text -->
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cinzel_decorative"
+        android:text="TROJAN0"
+        android:textColor="#8C52FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/leave_view_event_details_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/logoText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="4:5" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- TextView inside Toolbar -->
+        <TextView
+            android:id="@+id/toolbar_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Event Details"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- Event Name -->
     <TextView
@@ -26,12 +47,25 @@
         android:layout_height="wrap_content"
         android:text="Event Name"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/quicksand"
-        app:layout_constraintTop_toBottomOf="@id/event_poster_image_view"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/leave_view_event_details_toolbar"
+        app:layout_constraintBottom_toTopOf="@id/event_poster_image_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+
+    <!-- Event Poster -->
+    <ImageView
+        android:id="@+id/event_poster_image_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:contentDescription="Event Poster"
+        app:layout_constraintTop_toBottomOf="@id/event_name_text_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="6:7" />
 
     <!-- Event Description -->
     <TextView
@@ -57,54 +91,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Change Poster Button -->
-
     <!-- View People Button -->
 
     <Button
         android:id="@+id/change_poster_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="56dp"
-        android:backgroundTint="@color/purple"
-        android:fontFamily="@font/quicksand"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="11sp"
         android:text="Change Poster"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/view_people_button"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_time_text_view"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@id/view_geolocation_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1.5" />
+
+    <Button
+        android:id="@+id/view_geolocation_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        android:text="View Geolocation"
+        app:layout_constraintStart_toEndOf="@id/change_poster_button"
+        app:layout_constraintEnd_toStartOf="@id/view_people_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1.5" />
 
     <Button
         android:id="@+id/view_people_button"
-        android:layout_width="152dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="60dp"
-        android:backgroundTint="@color/purple"
-        android:fontFamily="@font/quicksand"
-        android:text="View People"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_time_text_view"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/view_map_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="View Entrants On Map"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="11sp"
+        android:text="View People"
+        app:layout_constraintStart_toEndOf="@id/view_geolocation_button"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/purple"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_people_button"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

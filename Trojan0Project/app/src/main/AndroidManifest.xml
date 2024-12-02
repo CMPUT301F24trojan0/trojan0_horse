@@ -48,7 +48,6 @@
         <activity android:name=".ListEvents" />
         <activity android:name=".SystemSample" />
         <activity android:name=".AdminMain"/>
-        <activity android:name=".PeopleFiltersActivity" />
 
         <!-- QR Code Scanner Activity -->
         <activity

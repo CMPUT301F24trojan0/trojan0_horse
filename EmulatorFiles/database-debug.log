@@ -1,0 +1,8 @@
+12:50:45.716 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+12:50:45.840 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+12:50:46.921 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - cmput301f24trojan0horse-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 97ms, init: 0ms
+12:50:46.967 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace cmput301f24trojan0horse-default-rtdb status Active to Active
+16:38:11.226 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+16:38:11.455 [NamespaceSystem-akka.actor.default-dispatcher-12] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: cmput301f24trojan0horse-default-rtdb
+16:38:11.482 [NamespaceSystem-akka.actor.default-dispatcher-12] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for cmput301f24trojan0horse-default-rtdb
+16:38:11.495 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

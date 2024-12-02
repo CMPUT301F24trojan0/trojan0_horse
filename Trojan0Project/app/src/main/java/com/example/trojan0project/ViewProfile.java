@@ -15,23 +15,36 @@
  * Outstanding Issues:
  * No Issues.
  */
+
 package com.example.trojan0project;
 
 import static com.example.trojan0project.HandleEXIF.handleEXIF;
 
+import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-
+import android.os.Build;
+import android.Manifest;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -41,6 +54,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,6 +74,7 @@ import java.util.Map;
 
 public class ViewProfile extends AppCompatActivity {
     private static final String TAG = "ViewProfile";
+    private static final int QR_SCANNER_REQUEST_CODE = 200;
     private ImageView profilePicture;
     private ImageButton editImageButton;
     private ImageButton deleteImageButton;
@@ -72,14 +88,12 @@ public class ViewProfile extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneNumberEditText;
     private Switch notificationsToggle;
-    private Button viewEventsButton;
     private FirebaseFirestore db;
     private String deviceId;
     private String username;
 
     ActivityResultLauncher<PickVisualMediaRequest> pickVisualMedia =
-            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri ->
-            {
+            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     ContentResolver CR = this.getContentResolver();
                     String type = CR.getType(uri);
@@ -96,6 +110,7 @@ public class ViewProfile extends AppCompatActivity {
                     Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
                 }
             });
+
     /**
      * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the UI elements.
      *
@@ -105,6 +120,16 @@ public class ViewProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_view); // Links the XML layout to this activity
+
+        Toolbar toolbar = findViewById(R.id.view_profile_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         // Initialize Firestore and Firebase Storage
         db = FirebaseFirestore.getInstance();
@@ -126,17 +151,79 @@ public class ViewProfile extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailInput);
         phoneNumberEditText = findViewById(R.id.phoneNumberInput);
         notificationsToggle = findViewById(R.id.notificationsToggle);
-        viewEventsButton = findViewById(R.id.viewEventsButton);
 
         // Load profile data
         loadProfileData();
 
         // Set up the button to update profile image
         editImageButton.setOnClickListener(v -> updateImage());
+    }
 
-        // Save details and go to View Events Page
-        viewEventsButton.setOnClickListener(v -> saveProfileData());
+    /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     * In this case, it saves the profile data before navigating back to the previous activity.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Save profile data before navigating back
+            if (saveProfileData()) {finish();}
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    /**
+     * Creates a notification channel for default notifications. This method is
+     * only called if the device is running Android O (API level 26) or higher.
+     * It ensures that the required notification channel exists for notifications
+     * sent with the default channel ID ("default").
+     *
+     * @param context The context used to get the system's NotificationManager
+     *                service to create the notification channel.
+     */
+    public void createNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            if (notificationManager != null && notificationManager.getNotificationChannel("default") == null) {
+                CharSequence name = "Default Channel";
+                String description = "Channel for default notifications";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel("default", name, importance);
+                channel.setDescription(description);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+    }
+
+    /**
+     * Callback method to handle the result of the permission request for notifications.
+     * This method is triggered when the user responds to the permission request dialog.
+     * It checks if the user granted or denied the notification permission and logs the result.
+     *
+     * @param requestCode The request code passed in {@link Activity#requestPermissions(String[], int)}.
+     *                    It is used to differentiate between multiple permission requests.
+     * @param permissions The requested permissions. In this case, it will be the notification permission.
+     * @param grantResults The results of the permission request. A value of
+     *                     {@link PackageManager#PERMISSION_GRANTED} means the permission was granted.
+     *                     A value of {@link PackageManager#PERMISSION_DENIED} means it was denied.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) { // Match the request code used in requestNotificationPermission
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Notification permission granted.");
+            } else {
+                Log.e(TAG, "Notification permission denied.");
+                // Optionally, explain to the user why the permission is needed
+            }
+        }
     }
     /**
      * Loads the user's profile data from Firestore and populates the UI fields with this data.
@@ -158,6 +245,20 @@ public class ViewProfile extends AppCompatActivity {
                     Boolean notifications = document.getBoolean("notifications");
                     if (notifications != null) {
                         notificationsToggle.setChecked(notifications);
+
+                        // Attach the listener after setting the initial state
+                        notificationsToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                            if (isChecked) {
+                                // Fetch and display notifications for the device
+                                Notification notificationHelper = new Notification();
+                                notificationHelper.getNotificationsForDevice(this, deviceId);
+                                // Call createNotificationChannel to ensure the channel is created on compatible devices
+                                createNotificationChannel(this);
+                            } else {
+                                // Optionally, stop or remove notifications
+                                cancelNotifications();
+                            }
+                        });
                     }
 
                     // Load profile picture from URL
@@ -180,10 +281,24 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Cancels all ongoing notifications by calling the system's NotificationManager.
+     * This method is used to clear any active notifications that the app has created.
+     * It retrieves the NotificationManager system service and cancels all notifications
+     * currently displayed.
+     */
+    private void cancelNotifications() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.cancelAll(); // This cancels all ongoing notifications
+        }
+    }
+
     /**
      * Saves the updated profile data to Firestore.
      */
-    private void saveProfileData() {
+    private boolean saveProfileData() {
         String firstName = firstNameEditText.getText().toString().trim();
         String lastName = lastNameEditText.getText().toString().trim();
         String username = usernameEditText.getText().toString().trim();
@@ -191,10 +306,10 @@ public class ViewProfile extends AppCompatActivity {
         String phoneNumber = phoneNumberEditText.getText().toString().trim();
         boolean notifications = notificationsToggle.isChecked();
 
-        if (firstName.isEmpty() || lastName.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
             // Exit the method to stay on the same page
-            return;
+            return false;
         }
 
         // Create a Map to store updated profile data
@@ -212,34 +327,27 @@ public class ViewProfile extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Profile updated successfully: " + profileData);
                         Toast.makeText(ViewProfile.this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-
-
-                        // Prevent multiple clicks
-                        viewEventsButton.setEnabled(false);
-                        // Navigate to View Events Page
-                        Intent intent1 = new Intent(ViewProfile.this, ViewEvents.class);
-                        intent1.putExtra("DEVICE_ID", deviceId); // Add device ID to intent
-                        startActivity(intent1);
                     } else {
                         Log.e(TAG, "Profile update failed", task.getException());
                         Toast.makeText(ViewProfile.this, "Profile update failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        return true;
     }
+
     /**
      * Saves the updated profile data to Firestore.
      */
-    private void updateImage(){
-        pickVisualMedia.launch((new PickVisualMediaRequest
-                .Builder()
-                .setMediaType(ActivityResultContracts
-                        .PickVisualMedia.ImageOnly.INSTANCE)
+    private void updateImage() {
+        pickVisualMedia.launch((new PickVisualMediaRequest.Builder()
+                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build()));
     }
+
     /**
      * Uploads the selected image to Firebase Storage and updates the user's profile picture URL in Firestore.
      */
-    private void uploadImage(){
+    private void uploadImage() {
         progressBar.setVisibility(View.VISIBLE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
@@ -278,6 +386,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Deletes the profile image from Firebase Storage and updates Firestore to remove the profile picture URL.
      */
@@ -306,6 +415,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Displays a new image with the user's initials when no profile image is set.
      *
@@ -315,5 +425,27 @@ public class ViewProfile extends AppCompatActivity {
         ImageGenerator mydrawing = new ImageGenerator(this);
         mydrawing.setUserText(String.valueOf(username.charAt(0)));
         profilePicture.setImageDrawable(mydrawing);
+    }
+
+    /**
+     * Callback method for handling the result of an activity started for a result, such as the QR scanner.
+     * This method is called when the QR scanner activity finishes, returning the scanned data.
+     *
+     * @param requestCode The request code passed to startActivityForResult().
+     * @param resultCode The result code returned by the child activity through setResult().
+     * @param data An Intent containing the result data. In this case, it includes the scanned QR code data.
+     *
+     * If the result is successful (QR_SCANNER_REQUEST_CODE) and the scanned data is present,
+     * a Toast message is displayed showing the scanned QR code content.
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == QR_SCANNER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String scannedData = data.getStringExtra("SCANNED_DATA");
+            if (scannedData != null) {
+                Toast.makeText(this, "QR Code Scanned: " + scannedData, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

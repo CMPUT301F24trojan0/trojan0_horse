@@ -15,6 +15,7 @@ package com.example.trojan0project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -22,7 +23,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,7 +41,6 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
     private ListView profileList;
     private ProfileAdapter profileAdapter;
     private FirebaseFirestore db;
-    //private String deviceId;
 
     private static final String TAG = "BrowseProfileAdmin"; // Added log tag
 
@@ -53,15 +55,20 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_browse_profile_admin);
 
+        Toolbar toolbar = findViewById(R.id.browse_profiles_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
 
         db = FirebaseFirestore.getInstance();
         profileList = findViewById(R.id.profile_list);
         dataList = new ArrayList<>();
         profileAdapter = new ProfileAdapter(this, dataList);
         profileList.setAdapter(profileAdapter);
-
-        //deviceId = getIntent().getStringExtra("DEVICE_ID");
-        //Log.d(TAG, "Device ID received: " + deviceId);  // Log device ID
 
         ImageButton ImagePage = findViewById(R.id.camera_button);
 
@@ -72,7 +79,7 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Profile selectedProfile = dataList.get(i);
-
+                Log.d(TAG, "Selected profile: " + selectedProfile.getUsername());  // Log selected profile
                 new RemoveProfileFragment(selectedProfile).show(getSupportFragmentManager(), "removeProfile");
             }
         });
@@ -83,6 +90,22 @@ public class BrowseProfileAdmin extends AppCompatActivity implements RemoveProfi
             startActivity(intent);
         });
 
+    }
+
+    /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**

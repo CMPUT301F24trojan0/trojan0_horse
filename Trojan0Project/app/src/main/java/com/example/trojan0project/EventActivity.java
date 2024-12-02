@@ -1,3 +1,22 @@
+/**
+ * Represents an activity for managing events in the application, providing functionalities
+ * such as viewing, generating QR codes, and deleting events. It integrates with Firestore
+ * for event data retrieval and storage and provides an admin interface for event management.
+ *
+ * <p>This class implements the `DeleteEventFragment.DeleteEventDialogListener` interface to
+ * handle dialog-based event deletion operations.</p>
+ *
+ * Features:
+ * - Displays a list of events retrieved from Firestore.
+ * - Allows navigation to a profile management page.
+ * - Supports generating and deleting QR codes for events.
+ * - Provides the ability to delete entire events from Firestore.
+ *
+ * Design Rationale:
+ * - Extends `AppCompatActivity` to utilize modern Android UI components.
+ * - Uses Firestore for cloud-based event data management.
+ */
+
 package com.example.trojan0project;
 
 import static android.content.ContentValues.TAG;
@@ -7,6 +26,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +37,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
@@ -48,11 +70,27 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
     private ImageView qrCodeImageView;
     private ProgressDialog progressDialog;
 
+    /**
+     * Handles the creation of the `EventActivity` activity, initializing UI components,
+     * setting up Firestore integration, and defining event listeners for user interactions.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down, this Bundle contains the most recent data.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.events_main);
+
+        Toolbar toolbar = findViewById(R.id.browse_events_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
+
         db = FirebaseFirestore.getInstance();
         Log.d(TAG, "onCreate: Firestore instance initialized");
 
@@ -87,7 +125,7 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
                 dataList.clear();
 
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                    String eventName = (String) doc.getData().get("name");
+                    String eventName = (String) doc.getData().get("eventName");
                     String qrContent = (String) doc.getData().get("qrContent");
 
                     Log.d(TAG, "onEvent: Event Name: " + eventName);
@@ -118,6 +156,28 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         });
     }
 
+    /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Generates a QR code Bitmap from the provided content string.
+     *
+     * @param content The string content to encode in the QR code.
+     * @return A Bitmap image of the generated QR code, or null if an error occurs.
+     */
     private Bitmap generateQRCode(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -136,6 +196,12 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return null;
     }
 
+    /**
+     * Compresses a QR code Bitmap into a PNG format byte array.
+     *
+     * @param qrCodeBitmap The Bitmap image of the QR code.
+     * @return A byte array containing the compressed image data.
+     */
     private byte[] getQRCodeImageData(Bitmap qrCodeBitmap) {
         Log.d(TAG, "getQRCodeImageData: Compressing QR code image to byte array");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -143,12 +209,17 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         return baos.toByteArray();
     }
 
+    /**
+     * Deletes the QR code associated with the provided event from the Firestore database.
+     *
+     * @param event The event whose QR code needs to be deleted.
+     */
     @Override
     public void deleteQRCode(Event event) {
         Log.d(TAG, "deleteQRCode: Deleting QR code for event: " + event.getEventName());
         if (selectedEvent != null) {
             db.collection("events")
-                    .whereEqualTo("name", selectedEvent.getEventName())
+                    .whereEqualTo("eventName", selectedEvent.getEventName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
@@ -172,12 +243,17 @@ public class EventActivity extends AppCompatActivity implements DeleteEventFragm
         }
     }
 
+    /**
+     * Deletes the specified event from the Firestore database.
+     *
+     * @param event The event to be deleted.
+     */
     @Override
     public void deleteEvent(Event event) {
         Log.d(TAG, "deleteEvent: Deleting event: " + event.getEventName());
         if (selectedEvent != null) {
             db.collection("events")
-                    .whereEqualTo("name", selectedEvent.getEventName())
+                    .whereEqualTo("eventName", selectedEvent.getEventName())
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {

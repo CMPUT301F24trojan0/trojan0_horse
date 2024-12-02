@@ -13,9 +13,14 @@
  * Outstanding Issues:
  * No Issues.
  */
+
 package com.example.trojan0project;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +33,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.provider.Settings;
 import android.content.Context;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -68,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if the device ID exists in Firestore
         getDeviceIdAndCheck();
     }
+
     /**
      * Retrieves the device ID and checks if it exists in Firestore. Based on the result:
      * - Redirects the user if registered.
@@ -80,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         //sending to joinWaitlist for user device ids
         Intent intent1 = new Intent(MainActivity.this, JoinWaitlist.class);
-        intent1.putExtra("DEVICE_ID", deviceId);
+        intent1.putExtra("device_id", deviceId);
 
 
         // Check if the device ID exists in Firestore
@@ -94,9 +103,10 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "User type: " + userType);
 
                     if ("entrant".equals(userType)) {
-                        Intent intent = new Intent(MainActivity.this, ViewProfile.class);
+                        Intent intent = new Intent(MainActivity.this, EntrantMain.class);
                         intent.putExtra("DEVICE_ID", deviceId);
                         startActivity(intent);
+                        finish();
                     }
 
                     else if ("organizer".equals(userType)) {
@@ -104,13 +114,15 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, OrganizerPageActivity.class);
                         intent.putExtra("organizerId", deviceId);  // Assuming deviceId is used as organizerId in Firestore
                         startActivity(intent);
+                        finish();
                     }
 
                     else if ("admin".equals(userType)) {
-                        Intent intent = new Intent(MainActivity.this, EventActivity.class);
+                        Intent intent = new Intent(MainActivity.this, AdminMain.class);
                         intent.putExtra("DEVICE_ID", deviceId);
                         startActivity(intent);
-                        }
+                        finish();
+                    }
 
                 } else {
                     setContentView(R.layout.activity_main);
@@ -131,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("DEVICE_ID", deviceId);
                         intent.putExtra("USER_TYPE", "entrant");
                         startActivity(intent);
+                        finish();
                     });
 
                     organizerButton.setOnClickListener(v -> {
@@ -141,12 +154,14 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, OrganizerPageActivity.class);
                                 intent.putExtra("organizerId", deviceId);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 // User is not an organizer, proceed to OrganizerSignUpActivity for registration
                                 Intent intent = new Intent(MainActivity.this, OrganizerSignUpActivity.class);
                                 intent.putExtra("DEVICE_ID", deviceId);
                                 intent.putExtra("USER_TYPE", "organizer");
                                 startActivity(intent);
+                                finish();
                             }
                         }).addOnFailureListener(e -> Log.e(TAG, "Error checking user type: " + e.getMessage()));
                     });

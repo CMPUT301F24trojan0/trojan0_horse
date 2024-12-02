@@ -43,7 +43,6 @@ buildscript {
 dependencies {
     //Mockito
     testImplementation ("org.mockito:mockito-core:4.5.1") // Use the latest version
-
     testImplementation("org.mockito:mockito-inline:4.5.1")
 
     testImplementation("androidx.test:core:1.5.0")
@@ -74,7 +73,10 @@ dependencies {
     implementation("com.google.zxing:core:3.5.0")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
-    implementation ("androidx.appcompat:appcompat:1.6.1")
+
+
+    //Google maps
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
 
 
     implementation(libs.appcompat)
@@ -90,9 +92,15 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.0.1")
+    testImplementation("com.google.firebase:firebase-firestore:24.5.0")
+    testImplementation("com.google.firebase:firebase-storage:20.3.2")
     testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.0.1")
     testImplementation("junit:junit:4.13.2")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    testImplementation ("org.robolectric:robolectric:4.7.3")  // Add the latest version
+    testImplementation ("org.mockito:mockito-core:4.1.0")      // For mockito if needed
+
 }

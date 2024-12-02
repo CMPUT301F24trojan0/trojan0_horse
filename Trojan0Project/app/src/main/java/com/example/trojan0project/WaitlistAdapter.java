@@ -15,6 +15,7 @@
  * Outstanding Issues:
  * No Issues
  */
+
 package com.example.trojan0project;
 
 import android.view.LayoutInflater;
@@ -68,7 +69,4 @@ public class WaitlistAdapter extends ArrayAdapter<Profile> {
 
         return view;
     }
-
-
-
 }

@@ -68,7 +68,7 @@ public class ImageGenerator extends Drawable {
      * @param context The context for accessing color resources.
      * @return A randomly selected color.
      */
-    private int generateRandomColor(Context context) {
+    public int generateRandomColor(Context context) {
         Random random = new Random();
         int colorResId = COLORS[random.nextInt(COLORS.length)];
         return ContextCompat.getColor(context, colorResId);
@@ -83,6 +83,11 @@ public class ImageGenerator extends Drawable {
         // Get the drawable's bounds
         int width = getBounds().width();
         int height = getBounds().height();
+
+        if (width <= 0 || height <= 0) {
+            return;
+        }
+
         float radius = Math.min(width, height) / 2;
 
         // Draw a red circle in the center

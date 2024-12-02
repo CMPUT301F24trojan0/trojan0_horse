@@ -21,12 +21,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,7 +41,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageFragment.removeImageListener {
+public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageFragment.removeImageListener{
     private GridView imagesGridView;
     private ImageAdapter imageAdapter;
     private ArrayList<Image> images;
@@ -57,6 +60,15 @@ public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageF
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.browse_images_admin);
+
+        Toolbar toolbar = findViewById(R.id.browse_images_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
 
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -81,19 +93,27 @@ public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageF
                 new RemoveImageFragment(selectedImage).show(getSupportFragmentManager(), "removeImage");
             }
         });
-
-        FacilityPage.setOnClickListener(v -> {
-            Intent intent = new Intent(BrowseImagesAdmin.this, FacilityActivity.class);
-            startActivity(intent);
-        });
-
     }
-
+    /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     /**
      * Retrieves user profile pictures from Firestore and adds them to the images list.
      * Notifies the adapter of any updates to display the new images in the grid.
      */
-    public void getUserProfilePicture() {
+    public void getUserProfilePicture(){
         db.collection("users")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -115,11 +135,11 @@ public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageF
      * Retrieves event poster images from Firestore and adds them to the images list.
      * Notifies the adapter of any updates to display the new images in the grid.
      */
-    public void getEventImages() {
+    public void getEventImages(){
         db.collection("events")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots){
                         String posterPath = document.getString("posterPath");
                         if (posterPath != null && !posterPath.isEmpty()) {
                             images.add(new Image(posterPath));
@@ -182,5 +202,3 @@ public class BrowseImagesAdmin extends AppCompatActivity implements RemoveImageF
         }
     }
 }
-
-

@@ -52,27 +52,20 @@ public class DisplayEventDetails extends AppCompatActivity {
         setContentView(R.layout.display_event_details_admin);
         db = FirebaseFirestore.getInstance();
         deviceId = getIntent().getStringExtra("DEVICE_ID");
-        eventId = "APJycG7rGU8UXL0XW7Eq";
-
+        eventId = "CRMooy8t4g20CW2TEZAW"; //CHANGE TO THURSDAYS LAB
 
         eventTitle = findViewById(R.id.event_title);
         eventLocation = findViewById(R.id.location_label);
         eventTime = findViewById(R.id.time_label);
         eventMoreInfo = findViewById(R.id.more_info_label);
 
-
         loadEventDetails();
-
-
 
         //OpenAI, (2024, November 6 2024), "How do I transfer the text from one activity to another?", ChatGPT
         Intent intent = getIntent();
         String selectedEventTitle = intent.getStringExtra("event_title");
         Event selectedEvent = (Event) getIntent().getSerializableExtra("clicked_event");
         eventId = selectedEvent.getEventId();
-
-        //TextView eventTextView = findViewById(R.id.event_title);
-        //eventTextView.setText(selectedEventTitle);
 
     }
 
@@ -108,7 +101,7 @@ public class DisplayEventDetails extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         // Get event details and set them in the UI
-                        String title = documentSnapshot.getString("name");
+                        String title = documentSnapshot.getString("eventName");
                         Double latitude = documentSnapshot.getDouble("latitude");
                         Double longitude = documentSnapshot.getDouble("longitude");
                         String time = documentSnapshot.getString("time");

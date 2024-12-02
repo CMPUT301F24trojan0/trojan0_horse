@@ -155,12 +155,26 @@ public class ViewProfile extends AppCompatActivity {
         // Fetch and display notifications for the device
         Notification notificationHelper = new Notification();
         notificationHelper.getNotificationsForDevice(this, deviceId);
-
         // Request POST_NOTIFICATIONS permission
         requestNotificationPermission();
-
         // Call createNotificationChannel to ensure the channel is created on compatible devices
         createNotificationChannel(this);
+
+        /*
+        String deviceId = "8fb329762643a6cb";
+
+        // Sample notification 1
+        String eventId1 = "8492iF6Eu41dwGCB1yUG";
+        String title1 = "Event Reminder";
+        String message1 = "Don't forget to join the upcoming event!";
+        notificationHelper.addNotificationToDevice(deviceId, eventId1, title1, message1);
+
+        // Sample notification 2
+        String eventId2 = "E4sUpzhqDYcazajGbdlW";
+        String title2 = "Special Offer";
+        String message2 = "Check out the exclusive offer available for event participants!";
+        notificationHelper.addNotificationToDevice(deviceId, eventId2, title2, message2);
+        */
 
         // Set up the button to update profile image
         editImageButton.setOnClickListener(v -> updateImage());
@@ -242,6 +256,22 @@ public class ViewProfile extends AppCompatActivity {
                     Boolean notifications = document.getBoolean("notifications");
                     if (notifications != null) {
                         notificationsToggle.setChecked(notifications);
+
+                        // Attach the listener after setting the initial state
+                        notificationsToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                            if (isChecked) {
+                                // Fetch and display notifications for the device
+                                Notification notificationHelper = new Notification();
+                                notificationHelper.getNotificationsForDevice(this, deviceId);
+                                // Request POST_NOTIFICATIONS permission
+                                requestNotificationPermission();
+                                // Call createNotificationChannel to ensure the channel is created on compatible devices
+                                createNotificationChannel(this);
+                            } else {
+                                // Optionally, stop or remove notifications
+                                cancelNotifications();
+                            }
+                        });
                     }
 
                     // Load profile picture from URL
@@ -263,6 +293,12 @@ public class ViewProfile extends AppCompatActivity {
                 Toast.makeText(this, "Failed to load profile", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void cancelNotifications() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.cancelAll(); // This cancels all ongoing notifications
+        }
     }
     /**
      * Saves the updated profile data to Firestore.

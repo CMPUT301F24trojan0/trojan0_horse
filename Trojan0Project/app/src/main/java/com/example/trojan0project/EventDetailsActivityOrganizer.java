@@ -29,6 +29,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseStorage firebaseStorage;
     private String eventId;
+    private String passId;
     private static final String TAG = "EventDetailsOrganizer";
 
     private final ActivityResultLauncher<Intent> pickImageLauncher = registerForActivityResult(
@@ -62,9 +63,20 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
 
-        // Get the event ID passed through the intent
+        // Get the event ID and pass ID passed through the intent
         eventId = getIntent().getStringExtra("eventId");
         Log.d(TAG, "Received event ID: " + eventId);
+        passId = getIntent().getStringExtra("passId");
+        Log.d(TAG, "Received event ID: " + passId);
+
+        // Conditionally set button visibility based on passId
+        if (passId == null) {
+            changePosterButton.setVisibility(Button.VISIBLE);
+            viewPeopleButton.setVisibility(Button.VISIBLE);
+        } else {
+            changePosterButton.setVisibility(Button.GONE);
+            viewPeopleButton.setVisibility(Button.GONE);
+        }
 
         if (eventId != null) {
             // Fetch event details from Firestore
@@ -109,6 +121,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
             intent.putExtra("eventId", eventId);
             startActivity(intent);
         });
+
     }
 
     private void openImagePicker() {

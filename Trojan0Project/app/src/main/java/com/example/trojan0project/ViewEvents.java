@@ -32,6 +32,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
 
 public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEventClickListener {
 
@@ -41,6 +45,10 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
     private EventAdapter eventAdapter;
     private List<Event> eventList;
     private String deviceId;
+    private Spinner statusSpinner;
+    private int selectedStatus = -1; // Default: All
+    private Long participationStatus;
+
 
     /**
      * Initializes the activity, retrieves the device ID, sets up Firestore, and initializes the RecyclerView.
@@ -82,11 +90,46 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
 
         // Set up adapter and attach it to RecyclerView
         eventAdapter = new EventAdapter(eventList);
-        eventAdapter.setOnEventClickListener(this);  // Set the click listener
+        eventAdapter.setOnEventClickListener(this);  // 'this' refers to the ViewEvents activity
         eventsRecyclerView.setAdapter(eventAdapter);
 
-        // Retrieve events from Firestore
-        retrieveEvents();
+        // Set up Spinner
+        statusSpinner = findViewById(R.id.statusSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.participation_statuses, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statusSpinner.setAdapter(adapter);
+
+        statusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        selectedStatus = -1; // All
+                        break;
+                    case 1:
+                        selectedStatus = 0;
+                        break;
+                    case 2:
+                        selectedStatus = 1;
+                        break;
+                    case 3:
+                        selectedStatus = 2;
+                        break;
+                    case 4:
+                        selectedStatus = 3;
+                        break;
+                }
+                retrieveEvents(); // Reload events based on filter
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Default to All
+                selectedStatus = -1;
+                retrieveEvents();
+            }
+        });
     }
 
     /**
@@ -97,18 +140,55 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
      */
     @Override
     public void onEventClick(Event event) {
-        // Create a new StatusFragment
-        StatusFragment statusFragment = new StatusFragment();
+        Log.d(TAG, "onEventClick triggered for Event: " + event.getEventId() + ", Name: " + event.getEventName());
 
-        // Create a bundle to pass the deviceId
-        Bundle args = new Bundle();
-        args.putString("DEVICE_ID", deviceId);  // Pass device ID to fragment
-        args.putString("EVENT_ID", event.getEventId()); // Pass the unique event ID to the fragment
-        statusFragment.setArguments(args);
+        // Fetch the participation status from Firestore dynamically using the eventId
+        db.collection("users").document(deviceId) // Use the deviceId to locate the user
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists() && document.contains("events")) {
+                            Log.d(TAG, "User events found in Firestore document.");
 
-        // Show the fragment as a dialog (overlay)
-        statusFragment.show(getSupportFragmentManager(), "StatusFragment");
+                            Map<String, Long> eventsMap = (Map<String, Long>) document.get("events");
+                            if (eventsMap != null && eventsMap.containsKey(event.getEventId())) {
+                                // Get participation status for the specific eventId
+                                Long participationStatus = eventsMap.get(event.getEventId());
+
+                                // Check if participation status matches the condition
+                                if (participationStatus != null && participationStatus == 1) {
+                                    Log.d(TAG, "Event matches participation status 1. Proceeding to show StatusFragment.");
+
+                                    // Create and show StatusFragment
+                                    StatusFragment statusFragment = new StatusFragment();
+
+                                    // Pass deviceId and eventId to fragment
+                                    Bundle args = new Bundle();
+                                    args.putString("DEVICE_ID", deviceId);
+                                    args.putString("EVENT_ID", event.getEventId());
+                                    statusFragment.setArguments(args);
+
+                                    // Show the fragment
+                                    statusFragment.show(getSupportFragmentManager(), "StatusFragment");
+                                } else {
+                                    Log.d(TAG, "Event does not match participation status 1. Ignoring click.");
+                                }
+                            } else {
+                                Log.d(TAG, "No participation status found for eventId: " + event.getEventId());
+                            }
+                        } else {
+                            Log.w(TAG, "No events found for Device ID: " + deviceId);
+                        }
+                    } else {
+                        Log.e(TAG, "Error retrieving user data: ", task.getException());
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error fetching user data: ", e);
+                });
     }
+
 
     /**
      * Handles the selection of menu items, specifically the "home" button (up navigation).
@@ -129,7 +209,8 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
 
     /**
      * Retrieves events for the user from Firestore based on their device ID.
-     * Updates the RecyclerView with the retrieved events.
+     * Updates the RecyclerView with the retrieved events and shows a StatusFragment
+     * for events with participation status 1.
      */
     private void retrieveEvents() {
         if (deviceId == null) {
@@ -138,25 +219,30 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
             return;
         }
 
+        Log.d(TAG, "Retrieving events for Device ID: " + deviceId);
+
         db.collection("users").document(deviceId)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d(TAG, "Document retrieved: " + document.getData());
-                            if (document.contains("events")) {
-                                Map<String, Long> eventsMap = (Map<String, Long>) document.get("events");
+                        if (document.exists() && document.contains("events")) {
+                            Log.d(TAG, "Events found in Firestore document.");
 
-                                int[] counter = {0}; // Initialize a counter to track processed events
-                                int totalEventsToFetch = eventsMap.size(); // Total number of events to fetch
+                            Map<String, Long> eventsMap = (Map<String, Long>) document.get("events");
+                            eventList.clear(); // Clear current events
+                            eventAdapter.notifyDataSetChanged(); // Update RecyclerView
 
-                                // Fetch each event detail
-                                for (Map.Entry<String, Long> entry : eventsMap.entrySet()) {
-                                    String eventId = entry.getKey();
-                                    Long participationStatus = entry.getValue();
+                            for (Map.Entry<String, Long> entry : eventsMap.entrySet()) {
+                                String eventId = entry.getKey();
+                                participationStatus = entry.getValue();
 
-                                    // Fetch event details from the "events" collection using eventId
+                                Log.d(TAG, "Processing eventId: " + eventId + ", Status: " + participationStatus);
+                                Log.d(TAG, "participationStatus " + participationStatus);
+                                if (selectedStatus == -1 || participationStatus == selectedStatus) {
+                                    Log.d(TAG, "Event matches filter criteria. Fetching event details for: " + eventId);
+
+                                    // Fetch event details
                                     db.collection("events").document(eventId)
                                             .get()
                                             .addOnCompleteListener(eventTask -> {
@@ -165,60 +251,31 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                                                     if (eventDocument.exists()) {
                                                         String eventName = eventDocument.getString("eventName");
                                                         if (eventName != null) {
+                                                            Log.d(TAG, "Event details retrieved: " + eventName);
+
                                                             double defaultLatitude = 0.0;
                                                             double defaultLongitude = 0.0;
                                                             String defaultPosterPath = "";
-                                                            eventList.add(new Event(eventName, eventId, defaultLatitude, defaultLongitude, defaultPosterPath));
+                                                            Event event = new Event(eventName, eventId, defaultLatitude, defaultLongitude, defaultPosterPath);
+                                                            eventList.add(event);
 
-                                                            // Trigger the fragment popup only for events with participation status 1
-                                                            if (participationStatus == 1) {
-                                                                // You can add a listener for clicks here (the assumption is you want to handle the click in your adapter)
-                                                                eventAdapter.setOnEventClickListener(event -> {
-                                                                    if (event.getEventId().equals(eventId) && participationStatus == 1) {
-                                                                        // Create a new StatusFragment
-                                                                        StatusFragment statusFragment = new StatusFragment();
-
-                                                                        // Create a bundle to pass the deviceId and eventId
-                                                                        Bundle args = new Bundle();
-                                                                        args.putString("DEVICE_ID", deviceId);  // Pass device ID to fragment
-                                                                        args.putString("EVENT_ID", eventId); // Pass the unique event ID to the fragment
-                                                                        statusFragment.setArguments(args);
-
-                                                                        // Show the fragment as a dialog (overlay)
-                                                                        statusFragment.show(getSupportFragmentManager(), "StatusFragment");
-                                                                    }
-                                                                });
-                                                            }
-                                                        } else {
-                                                            Log.d(TAG, "Event name is missing for event ID: " + eventId);
+                                                            Log.d(TAG, "Event added to the list: " + event.getEventId());
                                                         }
                                                     } else {
-                                                        Log.d(TAG, "Event document does not exist for event ID: " + eventId);
+                                                        Log.w(TAG, "Event document does not exist for ID: " + eventId);
                                                     }
                                                 } else {
-                                                    Log.e(TAG, "Error fetching event details: ", eventTask.getException());
+                                                    Log.e(TAG, "Error fetching event details for ID: " + eventId, eventTask.getException());
                                                 }
 
-                                                // Increment the counter and check if all events are processed
-                                                counter[0]++;
-                                                if (counter[0] == totalEventsToFetch) {
-                                                    // Notify the adapter only once all events are added
-                                                    eventAdapter.notifyDataSetChanged();
-                                                }
+                                                eventAdapter.notifyDataSetChanged(); // Update RecyclerView
                                             });
+                                } else {
+                                    Log.d(TAG, "Event does not match filter criteria. Skipping eventId: " + eventId);
                                 }
-
-                                if (totalEventsToFetch == 0) {
-                                    Toast.makeText(ViewEvents.this, "No events found for this user.", Toast.LENGTH_SHORT).show();
-                                }
-
-                            } else {
-                                Log.d(TAG, "No events found for this user.");
-                                Toast.makeText(ViewEvents.this, "No events found for this user.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Log.d(TAG, "Document does not exist.");
-                            Toast.makeText(ViewEvents.this, "No events found for this user.", Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "No events found for Device ID: " + deviceId);
                         }
                     } else {
                         Log.e(TAG, "Error retrieving events: ", task.getException());
@@ -230,5 +287,4 @@ public class ViewEvents extends AppCompatActivity implements EventAdapter.OnEven
                     Toast.makeText(ViewEvents.this, "Firestore retrieval failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
 }

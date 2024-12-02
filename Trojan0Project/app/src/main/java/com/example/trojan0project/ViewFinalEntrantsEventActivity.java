@@ -49,7 +49,6 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
     private String eventID;
     private Spinner statusSpinner;
     private int selectedStatus1 = -1;
-    private int selectedStatus2 = -2;
     private Long participationStatus;
     private Date signupDeadline;
     private int numAttendees;
@@ -121,19 +120,18 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         selectedStatus1 = -1; // All
-                        selectedStatus2 = -2;
                         break;
                     case 1:
                         selectedStatus1 = 0;
-                        selectedStatus2 = -2;
                         break;
                     case 2:
                         selectedStatus1 = 1;
-                        selectedStatus2 = 2;
                         break;
                     case 3:
+                        selectedStatus1 = 2;
+                        break;
+                    case 4:
                         selectedStatus1 = 3;
-                        selectedStatus2 = -2;
                         break;
                 }
                 retrieveEntrants(); // Reload events based on filter
@@ -150,7 +148,6 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 // Default to All
                 selectedStatus1 = -1;
-                selectedStatus2 = -2;
                 retrieveEntrants();
             }
         });
@@ -422,7 +419,7 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
                                 Log.d(TAG, "Processing eventId: " + deviceId + ", Status: " + participationStatus);
                                 Log.d(TAG, "participationStatus " + participationStatus);
 
-                                if (selectedStatus1 == -1 || participationStatus == selectedStatus1 || participationStatus == selectedStatus2) {
+                                if (selectedStatus1 == -1 || participationStatus == selectedStatus1) {
                                     Log.d(TAG, "Device matches filter criteria. Fetching device details for: " + deviceId);
                                     firestore.collection("users").document(deviceId)
                                             .get()

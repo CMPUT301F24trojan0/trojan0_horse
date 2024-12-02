@@ -13,8 +13,9 @@
     <string-array name="participation_statuses_organizer">
         <item>All</item>
         <item>Waitlisted</item>
+        <item>Invited</item>
         <item>Selected</item>
-        <item>Cancell ed</item>
+        <item>Cancelled</item>
     </string-array>
 
 </resources>

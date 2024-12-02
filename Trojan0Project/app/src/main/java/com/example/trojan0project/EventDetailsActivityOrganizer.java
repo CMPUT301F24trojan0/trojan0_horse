@@ -25,7 +25,7 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
     private TextView eventNameTextView, eventDescriptionTextView, eventTimeTextView;
     private ImageView eventPosterImageView;
-    private Button changePosterButton, viewPeopleButton; // Added viewPeopleButton
+    private Button changePosterButton, viewPeopleButton, viewOnMap; // Added viewPeopleButton
     private FirebaseFirestore firestore;
     private FirebaseStorage firebaseStorage;
     private String eventId;
@@ -109,6 +109,14 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
             intent.putExtra("eventId", eventId);
             startActivity(intent);
         });
+        viewOnMap = findViewById(R.id.view_map_button);
+        viewOnMap.setOnClickListener(v ->{
+            Intent intent = new Intent(EventDetailsActivityOrganizer.this, MapEntrants.class);
+            intent.putExtra("eventID", eventId);
+            startActivity(intent);
+        });
+
+
     }
 
     private void openImagePicker() {

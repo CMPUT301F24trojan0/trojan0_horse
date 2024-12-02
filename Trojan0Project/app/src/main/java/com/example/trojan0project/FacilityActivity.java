@@ -9,7 +9,7 @@
  * Dialog fragment for deletion confirmation
  *
  * Outstanding Issues:
- * None
+ * Creates space when facility is deleted
  *
  */
 package com.example.trojan0project;
@@ -18,6 +18,7 @@ import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,8 +26,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
@@ -85,6 +88,22 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
     }
 
     /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
      * Initializes the activity, sets up the ListView, and loads facility data from Firestore.
      *
      * @param savedInstanceState The saved state of the activity.
@@ -94,6 +113,15 @@ public class FacilityActivity extends AppCompatActivity implements DeleteFacilit
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.facility_main);
+
+        Toolbar toolbar = findViewById(R.id.browse_facilities_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
 
         db = FirebaseFirestore.getInstance();
         final CollectionReference collectionReference = db.collection("users");

@@ -29,7 +29,8 @@
         <!-- Activities -->
         <activity android:name=".MapEntrants"/>
         <activity android:name=".UserSignUpActivity" />
-        <activity android:name=".OrganizerSignUpActivity" /> <!-- Added this line -->
+        <activity android:name=".OrganizerSignUpActivity" />
+        <activity android:name=".EntrantMain" />
         <activity android:name=".ViewProfile" />
         <activity android:name=".ViewEvents" />
         <activity android:name=".CreateEventActivity" />
@@ -47,6 +48,7 @@
         <activity android:name=".CancelEntrants" />
         <activity android:name=".ListEvents" />
         <activity android:name=".SystemSample" />
+        <activity android:name=".AdminMain"/>
 
         <!-- QR Code Scanner Activity -->
         <activity

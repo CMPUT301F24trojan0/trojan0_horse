@@ -131,25 +131,14 @@ public class StatusFragment extends DialogFragment {
                 .addOnSuccessListener(aVoid -> {
                     Log.d(TAG, "Event status updated successfully.");
 
-                    // Update the num_sampled field in the events collection
+                    // Update the users map in the events collection
                     db.collection("events").document(eventId)
-                            .update("num_sampled", FieldValue.increment(1)) // Increment num_sampled by 1
-                            .addOnSuccessListener(aVoid2 -> {
-                                Log.d(TAG, "num_sampled incremented successfully.");
-
-                                // Update the users map in the events collection
-                                db.collection("events").document(eventId)
-                                        .update("users." + deviceId, 2) // Set the user's status in the map to 2
-                                        .addOnSuccessListener(aVoid3 -> {
-                                            Log.d(TAG, "Users map updated successfully.");
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Log.e(TAG, "Error updating users map: ", e);
-                                        });
-
+                            .update("users." + deviceId, 2) // Set the user's status in the map to 2
+                            .addOnSuccessListener(aVoid3 -> {
+                                Log.d(TAG, "Users map updated successfully.");
                             })
                             .addOnFailureListener(e -> {
-                                Log.e(TAG, "Error incrementing num_sampled: ", e);
+                                Log.e(TAG, "Error updating users map: ", e);
                             });
 
                 })

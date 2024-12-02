@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- Camera Permission -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Optional for Notifications -->
@@ -37,14 +39,16 @@
         <activity android:name=".JoinWaitlist" />
         <activity android:name=".EntrantInvited" />
         <activity android:name=".DisplayEventDetails" />
-        <activity android:name=".SystemSample" />
+        <activity android:name=".EventActivity" />
         <activity android:name=".FacilityActivity" />
         <activity android:name=".EventsListActivityOrganizer" />
         <activity android:name=".EventDetailsActivityOrganizer" />
         <activity android:name=".ViewFinalEntrantsEventActivity" />
         <activity android:name=".CancelEntrants" />
         <activity android:name=".ListEvents" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".SystemSample" />
+        <activity android:name=".AdminMain"/>
+        <activity android:name=".PeopleFiltersActivity" />
 
         <!-- QR Code Scanner Activity -->
         <activity
@@ -57,7 +61,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".EventActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

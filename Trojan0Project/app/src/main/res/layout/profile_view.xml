@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ViewProfileLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F5F5F5"
     android:padding="20dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/view_profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoText"
+        android:title="My App Title" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -152,70 +160,5 @@
         android:layout_below="@id/phoneNumberInput"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="8dp" />
-
-    <!-- View Signed Up Events Button -->
-    <Button
-        android:id="@+id/viewEventsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/notificationsToggle"
-        android:layout_centerHorizontal="true"
-        android:text="View"
-        android:backgroundTint="#B391F8"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="16dp" />
-
-    <!-- Scan QR Code Button -->
-
-    <!-- Bottom Navigation Icons -->
-
-    <Button
-        android:id="@+id/scanQrCodeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/viewEventsButton"
-        android:layout_marginTop="-450dp"
-        android:backgroundTint="#8C52FF"
-        android:text="Scan QR Code"
-        android:textColor="#FFFFFF" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <!-- Profile Icon -->
-        <ImageView
-            android:id="@+id/navProfile"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/home_icon"
-            android:contentDescription="Profile Icon"
-            android:src="@drawable/baseline_person_24" />
-
-        <!-- Camera Icon -->
-        <ImageView
-            android:id="@+id/navCamera"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="48dp"
-            android:background="@drawable/home_icon"
-            android:contentDescription="Camera Icon"
-            android:src="@drawable/baseline_photo_camera_24" />
-
-        <!-- Group Icon -->
-        <ImageView
-            android:id="@+id/navGroup"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/home_icon"
-            android:contentDescription="Group Icon"
-            android:src="@drawable/baseline_people_24" />
-    </LinearLayout>
 
 </RelativeLayout>

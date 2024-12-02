@@ -60,9 +60,6 @@ public class FacilityArrayAdapter extends ArrayAdapter<Facility> {
 
         FacilityName.setText(facility.getFacilityName());
 
-
         return view;
     }
-
-
 }

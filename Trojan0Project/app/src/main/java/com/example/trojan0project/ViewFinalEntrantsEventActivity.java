@@ -1,3 +1,9 @@
+/**
+ * This activity displays the final entrants for a specific event.
+ * It retrieves the list of entrants from Firebase Firestore and displays them
+ * in a RecyclerView. Entrants are filtered by their status for the given event.
+ */
+
 package com.example.trojan0project;
 
 import android.os.Bundle;
@@ -22,6 +28,17 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
     private EntrantsAdapter entrantsAdapter;
     private FirebaseFirestore firestore;
 
+    /**
+     * Called when the activity is created. It sets up the layout, initializes
+     * the Firestore instance, and retrieves the event ID from the intent.
+     * If a valid event ID is found, it fetches the entrants for the event.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down, this Bundle contains
+     *                           the data it most recently supplied in
+     *                           {@link #onSaveInstanceState(Bundle)}.
+     *                           Otherwise, it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +57,14 @@ public class ViewFinalEntrantsEventActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Fetches the list of entrants for the given event ID from Firebase Firestore.
+     * It filters users by their type ("entrant") and checks if they have a status
+     * of 2 (final entrant) for the specified event. The filtered list of entrants
+     * is then displayed in a RecyclerView.
+     *
+     * @param eventId The ID of the event for which the entrants are being fetched.
+     */
     private void fetchEntrants(String eventId) {
         firestore.collection("users").get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {

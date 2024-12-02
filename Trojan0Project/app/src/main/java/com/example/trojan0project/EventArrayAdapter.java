@@ -12,7 +12,6 @@
 
 package com.example.trojan0project;
 
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,12 +65,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
         //OpenAI, (2024, November 6), "How do I set the Image as a Bitmap?", ChatGPT
         eventImage.setImageBitmap(event.getQrCodeBitmap());
 
-
-
-
         return view;
     }
-
-
 }
 

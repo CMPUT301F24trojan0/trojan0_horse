@@ -63,6 +63,7 @@ public class UserSignUpActivity extends AppCompatActivity {
 
         signUpButton.setOnClickListener(v -> saveUserData());
     }
+
     /**
      * Validates user input and saves the user's data to Firestore.
      * Displays a Toast message indicating success or failure of the registration process.
@@ -89,13 +90,13 @@ public class UserSignUpActivity extends AppCompatActivity {
             Log.d(TAG, "User data saved successfully");
             Toast.makeText(UserSignUpActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
 
-            Intent profileIntent = new Intent(UserSignUpActivity.this, ViewProfile.class);
+            Intent profileIntent = new Intent(UserSignUpActivity.this, EntrantMain.class);
             profileIntent.putExtra("DEVICE_ID", deviceId);
             startActivity(profileIntent);
+            finish();
         }).addOnFailureListener(e -> {
             Log.e(TAG, "Registration failed: " + e.getMessage());
             Toast.makeText(UserSignUpActivity.this, "Registration failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
-
     }
 }

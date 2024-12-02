@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ViewEventsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    android:padding="16dp"
-    tools:context=".ViewEvents">
+    android:padding="16dp">
 
     <!-- Logo TextView -->
     <TextView
@@ -27,7 +24,7 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/view_events_toolbar"
+        android:id="@+id/leave_view_people_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:title="My App Title"
@@ -36,12 +33,12 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/ViewSignedUpEvents"
+        android:id="@+id/view_all_people_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:fontFamily="sans-serif"
-        android:text="Signed Up Users"
+        android:text="View All People"
         android:textColor="#000000"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,11 +52,11 @@
         android:layout_height="match_parent"/>
 
     <Spinner
-        android:id="@+id/statusSpinner"
+        android:id="@+id/statusSpinnerOrganizer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/participation_statuses"
-        app:layout_constraintTop_toBottomOf="@id/ViewSignedUpEvents"
+        android:entries="@array/participation_statuses_organizer"
+        app:layout_constraintTop_toBottomOf="@id/view_all_people_text_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"/>
@@ -70,26 +67,70 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ViewSignedUpEvents">
+        app:layout_constraintBottom_toTopOf="@id/sendNotificationButton"
+        app:layout_constraintTop_toBottomOf="@id/statusSpinnerOrganizer">
 
         <!-- RecyclerView for displaying events -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/entrants_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false" />
     </androidx.core.widget.NestedScrollView>
+
+    <!-- "Send Notification" Button -->
+    <Button
+        android:id="@+id/sendNotificationButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Send Notification"
+        android:backgroundTint="#8C52FF"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancelEntrantsButton"
+        app:layout_constraintHorizontal_weight="1.1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="5dp" />
+
+    <!-- "Cancel Entrants" Button -->
+    <Button
+        android:id="@+id/cancelEntrantsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel Entrants"
+        android:backgroundTint="@color/purple"
+        app:layout_constraintStart_toEndOf="@+id/sendNotificationButton"
+        app:layout_constraintEnd_toStartOf="@+id/sampleWaitlistButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="5dp" />
+
+    <!-- "Sample Waitlist" Button -->
+    <Button
+        android:id="@+id/sampleWaitlistButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sample Waitlist"
+        app:layout_constraintStart_toEndOf="@+id/cancelEntrantsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="10dp"/>
 
     <!-- "End of events" TextView placed below the RecyclerView -->
     <TextView
         android:id="@+id/endOfEventsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="End of events list"
+        android:text="End of people list"
         android:textColor="#888888"
         android:textSize="18sp"
         android:layout_marginTop="16dp"

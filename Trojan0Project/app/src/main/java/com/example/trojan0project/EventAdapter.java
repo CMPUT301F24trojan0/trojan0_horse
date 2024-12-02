@@ -18,9 +18,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
@@ -67,39 +64,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     /**
      * Binds the data for an event to the specified ViewHolder.
      *
-     * @param holder   The ViewHolder to be updated with the event data.
+     * @param holder The ViewHolder to be updated with the event data.
      * @param position The position of the event within the adapter's data set.
      */
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = eventList.get(position);
-
-        // Set the event name immediately (as it is already in the local list)
         holder.eventNameTextView.setText(event.getEventName());
 
-        // Fetch description from Firestore dynamically
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        firestore.collection("events")
-                .document(event.getEventId()) // Assuming eventId matches Firestore document ID
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String description = documentSnapshot.getString("description");
-                        if (description != null) {
-                            holder.eventDescriptionText.setText(description);
-                            holder.eventDescriptionText.setVisibility(View.VISIBLE);
-                        } else {
-                            holder.eventDescriptionText.setVisibility(View.GONE); // Hide if null
-                        }
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    // Handle Firestore error (optional logging or fallback behavior)
-                    holder.eventDescriptionText.setText("Description unavailable");
-                    holder.eventDescriptionText.setVisibility(View.VISIBLE);
-                });
-
-        // Set click listener on the item
+        // Set the click listener on the entire item view
         holder.itemView.setOnClickListener(v -> {
             if (onEventClickListener != null) {
                 onEventClickListener.onEventClick(event);
@@ -122,7 +95,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
      */
     static class EventViewHolder extends RecyclerView.ViewHolder {
         TextView eventNameTextView;
-        TextView eventDescriptionText;
         /**
          * Constructor for EventViewHolder.
          *
@@ -131,7 +103,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
             eventNameTextView = itemView.findViewById(R.id.eventNameTextView);
-            eventDescriptionText = itemView.findViewById(R.id.event_description_text);
         }
     }
 }

@@ -30,16 +30,6 @@ public class Event implements Parcelable, Serializable {
     private Timestamp deadline;  // Event registration deadline (Firestore Timestamp)
     private int maxNumberOfEntrants; // Maximum number of entrants allowed
 
-    /**
-     * Default constructor for creating an Event object using Firestore data.
-     *
-     * @param eventName          Name of the event.
-     * @param eventId            Unique identifier for the event.
-     * @param defaultLatitude    Default latitude of the event location.
-     * @param defaultLongitude   Default longitude of the event location.
-     * @param defaultPosterPath  Default path or URL to the event's poster.
-     * @param participationStatus Status indicating participation in the event.
-     */
     // Default constructor for Firestore
     public Event(String eventName, String eventId, double defaultLatitude, double defaultLongitude, String defaultPosterPath, Long participationStatus) {}
 
@@ -90,11 +80,6 @@ public class Event implements Parcelable, Serializable {
         maxNumberOfEntrants = in.readInt();
     }
 
-    /**
-     * Constructor to create an Event object with only a name.
-     *
-     * @param eventName Name of the event.
-     */
     public Event(String eventName) {
         this.eventName = eventName;
     }
@@ -114,13 +99,6 @@ public class Event implements Parcelable, Serializable {
         }
     };
 
-    /**
-     * Describes the contents of the `Parcelable` object.
-     * This method is typically used to specify any special objects in the Parcelable
-     * that require a file descriptor, but in this case, it returns 0 as no such objects exist.
-     *
-     * @return An integer value of 0, indicating no special objects.
-     */
     @Override
     public int describeContents() {
         return 0;

@@ -9,7 +9,6 @@
  * Outstanding Issues:
  * No issues
  */
-
 package com.example.trojan0project;
 
 import android.content.Intent;
@@ -60,11 +59,11 @@ public class ListEvents extends AppCompatActivity {
 
         fetchEvents();
 
-        eventListAdapter.setOnEventClickListener(event -> {
-            Intent intent = new Intent(ListEvents.this, MapEntrants.class);
-            intent.putExtra("eventID", event.getEventId());
-            startActivity(intent);
-        });
+        //eventListAdapter.setOnEventClickListener(event -> {
+            //Intent intent = new Intent(ListEvents.this, MapEntrants.class);
+            //intent.putExtra("eventID", event.getEventId());
+            //startActivity(intent);
+        //});
     }
 
     /**

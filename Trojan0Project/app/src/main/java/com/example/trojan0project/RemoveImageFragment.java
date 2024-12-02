@@ -1,11 +1,3 @@
-/**
- * A DialogFragment that displays a confirmation dialog for removing an image.
- * It shows the image and asks the user to either confirm or cancel the removal action.
- * The fragment uses the Glide library to load the image into an ImageView.
- * Upon confirmation, the fragment communicates with the hosting activity or fragment
- * through the `removeImageListener` interface to remove the image.
- */
-
 package com.example.trojan0project;
 
 import android.app.AlertDialog;
@@ -29,29 +21,14 @@ public class RemoveImageFragment extends DialogFragment {
     private Image image;
     private removeImageListener listener;
 
-    /**
-     * Interface for communicating with the host activity/fragment to remove an image.
-     */
     interface removeImageListener {
         void removeImage(Image image);
     }
 
-    /**
-     * Constructor for the RemoveImageFragment that initializes the image to be removed.
-     *
-     * @param image The image to be displayed and potentially removed.
-     */
     public RemoveImageFragment(Image image) {
         this.image = image;
     }
 
-    /**
-     * Called when the fragment is attached to the host context.
-     * Ensures that the context implements the `removeImageListener` interface.
-     *
-     * @param context The context to which the fragment is attached.
-     * @throws RuntimeException If the context does not implement `removeImageListener`.
-     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -63,13 +40,6 @@ public class RemoveImageFragment extends DialogFragment {
         }
     }
 
-    /**
-     * Creates and returns the dialog for removing the image.
-     * This dialog displays the image and asks the user to either confirm or cancel the removal action.
-     *
-     * @param savedInstanceState The saved instance state of the fragment.
-     * @return A Dialog object representing the remove image confirmation dialog.
-     */
     @Nullable
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

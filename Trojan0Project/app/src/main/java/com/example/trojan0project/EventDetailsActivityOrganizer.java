@@ -19,28 +19,35 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.trojan0project.Notification;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
     private TextView eventNameTextView, eventDescriptionTextView, eventTimeTextView;
     private ImageView eventPosterImageView;
-    private Button changePosterButton, viewPeopleButton; // Added viewPeopleButton
+    private Button changePosterButton, viewPeopleButton, geolocationButton;
     private FirebaseFirestore firestore;
     private FirebaseStorage firebaseStorage;
     private String eventId;
@@ -79,13 +86,23 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.organizer_activity_event_detail);
 
+        Toolbar toolbar = findViewById(R.id.leave_view_event_details_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Set the title of the action bar to be empty
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Enable the "up" button
+        }
+
         // Initialize UI elements
         eventNameTextView = findViewById(R.id.event_name_text_view);
         eventDescriptionTextView = findViewById(R.id.event_description_text_view);
         eventTimeTextView = findViewById(R.id.event_time_text_view);
         eventPosterImageView = findViewById(R.id.event_poster_image_view);
         changePosterButton = findViewById(R.id.change_poster_button);
-        viewPeopleButton = findViewById(R.id.view_people_button); // Initialize viewPeopleButton
+        viewPeopleButton = findViewById(R.id.view_people_button);
+        geolocationButton = findViewById(R.id.view_geolocation_button);
 
         // Initialize Firebase services
         firestore = FirebaseFirestore.getInstance();
@@ -116,10 +133,16 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
                             String description = documentSnapshot.getString("description");
                             String time = documentSnapshot.getString("time");
                             String posterPath = documentSnapshot.getString("posterPath");
+                            Double longitude = documentSnapshot.getDouble("longitude");
+                            Double latitude = documentSnapshot.getDouble("latitude");
 
                             eventNameTextView.setText(eventName);
                             eventDescriptionTextView.setText(description);
                             eventTimeTextView.setText(time);
+
+                            if (longitude != null && latitude != null && longitude != 0.0 && latitude != 0.0) {
+                                geolocationButton.setVisibility(View.VISIBLE);
+                            }
 
                             // Load poster into ImageView
                             if (posterPath != null && !posterPath.isEmpty()) {
@@ -145,8 +168,8 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
 
         // Set up View People button click listener
         viewPeopleButton.setOnClickListener(v -> {
-            Intent intent = new Intent(EventDetailsActivityOrganizer.this, PeopleFiltersActivity.class);
-            intent.putExtra("eventId", eventId); // Pass the eventId to the new activity
+            Intent intent = new Intent(EventDetailsActivityOrganizer.this, ViewFinalEntrantsEventActivity.class);
+            intent.putExtra("eventId", eventId);
             startActivity(intent);
         });
 
@@ -209,10 +232,56 @@ public class EventDetailsActivityOrganizer extends AppCompatActivity {
                     Glide.with(this)
                             .load(newPosterPath)
                             .into(eventPosterImageView);
+
+                    // Fetch the event details to notify users
+                    firestore.collection("events").document(eventId)
+                            .get()
+                            .addOnSuccessListener(documentSnapshot -> {
+                                if (documentSnapshot.exists()) {
+                                    String eventName = documentSnapshot.getString("eventName"); // Assuming there's a "name" field for the event
+                                    Map<String, Object> usersMap = (Map<String, Object>) documentSnapshot.get("users");
+
+                                    if (usersMap != null) {
+                                        List<String> deviceIds = new ArrayList<>(usersMap.keySet());
+                                        Notification notifications = new Notification();
+                                        for (String deviceId : deviceIds) {
+                                            notifications.addNotificationToDevice(
+                                                    deviceId,
+                                                    eventId,
+                                                    "Poster Updated",
+                                                    "The poster for event \"" + eventName + "\" has been updated."
+                                            );
+                                        }
+                                    } else {
+                                        Log.w(TAG, "Users map is empty or null.");
+                                    }
+                                } else {
+                                    Log.e(TAG, "Event not found in Firestore.");
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(this, "Failed to fetch event details", Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, "Error fetching event details: " + e.getMessage());
+                            });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Failed to update poster path in Firestore", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Error updating Firestore: " + e.getMessage());
                 });
+    }
+    /**
+     * Handles the selection of menu items, specifically the "home" button (up navigation).
+     * This method is called when an item in the options menu is selected.
+     *
+     * @param item The menu item that was selected.
+     * @return True if the menu item is handled, false otherwise.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // Finish the current activity and return to the previous one
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

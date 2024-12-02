@@ -49,6 +49,9 @@ dependencies {
     testImplementation("org.robolectric:robolectric:4.9")
 // Mockito for Android (if you're writing Android tests)
     androidTestImplementation ("org.mockito:mockito-android:4.5.1")
+
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("org.robolectric:robolectric:4.9")
     //Firebase storage
     implementation ("com.google.firebase:firebase-storage:20.1.0")
 
@@ -100,4 +103,12 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
+
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") {
+        exclude("com.google.protobuf", "protobuf-lite")
+    }
+    testImplementation ("org.robolectric:robolectric:4.7.3")  // Add the latest version
+    testImplementation ("org.mockito:mockito-core:4.1.0")      // For mockito if needed
+
 }

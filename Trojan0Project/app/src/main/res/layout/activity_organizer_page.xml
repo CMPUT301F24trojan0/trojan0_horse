@@ -4,23 +4,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="16dp">
 
-    <!-- Organizer Page Heading -->
     <TextView
+        android:id="@+id/logoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Organizer Page"
-        android:textSize="32sp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp" />
+        android:fontFamily="@font/cinzel_decorative"
+        android:text="TROJAN0"
+        android:textColor="#8C52FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Centered ImageView -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/mainOrganizerIcon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Profile Picture"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/baseline_settings_24"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/facility_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Facility Name"
+        android:text="Welcome %s"
         android:textSize="24sp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp" />
@@ -41,6 +65,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:text="Create Event" />
+
     <Button
         android:id="@+id/view_events_button"
         android:layout_width="match_parent"
@@ -61,38 +86,5 @@
 
 
     </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_gravity="bottom"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/homeIcon"
-            android:layout_width="18dp"
-            android:layout_height="93dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_home"
-            app:tint="#b391f8" />
-
-        <ImageView
-            android:id="@+id/addIcon"
-            android:layout_width="40dp"
-            android:layout_height="96dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_add"
-            app:tint="@color/black" />
-
-        <ImageView
-            android:id="@+id/groupIcon"
-            android:layout_width="24dp"
-            android:layout_height="87dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_group"
-            app:tint="#b391f8" />
-    </LinearLayout>
 
 </LinearLayout>

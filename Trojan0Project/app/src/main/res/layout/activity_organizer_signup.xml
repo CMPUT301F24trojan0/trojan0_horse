@@ -2,6 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_organizer_signup_layout"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -11,8 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TROJANO"
+        android:fontFamily="@font/cinzel_decorative"
         android:textSize="24sp"
         android:textColor="#8A2BE2"
+        android:textStyle="bold"
         android:gravity="center"
         android:layout_gravity="center"/>
 

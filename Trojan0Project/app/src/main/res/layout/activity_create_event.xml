@@ -5,20 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="16dp">
 
-    <!-- App Logo -->
     <TextView
-        android:id="@+id/appLogo"
+        android:id="@+id/logoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="TROJANO"
-        android:textColor="#b391f8"
+        android:fontFamily="@font/cinzel_decorative"
+        android:text="TROJAN0"
+        android:textColor="#8C52FF"
         android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="10dp" />
 
     <!-- Screen Title -->
     <TextView
@@ -31,7 +32,18 @@
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appLogo" />
+        app:layout_constraintTop_toBottomOf="@id/logoText" />
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/leave_create_event_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:title="My App Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/createEventTitle" />
 
     <!-- Event Name Input -->
     <EditText
@@ -56,7 +68,7 @@
         android:text="Geolocation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/eventNameInput"
-        android:layout_marginStart="32dp" />
+        android:layout_marginLeft="32dp" />  <!-- Changed to layout_marginLeft for compatibility -->
 
     <Switch
         android:id="@+id/geolocationSwitch"
@@ -65,7 +77,6 @@
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toEndOf="@id/geolocationLabel"
         app:layout_constraintTop_toBottomOf="@id/eventNameInput" />
-
     <!-- Add Poster Button and Save Button -->
     <Button
         android:id="@+id/addPosterButton"
@@ -142,6 +153,7 @@
         android:backgroundTint="#b391f8"
         android:text="Add Max Entrants"
         android:textColor="@color/white"
+        android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@id/addDeadlineButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addDescriptionButton"
@@ -158,39 +170,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addMaxEntrantsButton" />
 
-    <!-- Bottom Navigation -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageView
-            android:id="@+id/homeIcon"
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_home"
-            app:tint="#b391f8" />
-
-        <ImageView
-            android:id="@+id/addIcon"
-            android:layout_width="0dp"
-            android:layout_height="71dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_add"
-            app:tint="@color/black" />
-
-        <ImageView
-            android:id="@+id/groupIcon"
-            android:layout_width="0dp"
-            android:layout_height="76dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_group"
-            app:tint="#b391f8" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

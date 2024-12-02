@@ -42,6 +42,7 @@ public class OrganizerSignUpActivity extends AppCompatActivity {
      *
      * @param savedInstanceState The saved state of the activity.
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,15 +59,6 @@ public class OrganizerSignUpActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(v -> saveOrganizerData());
     }
 
-    /**
-     * This method handles the process of saving organizer data to Firestore. It collects the facility name
-     * from the user input, validates it, and stores the data in Firestore under the "users" collection.
-     *
-     * If the facility name is empty, it displays a message asking the user to enter a facility name. If the
-     * data is successfully saved, it navigates to the `OrganizerPageActivity` and passes the organizer's ID.
-     *
-     * If the data save operation fails, it logs the error and shows a toast message indicating the failure.
-     */
     private void saveOrganizerData() {
         String facilityName = facilityInput.getText().toString().trim();
 

@@ -63,14 +63,10 @@ public class JoinWaitlist extends AppCompatActivity implements JoinWaitlistFragm
 
         db = FirebaseFirestore.getInstance();
 
-        // Get data from Intent
-        //deviceId = getIntent().getStringExtra("device_id");
-        //Retrieve the device ID directly within JoinWaitlist activity
         deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-
-
         Log.d(TAG, "onCreate: Device ID = " + deviceId);
         eventId = getIntent().getStringExtra("eventId");
+
         eventName = getIntent().getStringExtra("eventName");
         latitude = getIntent().getDoubleExtra("latitude", 0.0);
         longitude = getIntent().getDoubleExtra("longitude", 0.0);
